@@ -83,6 +83,7 @@ public class HelloWorld extends JPanel{
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		HelloWorld helloword=new HelloWorld();
+System.out.println("·¶ì¿ÒÑ¿´¹ý");
 	}
 
 }
