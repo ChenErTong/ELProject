@@ -6,7 +6,7 @@ import java.awt.event.*;
 /**
  * Build a class of the window,containing login name,password and buttons.
  * @author hz371_000
- * 2015.3.22
+ * 2015.3.22/∑¢¿Œ…ß∑Ω∑®ºı∑  
  */
 
 public class HelloWorld extends JPanel{
