@@ -8,6 +8,7 @@ import javax.swing.JFrame;
  * 抽象类：所有界面的模板，包括界面标题栏标题，大小，位置等信息
  * @author 恩哥哥
  * 2015.4.8.
+ * 改动：1、界面大小改为屏幕大小的0.618倍；2、去掉了高度、宽度的静态变量；3、将静态变量全部大写；by CX  2015.4.8
  */
 
 public abstract class JFrameTotal extends JFrame{
