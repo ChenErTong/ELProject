@@ -32,14 +32,13 @@ public abstract class JFrameTotal extends JFrame{
 		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();
-		//设置界面大小
-		this.setSize((int)(screen.width*0.618), (int)(screen.height*0.618));     //0.618是黄金分割比
+		//设置界面大小，0.618是黄金分割比
+		this.setSize((int)(screen.width*0.618), (int)(screen.height*0.618));   
 		//将界面置于显示屏正中央
 		int x = screen.width-this.getWidth()>>1;
 		int y = (screen.height-this.getHeight()>>1)-WINDOW_UP;
 		this.setLocation(x, y);
-		
-		
+			
 		//设置可以显示
 		this.setVisible(true);
 	}

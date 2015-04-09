@@ -2,7 +2,7 @@
  * 开始界面的按钮面板，应该包括开始游戏、帮助、退出游戏、静音的按钮，静音按钮。
  * 静音按钮还没写，监听器也没写，yeah！
  */
-package ui;
+package ui_start;
 import javax.swing.*;
 /**
  * @author DorA
@@ -36,7 +36,7 @@ public class PanelStartGame extends JPanel{
 		jbtQuit.setBounds(900,280,100,100);
 		jbtQuit.setPressedIcon(rollIcon);
 		jbtQuit.setRolloverIcon(rollIcon);
-		add(jbtQuit);
+		this.add(jbtQuit);
 		//此处应有监听器
 	
 	
