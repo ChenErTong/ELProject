@@ -1,4 +1,4 @@
-package ui_game;
+package gamecomponent;
 
 import java.awt.Image;
 /**

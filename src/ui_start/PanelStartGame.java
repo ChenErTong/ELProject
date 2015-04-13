@@ -31,7 +31,7 @@ public class PanelStartGame extends JPanel{
 		add(jbtHelp);
 		//此处应有监听器
 		
-	//添加一个退出游戏按钮
+	  //添加一个退出游戏按钮
 		JButton jbtQuit=new JButton(defaultIcon);
 		jbtQuit.setBounds(900,280,100,100);
 		jbtQuit.setPressedIcon(rollIcon);

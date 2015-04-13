@@ -1,4 +1,5 @@
-package ui_game;
+package gamecomponent;
+
 
 public class PlanetEarth extends Planet{
 	

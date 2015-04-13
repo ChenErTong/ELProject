@@ -21,6 +21,9 @@ public abstract class JFrameTotal extends JFrame{
 	//减去屏幕任务栏误差
 	private static final int WINDOW_UP = 16;
 	
+	Toolkit toolkit = Toolkit.getDefaultToolkit();
+	Dimension screen = toolkit.getScreenSize();
+	
 	public JFrameTotal(){
 		//设置标题栏名称
 		this.setTitle(TITLE);
