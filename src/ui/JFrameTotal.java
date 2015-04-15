@@ -9,21 +9,17 @@ import javax.swing.JFrame;
  * @author 恩哥哥
  * 2015.4.8.
  * 改动：1、界面大小改为屏幕大小的0.618倍；2、去掉了高度、宽度的静态变量；3、将静态变量全部大写；by CX  2015.4.8
+ * 改动：把大小暂时设为固定数值了 by CX 2015.4.15
  */
 
 public abstract class JFrameTotal extends JFrame{
 	//TODO 标题栏名称
 	protected static final String TITLE = "ELPrject";
-	/*//界面宽度
-	private static final int frameWidth = 1162;
-	//界面高度
-	private static final int frameHeight = 654;*/
-	//减去屏幕任务栏误差
+	//目测的地址栏高度
 	private static final int WINDOW_UP = 16;
-	
-	Toolkit toolkit = Toolkit.getDefaultToolkit();
-	Dimension screen = toolkit.getScreenSize();
-	
+	/**
+	 * 
+	 */
 	public JFrameTotal(){
 		//设置标题栏名称
 		this.setTitle(TITLE);
@@ -32,11 +28,11 @@ public abstract class JFrameTotal extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
+		//仅仅是为了打印到屏幕中间
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();
-		//设置界面大小，0.618是黄金分割比
-		this.setSize((int)(screen.width*0.618), (int)(screen.height*0.618));   
+		//设置jframe大小，暂时用数值表示
+		this.setSize(1024, 768);   
 		//将界面置于显示屏正中央
 		int x = screen.width-this.getWidth()>>1;
 		int y = (screen.height-this.getHeight()>>1)-WINDOW_UP;

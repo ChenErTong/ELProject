@@ -21,7 +21,7 @@ public class FrameStartGame extends ui.JFrameTotal{
 	public FrameStartGame(){	
 		//加入背景图片面板	
 		JLabel background = new JLabel(bg);
-		background.setBounds(0,0,frameWidth,frameHeight);		
+		background.setLocation(0,0);		
 		this.getLayeredPane().add(background);
 		//加入按钮面板	
 		Container cp=this.getContentPane();
