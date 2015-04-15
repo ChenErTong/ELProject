@@ -3,6 +3,8 @@
  * 静音按钮还没写，监听器也没写，yeah！
  */
 package ui_start;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.*;
 /**
  * @author DorA
@@ -13,11 +15,22 @@ public class PanelStartGame extends JPanel{
 	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
 	
+	
+	Toolkit toolkit = Toolkit.getDefaultToolkit();
+	Dimension screen = toolkit.getScreenSize();
+	//界面宽度,，0.618是黄金分割比
+	protected int width=(int)(screen.width*0.618);
+	//界面高度,，0.618是黄金分割比
+	protected int height=(int)(screen.height*0.618);
+	
+
+	
+	
 	public PanelStartGame(){
 		setLayout(null);
 	//添加一个开始游戏按钮
 		JButton jbtStart=new JButton(defaultIcon);
-		jbtStart.setBounds(600,400,100,100);
+		jbtStart.setBounds((int)(width*0.3),(int)(height*0.5),100,100);
 		jbtStart.setPressedIcon(rollIcon);
 		jbtStart.setRolloverIcon(rollIcon);
 		add(jbtStart);
@@ -25,18 +38,18 @@ public class PanelStartGame extends JPanel{
 		
 	//添加一个帮助&演示按钮
 		JButton jbtHelp=new JButton(defaultIcon);
-		jbtHelp.setBounds(750,350,100,100);
+		jbtHelp.setBounds((int)(width*0.1),(int)(height*0.3),100,100);
 		jbtHelp.setPressedIcon(rollIcon);
 		jbtHelp.setRolloverIcon(rollIcon);
 		add(jbtHelp);
 		//此处应有监听器
 		
-	  //添加一个退出游戏按钮
+	//添加一个退出游戏按钮
 		JButton jbtQuit=new JButton(defaultIcon);
-		jbtQuit.setBounds(900,280,100,100);
+		jbtQuit.setBounds((int)(width*0.5),(int)(height*0.8),100,100);
 		jbtQuit.setPressedIcon(rollIcon);
 		jbtQuit.setRolloverIcon(rollIcon);
-		this.add(jbtQuit);
+		add(jbtQuit);
 		//此处应有监听器
 	
 	
