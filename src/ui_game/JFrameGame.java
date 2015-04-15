@@ -11,11 +11,10 @@ import ui.JFrameTotal;
 
 public class JFrameGame extends JFrameTotal{
 	
-	public JFrameGame(){
+	public JFrameGame(PanelGame panelGame){
 		super();
 		
 		//加入游戏界面面板
-		JPanelGame panelGame = new JPanelGame();
 		this.setContentPane(panelGame);
 	}
 }

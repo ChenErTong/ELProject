@@ -28,6 +28,8 @@ public class PanelGame extends JPanel implements Runnable{
 	public PanelGame(GameData gameData){
 		this.gameData = gameData;
 		
+		Thread t = new Thread(this);
+		t.start();
 	}
 
 	/**
@@ -41,19 +43,23 @@ public class PanelGame extends JPanel implements Runnable{
 	//===================≤‚ ‘=====================
 	public void Test(){
         testButton = new JButton("≤‚ ‘π‚œﬂ");
-		
+        
+        testButton.setActionCommand("launchLight");
 		testButton.addActionListener(playerControl);
-		testButton.setActionCommand("launchLight");
 		
-		this.add(testButton);
+		this.add(testButton);	
 	}
+	
 	public void run() {
-		try {
-			Thread.sleep(50);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		this.repaint();
+		while(true){
+			try {
+				Thread.sleep(50);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			this.repaint();
+			System.out.println("pg");
+		}	
 	}
 	
 	/**

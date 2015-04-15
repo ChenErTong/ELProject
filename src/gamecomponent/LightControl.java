@@ -58,7 +58,7 @@ public class LightControl implements Runnable{
 		
 		// TODO 是否应在此类中初始化？如在此初始化如何将g传入light的paint方法中？
 		Light light = new Light(this.launchX, this.launchY, this.directX, this.directY);
-		
+		System.out.println("add");
 		this.lightList.add(light);
 	}
 	
@@ -69,7 +69,14 @@ public class LightControl implements Runnable{
 	public void setExist(boolean isExist) {
 		this.isExist = isExist;
 	}
-	
+	/**
+	 * 得到一束光线
+	 * @return 该光线控制器定义的光线
+	 */
+	public ArrayList<Light> getLightList() {
+		return lightList;
+	}
+
 	/**
 	 * 光线传播数据线程，每50毫秒(再调试)更改一次，不断向前延伸。
 	 */
@@ -91,9 +98,9 @@ public class LightControl implements Runnable{
 				}
 			} else{
 				break;
-			}		
+			}
+			System.out.println("lc");
 		}
 	}
-	
-	
+		
 }

@@ -18,18 +18,18 @@ public class FrameStartGame extends ui.JFrameTotal{
 //实例化一个按钮多合一面板
 	private static PanelStartGame panelStartGame=new PanelStartGame();
 
-	public FrameStartGame(){	
-		//加入背景图片面板	
-		JLabel background = new JLabel(bg);
-		background.setBounds(0,0,frameWidth,frameHeight);		
-		this.getLayeredPane().add(background);
-		//加入按钮面板	
-		Container cp=this.getContentPane();
-		cp.add(panelStartGame);
-		((JPanel)cp).setOpaque(false);
-		
-	}
-	
+//	public FrameStartGame(){	
+//		//加入背景图片面板	
+//		JLabel background = new JLabel(bg);
+//		background.setBounds(0,0,frameWidth,frameHeight);		
+//		this.getLayeredPane().add(background);
+//		//加入按钮面板	
+//		Container cp=this.getContentPane();
+//		cp.add(panelStartGame);
+//		((JPanel)cp).setOpaque(false);
+//		
+//	}
+//	
 	public static void main(String[]args){
 		FrameStartGame frame=new FrameStartGame();
 		
