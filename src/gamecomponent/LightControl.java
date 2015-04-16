@@ -17,8 +17,8 @@ public class LightControl implements Runnable{
 	/**
 	 * 定义方向向量
 	 */
-	private int directX;
-	private int directY;
+	private double directX;
+	private double directY;
 	/**
 	 * 是否存在
 	 */
@@ -32,9 +32,9 @@ public class LightControl implements Runnable{
 	 */
 	public LightControl(){	
 		//定义光线存在
-		isExist = true;
+		this.isExist = true;
 		//声明一个光线链表(考虑到经过反射与折射后光线轨迹不同采用多个光线类显示)
-		lightList = new ArrayList<Light>();
+		this.lightList = new ArrayList<Light>();
 		
 		//启动线程LightControl.
 		Thread t = new Thread(this);
@@ -52,13 +52,14 @@ public class LightControl implements Runnable{
 		//引入光线发射起始坐标
 		this.launchX = launchX;
 		this.launchY = launchY;
-		//引入光线发射向量
-		this.directX = directX;
-		this.directY = directY;	
 		
+		//引入光线发射向量并将其转化为标准类型
+		double tempsqrt = Math.sqrt((double)(directX*directX+directY*directY));
+		this.directX = (double)directX/tempsqrt;
+		this.directY = (double)directY/tempsqrt;	
+
 		// TODO 是否应在此类中初始化？如在此初始化如何将g传入light的paint方法中？
 		Light light = new Light(this.launchX, this.launchY, this.directX, this.directY);
-		System.out.println("add");
 		this.lightList.add(light);
 	}
 	
@@ -99,7 +100,6 @@ public class LightControl implements Runnable{
 			} else{
 				break;
 			}
-			System.out.println("lc");
 		}
 	}
 		

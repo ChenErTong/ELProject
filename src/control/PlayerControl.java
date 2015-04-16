@@ -16,7 +16,6 @@ public class PlayerControl implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("PlayerControl");
 		String code = e.getActionCommand();
 		if(code.equals("launchLight")){
 			this.gameControl.launchLight();

@@ -18,18 +18,27 @@ import control.PlayerControl;
  * 2015.4.15.
  */
 
-public class PanelGame extends JPanel implements Runnable{
+public class JPanelGame extends JPanel implements Runnable{
 	PlayerControl playerControl;
 	
 	private GameData gameData;
 	private LightControl lightControl;
 	private JButton testButton;
 	
-	public PanelGame(GameData gameData){
+	public JPanelGame(GameData gameData){
 		this.gameData = gameData;
+		
+		testButton = new JButton("测试光线");
+	    testButton.setActionCommand("launchLight");
+	    this.add(testButton);
 		
 		Thread t = new Thread(this);
 		t.start();
+	}
+	
+	//================Test====================
+	public void Test(){	
+	    testButton.addActionListener(playerControl); 
 	}
 
 	/**
@@ -40,16 +49,6 @@ public class PanelGame extends JPanel implements Runnable{
 		this.playerControl = playerControl;
 	}
 	
-	//===================测试=====================
-	public void Test(){
-        testButton = new JButton("测试光线");
-        
-        testButton.setActionCommand("launchLight");
-		testButton.addActionListener(playerControl);
-		
-		this.add(testButton);	
-	}
-	
 	public void run() {
 		while(true){
 			try {
@@ -58,7 +57,6 @@ public class PanelGame extends JPanel implements Runnable{
 				// TODO: handle exception
 			}
 			this.repaint();
-			System.out.println("pg");
 		}	
 	}
 	

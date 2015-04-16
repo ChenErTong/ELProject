@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 /**
- * TODO 尚不清楚如何将图片倾斜插入
+ * TODO 当方向向量其一为0时的情况还未解决，在于ratio太小，int转换后为0，以及像素单位太大的问题，希望可以通过double参数绘画。
  * @author 恩哥哥
  * 2015.4.14.
  */
@@ -17,19 +17,19 @@ public class Light {
 	/**
 	 * 激光前进的速度
 	 */
-	private static int SPEED = 1;
+	private static int SPEED = 130;
 	/**
 	 * TODO 暂用红色激光图
 	 */
-	private static final Image INITIMAGE = new ImageIcon("image/componnet/RedLight.png").getImage();
+	private static final Image INITIMAGE = new ImageIcon("image/componnet/光线1.png").getImage();
 	/**
 	 * 初始坐标
 	 * 方向向量
 	 */
 	private int launchX;
 	private int launchY;
-	private int directX;
-	private int directY;
+	private double directX;
+	private double directY;
 	/**
 	 * 旋转后光线的图片
 	 */
@@ -60,7 +60,7 @@ public class Light {
 	 * @param directX 方向向量X
 	 * @param directY 方向向量Y
 	 */
-	public Light(int launchX, int launchY, int directX, int directY){
+	public Light(int launchX, int launchY, double directX, double directY){
 		this.launchX = launchX;
 		this.launchY = launchY;
 		this.directX = directX;
@@ -95,10 +95,11 @@ public class Light {
 		}
 		
 		if(this.directY>0){
-			this.directY = (int) (this.directY+this.SPEED*this.ratio);
+			this.directY = this.directY+this.SPEED*this.ratio;
 		} else if(this.directY<0){
-			this.directY = (int) (this.directY+this.SPEED*this.ratio);
+			this.directY = this.directY+this.SPEED*this.ratio;
 		}
+		System.out.println(this.ratio);
 	}
 	
 	public boolean isCanDeliver() {
@@ -106,19 +107,21 @@ public class Light {
 	}
 	
 	/**
+	 * TODO 1个像素太小
 	 * 绘制光线
 	 * @param g 画笔
 	 */
 	public void paint(Graphics g){
 		//根据不同情况的方向向量以不同的坐标绘制激光
 		if((this.directX>=0)&&(this.directY>=0)){
-			g.drawImage(lightImage, this.launchX, this.launchY, this.launchX+this.directX, this.launchY+this.directY, this.initImageX, this.initImageY, this.initImageX+this.directX, this.initImageY+this.directY, null);
+			g.drawImage(lightImage, this.launchX, this.launchY, this.launchX+(int)this.directX, this.launchY+(int)this.directY, this.initImageX, this.initImageY, this.initImageX+(int)this.directX, this.initImageY+(int)this.directY, null);
+			System.out.println(this.directX+" "+this.directY);
 		} else if((this.directX>=0)&&(this.directY<0)){
-			g.drawImage(lightImage, this.launchX, this.launchY+this.directY, this.launchX+this.directX, this.launchY, this.initImageX, this.initImageY+this.directY, this.initImageX+this.directX, this.initImageY, null);
+			g.drawImage(lightImage, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, null);
 		} else if((this.directX<0)&&(this.directY<0)){
-			g.drawImage(lightImage, this.launchX+this.directX, this.launchY+this.directY, this.launchX, this.launchY, this.initImageX+this.directX, this.initImageY+this.directY, this.initImageX, this.initImageY, null);
+			g.drawImage(lightImage, this.launchX+(int)this.directX, this.launchY+(int)this.directY, this.launchX, this.launchY, this.initImageX+(int)this.directX, this.initImageY+(int)this.directY, this.initImageX, this.initImageY, null);
 		} else if((this.directX<0)&&(this.directY>=0)){
-			g.drawImage(lightImage, this.launchX+this.directX, this.launchY, this.launchX, this.launchY+this.directY, this.initImageX+this.directX, this.initImageY, this.initImageX, this.initImageY+this.directY, null);
+			g.drawImage(lightImage, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY+(int)this.directY, null);
 		}
 	}
 	
@@ -130,12 +133,22 @@ public class Light {
 	 * @return
 	 */
 	private BufferedImage Rotate(Image src, double directX,  double directY){
-		double angel = Math.toDegrees(Math.atan(directY/directX));
-		System.out.println(angel);
+		double angel;
+		//考虑到X或Y可能为0的情况
+		if((directX>0)&&(directY==0)){
+			angel = 0.0;
+		} else if((directX<0)&&(directY==0)){
+			angel = 180.0;
+		} else if((directX==0)&&(directY>0)){
+			angel = 90.0;
+		}else if((directX==0)&&(directY<0)){
+			angel = 270.0;
+		}else{
+			angel = Math.toDegrees(Math.atan(directY/directX));
+		}
 		
 		int src_width = src.getWidth(null);
 		int src_height = src.getHeight(null);
-		System.out.println(src_width+" "+src_height);
 		//计算新图片大小
 		Rectangle rect_des = this.CalcRotatedSize(new Rectangle(new Dimension(src_width, src_height)), angel);
 		
@@ -147,8 +160,6 @@ public class Light {
 		g2.rotate(Math.toRadians(angel), src_width/2, src_height/2);
 		
 		g2.drawImage(src, null, null);
-		
-		System.out.println(rect_des.width+" "+rect_des.height);
 		
 		return res;
 	}
