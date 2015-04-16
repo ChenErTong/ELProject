@@ -6,10 +6,14 @@ import gamecomponent.LightControl;
 import gamedata.GameData;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+
 
 import control.PlayerControl;
 /**
@@ -34,6 +38,8 @@ public class JPanelGame extends JPanel implements Runnable{
 		
 		Thread t = new Thread(this);
 		t.start();
+		//
+		
 	}
 	
 	//================Test====================
@@ -64,11 +70,29 @@ public class JPanelGame extends JPanel implements Runnable{
 	 * 绘画游戏面板的各种组件
 	 */
 	public void paintComponent(Graphics g){
+		
+		int height=768;
+		int width=1024;
+		/*
+		 * 下面的代码超级绕，有问题还是直接找我好了；by CX
+		 * 作用是无论在什么分辨率的情况下图片可以自动的放大缩小，来适应不同的系统
+		 * 而且还牵扯到上面的代码
+		 * */
+		ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
+		Image background=backgroundDemo.getImage();
+		background=background.getScaledInstance(width, height, Image.SCALE_SMOOTH);//缩放图片的核心方法
+		backgroundDemo.setImage(background);
+		background=backgroundDemo.getImage();
+		g.drawImage(background, 0, 0, null);
 		//绘画光线链表中所有的光线
 		ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 		for (int i = 0; i < lightList.size(); i++) {
 			lightList.get(i).paint(g);
 		}
+		//
 		
+			
+			
+			
 	}
 }

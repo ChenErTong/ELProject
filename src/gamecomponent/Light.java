@@ -99,7 +99,6 @@ public class Light {
 		} else if(this.directY<0){
 			this.directY = this.directY+this.SPEED*this.ratio;
 		}
-		System.out.println(this.ratio);
 	}
 	
 	public boolean isCanDeliver() {
@@ -115,7 +114,6 @@ public class Light {
 		//根据不同情况的方向向量以不同的坐标绘制激光
 		if((this.directX>=0)&&(this.directY>=0)){
 			g.drawImage(lightImage, this.launchX, this.launchY, this.launchX+(int)this.directX, this.launchY+(int)this.directY, this.initImageX, this.initImageY, this.initImageX+(int)this.directX, this.initImageY+(int)this.directY, null);
-			System.out.println(this.directX+" "+this.directY);
 		} else if((this.directX>=0)&&(this.directY<0)){
 			g.drawImage(lightImage, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, null);
 		} else if((this.directX<0)&&(this.directY<0)){
@@ -123,6 +121,7 @@ public class Light {
 		} else if((this.directX<0)&&(this.directY>=0)){
 			g.drawImage(lightImage, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY+(int)this.directY, null);
 		}
+		g.drawLine(0, 0, 100, 100);
 	}
 	
 	/**
