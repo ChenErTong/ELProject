@@ -1,6 +1,11 @@
 package ui_game;
 
+import gamecomponent.PlanetEarth;
+import gamecomponent.PlanetSun;
+import gamecomponent.PlanetThreeBody;
+
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import ui.JFrameTotal;
 /**
@@ -10,11 +15,20 @@ import ui.JFrameTotal;
  */
 
 public class JFrameGame extends JFrameTotal{
+
 	
 	public JFrameGame(PanelGame panelGame){
 		super();
-		
 		//加入游戏界面面板
+
 		this.setContentPane(panelGame);
+		
+		panelGame.add(new PlanetEarth(90,340,150),null);
+		panelGame.add(new PlanetSun(320,440,200),null);
+		panelGame.add(new PlanetThreeBody(800,-300,200));
+		
+
+		
 	}
+
 }
