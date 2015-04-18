@@ -3,6 +3,9 @@ package ui_game;
 
 import gamecomponent.Light;
 import gamecomponent.LightControl;
+import gamecomponent.PlanetEarth;
+import gamecomponent.PlanetSun;
+import gamecomponent.PlanetThreeBody;
 import gamedata.GameData;
 
 import java.awt.Graphics;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 
 
 
@@ -27,14 +31,34 @@ public class JPanelGame extends JPanel implements Runnable{
 	
 	private GameData gameData;
 	private LightControl lightControl;
-	private JButton testButton;
+	private PlanetEarth earth;
+	private PlanetSun sun;
+	private PlanetThreeBody threeBody;
+	
 	
 	public JPanelGame(GameData gameData){
+		this.setLayout(null);
 		this.gameData = gameData;
+		//
+		this.earth=new PlanetEarth(90,600,50);
+		this.earth.setActionCommand("earth");
+		this.add(earth);
+		//
+		this.sun=new PlanetSun(320,440,100);
+		this.sun.setActionCommand("sun");
+		this.add(sun);
+		//
+		this.threeBody=new PlanetThreeBody(800, 30, 75);
+		this.threeBody.setActionCommand("threeBody");
+		this.add(threeBody);
 		
-		testButton = new JButton("测试光线");
-	    testButton.setActionCommand("launchLight");
-	    this.add(testButton);
+
+		
+
+		
+//		testButton = new JButton("测试光线");
+//	    testButton.setActionCommand("launchLight");
+//	    this.add(testButton);
 		
 		Thread t = new Thread(this);
 		t.start();
@@ -42,10 +66,11 @@ public class JPanelGame extends JPanel implements Runnable{
 		
 	}
 	
-	//================Test====================
-	public void Test(){	
-	    testButton.addActionListener(playerControl); 
-	}
+//	//================Test====================
+//	public void Test(){	
+//	    testButton.addActionListener(playerControl); 
+//	    
+//	}
 
 	/**
 	 * 加入玩家控制器，对面板操作进行监听
@@ -53,6 +78,9 @@ public class JPanelGame extends JPanel implements Runnable{
 	 */
 	public void addControl(PlayerControl playerControl){
 		this.playerControl = playerControl;
+		this.earth.addActionListener(playerControl);
+		this.sun.addActionListener(playerControl);
+		this.threeBody.addActionListener(playerControl);
 	}
 	
 	public void run() {
@@ -70,7 +98,7 @@ public class JPanelGame extends JPanel implements Runnable{
 	 * 绘画游戏面板的各种组件
 	 */
 	public void paintComponent(Graphics g){
-		
+		super.paintComponent(g);
 		int height=768;
 		int width=1024;
 		/*

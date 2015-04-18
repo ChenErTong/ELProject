@@ -21,6 +21,7 @@ public abstract class JFrameTotal extends JFrame{
 	 * 
 	 */
 	public JFrameTotal(){
+		
 		//设置标题栏名称
 		this.setTitle(TITLE);
 		
@@ -37,7 +38,7 @@ public abstract class JFrameTotal extends JFrame{
 		int x = screen.width-this.getWidth()>>1;
 		int y = (screen.height-this.getHeight()>>1)-WINDOW_UP;
 		this.setLocation(x, y);
-			
+//		this.setUndecorated(true);
 		//设置可以显示
 		this.setVisible(true);
 	}

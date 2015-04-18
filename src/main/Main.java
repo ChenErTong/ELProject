@@ -29,10 +29,11 @@ public class Main {
 	PlayerControl playerControl = new PlayerControl(gameControl);
 	//向面板中加入玩家控制器，对其进行监听
 	panelGame.addControl(playerControl);
-	//对按钮进行监听(测试方法)
-	panelGame.Test();
+//	//对按钮进行监听(测试方法)
+//	panelGame.Test();
 
-	JFrameGame frameGame = new JFrameGame(panelGame);
+	new JFrameGame(panelGame);
+	
 	}
 
 }

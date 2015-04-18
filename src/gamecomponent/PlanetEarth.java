@@ -17,9 +17,11 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import control.PlayerControl;
 
 
-public class PlanetEarth extends Planet implements ActionListener{
+
+public class PlanetEarth extends Planet{
 	/**
 	 * 构造方法：构造地球，并且添加内置的监听器
 	 * @param x 地球的水平坐标
@@ -33,12 +35,12 @@ public class PlanetEarth extends Planet implements ActionListener{
 		this.locationY=y;
 		this.radius=Radius;
 		//构造按钮的图片，自动缩放
-		this.planetImg=this.getImageIcon("image/星球/星球2.png", 2*radius, (int)(2*radius*1.414));
+		this.planetImg=this.getImageIcon("image/星球/星球2.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
-		this.setBounds(locationX, locationY, 2*radius, (int)(2*radius*1.414));
+		this.setBounds(locationX, locationY, 2*radius, 2*radius);
 		//监听器，个人比较喜欢内置
-		this.addActionListener(this);
+//		this.addActionListener(new PlayerControl());
 		//设置不绘制矩形的内容
 		this.setContentAreaFilled(false);
 		//设置不绘制边框
@@ -48,15 +50,6 @@ public class PlanetEarth extends Planet implements ActionListener{
 	}
 
 	
-	@Override
-	/**
-	 * 事件监听器，其实估计以后要被单独成类；这里仅仅是一个示例
-	 * @author CX
-	 */
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		JOptionPane.showConfirmDialog(null, "准备好了吗？", "联络三体", JOptionPane.PLAIN_MESSAGE	);
-		
-	}
+	
 	
 }

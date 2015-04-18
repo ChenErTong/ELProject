@@ -146,6 +146,7 @@ public class Light {
 			angel = Math.toDegrees(Math.atan(directY/directX));
 		}
 		
+		
 		int src_width = src.getWidth(null);
 		int src_height = src.getHeight(null);
 		//计算新图片大小
@@ -177,7 +178,7 @@ public class Light {
 			}
 			angel = angel%90;
 		}
-		
+		System.out.println(angel);
 		//半径r
 		double r = Math.sqrt(src.height*src.height+src.width*src.width)/2;
 		double len = 2*Math.sin(Math.toRadians(angel)/2)*r;
