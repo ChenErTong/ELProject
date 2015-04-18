@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * @author CX
  *
  */
-public class PlanetSun extends Planet implements ActionListener {
+public class PlanetSun extends Planet {
 	/**
 	 * 同planetearth类
 	 * @param x sun的水平坐标
@@ -28,8 +28,6 @@ public class PlanetSun extends Planet implements ActionListener {
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);
-		//监听器，个人比较喜欢内置
-		this.addActionListener(this);
 		//设置不打印矩形的内容
 		this.setContentAreaFilled(false);
 		//设置不打印边框
@@ -38,10 +36,6 @@ public class PlanetSun extends Planet implements ActionListener {
 		this.setVisible(true);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
+	
 
 }

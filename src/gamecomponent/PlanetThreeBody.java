@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PlanetThreeBody extends Planet implements ActionListener {
+public class PlanetThreeBody extends Planet {
 	/**三体类；即最终的接受点，需要light类的支持
 	 * 同planetearth类
 	 * @param x sun的水平坐标
@@ -21,8 +21,6 @@ public class PlanetThreeBody extends Planet implements ActionListener {
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius,2*radius);
-		//监听器，个人比较喜欢内置
-		this.addActionListener(this);
 		//设置不打印矩形内容
 		this.setContentAreaFilled(false);
 		//设置不打印边框
@@ -32,9 +30,5 @@ public class PlanetThreeBody extends Planet implements ActionListener {
 	}
 
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
+	
 }
