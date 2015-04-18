@@ -17,7 +17,7 @@ public class Light {
 	/**
 	 * 激光前进的速度
 	 */
-	private static int SPEED = 130;
+	private static int SPEED = 20;
 	/**
 	 * TODO 暂用红色激光图
 	 */
@@ -30,6 +30,11 @@ public class Light {
 	private int launchY;
 	private double directX;
 	private double directY;
+	/**
+	 * 光线尽头坐标
+	 */
+	private int endX;
+	private int endY;
 	/**
 	 * 旋转后光线的图片
 	 */
@@ -74,15 +79,6 @@ public class Light {
 		this.lightImage_H = this.lightImage.getHeight(null);
 		
 		this.ratio = (double)this.lightImage_H/this.lightImage_W;
-		
-		//根据方向不同进行对绘画初始顶点进行赋值
-		if(this.directX<0){
-			this.initImageX = this.lightImage_W;
-		}
-		if(this.directY<0){
-			this.initImageY = this.lightImage_H;
-		}
-		
 	}
 	/**
 	 * 光线传递
@@ -91,20 +87,29 @@ public class Light {
 		if(this.directX>0){
 			this.directX = this.directX+this.SPEED;
 		} else if(this.directX<0){
-			this.directX = this.directX+this.SPEED;
+			this.directX = this.directX-this.SPEED;
 		}
 		
 		if(this.directY>0){
 			this.directY = this.directY+this.SPEED*this.ratio;
 		} else if(this.directY<0){
-			this.directY = this.directY+this.SPEED*this.ratio;
+			this.directY = this.directY-this.SPEED*this.ratio;
 		}
+		//记录光线尽头坐标
+		this.endX = this.launchX+(int)this.directX;
+		this.endY = this.launchY+(int)this.directY;
 	}
-	
+	//该光线是否能够继续传递
 	public boolean isCanDeliver() {
 		return canDeliver;
 	}
 	
+	public int getEndX() {
+		return endX;
+	}
+	public int getEndY() {
+		return endY;
+	}
 	/**
 	 * TODO 1个像素太小
 	 * 绘制光线
@@ -121,7 +126,6 @@ public class Light {
 		} else if((this.directX<0)&&(this.directY>=0)){
 			g.drawImage(lightImage, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY+(int)this.directY, null);
 		}
-		g.drawLine(0, 0, 100, 100);
 	}
 	
 	/**
@@ -159,7 +163,6 @@ public class Light {
 		g2.rotate(Math.toRadians(angel), src_width/2, src_height/2);
 		
 		g2.drawImage(src, null, null);
-		
 		return res;
 	}
 	
