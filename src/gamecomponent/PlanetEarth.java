@@ -29,6 +29,8 @@ public class PlanetEarth extends Planet{
 	 * @param Radius 地球的半径
 	 * @author CX
 	 */
+	public static int lightX;
+	public static int lightY;
 	public PlanetEarth(int x,int y,int Radius){
 		//常规的参数设置
 		this.locationX=x;
@@ -47,7 +49,17 @@ public class PlanetEarth extends Planet{
 		this.setBorderPainted(false);
 		//设置可见
 		this.setVisible(true);
+		//
+		this.lightX=this.locationX+this.radius;
+		this.lightY=this.locationY+this.radius;
 	}
+//	public static int getLightX(){
+//		
+//		return ;
+//	}
+//	public int getLightY(){
+//		return this.locationY+this.radius;
+//	}
 
 	
 	

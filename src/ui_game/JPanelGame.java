@@ -40,15 +40,15 @@ public class JPanelGame extends JPanel implements Runnable{
 		this.setLayout(null);
 		this.gameData = gameData;
 		//
-		this.earth=new PlanetEarth(90,600,50);
+		this.earth=new PlanetEarth(90,90,50);
 		this.earth.setActionCommand("earth");
 		this.add(earth);
 		//
-		this.sun=new PlanetSun(320,440,100);
+		this.sun=new PlanetSun(320,250,100);
 		this.sun.setActionCommand("sun");
 		this.add(sun);
 		//
-		this.threeBody=new PlanetThreeBody(800, 30, 75);
+		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
 		

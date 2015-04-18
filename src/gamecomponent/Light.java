@@ -181,7 +181,7 @@ public class Light {
 			}
 			angel = angel%90;
 		}
-		System.out.println(angel);
+//		System.out.println(angel);
 		//°ë¾¶r
 		double r = Math.sqrt(src.height*src.height+src.width*src.width)/2;
 		double len = 2*Math.sin(Math.toRadians(angel)/2)*r;

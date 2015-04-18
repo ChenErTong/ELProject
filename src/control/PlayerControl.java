@@ -1,5 +1,7 @@
 package control;
 
+import gamecomponent.PlanetEarth;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,11 +21,9 @@ public class PlayerControl implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		String code = e.getActionCommand();
-		if(code.equals("launchLight")){
-			this.gameControl.launchLight();
-		}
-		else if(code.equalsIgnoreCase("earth")){
-			
+		if(code.equalsIgnoreCase("earth")){
+			this.gameControl.launchLight(PlanetEarth.lightX,PlanetEarth.lightY);
+//			System.out.println(PlanetEarth.lightX+" "+PlanetEarth.lightY);
 		}
 		else if(code.equalsIgnoreCase("sun")){
 			

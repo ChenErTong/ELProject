@@ -22,8 +22,8 @@ public class GameControl {
 		this.gameService=gameService;
 	}
 
-	public void launchLight() {
-		this.gameService.launchLight();
+	public void launchLight(int lightX,int lightY) {
+		this.gameService.launchLight(lightX,lightY);
 		this.panelGame.repaint();
 	}
 }
