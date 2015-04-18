@@ -14,9 +14,7 @@ import javax.swing.JButton;
  */
 
 public abstract class Planet extends JButton {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	//圆心位置坐标
 	protected int locationX;
@@ -25,7 +23,10 @@ public abstract class Planet extends JButton {
 	protected int radius;
 	//图片
 	protected ImageIcon planetImg;
-	//
+	//光线坐标
+	protected int lightX;
+	protected int lightY;
+	
 	/**
 	 * 将图片缩放到指定形式
 	 * @author CX
@@ -42,5 +43,9 @@ public abstract class Planet extends JButton {
 		return temp;
 	}
 	
+	public void getLight(Light light){
+		this.lightX = light.getEndX();
+		this.lightY = light.getEndY();
+	}
 }
 	
