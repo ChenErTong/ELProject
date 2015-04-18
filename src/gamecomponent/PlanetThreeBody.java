@@ -26,9 +26,21 @@ public class PlanetThreeBody extends Planet {
 		//设置不打印边框
 		this.setBorderPainted(false);
 		//设置可见
-		this.setVisible(true);
+		this.setVisible(true);	
 	}
 
-
+	/**
+	 * 当光线抵达时取消光线
+	 */
+	public void stopLight(LightControl lightControl){
+		//得到三体类
+		int distanceX = this.locationX+this.radius-this.lightX;
+		int distanceY = this.locationY+this.radius-this.lightY;
+		double distance = Math.sqrt((double)(distanceX*distanceX+distanceY*distanceY));
+		
+		if(distance<(double)this.radius){
+			lightControl.stopLight();
+		}
+	}
 	
 }

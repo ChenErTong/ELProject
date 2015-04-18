@@ -28,6 +28,10 @@ public class LightControl implements Runnable{
 	 */
 	private ArrayList<Light> lightList;
 	/**
+	 * 声明线程
+	 */
+	
+	/**
 	 * 构造函数
 	 */
 	public LightControl(){	
@@ -41,6 +45,9 @@ public class LightControl implements Runnable{
 		t.start();
 	}
 	
+	public void stopLight(){
+
+	}
 	/**
 	 * TODO 发射激光方法(实现监听)
 	 * @param launchX 发射X坐标
@@ -82,23 +89,19 @@ public class LightControl implements Runnable{
 	 * 光线传播数据线程，每50毫秒(再调试)更改一次，不断向前延伸。
 	 */
 	public void run() {
-		while(true){
+		while(this.isExist){
 			try {
 				Thread.sleep(50);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
 			//光束是否存在
-			if(this.isExist){
-				for (int i = 0; i < this.lightList.size(); i++) {
-					Light light = this.lightList.get(i);
-					//判断激光是否为空并且是否能够继续传递
-					if((light != null)&&light.isCanDeliver()){
-						light.deliverLight();
-					}
+			for (int i = 0; i < this.lightList.size(); i++) {
+				Light light = this.lightList.get(i);
+				//判断激光是否为空并且是否能够继续传递
+				if((light != null)&&light.isCanDeliver()){
+					light.deliverLight();
 				}
-			} else{
-				break;
 			}
 		}
 	}
