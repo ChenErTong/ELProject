@@ -8,8 +8,11 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import control.PlayerControl;
+
 import javax.swing.*;
 
+import control.GameControl;
 import audio.BackgroundMusic;
 
 
@@ -21,7 +24,7 @@ import audio.BackgroundMusic;
 public class FrameStartGame extends ui.JFrameTotal{
 
 	//开始界面背景图片
-	private static ImageIcon bg=new ImageIcon("image/bg/bg1.png");
+	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
 	//背景音乐
 	private BackgroundMusic bgm=new BackgroundMusic();
 	//按钮的图标
@@ -29,8 +32,14 @@ public class FrameStartGame extends ui.JFrameTotal{
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
 	//静音按钮的设置值
 	private int set=0;
+	//玩家控制器
+	//private PlayerControl pc=new PlayerControl(new GameControl());
+	
+	//FrameSelectMission fsm=new FrameSelectMission();
 	
 	public FrameStartGame(){
+		super();
+		final FrameStartGame f=this;
 		
 		//播放背景音乐
 		bgm.play();
@@ -51,11 +60,24 @@ public class FrameStartGame extends ui.JFrameTotal{
 		//添加一个开始游戏按钮
 		JButton jbtStart=new JButton(defaultIcon);
 		jbtStart.setBounds((int)(1024*0.3),(int)(768*0.5),100,100);
-		jbtStart.setPressedIcon(rollIcon);
-		jbtStart.setRolloverIcon(rollIcon);
-		add(jbtStart);
-		//按下后开始游戏
-			
+		jbtStart.setToolTipText("select mission");
+			jbtStart.setPressedIcon(rollIcon);
+			jbtStart.setRolloverIcon(rollIcon);
+		f.add(jbtStart);
+		
+		//按下后进入选关界面	
+		jbtStart.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//add(panel);
+			//	closeFrame();
+				f.dispose();
+				FrameSelectMission fsm=new FrameSelectMission();
+				
+			}
+		});	
+
+		
+		
 		//添加一个帮助&演示按钮
 		JButton jbtHelp=new JButton(defaultIcon);
 		jbtHelp.setBounds((int)(1024*0.1),(int)(768*0.3),100,100);
@@ -63,6 +85,12 @@ public class FrameStartGame extends ui.JFrameTotal{
 		jbtHelp.setRolloverIcon(rollIcon);
 		add(jbtHelp);
 			//此处应有监听器
+		jbtHelp.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//add(panel);
+				
+			}
+		});
 			
 		//添加一个退出游戏按钮
 		JButton jbtQuit=new JButton(defaultIcon);
@@ -71,6 +99,7 @@ public class FrameStartGame extends ui.JFrameTotal{
 		jbtQuit.setPressedIcon(rollIcon);
 		jbtQuit.setRolloverIcon(rollIcon);
 		add(jbtQuit);
+		
 			
 		//监听器，按下按钮后关闭游戏	
 		jbtQuit.addActionListener(new ActionListener(){
@@ -100,10 +129,11 @@ public class FrameStartGame extends ui.JFrameTotal{
 
 	}
 	
-	public static void main(String[]args){
-		FrameStartGame frame=new FrameStartGame();
-		
 
-	}
+	
+/*	public static void main(String[]args){
+		final FrameStartGame frame=new FrameStartGame();
+
+	}*/
 
 }

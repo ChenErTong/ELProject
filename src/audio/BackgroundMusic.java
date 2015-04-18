@@ -26,6 +26,7 @@ public class BackgroundMusic{
 			player=MidiSystem.getSequencer();
 			player.setSequence(bgm01);
 			player.open();
+			
 		}catch(Exception e){}
 		
 	 }
@@ -38,9 +39,9 @@ public class BackgroundMusic{
 	 }
 	
 	//开始播放（从暂停处开始）
-	public void play() {
-		System.out.println("play");
+	public  void play() {
 		if (!player.isRunning()) {
+			player.setLoopCount(player.LOOP_CONTINUOUSLY);
 			player.start();
 		}
 
