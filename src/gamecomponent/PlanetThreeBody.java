@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class PlanetThreeBody extends Planet {
 	/**三体类；即最终的接受点，需要light类的支持
 	 * 同planetearth类

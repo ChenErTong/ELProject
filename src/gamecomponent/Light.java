@@ -17,11 +17,11 @@ public class Light {
 	/**
 	 * 激光前进的速度
 	 */
-	private static int SPEED = 20;
+	private static int SPEED = 50;
 	/**
 	 * TODO 暂用红色激光图
 	 */
-	private static final Image INITIMAGE = new ImageIcon("image/componnet/光线1.png").getImage();
+	private static final Image INITIMAGE = new ImageIcon("image/componnet/Light.png").getImage();
 	/**
 	 * 初始坐标
 	 * 方向向量

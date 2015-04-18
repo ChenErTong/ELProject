@@ -30,10 +30,10 @@ public class JPanelGame extends JPanel implements Runnable{
 	PlayerControl playerControl;
 	
 	private GameData gameData;
-	private LightControl lightControl;
 	private PlanetEarth earth;
 	private PlanetSun sun;
-	private PlanetThreeBody threeBody;
+	//TODO
+	public PlanetThreeBody threeBody;
 	
 	
 	public JPanelGame(GameData gameData){
@@ -51,15 +51,7 @@ public class JPanelGame extends JPanel implements Runnable{
 		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
-		
 
-		
-
-		
-//		testButton = new JButton("测试光线");
-//	    testButton.setActionCommand("launchLight");
-//	    this.add(testButton);
-		
 		Thread t = new Thread(this);
 		t.start();
 		//
@@ -86,10 +78,20 @@ public class JPanelGame extends JPanel implements Runnable{
 	public void run() {
 		while(true){
 			try {
-				Thread.sleep(50);
+				Thread.sleep(25);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			
+			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
+			if(!lightList.isEmpty()){
+				for (int i = 0; i < lightList.size(); i++) {
+					threeBody.getLight(lightList.get(i));
+					threeBody.stopLight(this.gameData.getLightControl());
+				}
+			}
+			
+
 			this.repaint();
 		}	
 	}
@@ -113,14 +115,12 @@ public class JPanelGame extends JPanel implements Runnable{
 		background=backgroundDemo.getImage();
 		g.drawImage(background, 0, 0, null);
 		//绘画光线链表中所有的光线
-		ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
-		for (int i = 0; i < lightList.size(); i++) {
-			lightList.get(i).paint(g);
-		}
-		//
 		
-			
-			
-			
+		if(this.gameData.getLightControl().getisExist()){
+			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
+			for (int i = 0; i < lightList.size(); i++) {
+				lightList.get(i).paint(g);
+			}	
+		}	
 	}
 }

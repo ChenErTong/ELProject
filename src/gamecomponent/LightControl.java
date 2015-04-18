@@ -28,10 +28,6 @@ public class LightControl implements Runnable{
 	 */
 	private ArrayList<Light> lightList;
 	/**
-	 * 声明线程
-	 */
-	
-	/**
 	 * 构造函数
 	 */
 	public LightControl(){	
@@ -46,7 +42,7 @@ public class LightControl implements Runnable{
 	}
 	
 	public void stopLight(){
-
+		this.isExist = false;
 	}
 	/**
 	 * TODO 发射激光方法(实现监听)
@@ -71,11 +67,11 @@ public class LightControl implements Runnable{
 	}
 	
 	/**
-	 * 由接收器传入是否存在
-	 * @param isExist 是否存在
+	 * 由接收器得到光线是否存在
+	 * @return 光线是否存在
 	 */
-	public void setExist(boolean isExist) {
-		this.isExist = isExist;
+	public boolean getisExist() {
+		return this.isExist;
 	}
 	/**
 	 * 得到一束光线
@@ -91,7 +87,7 @@ public class LightControl implements Runnable{
 	public void run() {
 		while(this.isExist){
 			try {
-				Thread.sleep(50);
+				Thread.sleep(25);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
