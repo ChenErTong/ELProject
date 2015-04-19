@@ -5,15 +5,14 @@
 package ui_start;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import control.PlayerControl;
+import ui.*;
+
+import java.awt.event.*;
 
 import javax.swing.*;
 
-import control.GameControl;
-import audio.BackgroundMusic;
+import audio.*;
 
 
 /**
@@ -21,17 +20,20 @@ import audio.BackgroundMusic;
  *
  * 2015年4月17日00:20:14
  */
-public class FrameStartGame extends ui.JFrameTotal{
+public class FrameStartGame extends JFrameTotal{
 
 	//开始界面背景图片
 	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
 	//背景音乐
-	private BackgroundMusic bgm=new BackgroundMusic();
+	public static BackgroundMusic bgm=new BackgroundMusic("bgm01");
 	//按钮的图标
 	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
-	//静音按钮的设置值
-	private int set=0;
+	//保留静音按钮对象
+	public static ButtonBackgroundMusic jbtBgm;
+	public static ButtonSound jbtS;
+/*	//静音按钮的设置值
+	private int set=0;*/
 	//玩家控制器
 	//private PlayerControl pc=new PlayerControl(new GameControl());
 	
@@ -40,9 +42,6 @@ public class FrameStartGame extends ui.JFrameTotal{
 	public FrameStartGame(){
 		super();
 		final FrameStartGame f=this;
-		
-		//播放背景音乐
-		bgm.play();
 		
 		//在分层面板加入背景图片面板	
 		JLabel background = new JLabel(bg);
@@ -68,10 +67,9 @@ public class FrameStartGame extends ui.JFrameTotal{
 		//按下后进入选关界面	
 		jbtStart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				//add(panel);
-			//	closeFrame();
-				f.dispose();
-				FrameSelectMission fsm=new FrameSelectMission();
+				bgm.stop();			//关闭背景音乐
+				f.dispose();		//关闭该界面
+				FrameSelectMission fsm=new FrameSelectMission();	//打开新界面
 				
 			}
 		});	
@@ -81,6 +79,7 @@ public class FrameStartGame extends ui.JFrameTotal{
 		//添加一个帮助&演示按钮
 		JButton jbtHelp=new JButton(defaultIcon);
 		jbtHelp.setBounds((int)(1024*0.1),(int)(768*0.3),100,100);
+		jbtHelp.setToolTipText("Help");
 		jbtHelp.setPressedIcon(rollIcon);
 		jbtHelp.setRolloverIcon(rollIcon);
 		add(jbtHelp);
@@ -88,18 +87,17 @@ public class FrameStartGame extends ui.JFrameTotal{
 		jbtHelp.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//add(panel);
-				
+
 			}
 		});
 			
 		//添加一个退出游戏按钮
 		JButton jbtQuit=new JButton(defaultIcon);
-		jbtQuit.setBounds((int)(1024*0.6),(int)(768*0.1),100,100);
+		jbtQuit.setBounds((int)(1024*0.3),(int)(768*0.1),100,100);
 		jbtQuit.setToolTipText("Quit");
 		jbtQuit.setPressedIcon(rollIcon);
 		jbtQuit.setRolloverIcon(rollIcon);
-		add(jbtQuit);
-		
+		add(jbtQuit);		
 			
 		//监听器，按下按钮后关闭游戏	
 		jbtQuit.addActionListener(new ActionListener(){
@@ -109,31 +107,27 @@ public class FrameStartGame extends ui.JFrameTotal{
 		});
 		
 		//在内容面板加入背景音乐开关按钮
-		JButton jbtSilence=new JButton();
-		jbtSilence.setBounds((int)(1024*0.8),(int)(768*0.1),100,100);
+		ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic();
+		jbtBgm=jbtSilence;
+		if(jbtSilence.getControl()==0){
+			bgm.play();					//根据是否静音决定是否播放背景乐
+		}
+		jbtSilence.setMusic(bgm);
 		add(jbtSilence);
 		
-		//按钮监听器，背景音乐开关
-		jbtSilence.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				final int open=1,off=0;	
-				if(set==open){
-					bgm.play();			//播放背景音乐
-					set--;
-				}else if(set==off){					
-					bgm.stop();			//停止播放
-					set++;
-				}				
-			}	
-		});
+		//加入音效开关按钮
+		ButtonSound jbtSound=new ButtonSound();
+		jbtS=jbtSound;
+		add(jbtSound);
+		
 
 	}
 	
-
 	
-/*	public static void main(String[]args){
+	
+	public static void main(String[]args){
 		final FrameStartGame frame=new FrameStartGame();
 
-	}*/
+	}
 
 }
