@@ -1,5 +1,5 @@
 /**
- * 游戏背景音乐，可调用方法播放或关闭背景音乐。构造方法需要传入音乐文件名，如“bgm01”，音乐文件存放在audio/music文件夹。
+ * 游戏背景音乐，可调用方法播放或关闭背景音乐。
  */
 package audio;
 
@@ -16,15 +16,15 @@ import javax.sound.midi.Sequencer;
 
 public class BackgroundMusic{
 
-	private Sequence bgm;
+	private Sequence bgm01;
 	private Sequencer player;
 
 	//初始化播放器，打开音乐文件
-	public BackgroundMusic(String musicName){
+	public BackgroundMusic(){
 		try{
-			bgm =MidiSystem.getSequence(new File("audio/music/"+musicName+".mid"));
+			bgm01 =MidiSystem.getSequence(new File("audio/music/bgm01.mid"));
 			player=MidiSystem.getSequencer();
-			player.setSequence(bgm);
+			player.setSequence(bgm01);
 			player.open();
 			
 		}catch(Exception e){}

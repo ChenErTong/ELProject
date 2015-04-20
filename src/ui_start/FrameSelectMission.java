@@ -9,11 +9,6 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import audio.BackgroundMusic;
-import audio.SoundEffect;
-import ui.ButtonBackgroundMusic;
-import ui.ButtonSound;
-
 
 /**
  * @author DorA
@@ -25,19 +20,12 @@ public class FrameSelectMission extends ui.JFrameTotal{
 	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
 	//按钮的图标
 	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");
-	//背景音乐
-	private static BackgroundMusic bgm=new BackgroundMusic("bgm02");
-	//保留静音按钮对象
-	public static ButtonBackgroundMusic jbtBgm;
-	public static ButtonSound jbtS;
+	
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
 	
 	public FrameSelectMission(){	//括号中应该传入各关卡是否通过的布尔值
 		super();
-		
-		final FrameSelectMission f=this;
-		
 		//在分层面板加入背景图片面板	
 		JLabel background = new JLabel(bg);
 		background.setBounds(0,0,1024,768);		
@@ -92,35 +80,9 @@ public class FrameSelectMission extends ui.JFrameTotal{
 			});
 		}
 		
-		
-		//在内容面板加入背景音乐开关按钮
-		ButtonBackgroundMusic jbtSilence=FrameStartGame.jbtBgm;
-		if(jbtSilence.getControl()==0){
-			bgm.play();					//根据是否静音决定是否播放背景乐
-		}
-		jbtBgm=jbtSilence;
-		jbtSilence.setMusic(bgm);
-		jbtSilence.setBounds((int)(1024*0.8),(int)(768*0.1),100,100);
-		add(jbtSilence);
-		
-		//音效开关按钮
-		ButtonSound jbtSound=FrameStartGame.jbtS;
-		jbtS=jbtSound;
-		add(jbtSound);
-		
-		
-		//返回按钮
-		JButton jbtBack=new JButton(icon1);
-		add(jbtBack);
-		
-		//监视器，点击图标进入开始界面
-		jbtBack.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				bgm.stop();			//关闭背景音乐
-				f.dispose();		//关闭该界面
-				FrameStartGame fsm=new FrameStartGame();	//打开新界面	
-			}	
-		});
 	}
-
+	/*
+	public static void main(String[]args){
+		FrameSelectMission f=new FrameSelectMission();
+	}*/
 }

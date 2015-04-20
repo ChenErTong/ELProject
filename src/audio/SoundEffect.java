@@ -50,15 +50,5 @@ public enum SoundEffect {
 		}catch(Exception e){}
 	      
 	}
-	
-	//音效开关按钮调用
-	public static void setMute(boolean setMute){
-		if(setMute==true){
-			volume=Volume.MUTE;
-		}else{
-			volume=Volume.MEDIUM;
-		}
-	}
-	
 
 }
