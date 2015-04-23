@@ -17,11 +17,15 @@ public abstract class JFrameTotal extends JFrame{
 	protected static final String TITLE = "ELPrject";
 	//目测的地址栏高度
 	private static final int WINDOW_UP = 16;
-	/**
-	 * 
-	 */
-	public JFrameTotal(){
-		
+	//Frame的位置坐标
+	protected static int WINDOWX;
+	protected static int WINDOWY;
+	//窗口大小
+	public static final int WINDOWW = 1024;
+	public static final int WINDOWH = 576;
+	
+	
+	public JFrameTotal(){		
 		//设置标题栏名称
 		this.setTitle(TITLE);
 		
@@ -32,12 +36,15 @@ public abstract class JFrameTotal extends JFrame{
 		//仅仅是为了打印到屏幕中间
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
-		//设置JFrame大小，暂时用数值表示
-		this.setSize(1024, 768);   
+		//设置JFrame大小，暂时用窗口比例的80%表示
+//		WINDOWW = (int)(screen.width*0.8);
+//		WINDOWH = (int)(screen.height*0.8);
+		this.setSize(WINDOWW, WINDOWH);   
+		
 		//将界面置于显示屏正中央
-		int x = screen.width-this.getWidth()>>1;
-		int y = (screen.height-this.getHeight()>>1)-WINDOW_UP;
-		this.setLocation(x, y);
+		WINDOWX = screen.width-this.getWidth()>>1;
+		WINDOWY = (screen.height-this.getHeight()>>1)-WINDOW_UP;
+		this.setLocation(WINDOWX, WINDOWY);
 //		this.setUndecorated(true);
 		//设置可以显示
 		this.setVisible(true);

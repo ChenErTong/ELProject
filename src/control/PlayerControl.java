@@ -22,7 +22,7 @@ public class PlayerControl implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String code = e.getActionCommand();
 		if(code.equalsIgnoreCase("earth")){
-			this.gameControl.launchLight(PlanetEarth.lightX,PlanetEarth.lightY);
+			this.gameControl.launchLight();
 //			System.out.println(PlanetEarth.lightX+" "+PlanetEarth.lightY);
 		}
 		else if(code.equalsIgnoreCase("sun")){
