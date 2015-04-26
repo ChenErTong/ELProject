@@ -12,9 +12,11 @@ public class JFrameWin extends JFrameTotal{
 	JPanelWin panelWin;
 	
 	public JFrameWin(){
+		panelWin = new JPanelWin();
+		
 		this.setTitle("通关界面");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//定义通关窗口的大小与位置
 		int w = (int)(WINDOWW*0.4);
 		int h = (int)(WINDOWH*0.4);

@@ -22,7 +22,7 @@ public abstract class JFrameTotal extends JFrame{
 	protected static int WINDOWY;
 	//´°¿Ú´óÐ¡
 	public static final int WINDOWW = 1024;
-	public static final int WINDOWH = 576;
+	public static final int WINDOWH = 700;
 	
 	
 	public JFrameTotal(){		

@@ -17,7 +17,7 @@ public class Light {
 	/**
 	 * 激光前进的速度
 	 */
-	private static int SPEED = 50;
+	private static int SPEED = 20;
 	/**
 	 * TODO 暂用红色激光图
 	 */
@@ -103,7 +103,10 @@ public class Light {
 	public boolean isCanDeliver() {
 		return canDeliver;
 	}
-	
+	//停止该条光线传递
+	public void stopDeliver() {
+		this.canDeliver = false;
+	}
 	public int getEndX() {
 		return endX;
 	}
