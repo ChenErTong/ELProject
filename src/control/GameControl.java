@@ -1,5 +1,6 @@
 package control;
 
+import gamecomponent.PlanetEarth;
 import gameservice.GameService;
 import ui_game.JPanelGame;
 /**
@@ -22,8 +23,8 @@ public class GameControl {
 		this.gameService=gameService;
 	}
 
-	public void launchLight(int lightX,int lightY) {
-		this.gameService.launchLight(lightX,lightY);
+	public void launchLight() {
+		this.gameService.launchLight(PlanetEarth.lightX, PlanetEarth.lightY);
 		this.panelGame.repaint();
 	}
 }

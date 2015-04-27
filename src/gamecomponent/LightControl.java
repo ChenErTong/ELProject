@@ -41,9 +41,6 @@ public class LightControl implements Runnable{
 		t.start();
 	}
 	
-	public void stopLight(){
-		this.isExist = false;
-	}
 	/**
 	 * TODO 发射激光方法(实现监听)
 	 * @param launchX 发射X坐标
@@ -73,6 +70,10 @@ public class LightControl implements Runnable{
 	public boolean getisExist() {
 		return this.isExist;
 	}
+	//删除所有光线，光线控制器不再存在
+	public void deleteLights(){
+		this.isExist = false;
+	}
 	/**
 	 * 得到一束光线
 	 * @return 该光线控制器定义的光线
@@ -81,6 +82,11 @@ public class LightControl implements Runnable{
 		return lightList;
 	}
 
+	//将一条光线设为静止
+	public void stopLight(Light light){
+		light.stopDeliver();
+	}
+	
 	/**
 	 * 光线传播数据线程，每50毫秒(再调试)更改一次，不断向前延伸。
 	 */

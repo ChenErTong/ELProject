@@ -32,7 +32,7 @@ public class PlanetThreeBody extends Planet {
 	}
 
 	/**
-	 * 当光线抵达时取消光线
+	 * 当光线抵达时取消光线控制器以及所有光线
 	 */
 	public void stopLight(LightControl lightControl){
 		//得到三体类
@@ -41,7 +41,7 @@ public class PlanetThreeBody extends Planet {
 		double distance = Math.sqrt((double)(distanceX*distanceX+distanceY*distanceY));
 		
 		if(distance<(double)this.radius){
-			lightControl.stopLight();
+			lightControl.deleteLights();
 		}
 	}
 	
