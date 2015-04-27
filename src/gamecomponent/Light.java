@@ -17,7 +17,7 @@ public class Light {
 	/**
 	 * 激光前进的速度
 	 */
-	private static int SPEED = 50;
+	private static int SPEED = 10;
 	/**
 	 * TODO 暂用红色激光图
 	 */
