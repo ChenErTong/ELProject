@@ -23,13 +23,16 @@ public class PlayerControl implements ActionListener{
 		String code = e.getActionCommand();
 		if(code.equalsIgnoreCase("earth")){
 			this.gameControl.launchLight();
-//			System.out.println(PlanetEarth.lightX+" "+PlanetEarth.lightY);
-		}
-		else if(code.equalsIgnoreCase("sun")){
+		}else if(code.equalsIgnoreCase("sun")){
 			
-		}
-		else if(code.equalsIgnoreCase("threeBody")){
+		}else if(code.equalsIgnoreCase("threeBody")){
 			
+		}else if(code.equalsIgnoreCase("ReturnFromWin")){
+			this.gameControl.returnFromWin();
+		}else if(code.equalsIgnoreCase("ToSelectMission")){
+			this.gameControl.toSelectMission();
+		}else if(code.equalsIgnoreCase("ToFirstLevel")){		
+			this.gameControl.toFirstLevel();
 		}
 	}
 

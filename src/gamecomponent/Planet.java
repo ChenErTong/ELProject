@@ -35,7 +35,7 @@ public abstract class Planet extends JButton {
 	 * @param height期望的高度
 	 * @return 缩放后的图像；为imageicon格式
 	 */
-	public ImageIcon getImageIcon(String filename,int width,int height){
+	public static ImageIcon getImageIcon(String filename,int width,int height){
 		ImageIcon temp=new ImageIcon(filename);
 		Image alsoTemp=temp.getImage();
 		alsoTemp=alsoTemp.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);

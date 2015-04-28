@@ -28,9 +28,9 @@ import control.PlayerControl;
  * 2015.4.15.
  */
 
-public class JPanelGame extends JPanel implements Runnable{
+public class PanelGame extends JPanel implements Runnable{
 	PlayerControl playerControl;
-	JFrameWin winFrame;
+	FrameWin winFrame;
 	
 	private GameData gameData;
 	private PlanetEarth earth;
@@ -40,7 +40,7 @@ public class JPanelGame extends JPanel implements Runnable{
 	private boolean isGameOver;
 	
 //	private static final Image background=backgroundDemo.getImage();
-	public JPanelGame(GameData gameData){
+	public PanelGame(GameData gameData){
 		this.gameData = gameData;
 		//初始化是否结束游戏
 		this.isGameOver = false;
@@ -85,7 +85,7 @@ public class JPanelGame extends JPanel implements Runnable{
 	 */
 	private void gameOver(){
 		this.isGameOver = true;
-		this.winFrame = new JFrameWin();
+		this.winFrame = new FrameWin(this.playerControl);
 		//将其设为可见
 		this.winFrame.setVisible(true);
 	}
@@ -137,7 +137,7 @@ public class JPanelGame extends JPanel implements Runnable{
 			for (int i = 0; i < lightList.size(); i++) {
 				lightList.get(i).paint(g);
 			}	
-		}else{
+		}else if(!this.isGameOver){
 			//若光线控制器不存在，说明游戏结束，显示通关界面
 			this.gameOver();
 		}

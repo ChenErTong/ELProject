@@ -4,10 +4,22 @@
  */
 package ui_start;
 
-import java.awt.Container;
-import java.awt.event.*;
+import gamedata.GameData;
+import gameservice.GameService;
 
-import javax.swing.*;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import ui_game.FrameGame;
+import ui_game.PanelGame;
+import control.GameControl;
+import control.PlayerControl;
 
 
 /**
@@ -24,65 +36,63 @@ public class FrameSelectMission extends ui.JFrameTotal{
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
 	
-	public FrameSelectMission(){	//括号中应该传入各关卡是否通过的布尔值
+	public FrameSelectMission(PanelSelectMission panelSelectMission){	//括号中应该传入各关卡是否通过的布尔值
 		super();
-		//在分层面板加入背景图片面板	
-		JLabel background = new JLabel(bg);
-		background.setBounds(0,0,1024,768);		
-		this.getLayeredPane().add(background);
 		
-		//将内容面板设置为透明	
-		Container cp=this.getContentPane();
-		((JPanel)cp).setOpaque(false);
+		this.setContentPane(panelSelectMission);
 		
-		//自由布局
-		setLayout(null);
+//		//在分层面板加入背景图片面板	
+//		JLabel background = new JLabel(bg);
+//		background.setBounds(0,0,1024,768);		
+//		this.getLayeredPane().add(background);
+//		
+//		//将内容面板设置为透明	
+//		Container cp=this.getContentPane();
+//		((JPanel)cp).setOpaque(false);
 		
-		if(isPassed){
-			//显示第一关图标
-			JButton jbtMission1=new JButton(icon1);
-			jbtMission1.setBounds((int)(1024*0.2), (int)(768*0.4), 100, 100);
-			add(jbtMission1);
-			
-			//监视器，点击图标进入关卡一
-			jbtMission1.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission1();		
-				}	
-			});
-		}
-		
-		if(isPassed){
-			//显示第二关图标
-			JButton jbtMission2=new JButton(icon1);
-			jbtMission2.setBounds((int)(1024*0.5), (int)(768*0.4), 100, 100);
-			add(jbtMission2);
-			
-			//监视器，点击图标进入关卡二
-			jbtMission2.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission2();		
-				}	
-			});
-		}
-		
-		if(isPassed){
-			//显示第三关图标
-			JButton jbtMission3=new JButton(icon1);
-			jbtMission3.setBounds((int)(1024*0.8), (int)(768*0.4), 100, 100);
-			add(jbtMission3);
-			
-			//监视器，点击图标进入关卡三
-			jbtMission3.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission3();		
-				}	
-			});
-		}
-		
+//		//自由布局
+//		setLayout(null);
+//		
+//		if(isPassed){
+//			//显示第一关图标
+//			JButton jbtMission1=new JButton(icon1);
+//			jbtMission1.setBounds((int)(1024*0.2), (int)(768*0.4), 100, 100);
+//			add(jbtMission1);
+//			
+//			//监视器，点击图标进入关卡一
+//			jbtMission1.addActionListener(new ActionListener(){
+//				public void actionPerformed(ActionEvent e){
+//					//mission1();		
+//				}	
+//			});
+//		}
+//		
+//		if(isPassed){
+//			//显示第二关图标
+//			JButton jbtMission2=new JButton(icon1);
+//			jbtMission2.setBounds((int)(1024*0.5), (int)(768*0.4), 100, 100);
+//			add(jbtMission2);
+//			
+//			//监视器，点击图标进入关卡二
+//			jbtMission2.addActionListener(new ActionListener(){
+//				public void actionPerformed(ActionEvent e){
+//					//mission2();		
+//				}	
+//			});
+//		}
+//		
+//		if(isPassed){
+//			//显示第三关图标
+//			JButton jbtMission3=new JButton(icon1);
+//			jbtMission3.setBounds((int)(1024*0.8), (int)(768*0.4), 100, 100);
+//			add(jbtMission3);
+//			
+//			//监视器，点击图标进入关卡三
+//			jbtMission3.addActionListener(new ActionListener(){
+//				public void actionPerformed(ActionEvent e){
+//				}	
+//			});
+//		}
+//		
 	}
-	/*
-	public static void main(String[]args){
-		FrameSelectMission f=new FrameSelectMission();
-	}*/
 }

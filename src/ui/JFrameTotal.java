@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+
+import control.PlayerControl;
 /**
  * 抽象类：所有界面的模板，包括界面标题栏标题，大小，位置等信息
  * @author 恩哥哥
@@ -24,7 +26,7 @@ public abstract class JFrameTotal extends JFrame{
 	public static final int WINDOWW = 1024;
 	public static final int WINDOWH = 700;
 	
-	
+	private PlayerControl playerControl;
 	public JFrameTotal(){		
 		//设置标题栏名称
 		this.setTitle(TITLE);
@@ -47,6 +49,13 @@ public abstract class JFrameTotal extends JFrame{
 		this.setLocation(WINDOWX, WINDOWY);
 //		this.setUndecorated(true);
 		//设置可以显示
-		this.setVisible(true);
+		this.setVisible(false);
+	}
+	/**
+	 * 给界面加入监听
+	 * @param playerControl	玩家控制器
+	 */
+	public void addControl(PlayerControl playerControl){
+		this.playerControl = playerControl;
 	}
 }

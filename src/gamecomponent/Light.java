@@ -103,7 +103,10 @@ public class Light {
 	public boolean isCanDeliver() {
 		return canDeliver;
 	}
-	
+	//Í£Ö¹¹âÏß´«µÝ
+	public void stopDeliver(){
+		this.canDeliver = false;
+	}
 	public int getEndX() {
 		return endX;
 	}

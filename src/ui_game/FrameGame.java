@@ -12,10 +12,10 @@ import ui.JFrameTotal;
  * 2015.4.8.
  */
 
-public class JFrameGame extends JFrameTotal{
+public class FrameGame extends JFrameTotal{
 
 	
-	public JFrameGame(JPanelGame panelGame){
+	public FrameGame(PanelGame panelGame){
 //		this.setUndecorated(true);
 		super();
 		
