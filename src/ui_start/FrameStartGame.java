@@ -3,6 +3,9 @@
  */
 package ui_start;
 
+import javax.swing.ImageIcon;
+
+import audio.BackgroundMusic;
 import ui.*;
 
 /**
@@ -12,21 +15,29 @@ import ui.*;
  */
 public class FrameStartGame extends FrameTotal{
 	
+	//ø™ ºΩÁ√Ê±≥æ∞Õº∆¨
+	ImageIcon ic=new ImageIcon("image/bg/ΩÁ√Ê±≥æ∞.png");	
+	//±≥æ∞“Ù¿÷
+	public static BackgroundMusic bgm=new BackgroundMusic("bgm01");
 
-	private final FrameStartGame f=this;
+	final BgmSyncData bgmSyncData;
+	final SoundSyncData soundSyncData;
 	
 	
-	public FrameStartGame(BgmSyncData bgmSyncData,SoundSyncData soundSyncData){
+	public FrameStartGame(BgmSyncData bgmData,SoundSyncData soundData){
 		super();
+		
+		bgmSyncData=bgmData;
+		soundSyncData=soundData;
 	
-		this.setContentPane(new PanelStartGame(f,bgmSyncData,soundSyncData));
+		this.setContentPane(new PanelStartGame(ic,bgm,bgmSyncData,soundSyncData));
 
 	}
 	
 	
-	public void closeFrame(){
+/*	public void closeFrame(){
 		f.dispose();
-	}
+	}*/
 		
 	
 	public static void main(String[]args){

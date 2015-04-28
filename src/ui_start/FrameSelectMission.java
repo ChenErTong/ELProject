@@ -4,6 +4,11 @@
  */
 package ui_start;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
+import audio.BackgroundMusic;
 import ui.*;
 
 /**
@@ -16,13 +21,18 @@ public class FrameSelectMission extends ui.FrameTotal{
 	private final FrameSelectMission f=this;
 	private final BgmSyncData bgmData;
 	private final SoundSyncData soundData;
+	//背景图片
+	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
+	
+	//背景音乐
+	private static BackgroundMusic bgm=new BackgroundMusic("bgm02");
 	
 	public FrameSelectMission(BgmSyncData bgmSyncData,SoundSyncData soundSyncData){	//括号中应该传入各关卡是否通过的布尔值
 		super();
 		bgmData=bgmSyncData;
 		soundData=soundSyncData;
 		
-		this.setContentPane(new PanelSelectMission(f,bgmData, soundData));
+		this.setContentPane(new PanelSelectMission(ic,bgm,bgmData, soundData));
 		
 		
 		

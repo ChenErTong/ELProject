@@ -7,9 +7,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import audio.BackgroundMusic;
 import ui.*;
 
@@ -18,31 +20,25 @@ import ui.*;
  *
  * 2015年4月17日00:20:14
  */
-public class PanelStartGame extends JPanel{
+public class PanelStartGame extends PanelTotal{
 	private int w=FrameTotal.WINDOWW;
 	private int h=FrameTotal.WINDOWH;
-	//开始界面背景图片
-	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
-	Image bg=ic.getImage();
+
 	
 	//按钮的图标
 	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
 
-	//背景音乐
-	public static BackgroundMusic bgm=new BackgroundMusic("bgm01");
+
 	
 	
-	public PanelStartGame(FrameStartGame f,BgmSyncData data,SoundSyncData soundData){
-		final FrameStartGame frame=f;
+	public PanelStartGame(ImageIcon bg,BackgroundMusic bgm,BgmSyncData bgmData,SoundSyncData soundData){
+		super(bg,bgm,bgmData,soundData);
+/*		final FrameStartGame frame=f;
 		final BgmSyncData bgmSyncData=data;
-		final SoundSyncData soundSyncData=soundData;
+		final SoundSyncData soundSyncData=soundData;*/
 	
-		this.setBounds(0, 0, w, h);		
-		//自由布局
-		setLayout(null);
-				
-		
+
 		//添加一个开始游戏按钮
 		JButton jbtStart=new JButton(defaultIcon);
 		jbtStart.setBounds((int)(w*0.2),(int)(h*0.5),100,100);
@@ -51,7 +47,7 @@ public class PanelStartGame extends JPanel{
 			jbtStart.setRolloverIcon(rollIcon);
 		add(jbtStart);
 		
-		//按下后进入选关界面	
+	/*	//按下后进入选关界面	
 		jbtStart.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				bgm.stop();			//关闭背景音乐
@@ -60,7 +56,7 @@ public class PanelStartGame extends JPanel{
 				
 			}
 		});	
-		
+		*/
 		
 		//添加一个帮助&演示按钮
 		JButton jbtHelp=new JButton(defaultIcon);
@@ -92,7 +88,7 @@ public class PanelStartGame extends JPanel{
 			}
 		});
 		
-		//在内容面板加入背景音乐开关按钮
+/*		//在内容面板加入背景音乐开关按钮
 		ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
 		jbtSilence.setMusic(bgm);
 		add(jbtSilence);
@@ -100,14 +96,14 @@ public class PanelStartGame extends JPanel{
 		//加入音效开关按钮
 		ButtonSound jbtSound=new ButtonSound(soundSyncData);
 		add(jbtSound);
-		
+		*/
 		
 	}
 	
-	public void paintComponent(Graphics g){
+	/*public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(bg, 0, 0, w,h,this);
 
-	}
+	}*/
 
 }

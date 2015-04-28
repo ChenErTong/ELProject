@@ -1,5 +1,5 @@
 /**
- * 
+ * 选关界面面板
  */
 package ui_start;
 
@@ -20,35 +20,17 @@ import ui.*;
  *
  * 2015年4月28日上午1:35:28
  */
-public class PanelSelectMission extends JPanel{
+public class PanelSelectMission extends ui.PanelTotal{
 	private int w=FrameTotal.WINDOWW;
 	private int h=FrameTotal.WINDOWH;
 	//按钮的图标
-	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");
-	//背景图片
-	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
-	Image bg=ic.getImage();
-	//背景音乐
-	private static BackgroundMusic bgm=new BackgroundMusic("bgm02");
-	//保留静音按钮对象
-	public static ButtonBackgroundMusic jbtBgm;
-	public static ButtonSound jbtS;
-
+	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");	
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
 	
-	private final BgmSyncData bgmSyncData;
-	private final SoundSyncData soundSyncData;
-	
-	
-	public PanelSelectMission(FrameSelectMission f, BgmSyncData data, SoundSyncData soundData){
-		final FrameSelectMission frame=f;
-		bgmSyncData=data;
-		soundSyncData=soundData;
 
-		
-		this.setBounds(0, 0, w, h);
-		setLayout(null);
+	public PanelSelectMission(ImageIcon bg,BackgroundMusic bgm,BgmSyncData bgmData,SoundSyncData soundData){
+		super();
 		
 		if(isPassed){
 			//显示第一关图标
@@ -93,14 +75,7 @@ public class PanelSelectMission extends JPanel{
 		}
 		
 		
-		//在内容面板加入背景音乐开关按钮
-		ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
-		jbtSilence.setMusic(bgm);
-		add(jbtSilence);
-		
-		//音效开关按钮
-		ButtonSound jbtSound=new ButtonSound(soundSyncData);
-		add(jbtSound);
+
 		
 		
 		//返回按钮
@@ -108,23 +83,20 @@ public class PanelSelectMission extends JPanel{
 		jbtBack.setBounds((int)(w*0.5), (int)(h*0.7), 100, 100);
 		add(jbtBack);
 		
-		//监视器，点击图标进入开始界面
+	/*	//监视器，点击图标进入开始界面
 		jbtBack.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				bgm.stop();			//关闭背景音乐
 				frame.dispose();		//关闭该界面
 				FrameStartGame fsm=new FrameStartGame(bgmSyncData, soundSyncData);	//打开新界面	
 			}	
-		});
+		});*/
 	}
-	
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		g.drawImage(bg, 0, 0, w,h,this);
 
 
-	}
+	
+	
+	
 	
 
 }
