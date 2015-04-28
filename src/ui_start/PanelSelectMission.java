@@ -1,75 +1,130 @@
+/**
+ * 
+ */
 package ui_start;
 
-import gamedata.GameData;
-
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import control.PlayerControl;
+import audio.BackgroundMusic;
+import ui.*;
 
+
+/**
+ * @author DorA
+ *
+ * 2015年4月28日上午1:35:28
+ */
 public class PanelSelectMission extends JPanel{
-	//加入游戏数据
-	private GameData gameData;
-	//加入玩家控制器
-	private PlayerControl playerControl;
-	//开始界面背景图片
-	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
+	private int w=JFrameTotal.WINDOWW;
+	private int h=JFrameTotal.WINDOWH;
 	//按钮的图标
 	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");
-	
-	// TODO虚拟，该值应当由各关卡传入,当确定关卡数后声明为数组
+	//背景图片
+	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
+	Image bg=ic.getImage();
+	//背景音乐
+	private static BackgroundMusic bgm=new BackgroundMusic("bgm02");
+	//保留静音按钮对象
+	public static ButtonBackgroundMusic jbtBgm;
+	public static ButtonSound jbtS;
+
+	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
-		
-	//各个关卡进入按钮
-	private JButton jbtMission1;
-	private JButton jbtMission2;
-	private JButton jbtMission3;
 	
-	public PanelSelectMission(GameData gameData){
-		this.gameData = gameData;
+	private final BgmSyncData bgmSyncData;
+	private final SoundSyncData soundSyncData;
+	
+	
+	public PanelSelectMission(FrameSelectMission f, BgmSyncData data, SoundSyncData soundData){
+		final FrameSelectMission frame=f;
+		bgmSyncData=data;
+		soundSyncData=soundData;
+
 		
-		this.setLayout(null);
+		this.setBounds(0, 0, w, h);
+		setLayout(null);
 		
 		if(isPassed){
 			//显示第一关图标
-			jbtMission1=new JButton(icon1);
-			jbtMission1.setBounds((int)(1024*0.2), (int)(768*0.4), 100, 100);
-			jbtMission1.setActionCommand("ToFirstLevel");
+			JButton jbtMission1=new JButton(icon1);
+			jbtMission1.setBounds((int)(w*0.2), (int)(h*0.4), 100, 100);
 			add(jbtMission1);
+			
+			//监视器，点击图标进入关卡一
+			jbtMission1.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					//mission1();		
+				}	
+			});
 		}
 		
 		if(isPassed){
 			//显示第二关图标
-			jbtMission2=new JButton(icon1);
-			jbtMission2.setBounds((int)(1024*0.5), (int)(768*0.4), 100, 100);
+			JButton jbtMission2=new JButton(icon1);
+			jbtMission2.setBounds((int)(w*0.5), (int)(h*0.4), 100, 100);
 			add(jbtMission2);
+			
+			//监视器，点击图标进入关卡二
+			jbtMission2.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					//mission2();		
+				}	
+			});
 		}
 		
 		if(isPassed){
 			//显示第三关图标
-			jbtMission3=new JButton(icon1);
-			jbtMission3.setBounds((int)(1024*0.8), (int)(768*0.4), 100, 100);
+			JButton jbtMission3=new JButton(icon1);
+			jbtMission3.setBounds((int)(w*0.8), (int)(h*0.4), 100, 100);
 			add(jbtMission3);
+			
+			//监视器，点击图标进入关卡三
+			jbtMission3.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					//mission3();		
+				}	
+			});
 		}
 		
-		//在分层面板加入背景图片面板	
-		JLabel background = new JLabel(bg);
-		background.setBounds(0,0,1024,768);		
-		this.add(background);
+		
+		//在内容面板加入背景音乐开关按钮
+		ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
+		jbtSilence.setMusic(bgm);
+		add(jbtSilence);
+		
+		//音效开关按钮
+		ButtonSound jbtSound=new ButtonSound(soundSyncData);
+		add(jbtSound);
+		
+		
+		//返回按钮
+		JButton jbtBack=new JButton(icon1);
+		jbtBack.setBounds((int)(w*0.5), (int)(h*0.7), 100, 100);
+		add(jbtBack);
+		
+		//监视器，点击图标进入开始界面
+		jbtBack.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				bgm.stop();			//关闭背景音乐
+				frame.dispose();		//关闭该界面
+				FrameStartGame fsm=new FrameStartGame(bgmSyncData, soundSyncData);	//打开新界面	
+			}	
+		});
 	}
+	
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 0, w,h,this);
 
-	public void addControl(PlayerControl playerControl) {
-		this.playerControl = playerControl;
-		/**
-		 * 给所有关卡按钮加入玩家控制器进行监听
-		 */
-		jbtMission1.addActionListener(playerControl);
-		jbtMission2.addActionListener(playerControl);
-		jbtMission3.addActionListener(playerControl);
+
 	}
+	
+
 }

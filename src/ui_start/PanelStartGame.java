@@ -1,110 +1,113 @@
+/**
+ * 开始界面面板
+ */
 package ui_start;
 
-import gamedata.GameData;
-
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import control.PlayerControl;
 import audio.BackgroundMusic;
+import ui.*;
 
+/**
+ * @author DorA
+ *
+ * 2015年4月17日00:20:14
+ */
 public class PanelStartGame extends JPanel{
-	//加入游戏数据
-	private GameData gameData;
-	//加入玩家控制器
-	private PlayerControl playControl;
+	private int w=JFrameTotal.WINDOWW;
+	private int h=JFrameTotal.WINDOWH;
 	//开始界面背景图片
-	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
-	//背景音乐
-	private BackgroundMusic bgm=new BackgroundMusic();
+	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
+	Image bg=ic.getImage();
+	
 	//按钮的图标
 	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
-	//静音按钮的设置值
-	private int set=0;
-	//开始按钮
-	private JButton jbtStart;
-	//帮助按钮
-	private JButton jbtHelp;
-	//退出按钮
-	private JButton jbtQuit;
-	//背景音乐按钮
-	private JButton jbtSilence;
+
+	//背景音乐
+	public static BackgroundMusic bgm=new BackgroundMusic("bgm01");
 	
-	public PanelStartGame(GameData gameData){
-		this.gameData = gameData;
-		
-		//播放背景音乐
-		bgm.play();
+	
+	public PanelStartGame(FrameStartGame f,BgmSyncData data,SoundSyncData soundData){
+		final FrameStartGame frame=f;
+		final BgmSyncData bgmSyncData=data;
+		final SoundSyncData soundSyncData=soundData;
+	
+		this.setBounds(0, 0, w, h);		
+		//自由布局
+		setLayout(null);
 				
 		
-		
 		//添加一个开始游戏按钮
-		jbtStart=new JButton(defaultIcon);
-		jbtStart.setBounds((int)(1024*0.3),(int)(768*0.5),100,100);
+		JButton jbtStart=new JButton(defaultIcon);
+		jbtStart.setBounds((int)(w*0.2),(int)(h*0.5),100,100);
 		jbtStart.setToolTipText("select mission");
-		jbtStart.setPressedIcon(rollIcon);
-		jbtStart.setRolloverIcon(rollIcon);
+			jbtStart.setPressedIcon(rollIcon);
+			jbtStart.setRolloverIcon(rollIcon);
+		add(jbtStart);
+		
 		//按下后进入选关界面	
-		jbtStart.setActionCommand("ToSelectMission");
-		this.add(jbtStart);
+		jbtStart.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				bgm.stop();			//关闭背景音乐
+				frame.closeFrame();		//关闭该界面
+				FrameSelectMission fsm=new FrameSelectMission(bgmSyncData,soundSyncData);	//打开新界面
+				
+			}
+		});	
+		
 		
 		//添加一个帮助&演示按钮
-		jbtHelp=new JButton(defaultIcon);
-		jbtHelp.setBounds((int)(1024*0.1),(int)(768*0.3),100,100);
+		JButton jbtHelp=new JButton(defaultIcon);
+		jbtHelp.setBounds((int)(w*0.45),(int)(h*0.5),100,100);
+		jbtHelp.setToolTipText("Help");
 		jbtHelp.setPressedIcon(rollIcon);
 		jbtHelp.setRolloverIcon(rollIcon);
 		add(jbtHelp);
+			//此处应有监听器
+		jbtHelp.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//add(panel);
 
+			}
+		});
+			
 		//添加一个退出游戏按钮
-		jbtQuit=new JButton(defaultIcon);
-		jbtQuit.setBounds((int)(1024*0.6),(int)(768*0.1),100,100);
+		JButton jbtQuit=new JButton(defaultIcon);
+		jbtQuit.setBounds((int)(w*0.7),(int)(h*0.5),100,100);
 		jbtQuit.setToolTipText("Quit");
 		jbtQuit.setPressedIcon(rollIcon);
 		jbtQuit.setRolloverIcon(rollIcon);
-		add(jbtQuit);
-
+		add(jbtQuit);		
+			
+		//监听器，按下按钮后关闭游戏	
+		jbtQuit.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.exit(0);		
+			}
+		});
+		
 		//在内容面板加入背景音乐开关按钮
-		jbtSilence=new JButton();
-		jbtSilence.setBounds((int)(1024*0.8),(int)(768*0.1),100,100);
+		ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
+		jbtSilence.setMusic(bgm);
 		add(jbtSilence);
 		
-		//在分层面板加入背景图片面板	
-		JLabel background = new JLabel(bg);
-		background.setBounds(0,0,1024,768);		
-		this.add(background);
+		//加入音效开关按钮
+		ButtonSound jbtSound=new ButtonSound(soundSyncData);
+		add(jbtSound);
 		
-		this.setLayout(null);
 		
-		//按钮监听器，背景音乐开关
-		jbtSilence.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				final int open=1,off=0;	
-				if(set==open){
-					bgm.play();			//播放背景音乐
-					set--;
-				}else if(set==off){					
-					bgm.stop();			//停止播放
-					set++;
-				}				
-			}	
-		});
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		g.drawImage(bg, 0, 0, w,h,this);
 
-				
 	}
 
-	public void addControl(PlayerControl playerControl) {
-		this.playControl = playerControl;
-		/**
-		 * 给所有按钮加入监听
-		 */
-		jbtStart.addActionListener(this.playControl);
-		jbtHelp.addActionListener(playerControl);
-		jbtQuit.addActionListener(playerControl);
-	}
 }
