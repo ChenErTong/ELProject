@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 
 
 
-import ui.JFrameTotal;
+import ui.FrameTotal;
 import control.PlayerControl;
 /**
  * 游戏面板类，并且传入GameData的数据和引入PlayerControl对面板上的操作进行监听，引入线程
@@ -107,8 +107,6 @@ public class PanelGame extends JPanel implements Runnable{
 					threeBody.stopLight(this.gameData.getLightControl());
 				}
 			}
-			
-
 			this.repaint();
 		}	
 	}
@@ -125,7 +123,7 @@ public class PanelGame extends JPanel implements Runnable{
 		 * */
 		ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
 		Image background=backgroundDemo.getImage();
-		background=background.getScaledInstance(JFrameTotal.WINDOWW, JFrameTotal.WINDOWH, Image.SCALE_SMOOTH);//缩放图片的核心方法
+		background=background.getScaledInstance(FrameTotal.WINDOWW, FrameTotal.WINDOWH, Image.SCALE_SMOOTH);//缩放图片的核心方法
 		backgroundDemo.setImage(background);
 		background=backgroundDemo.getImage();
 		g.drawImage(background, 0, 0, null);

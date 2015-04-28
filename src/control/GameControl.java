@@ -1,6 +1,7 @@
 package control;
 
 import gamecomponent.PlanetEarth;
+import gamedata.GameData;
 import gameservice.GameService;
 import ui_game.FrameGame;
 import ui_game.PanelGame;
@@ -14,6 +15,10 @@ import ui_start.PanelStartGame;
  * 2015.4.13.
  */
 public class GameControl {
+	/**
+	 * 游戏控制器
+	 */
+	private PlayerControl playerControl;
 	/**
 	 * 开始界面
 	 */
@@ -42,26 +47,35 @@ public class GameControl {
 	 * 游戏逻辑层
 	 */
 	private GameService gameService;
+	/**
+	 * 游戏数据层
+	 */
+	private GameData gameData;
 	
-	public GameControl(PanelStartGame panelStartGame, PanelSelectMission panelSelectMission, PanelGame panelGame,GameService gameService){
-		this.panelGame=panelGame;
-		this.panelStartGame = panelStartGame;
-		this.panelSelectMission = panelSelectMission;
+	public GameControl(GameService gameService, GameData gameData){		
 		this.gameService=gameService;
+		this.gameData =gameData;
 	}
 
+	/**
+	 * 加入玩家控制器
+	 * @param playerControl
+	 */
+	public void addControl(PlayerControl playerControl) {
+		this.playerControl = playerControl;
+	}	
 	/**
 	 * 向游戏控制器中加入所有界面
 	 * @param frameStartGame
 	 * @param frameSelectMission
 	 * @param frameGame
 	 */
-	public void addFrames(FrameStartGame frameStartGame, FrameSelectMission frameSelectMission, FrameGame frameGame) {
+	public void gameStart(FrameStartGame frameStartGame) {
 		this.frameStartGame = frameStartGame;
-		this.frameSelectMission = frameSelectMission;
-		this.frameGame = frameGame;
+		this.frameStartGame.setVisible(true);
+		this.panelStartGame = this.frameStartGame.panelStartGame;
 	}
-
+	
 	public void launchLight() {
 		this.gameService.launchLight(PlanetEarth.lightX, PlanetEarth.lightY);
 		this.panelGame.repaint();
@@ -71,21 +85,34 @@ public class GameControl {
 	 * 从开始界面跳转至选关界面
 	 */
 	public void toSelectMission() {
-		this.frameStartGame.setVisible(false);
+		this.panelStartGame.removeAll();
+		this.frameStartGame.dispose();
+		this.frameStartGame.pack();
+		this.frameSelectMission = new FrameSelectMission(playerControl, gameData);
 		this.frameSelectMission.setVisible(true);
+		this.panelSelectMission = this.frameSelectMission.panelSelectMission;
 	}
 	/**
 	 * 从选关界面跳转至第一关游戏界面
 	 */
 	public void toFirstLevel() {
-		this.frameSelectMission.setVisible(false);
-		this.frameGame.setVisible(true);
+		this.panelSelectMission.removeAll();
+		this.frameSelectMission.dispose();
+		this.frameSelectMission.pack();
+		this.frameGame = new FrameGame(playerControl, gameData);
+		frameGame.setVisible(true);
+		this.panelGame = this.frameGame.panelGame;
 	}
 	/**
 	 * 从通关界面返回至选关界面
 	 */
 	public void returnFromWin() {
+		this.panelGame.removeAll();
+		this.frameGame.dispose();
+		this.frameGame.pack();
+		this.frameSelectMission = new FrameSelectMission(playerControl, gameData);
 		this.frameSelectMission.setVisible(true);
-		this.frameGame.setVisible(false);	
-	}	
+		this.panelSelectMission = this.frameSelectMission.panelSelectMission;
+	}
+	
 }

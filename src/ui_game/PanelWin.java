@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import ui.JFrameTotal;
+import ui.FrameTotal;
 import control.PlayerControl;
 /**
  * 通关后显示的界面
@@ -19,8 +19,8 @@ public class PanelWin extends JPanel{
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = (int)(JFrameTotal.WINDOWW*0.6);
-	static int HEIGHT = (int)(JFrameTotal.WINDOWH*0.6);
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.6);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.6);
 	/**
 	 * 返回按钮
 	 */

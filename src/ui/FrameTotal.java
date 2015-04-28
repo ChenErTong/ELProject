@@ -14,7 +14,7 @@ import control.PlayerControl;
  * 改动：把大小暂时设为固定数值了 by CX 2015.4.15
  */
 
-public abstract class JFrameTotal extends JFrame{
+public abstract class FrameTotal extends JFrame{
 	//TODO 标题栏名称
 	protected static final String TITLE = "ELPrject";
 	//目测的地址栏高度
@@ -26,8 +26,7 @@ public abstract class JFrameTotal extends JFrame{
 	public static final int WINDOWW = 1024;
 	public static final int WINDOWH = 700;
 	
-	private PlayerControl playerControl;
-	public JFrameTotal(){		
+	public FrameTotal(){
 		//设置标题栏名称
 		this.setTitle(TITLE);
 		
@@ -51,11 +50,11 @@ public abstract class JFrameTotal extends JFrame{
 		//设置可以显示
 		this.setVisible(false);
 	}
-	/**
-	 * 给界面加入监听
-	 * @param playerControl	玩家控制器
-	 */
-	public void addControl(PlayerControl playerControl){
-		this.playerControl = playerControl;
-	}
+//	/**
+//	 * 给界面加入监听
+//	 * @param playerControl	玩家控制器
+//	 */
+//	public void addControl(PlayerControl playerControl){
+//		this.playerControl = playerControl;
+//	}
 }

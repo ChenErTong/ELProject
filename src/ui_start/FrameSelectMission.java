@@ -27,18 +27,14 @@ import control.PlayerControl;
  *
  * 2015年4月18日下午6:09:14
  */
-public class FrameSelectMission extends ui.JFrameTotal{
-	//开始界面背景图片
-	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
-	//按钮的图标
-	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");
+public class FrameSelectMission extends ui.FrameTotal{
+	public PanelSelectMission panelSelectMission;
 	
-	//虚拟，该值应当由各关卡传入
-	private boolean isPassed=true;
-	
-	public FrameSelectMission(PanelSelectMission panelSelectMission){	//括号中应该传入各关卡是否通过的布尔值
+	public FrameSelectMission(PlayerControl playerControl, GameData gameData){	//括号中应该传入各关卡是否通过的布尔值
 		super();
 		
+		panelSelectMission = new PanelSelectMission(gameData);
+		panelSelectMission.addControl(playerControl);
 		this.setContentPane(panelSelectMission);
 		
 //		//在分层面板加入背景图片面板	

@@ -3,19 +3,18 @@ package ui_game;
 import javax.swing.JFrame;
 
 import control.PlayerControl;
-import ui.JFrameTotal;
+import ui.FrameTotal;
 /**
  * 通关界面的窗口
  * @author 恩哥哥
  * 20.5.4.24.
  */
-public class FrameWin extends JFrameTotal{
+public class FrameWin extends FrameTotal{
 	PanelWin panelWin;
 	
 	public FrameWin(PlayerControl playerControl){
 		panelWin = new PanelWin(playerControl);
-		
-		this.setTitle("通关界面");
+
 		this.setResizable(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//定义通关窗口的大小与位置

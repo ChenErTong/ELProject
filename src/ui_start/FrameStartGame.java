@@ -26,24 +26,15 @@ import audio.BackgroundMusic;
  *
  * 2015年4月17日00:20:14
  */
-public class FrameStartGame extends ui.JFrameTotal{
-//	//开始界面背景图片
-//	private static ImageIcon bg=new ImageIcon("image/bg/界面背景.png");
-//	//背景音乐
-//	private BackgroundMusic bgm=new BackgroundMusic();
-//	//按钮的图标
-//	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
-//	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
-//	//静音按钮的设置值
-//	private int set=0;
-
-	public FrameStartGame(PanelStartGame panelStartGame){
+public class FrameStartGame extends ui.FrameTotal{
+	public PanelStartGame panelStartGame;
+	
+	public FrameStartGame(PlayerControl playerControl, GameData gameData){
 		super();
-		final FrameStartGame f=this;
 		
+		panelStartGame = new PanelStartGame(gameData);
+		panelStartGame.addControl(playerControl);
 		this.setContentPane(panelStartGame);
-		
-		this.setVisible(true);
 //		//播放背景音乐
 //		bgm.play();
 //		
