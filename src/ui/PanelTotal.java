@@ -4,12 +4,15 @@
  */
 package ui;
 
+import gamedata.GameData;
+
 import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import control.PlayerControl;
 import audio.BackgroundMusic;
 
 /**
@@ -18,42 +21,37 @@ import audio.BackgroundMusic;
  * 2015-4-28 15:24:40
  */
 public abstract class PanelTotal extends JPanel{
-	private int w=FrameTotal.WINDOWW;
-	private int h=FrameTotal.WINDOWH;
+	//Panel的长宽
+	protected int width=FrameTotal.WINDOWW;
+	protected int height=FrameTotal.WINDOWH;
+	//背景音乐开关按钮
+	protected ButtonBackgroundMusic jbtSilence;
+	//音效开关按钮
+	protected ButtonSound jbtSound;
 	//背景图片
-	private Image bg;
+	public ImageIcon backgroundImg;
+	//玩家控制器
+	protected PlayerControl playerControl;
+	//加入游戏数据
+	protected GameData gameData;
+	//背景音乐
+	protected static BackgroundMusic bgm=new BackgroundMusic("bgm01");
 	
-	public PanelTotal(){		
-	}
-
-	
-	 public PanelTotal(ImageIcon ic,BackgroundMusic bgm,BgmSyncData bgmSyncData,SoundSyncData soundSyncData){
-		 
-		 	//设置大小
-			this.setBounds(0, 0, w, h);
-			
-			//获取背景图片
-			this.bg=ic.getImage();
-			
-			//自由布局
-			setLayout(null);
-		 
-			//背景音乐开关按钮
-			ButtonBackgroundMusic jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
-			jbtSilence.setMusic(bgm);
-			add(jbtSilence);
-			
-			//音效开关按钮
-			ButtonSound jbtSound=new ButtonSound(soundSyncData);
-			add(jbtSound);
-			
-			
-	 }
+	public PanelTotal(BgmSyncData bgmSyncData,SoundSyncData soundSyncData, GameData gameData){	
+		this.gameData = gameData;
+	 	//设置大小
+		this.setBounds(0, 0, width, height);
+		
+		//自由布局
+		this.setLayout(null);
 	 
-	 //绘制背景图片
-	 public void paintComponent(Graphics g){
-			super.paintComponent(g);
-			g.drawImage(bg, 0, 0, w,h,this);
-
-	}
+		//背景音乐开关按钮
+		this.jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
+		this.jbtSilence.setMusic(bgm);
+		this.add(jbtSilence);
+		
+		//音效开关按钮
+		this.jbtSound=new ButtonSound(soundSyncData);
+		this.add(jbtSound);			
+	 }
 }

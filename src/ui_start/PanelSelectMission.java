@@ -3,16 +3,15 @@
  */
 package ui_start;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import gamedata.GameData;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
-import audio.BackgroundMusic;
-import ui.*;
+import ui.BgmSyncData;
+import ui.SoundSyncData;
+import control.PlayerControl;
 
 
 /**
@@ -21,82 +20,64 @@ import ui.*;
  * 2015年4月28日上午1:35:28
  */
 public class PanelSelectMission extends ui.PanelTotal{
-	private int w=FrameTotal.WINDOWW;
-	private int h=FrameTotal.WINDOWH;
 	//按钮的图标
 	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");	
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
 	
-
-	public PanelSelectMission(ImageIcon bg,BackgroundMusic bgm,BgmSyncData bgmData,SoundSyncData soundData){
-		super();
+	//各个关卡进入按钮
+	private JButton jbtMission1;
+	private JButton jbtMission2;
+	private JButton jbtMission3;
+	//返回按钮
+	private JButton jbtBack;
+	
+	public PanelSelectMission(BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
+		super(bgmData, soundData, gameData);
 		
-		if(isPassed){
+		if(this.isPassed){
 			//显示第一关图标
-			JButton jbtMission1=new JButton(icon1);
-			jbtMission1.setBounds((int)(w*0.2), (int)(h*0.4), 100, 100);
-			add(jbtMission1);
-			
-			//监视器，点击图标进入关卡一
-			jbtMission1.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission1();		
-				}	
-			});
+			this.jbtMission1=new JButton(icon1);
+			this.jbtMission1.setBounds((int)(width*0.2), (int)(height*0.4), 100, 100);
+			this.jbtMission1.setActionCommand("ToFirstLevel");
+			this.add(jbtMission1);
 		}
 		
-		if(isPassed){
+		if(this.isPassed){
 			//显示第二关图标
-			JButton jbtMission2=new JButton(icon1);
-			jbtMission2.setBounds((int)(w*0.5), (int)(h*0.4), 100, 100);
-			add(jbtMission2);
-			
-			//监视器，点击图标进入关卡二
-			jbtMission2.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission2();		
-				}	
-			});
+			this.jbtMission2=new JButton(icon1);
+			this.jbtMission2.setBounds((int)(width*0.5), (int)(height*0.4), 100, 100);
+			this.add(jbtMission2);
 		}
 		
-		if(isPassed){
+		if(this.isPassed){
 			//显示第三关图标
-			JButton jbtMission3=new JButton(icon1);
-			jbtMission3.setBounds((int)(w*0.8), (int)(h*0.4), 100, 100);
-			add(jbtMission3);
-			
-			//监视器，点击图标进入关卡三
-			jbtMission3.addActionListener(new ActionListener(){
-				public void actionPerformed(ActionEvent e){
-					//mission3();		
-				}	
-			});
+			this.jbtMission3=new JButton(icon1);
+			this.jbtMission3.setBounds((int)(width*0.8), (int)(height*0.4), 100, 100);
+			this.add(jbtMission3);
 		}
-		
-		
-
-		
 		
 		//返回按钮
-		JButton jbtBack=new JButton(icon1);
-		jbtBack.setBounds((int)(w*0.5), (int)(h*0.7), 100, 100);
-		add(jbtBack);
-		
-	/*	//监视器，点击图标进入开始界面
-		jbtBack.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				bgm.stop();			//关闭背景音乐
-				frame.dispose();		//关闭该界面
-				FrameStartGame fsm=new FrameStartGame(bgmSyncData, soundSyncData);	//打开新界面	
-			}	
-		});*/
+		this.jbtBack=new JButton(icon1);
+		this.jbtBack.setBounds((int)(width*0.5), (int)(height*0.7), 100, 100);
+		this.jbtBack.setActionCommand("ReturnToStart");
+		this.add(jbtBack);
+
+		//在分层面板加入背景图片面板	
+		this.backgroundImg=new ImageIcon("image/bg/界面背景.png");
+		JLabel background = new JLabel(this.backgroundImg);
+		background.setBounds(0,0,width,height);		
+		this.add(background);
 	}
 
-
-	
-	
-	
-	
-
+	public void addControl(PlayerControl playerControl) {
+		this.playerControl = playerControl;
+		/**
+		 * 给所有关卡按钮加入玩家控制器进行监听
+		 */
+		jbtMission1.addActionListener(playerControl);
+		jbtMission2.addActionListener(playerControl);
+		jbtMission3.addActionListener(playerControl);
+		jbtBack.addActionListener(playerControl);
+	}
 }

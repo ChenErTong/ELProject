@@ -33,6 +33,8 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.toSelectMission();
 		}else if(code.equalsIgnoreCase("ToFirstLevel")){		
 			this.gameControl.toFirstLevel();
+		}else if(code.equalsIgnoreCase("ReturnToStart")){
+			this.gameControl.returnToStart();
 		}
 	}
 

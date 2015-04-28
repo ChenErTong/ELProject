@@ -89,6 +89,13 @@ public class PanelGame extends JPanel implements Runnable{
 		//将其设为可见
 		this.winFrame.setVisible(true);
 	}
+
+	/**
+	 * 得到通关界面
+	 */
+	public FrameWin getWinFrame() {
+		return winFrame;
+	}
 	
 	public void run() {
 		while(!this.isGameOver){
