@@ -11,7 +11,7 @@ import ui.*;
  *
  * 2015年4月18日下午6:09:14
  */
-public class FrameSelectMission extends ui.JFrameTotal{
+public class FrameSelectMission extends ui.FrameTotal{
 
 	private final FrameSelectMission f=this;
 	private final BgmSyncData bgmData;

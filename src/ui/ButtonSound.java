@@ -13,8 +13,8 @@ import javax.swing.*;
  * 2015年4月20日00:34:26
  */
 public class ButtonSound extends JButton{
-	private int w=JFrameTotal.WINDOWW;
-	private int h=JFrameTotal.WINDOWH;
+	private int w=FrameTotal.WINDOWW;
+	private int h=FrameTotal.WINDOWH;
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标

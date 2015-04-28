@@ -10,7 +10,7 @@ import ui.*;
  *
  * 2015Äê4ÔÂ17ÈÕ00:20:14
  */
-public class FrameStartGame extends JFrameTotal{
+public class FrameStartGame extends FrameTotal{
 	
 
 	private final FrameStartGame f=this;

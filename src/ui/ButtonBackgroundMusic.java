@@ -20,8 +20,8 @@ import javax.swing.JButton;
  * 2015年4月19日下午10:07:42
  */
 public class ButtonBackgroundMusic extends JButton{
-	private int w=JFrameTotal.WINDOWW;
-	private int h=JFrameTotal.WINDOWH;
+	private int w=FrameTotal.WINDOWW;
+	private int h=FrameTotal.WINDOWH;
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标

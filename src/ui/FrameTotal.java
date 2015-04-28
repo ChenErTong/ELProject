@@ -48,7 +48,7 @@ public abstract class FrameTotal extends JFrame{
 		this.setLocation(WINDOWX, WINDOWY);
 //		this.setUndecorated(true);
 		//设置可以显示
-		this.setVisible(false);
+		this.setVisible(true);
 	}
 //	/**
 //	 * 给界面加入监听

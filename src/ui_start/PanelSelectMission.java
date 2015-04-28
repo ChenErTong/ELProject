@@ -21,8 +21,8 @@ import ui.*;
  * 2015年4月28日上午1:35:28
  */
 public class PanelSelectMission extends JPanel{
-	private int w=JFrameTotal.WINDOWW;
-	private int h=JFrameTotal.WINDOWH;
+	private int w=FrameTotal.WINDOWW;
+	private int h=FrameTotal.WINDOWH;
 	//按钮的图标
 	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");
 	//背景图片

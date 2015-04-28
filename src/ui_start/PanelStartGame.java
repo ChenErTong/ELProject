@@ -19,8 +19,8 @@ import ui.*;
  * 2015年4月17日00:20:14
  */
 public class PanelStartGame extends JPanel{
-	private int w=JFrameTotal.WINDOWW;
-	private int h=JFrameTotal.WINDOWH;
+	private int w=FrameTotal.WINDOWW;
+	private int h=FrameTotal.WINDOWH;
 	//开始界面背景图片
 	ImageIcon ic=new ImageIcon("image/bg/界面背景.png");
 	Image bg=ic.getImage();
