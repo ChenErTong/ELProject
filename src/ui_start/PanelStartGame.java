@@ -36,6 +36,8 @@ public class PanelStartGame extends PanelTotal{
 	//ÍË³ö°´Å¥
 	private JButton jbtQuit;
 	
+	PanelHelp panelHelp;
+	
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
 		super(bgm, bgmData, soundData, gameData);
 
@@ -72,6 +74,12 @@ public class PanelStartGame extends PanelTotal{
 			
 	}	
 	
+	public void addPanelHelp(){
+		panelHelp = new PanelHelp();
+		this.add(panelHelp);
+		this.setVisible(true);
+		this.repaint();
+	}
 	
 	public void addControl(PlayerControl playerControl) {
 		this.playerControl = playerControl;

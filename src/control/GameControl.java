@@ -95,4 +95,10 @@ public class GameControl {
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelStartGame();
 	}
+	
+	public void openPanelHelp(){
+		this.panelStartGame.addPanelHelp();
+		this.frameTotal.repaint();
+	}
+	
 }
