@@ -113,6 +113,13 @@ public class Light {
 	public int getEndY() {
 		return endY;
 	}
+	
+	public double getDirectX() {
+		return directX;
+	}
+	public double getDirectY() {
+		return directY;
+	}
 	/**
 	 * TODO 1个像素太小
 	 * 绘制光线

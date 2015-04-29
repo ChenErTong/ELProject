@@ -26,7 +26,8 @@ public abstract class Planet extends JButton {
 	//光线坐标
 	protected int lightX;
 	protected int lightY;
-	
+	protected double directX;
+	protected double directY;
 	/**
 	 * 将图片缩放到指定形式
 	 * @author CX
@@ -46,6 +47,8 @@ public abstract class Planet extends JButton {
 	public void getLight(Light light){
 		this.lightX = light.getEndX();
 		this.lightY = light.getEndY();
+		this.directX=light.getDirectX();
+		this.directY=light.getDirectY();
 	}
 }
 	
