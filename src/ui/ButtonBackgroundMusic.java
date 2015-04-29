@@ -82,7 +82,7 @@ public class ButtonBackgroundMusic extends JButton{
 		this.bgm=bgm;
 		//play
 		if(bgmSyncData.getControl()==0){
-			this.bgm.play();					
+//			this.bgm.play();					
 		}
 	}
 	

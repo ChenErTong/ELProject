@@ -20,6 +20,7 @@ import control.PlayerControl;
  * 2015.4.8.
  * 改动：1、界面大小改为屏幕大小的0.618倍；2、去掉了高度、宽度的静态变量；3、将静态变量全部大写；by CX  2015.4.8
  * 改动：把大小暂时设为固定数值了 by CX 2015.4.15
+ * 改动：我把边框给去掉了，由于关闭按钮转交给范爷下，大家这段时间就点小红点玩吧
  */
 
 public class FrameTotal extends JFrame{
@@ -62,9 +63,9 @@ public class FrameTotal extends JFrame{
 	
 	public FrameTotal(){		
 		//====================Frame基本参数设定=======================
-		//设置不可改变大小以及关闭后停止运行
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		//设置不可改变大小以及关闭后停止运行
+//		this.setResizable(false);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//仅仅是为了打印到屏幕中间
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
@@ -76,6 +77,8 @@ public class FrameTotal extends JFrame{
 		WINDOWX = screen.width-this.getWidth()>>1;
 		WINDOWY = (screen.height-this.getHeight()>>1)-WINDOW_UP;
 		this.setLocation(WINDOWX, WINDOWY);
+		//允许鼠标拖动
+		new WindowDragger(this,this.getContentPane());
 		//====================游戏逻辑构建=======================
 		this.initGameLogic();
 		//声明音效状态
@@ -83,7 +86,7 @@ public class FrameTotal extends JFrame{
 		this.SoundSyncData=new SoundSyncData();
 		
 		this.initPanelStartGame();
-		
+		this.setUndecorated(true);
 		//显示界面
 		this.setVisible(true);
 		//将界面加入游戏控制器中
@@ -114,6 +117,7 @@ public class FrameTotal extends JFrame{
 		this.panelStartGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelStartGame(this.panelStartGame);
+		this.repaint();
 	}
 	/**
 	 * 初始化选关面板
@@ -125,6 +129,7 @@ public class FrameTotal extends JFrame{
 		this.panelSelectMission.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelSelectMission(this.panelSelectMission);
+		this.repaint();
 	}
 	/**
 	 * 初始化游戏面板
@@ -136,5 +141,6 @@ public class FrameTotal extends JFrame{
 		this.panelGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);
+		this.repaint();
 	}
 }
