@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -36,7 +37,7 @@ public class PanelStartGame extends PanelTotal{
 	//退出按钮
 	private JButton jbtQuit;
 	
-	PanelHelp panelHelp;
+	FrameHelp frameHelp;
 	
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
 		super(bgm, bgmData, soundData, gameData);
@@ -56,6 +57,7 @@ public class PanelStartGame extends PanelTotal{
 		this.jbtHelp.setBounds((int)(width*0.45),(int)(height*0.5),100,100);
 		this.jbtHelp.setPressedIcon(rollIcon);
 		this.jbtHelp.setRolloverIcon(rollIcon);
+		this.jbtHelp.setActionCommand("OpenPanelHelp");
 		this.add(jbtHelp);
 
 		//添加一个退出游戏按钮
@@ -65,7 +67,7 @@ public class PanelStartGame extends PanelTotal{
 		this.jbtQuit.setPressedIcon(rollIcon);
 		this.jbtQuit.setRolloverIcon(rollIcon);
 		this.add(jbtQuit);
-
+		
 		//在分层面板加入背景图片面板	
 		this.backgroundImg=new ImageIcon("image/bg/界面背景.png");
 		JLabel background = new JLabel(this.backgroundImg);
@@ -75,10 +77,9 @@ public class PanelStartGame extends PanelTotal{
 	}	
 	
 	public void addPanelHelp(){
-		panelHelp = new PanelHelp();
-		this.add(panelHelp);
-		this.setVisible(true);
-		this.repaint();
+		System.out.println(111);
+		this.frameHelp = new FrameHelp();
+		this.add(this.frameHelp);
 	}
 	
 	public void addControl(PlayerControl playerControl) {

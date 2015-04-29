@@ -28,8 +28,8 @@ public class FrameTotal extends JFrame{
 	//目测的地址栏高度
 	private static final int WINDOW_UP = 16;
 	//Frame的位置坐标
-	protected static int WINDOWX;
-	protected static int WINDOWY;
+	public static int WINDOWX;
+	public static int WINDOWY;
 	//窗口大小
 	public static final int WINDOWW = 1024;
 	public static final int WINDOWH = 700;
@@ -114,6 +114,7 @@ public class FrameTotal extends JFrame{
 		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelStartGame.addControl(playerControl);
 		this.add(panelStartGame);
+//		this.setContentPane(panelStartGame);
 		this.panelStartGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelStartGame(this.panelStartGame);
@@ -126,6 +127,7 @@ public class FrameTotal extends JFrame{
 		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelSelectMission.addControl(playerControl);
 		this.add(panelSelectMission);
+//		this.setContentPane(panelSelectMission);
 		this.panelSelectMission.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelSelectMission(this.panelSelectMission);
@@ -138,6 +140,7 @@ public class FrameTotal extends JFrame{
 		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
+//		this.setContentPane(panelGame);
 		this.panelGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);

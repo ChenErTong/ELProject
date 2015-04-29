@@ -61,13 +61,4 @@ public class PanelHelp extends JPanel{
 		super.paintComponent(g);
 		g.drawRect((int)(frameWidth/2-panelWidth/2),(int)(frameHeight/2-panelHeight/2),panelWidth,panelHeight);	
 	}
-
-/*	public static void main(String[] args) {
-		JFrame frame=new JFrame();	
-		frame.add(new PanelHelp());
-		frame.setSize(1024,700);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}*/
 }
