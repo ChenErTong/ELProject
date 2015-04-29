@@ -35,10 +35,11 @@ public abstract class PanelTotal extends JPanel{
 	//加入游戏数据
 	protected GameData gameData;
 	//背景音乐
-	protected static BackgroundMusic bgm=new BackgroundMusic("bgm01");
+	protected static BackgroundMusic bgm;
 	
-	public PanelTotal(BgmSyncData bgmSyncData,SoundSyncData soundSyncData, GameData gameData){	
+	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, GameData gameData){	
 		this.gameData = gameData;
+		this.bgm = bgm;
 	 	//设置大小
 		this.setBounds(0, 0, width, height);
 		
@@ -47,7 +48,7 @@ public abstract class PanelTotal extends JPanel{
 	 
 		//背景音乐开关按钮
 		this.jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
-		this.jbtSilence.setMusic(bgm);
+		this.jbtSilence.setMusic(this.bgm);
 		this.add(jbtSilence);
 		
 		//音效开关按钮

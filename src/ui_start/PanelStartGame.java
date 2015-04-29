@@ -36,8 +36,8 @@ public class PanelStartGame extends PanelTotal{
 	//退出按钮
 	private JButton jbtQuit;
 	
-	public PanelStartGame(BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
-		super(bgmData, soundData, gameData);
+	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
+		super(bgm, bgmData, soundData, gameData);
 
 		//添加一个开始游戏按钮
 		this.jbtStart=new JButton(defaultIcon);

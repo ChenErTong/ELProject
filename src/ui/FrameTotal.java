@@ -7,13 +7,13 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import control.GameControl;
-import control.PlayerControl;
 import ui_game.PanelGame;
 import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
+import audio.BackgroundMusic;
+import control.GameControl;
+import control.PlayerControl;
 /**
  * 抽象类：所有界面的模板，包括界面标题栏标题，大小，位置等信息
  * @author 恩哥哥
@@ -42,6 +42,14 @@ public class FrameTotal extends JFrame{
 	private PanelStartGame panelStartGame;
 	private PanelSelectMission panelSelectMission;
 	private PanelGame panelGame;
+	/**
+	 * 音乐声明
+	 * TODO 未声明音乐素材
+	 */
+	private BackgroundMusic musicStart;
+	private BackgroundMusic musicSelect;
+	private BackgroundMusic musicGame;
+	
 	//========================游戏逻辑构建===========================
 	//游戏数据类
 	private GameData gameData;
@@ -100,7 +108,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化开始面板
 	 */
 	public void initPanelStartGame(){
-		this.panelStartGame = new PanelStartGame(this.bgmSyncData, this.SoundSyncData, this.gameData);
+		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelStartGame.addControl(playerControl);
 		this.add(panelStartGame);
 		this.panelStartGame.setVisible(true);
@@ -111,7 +119,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化选关面板
 	 */
 	public void initPanelSelectMission(){
-		this.panelSelectMission = new PanelSelectMission(this.bgmSyncData, this.SoundSyncData, this.gameData);
+		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelSelectMission.addControl(playerControl);
 		this.add(panelSelectMission);
 		this.panelSelectMission.setVisible(true);
@@ -122,7 +130,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化游戏面板
 	 */
 	public void initPanelGame(){
-		this.panelGame = new PanelGame(gameData);
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
 		this.panelGame.setVisible(true);

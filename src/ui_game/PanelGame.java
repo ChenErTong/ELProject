@@ -2,7 +2,6 @@ package ui_game;
 
 
 import gamecomponent.Light;
-import gamecomponent.LightControl;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
@@ -13,14 +12,12 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 
-
-
-
-
+import ui.BgmSyncData;
 import ui.FrameTotal;
+import ui.PanelTotal;
+import ui.SoundSyncData;
+import audio.BackgroundMusic;
 import control.PlayerControl;
 /**
  * 游戏面板类，并且传入GameData的数据和引入PlayerControl对面板上的操作进行监听，引入线程
@@ -28,7 +25,7 @@ import control.PlayerControl;
  * 2015.4.15.
  */
 
-public class PanelGame extends JPanel implements Runnable{
+public class PanelGame extends PanelTotal implements Runnable{
 	PlayerControl playerControl;
 	FrameWin winFrame;
 	
@@ -40,7 +37,9 @@ public class PanelGame extends JPanel implements Runnable{
 	private boolean isGameOver;
 	
 //	private static final Image background=backgroundDemo.getImage();
-	public PanelGame(GameData gameData){
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
+		super(bgm, bgmData, soundData, gameData);
+		
 		this.gameData = gameData;
 		//初始化是否结束游戏
 		this.isGameOver = false;

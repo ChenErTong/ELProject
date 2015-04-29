@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import audio.BackgroundMusic;
 import ui.BgmSyncData;
 import ui.SoundSyncData;
 import control.PlayerControl;
@@ -32,8 +33,8 @@ public class PanelSelectMission extends ui.PanelTotal{
 	//返回按钮
 	private JButton jbtBack;
 	
-	public PanelSelectMission(BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
-		super(bgmData, soundData, gameData);
+	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
+		super(bgm, bgmData, soundData, gameData);
 		
 		if(this.isPassed){
 			//显示第一关图标
