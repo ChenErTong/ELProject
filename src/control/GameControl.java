@@ -95,6 +95,13 @@ public class GameControl {
 		this.frameTotal.initPanelSelectMission();
 	}
 	/**
+	 * 从游戏界面返回选关界面
+	 */
+	public void returnFromGame() {
+		this.frameTotal.remove(this.panelGame);
+		this.frameTotal.initPanelSelectMission();
+	}
+	/**
 	 * 从选关界面返回至开始界面
 	 */
 	public void returnToStart() {

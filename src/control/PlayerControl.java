@@ -29,12 +29,14 @@ public class PlayerControl implements ActionListener{
 			
 		}else if(code.equalsIgnoreCase("ReturnFromWin")){
 			this.gameControl.returnFromWin();
+		}else if(code.equalsIgnoreCase("ReturnFromGame")){
+			this.gameControl.returnFromGame();
+		}else if(code.equalsIgnoreCase("ReturnToStart")){
+			this.gameControl.returnToStart();
 		}else if(code.equalsIgnoreCase("ToSelectMission")){
 			this.gameControl.toSelectMission();
 		}else if(code.equalsIgnoreCase("ToFirstLevel")){		
 			this.gameControl.toFirstLevel();
-		}else if(code.equalsIgnoreCase("ReturnToStart")){
-			this.gameControl.returnToStart();
 		}else if(code.equalsIgnoreCase("OpenPanelHelp")){
 			this.gameControl.openFrameHelp();
 		}else if(code.equalsIgnoreCase("CloseFrameHelp")){

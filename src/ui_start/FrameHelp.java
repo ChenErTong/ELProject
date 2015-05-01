@@ -8,8 +8,6 @@ import ui.FrameTotal;
 import ui_game.PanelWin;
 
 public class FrameHelp extends FrameTotal{
-	private int width=750;
-	private int height=450;
 	private PanelHelp panelHelp;
 	
 	public FrameHelp(PlayerControl playerControl){

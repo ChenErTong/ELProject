@@ -37,12 +37,10 @@ public class PlanetEarth extends Planet{
 		this.locationY=y;
 		this.radius=Radius;
 		//构造按钮的图片，自动缩放
-		this.planetImg=this.getImageIcon("image/星球/星球2.png", 2*radius, 2*radius);
+		this.planetImg=Planet.getImageIcon("image/星球/星球2.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);
-		//监听器，个人比较喜欢内置
-//		this.addActionListener(new PlayerControl());
 		//设置不绘制矩形的内容
 		this.setContentAreaFilled(false);
 		//设置不绘制边框
@@ -50,8 +48,8 @@ public class PlanetEarth extends Planet{
 		//设置可见
 		this.setVisible(true);
 		//
-		this.lightX=this.locationX+this.radius;
-		this.lightY=this.locationY+this.radius;
+		lightX=this.locationX+this.radius;
+		lightY=this.locationY+this.radius;
 	}
 //	public static int getLightX(){
 //		

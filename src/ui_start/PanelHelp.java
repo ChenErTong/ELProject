@@ -37,7 +37,7 @@ public class PanelHelp extends JPanel{
 	/**
 	 * TODO 关闭按钮的图片
 	 */
-	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/返回.jpg", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
 	
 	public PanelHelp(PlayerControl playerControl){
 		this.playerControl = playerControl;
@@ -45,8 +45,6 @@ public class PanelHelp extends JPanel{
 		this.setLayout(null);
 		
 		this.initButton();
-		
-		
 	}
 	/**
 	 * 初始化各个按钮

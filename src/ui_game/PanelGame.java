@@ -2,6 +2,7 @@ package ui_game;
 
 
 import gamecomponent.Light;
+import gamecomponent.Planet;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
@@ -15,6 +16,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import ui.BgmSyncData;
 import ui.FrameTotal;
@@ -32,6 +34,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 	PlayerControl playerControl;
 	FrameWin winFrame;
 	
+	/**
+	 * 声明长宽
+	 */
+	private static final int WIDTH = FrameTotal.WINDOWW;
+	private static final int HEIGHT = FrameTotal.WINDOWH;
+	
 	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
@@ -42,13 +50,24 @@ public class PanelGame extends PanelTotal implements Runnable{
 	
 	private boolean isGameOver;
 	
-//	private static final Image background=backgroundDemo.getImage();
+	//返回按钮
+	private JButton returnButton;
+	//关闭按钮
+	private JButton closeButton;
+	
+	//返回按钮图片
+	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
+	//关闭按钮
+	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/关闭按钮.png", (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
+	
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
 		
 		this.totalData = totalData;
 		//初始化是否结束游戏
 		this.isGameOver = false;
+		
+		this.setLayout(null);
 		
 		this.initButton();
 		
@@ -61,7 +80,25 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 初始化所有的按钮
 	 */
 	private void initButton(){
-		this.setLayout(null);
+		//加入返回按钮
+		this.returnButton = new JButton();
+		this.returnButton.setIcon(BUTTON_RETURN);
+		this.returnButton.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.9), (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
+		this.returnButton.setContentAreaFilled(false);
+		this.returnButton.setBorderPainted(false);
+		this.returnButton.setActionCommand("ReturnFromGame");
+		this.returnButton.setVisible(true);
+		this.add(returnButton);
+		//加入返回按钮
+		this.closeButton = new JButton();
+		this.closeButton.setIcon(BUTTON_CLOSE);
+		this.closeButton.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.2), (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
+		this.closeButton.setContentAreaFilled(false);
+		this.closeButton.setBorderPainted(false);
+		this.closeButton.setActionCommand("Quit");
+		this.closeButton.setVisible(true);
+		this.add(closeButton);
+		
 		//加入地球
 		this.earth=new PlanetEarth(90,90,50);
 		this.earth.setActionCommand("earth");
@@ -86,6 +123,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	public void addControl(PlayerControl playerControl){
 		this.playerControl = playerControl;
+		this.returnButton.addActionListener(playerControl);
+		this.closeButton.addActionListener(playerControl);
+		
 		this.earth.addActionListener(this.playerControl);
 		this.sun.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);

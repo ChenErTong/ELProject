@@ -28,7 +28,8 @@ public class PanelWin extends JPanel{
 	/**
 	 * 返回按钮的图片
 	 */
-	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/返回.jpg", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	
 	public PanelWin(PlayerControl playerControl){
 		//声明然会按钮并进行相关的属性声明
 		this.setLayout(null);
