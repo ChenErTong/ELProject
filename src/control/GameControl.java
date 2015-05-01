@@ -43,8 +43,11 @@ public class GameControl {
 	 */
 	private GameData gameData;
 	
-	public GameControl(TotalData totalData){	
+	public GameControl(TotalData totalData){
+		//加入游戏总数据
 		this.totalData = totalData;
+		//初始化游戏逻辑
+		this.gameService = new GameService(this.totalData);
 	}
 	/**
 	 * 向游戏控制器中加入界面
@@ -81,7 +84,7 @@ public class GameControl {
 	 */
 	public void toFirstLevel() {
 		this.gameData =new GameData();
-		this.gameService=new GameService(this.gameData);	
+		this.gameService.refreshGameData(this.gameData);	
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelGame(this.gameData);
 	}
@@ -121,6 +124,21 @@ public class GameControl {
 		this.panelStartGame.closeFrameHelp();	
 	}
 	/**
+	 * 进行下一关
+	 */
+	public void nextLevel() {
+		//关闭通关界面
+		this.panelGame.closeFrameWin();
+		//重新建立单局游戏数据
+		this.gameData =new GameData();
+		//刷新游戏数据
+		this.gameService.refreshGameData(this.gameData);
+		//移除原有的游戏界面
+		this.frameTotal.remove(this.panelGame);		
+		//下一关游戏界面
+		this.frameTotal.initPanelGame(this.gameData);
+	}
+	/**
 	 * 退出游戏
 	 */
 	public void Quit() {
@@ -128,4 +146,5 @@ public class GameControl {
 		this.frameTotal.dispose();
 		System.exit(0);
 	}
+
 }

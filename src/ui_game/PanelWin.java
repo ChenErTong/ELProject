@@ -26,13 +26,22 @@ public class PanelWin extends JPanel{
 	 */
 	private JButton returnButton;
 	/**
+	 * 下一关按钮
+	 */
+	private JButton nextButton;
+	/**
 	 * 返回按钮的图片
 	 */
 	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
-	
+	/**
+	 * 下一关按钮图片
+	 */
+	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon("image/button/NEXT3.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+
 	public PanelWin(PlayerControl playerControl){
 		//声明然会按钮并进行相关的属性声明
 		this.setLayout(null);
+		//返回按钮声明
 		returnButton = new JButton();
 		returnButton.setIcon(BUTTON_RETURN);
 		returnButton.setBounds((int)(WIDTH*0.2), (int)(HEIGHT*0.6), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
@@ -42,5 +51,15 @@ public class PanelWin extends JPanel{
 		returnButton.setActionCommand("ReturnFromWin");
 		returnButton.setVisible(true);
 		this.add(returnButton);
+		//下一关按钮声明
+		nextButton = new JButton();
+		nextButton.setIcon(BUTTON_NEXT);
+		nextButton.setBounds((int)(WIDTH*0.6), (int)(HEIGHT*0.6), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		nextButton.addActionListener(playerControl);
+		nextButton.setContentAreaFilled(false);
+		nextButton.setBorderPainted(false);
+		nextButton.setActionCommand("NextLevel");
+		nextButton.setVisible(true);
+		this.add(nextButton);
 	}
 }
