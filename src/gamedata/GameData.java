@@ -3,7 +3,7 @@ package gamedata;
 import gamecomponent.LightControl;
 
 /**
- * 游戏数据类，存放和游戏数据有关的信息，可以传入GameService和JPanelGame中
+ * 单场游戏数据，仅有游戏界面和游戏控制器调用
  * @author 恩哥哥
  * 2015.4.15.
  */

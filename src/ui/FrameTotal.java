@@ -1,6 +1,7 @@
 package ui;
 
 import gamedata.GameData;
+import gamedata.TotalData;
 import gameservice.GameService;
 
 import java.awt.Dimension;
@@ -53,9 +54,7 @@ public class FrameTotal extends JFrame{
 	
 	//========================游戏逻辑构建===========================
 	//游戏数据类
-	private GameData gameData;
-	//游戏逻辑类
-	private GameService gameService;
+	private TotalData totalData;
 	//游戏控制器
 	private GameControl gameControl;
 	//玩家控制器
@@ -97,12 +96,10 @@ public class FrameTotal extends JFrame{
 	 * 初始化游戏逻辑
 	 */
 	private void initGameLogic(){
-		//游戏数据类
-		this.gameData = new GameData();
-		//游戏逻辑类
-		this.gameService = new GameService(gameData);
+		//游戏总数据
+		this.totalData = new TotalData();
 		//游戏控制器
-		this.gameControl = new GameControl(gameService, gameData);
+		this.gameControl = new GameControl(totalData);
 		//玩家控制器
 		this.playerControl = new PlayerControl(gameControl);
 	}
@@ -111,7 +108,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化开始面板
 	 */
 	public void initPanelStartGame(){
-		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.gameData);
+		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.totalData);
 		this.panelStartGame.addControl(playerControl);
 		this.add(panelStartGame);
 //		this.setContentPane(panelStartGame);
@@ -124,7 +121,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化选关面板
 	 */
 	public void initPanelSelectMission(){
-		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.gameData);
+		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.totalData);
 		this.panelSelectMission.addControl(playerControl);
 		this.add(panelSelectMission);
 //		this.setContentPane(panelSelectMission);
@@ -135,9 +132,11 @@ public class FrameTotal extends JFrame{
 	}
 	/**
 	 * 初始化游戏面板
+	 * @param gameData 
 	 */
-	public void initPanelGame(){
-		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.gameData);
+	public void initPanelGame(GameData gameData){
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData);
+		this.panelGame.initGameData(gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
 //		this.setContentPane(panelGame);

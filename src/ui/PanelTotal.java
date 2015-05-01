@@ -5,6 +5,7 @@
 package ui;
 
 import gamedata.GameData;
+import gamedata.TotalData;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -34,12 +35,12 @@ public abstract class PanelTotal extends JDesktopPane{
 	//玩家控制器
 	protected PlayerControl playerControl;
 	//加入游戏数据
-	protected GameData gameData;
+	protected TotalData totalData;
 	//背景音乐
 	protected static BackgroundMusic bgm;
 	
-	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, GameData gameData){	
-		this.gameData = gameData;
+	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, TotalData totalData){	
+		this.totalData = totalData;
 		this.bgm = bgm;
 	 	//设置大小
 		this.setBounds(0, 0, width, height);

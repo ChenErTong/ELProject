@@ -4,6 +4,7 @@
 package ui_start;
 
 import gamedata.GameData;
+import gamedata.TotalData;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -37,8 +38,8 @@ public class PanelStartGame extends PanelTotal{
 	//退出按钮
 	private JButton jbtQuit;
 
-	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
-		super(bgm, bgmData, soundData, gameData);
+	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
+		super(bgm, bgmData, soundData, totalData);
 
 		//添加一个开始游戏按钮
 		this.jbtStart=new JButton(defaultIcon);

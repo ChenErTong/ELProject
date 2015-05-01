@@ -2,6 +2,7 @@ package control;
 
 import gamecomponent.PlanetEarth;
 import gamedata.GameData;
+import gamedata.TotalData;
 import gameservice.GameService;
 import ui.FrameTotal;
 import ui_game.PanelGame;
@@ -26,6 +27,10 @@ public class GameControl {
 	 */
 	private PanelSelectMission panelSelectMission;
 	/**
+	 * 游戏总数据
+	 */
+	private TotalData totalData;
+	/**
 	 * 游戏界面层
 	 */
 	private PanelGame panelGame;
@@ -34,13 +39,12 @@ public class GameControl {
 	 */
 	private GameService gameService;
 	/**
-	 * 游戏数据层
+	 * 单局游戏数据
 	 */
 	private GameData gameData;
 	
-	public GameControl(GameService gameService, GameData gameData){		
-		this.gameService=gameService;
-		this.gameData =gameData;
+	public GameControl(TotalData totalData){	
+		this.totalData = totalData;
 	}
 	/**
 	 * 向游戏控制器中加入界面
@@ -76,8 +80,10 @@ public class GameControl {
 	 * 从选关界面跳转至第一关游戏界面
 	 */
 	public void toFirstLevel() {
+		this.gameData =new GameData();
+		this.gameService=new GameService(this.gameData);	
 		this.frameTotal.remove(this.panelSelectMission);
-		this.frameTotal.initPanelGame();
+		this.frameTotal.initPanelGame(this.gameData);
 	}
 	/**
 	 * 从通关界面返回至选关界面

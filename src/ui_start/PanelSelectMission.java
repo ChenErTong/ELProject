@@ -4,6 +4,7 @@
 package ui_start;
 
 import gamedata.GameData;
+import gamedata.TotalData;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,8 +34,8 @@ public class PanelSelectMission extends ui.PanelTotal{
 	//返回按钮
 	private JButton jbtBack;
 	
-	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
-		super(bgm, bgmData, soundData, gameData);
+	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
+		super(bgm, bgmData, soundData, totalData);
 		
 		if(this.isPassed){
 			//显示第一关图标

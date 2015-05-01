@@ -8,6 +8,7 @@ import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
 import gamedata.GameData;
+import gamedata.TotalData;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -31,6 +32,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	PlayerControl playerControl;
 	FrameWin winFrame;
 	
+	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetSun sun;
@@ -41,10 +43,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameOver;
 	
 //	private static final Image background=backgroundDemo.getImage();
-	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
-		super(bgm, bgmData, soundData, gameData);
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
+		super(bgm, bgmData, soundData, totalData);
 		
-		this.gameData = gameData;
+		this.totalData = totalData;
 		//初始化是否结束游戏
 		this.isGameOver = false;
 		
@@ -71,12 +73,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
-		//加入反射
-		this.reflection=new PlanetReflection(500, 400, 75, gameData);
-		this.add(reflection);
-		//加入折射
-		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
-		this.add(refraction);
+//		//加入反射
+//		this.reflection=new PlanetReflection(500, 400, 75, gameData);
+//		this.add(reflection);
+//		//加入折射
+//		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
+//		this.add(refraction);
 	}
 	/**
 	 * 加入玩家控制器，对面板操作进行监听
@@ -97,6 +99,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.winFrame = new FrameWin(this.playerControl);
 		//将其设为可见
 		this.winFrame.setVisible(true);
+		System.out.println(this.winFrame.requestFocusInWindow());
 	}
 
 	/**
@@ -155,5 +158,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 			//若光线控制器不存在，说明游戏结束，显示通关界面
 			this.gameOver();
 		}
+	}
+	public void initGameData(GameData gameData) {
+		this.gameData = gameData;
 	}
 }
