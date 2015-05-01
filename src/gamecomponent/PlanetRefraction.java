@@ -5,11 +5,10 @@ import java.util.ArrayList;
 
 import gamedata.GameData;
 
-public class PlanetReflection extends Planet implements Runnable {
-	
+public class PlanetRefraction extends Planet implements Runnable {
 	private GameData gameData;
 	private boolean check;
-	public PlanetReflection(int x,int y,int Radius,GameData gameDAta){
+	public PlanetRefraction(int x,int y,int Radius,GameData gameDAta){
 		// 常规的参数设置
 		this.locationX = x;
 		this.locationY = y;
@@ -33,7 +32,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		t.start();
 		
 	}
-	
+	//
 	public void run(){
 		while (check) {
 			try {
@@ -41,20 +40,19 @@ public class PlanetReflection extends Planet implements Runnable {
 			} catch (Exception e) {
 				// TODO
 			}
-			// System.out.println("aa");
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if (!lightList.isEmpty()) {
-				this.getLight(lightList.get(lightList.size() - 1));
-				if (checkDistance(locationX, locationY, lightX, lightY,radius)) {
-					this.gameData.getLightControl().stopLight(lightList.get(lightList.size() - 1));
-					Point location=getLocation(locationX+radius, locationY+radius, lightX, lightY, radius, directY, directX);
-					Point direct=getDirection(locationX+radius, locationY+radius, directX, directY, location.x, location.y);
-					System.out.println(direct.x+" "+direct.y);
-					//TODO finish it
-//					this.gameData.getLightControl().launchLight(location.x, location.y, 10,7);
-//					this.setVisible(false);
-					check=false;
+				for (int i = 1; i <= lightList.size(); i++) {
+					//
+					this.getLight(lightList.get(lightList.size() - 1));
+					//
+					if(checkDistance(this.locationX,this.locationY,this.lightX,this.lightY,this.radius)){
+						//
+						Point touch=getTouch(this.locationX+radius, locationY+radius, lightX, lightY, radius, directX, directY);
+						Point[] launchData=getAll(touch, locationX+radius, locationY+radius, radius, directX, directY);
+					}
 				}
+
 			}
 		}
 	}
@@ -69,10 +67,9 @@ public class PlanetReflection extends Planet implements Runnable {
 	 * @return boolean值，true代表发生接触；false代表未发生接触
 	 */
 	private boolean checkDistance(int centerX,int centerY,int lightX,int lightY,int radius){
-		int answer=(int) (radius-Point.distance(centerX+radius, centerY+radius, lightX, lightY));
+		int answer=(int) (radius-Point.distance(centerX, centerY, lightX, lightY));
 		return (answer>-1);
 	}
-	//
 	/**
 	 * 用于计算光线与星球的交点
 	 * @param centerX 星球中心的x坐标
@@ -84,7 +81,7 @@ public class PlanetReflection extends Planet implements Runnable {
 	 * @param directY 光线y方向的向量
 	 * @return Point类型的交点
 	 */
-	private Point getLocation(int centerX,int centerY,int lightX,int lightY,int radius,double directX,double directY){
+	private Point getTouch(int centerX,int centerY,int lightX,int lightY,int radius,double directX,double directY){
 		Point answer = null;
 		double x,y;
 		//
@@ -106,29 +103,33 @@ public class PlanetReflection extends Planet implements Runnable {
 	}
 	/**
 	 * 
+	 * @param touch
 	 * @param centerX
 	 * @param centerY
+	 * @param radius
 	 * @param directX
 	 * @param directY
-	 * @param intersectionX
-	 * @param intersectionY
 	 * @return
 	 */
-	private Point getDirection(int centerX,int centerY,double directX,double directY,int intersectionX,int intersectionY){
-		Point answer=null;
-		double sita=getDegreeWithX(centerX-intersectionX, centerY-intersectionY);
-		double aerfa=getDegreeWithX(directX, directY);
-		double beita=2*sita-aerfa;
-		if(beita<0)
-			beita+=Math.PI;
-		System.out.println(aerfa+" "+beita);
+	private Point[] getAll(Point touch,int centerX,int centerY,int radius,double directX,double directY){
+		Point[] answer=null;
+		//获得中心线与x正向夹角
+		double beita=getDegreeWithX(centerX-touch.x, centerY-touch.y);
+		double seita=getDegreeSpecial(touch, centerX, centerY, directX, directY);
+		double aerfa=Math.sin((Math.sin(seita)*0.8));
+		double gama=Math.PI+beita-2*aerfa;
+		double check=Math.PI-2*aerfa;
 		//
-		Point a=new Point(intersectionX+50,(int)(intersectionY+50*Math.tan(beita)));
-		Point b=new Point(intersectionX-50,(int)(intersectionY-50*Math.tan(beita)));
-		if(a.distance(centerX, centerY)>b.distance(centerX, centerY))
-			answer=new Point(1000,(int)(1000*Math.tan(beita)));
-		else 
-			answer=new Point(-1000,(int)(-1000*Math.tan(beita)));
+		Point a=new Point((int)(centerX+radius*Math.cos(gama)),(int)(centerY+radius*Math.cos(gama)));
+		Point b=new Point((int)(centerX-radius*Math.cos(gama)),(int)(centerY-radius*Math.cos(gama)));
+		if((getDegreeSpecial(touch, centerX, centerY, centerX-a.x, directY-a.y)-check)<(getDegreeSpecial(touch, centerX, centerY, centerX-b.x, centerY-b.y))){
+			answer[0]=a;
+			answer[1]=new Point(a.x-centerX,a.y-centerY);
+		}
+		else{
+			answer[0]=b;
+			answer[1]=new Point(b.x-centerX,b.y-centerY);
+		}
 		return answer;
 	}
 	/**
@@ -144,5 +145,22 @@ public class PlanetReflection extends Planet implements Runnable {
 			answer+=Math.PI;
 		return answer;
 	}
+	/**
+	 * 
+	 * @param touch
+	 * @param centerX
+	 * @param centerY
+	 * @param directX
+	 * @param directY
+	 * @return
+	 */
+	private double getDegreeSpecial(Point touch,int centerX,int centerY,double directX,double directY){
+		double answer;
+		touch.setLocation(centerX-touch.x, centerY-touch.y);
+		answer=Math.acos((touch.x*directX+touch.y*directY)/Math.pow(((directX*directX+directY*directY)*(touch.x*touch.x+touch.y*touch.y)), 0.5));
+		
+		return answer;
+	}
+	//
 
 }

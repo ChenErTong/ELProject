@@ -3,6 +3,8 @@ package ui_game;
 
 import gamecomponent.Light;
 import gamecomponent.PlanetEarth;
+import gamecomponent.PlanetReflection;
+import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
 import gamedata.GameData;
@@ -33,6 +35,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private PlanetEarth earth;
 	private PlanetSun sun;
 	private PlanetThreeBody threeBody;
+	private PlanetReflection reflection;
+	private PlanetRefraction refraction;
 	
 	private boolean isGameOver;
 	
@@ -67,6 +71,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
+		//加入反射
+		this.reflection=new PlanetReflection(500, 400, 75, gameData);
+		this.add(reflection);
+		//加入折射
+		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
+		this.add(refraction);
 	}
 	/**
 	 * 加入玩家控制器，对面板操作进行监听
