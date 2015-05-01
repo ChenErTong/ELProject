@@ -5,17 +5,27 @@ import java.util.ArrayList;
 
 import gamedata.GameData;
 
+/**
+ * 反射星球   2015.5.1
+ * @author CXWorks
+ * 
+ */
 public class PlanetReflection extends Planet implements Runnable {
-	
+	//要从gameData获取数据
 	private GameData gameData;
-	private boolean check;
+	/**
+	 * 构造反射的星球
+	 * @param x x坐标
+	 * @param y y坐标
+	 * @param Radius 星球半径
+	 * @param gameDAta 必须导入gameData来获取数据
+	 */
 	public PlanetReflection(int x,int y,int Radius,GameData gameDAta){
 		// 常规的参数设置
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
 		this.gameData=gameDAta;
-		this.check=true;
 		// 构造按钮的图片，自动缩放
 		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
 		this.setIcon(planetImg);
@@ -27,38 +37,49 @@ public class PlanetReflection extends Planet implements Runnable {
 		this.setBorderPainted(false);
 		// 设置可见
 		this.setVisible(true);
-		//
-		//
+		//开始反射检测的线程
 		Thread t=new Thread(this);
 		t.start();
 		
 	}
-	
+	/**
+	 * 检测、反射的线程
+	 */
 	public void run(){
-		while (check) {
+		while (true) {
 			try {
 				Thread.sleep(25);
 			} catch (Exception e) {
 				// TODO
 			}
-			// System.out.println("aa");
+			//获取当前所有光线
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if (!lightList.isEmpty()) {
-				this.getLight(lightList.get(lightList.size() - 1));
-				if (checkDistance(locationX, locationY, lightX, lightY,radius)) {
-					this.gameData.getLightControl().stopLight(lightList.get(lightList.size() - 1));
-					Point location=getLocation(locationX+radius, locationY+radius, lightX, lightY, radius, directY, directX);
-					Point direct=getDirection(locationX+radius, locationY+radius, directX, directY, location.x, location.y);
-					System.out.println(direct.x+" "+direct.y);
-					//TODO finish it
-//					this.gameData.getLightControl().launchLight(location.x, location.y, 10,7);
-//					this.setVisible(false);
-					check=false;
+				for (int i = 1; i <= lightList.size(); i++) {
+					this.getLight(lightList.get(lightList.size() - 1));
+					// 检测是否发生接触
+					if (checkDistance(locationX, locationY, lightX, lightY,
+							radius)) {
+						// 将之前的光线停止
+						this.gameData.getLightControl().stopLight(
+								lightList.get(lightList.size() - i));
+						// 获得光线与圆的交点，同时也是新光线的起始点
+						Point location = getLocation(locationX + radius,
+								locationY + radius, lightX, lightY, radius,
+								directY, directX);
+						// 获得新光线的方向
+						Point direct = getDirection(locationX + radius,
+								locationY + radius, directX, directY,
+								location.x, location.y);
+						// TODO finish it
+						// this.gameData.getLightControl().launchLight(location.x,
+						// location.y, 10,7);
+						// this.setVisible(false);
+					}
 				}
 			}
 		}
 	}
-	//
 	/**
 	 * 用于检测光线顶点与星球的距离，判断是否接触
 	 * @param centerX 星球按钮中心的x坐标，就是locationX+radius
@@ -105,14 +126,14 @@ public class PlanetReflection extends Planet implements Runnable {
 		return answer;
 	}
 	/**
-	 * 
-	 * @param centerX
-	 * @param centerY
-	 * @param directX
-	 * @param directY
-	 * @param intersectionX
-	 * @param intersectionY
-	 * @return
+	 * 用于计算新光线的方向
+	 * @param centerX 圆心的x坐标
+	 * @param centerY 圆心的y坐标
+	 * @param directX 原光线的传播方向的x值
+	 * @param directY 原光线的传播方向的y值
+	 * @param intersectionX 光线与圆的交点x坐标
+	 * @param intersectionY 光线与圆的交点y坐标
+	 * @return Point类型，为新光线的方向
 	 */
 	private Point getDirection(int centerX,int centerY,double directX,double directY,int intersectionX,int intersectionY){
 		Point answer=null;
@@ -132,10 +153,10 @@ public class PlanetReflection extends Planet implements Runnable {
 		return answer;
 	}
 	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
+	 * 一个辅助性的方法，获得光线与x正方向的夹角
+	 * @param x 光线传播的x坐标
+	 * @param y 光线传播的y坐标
+	 * @return double的夹角值
 	 */
 	private double getDegreeWithX(double x,double y){
 		double answer;

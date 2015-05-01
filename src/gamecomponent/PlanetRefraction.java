@@ -4,17 +4,27 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import gamedata.GameData;
-
+/**
+ * 折射星云    2015.5.1
+ * @author CXWorks
+ *
+ */
 public class PlanetRefraction extends Planet implements Runnable {
-	private GameData gameData;
-	private boolean check;
+	//也要从gameData获取数据
+	private GameData gameData; 
+	/**
+	 * 构造折射的星球
+	 * @param x x坐标
+	 * @param y y坐标
+	 * @param Radius 星球半径
+	 * @param gameDAta 必须导入gameData来获取数据
+	 */
 	public PlanetRefraction(int x,int y,int Radius,GameData gameDAta){
 		// 常规的参数设置
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
 		this.gameData=gameDAta;
-		this.check=true;
 		// 构造按钮的图片，自动缩放
 		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
 		this.setIcon(planetImg);
@@ -26,15 +36,16 @@ public class PlanetRefraction extends Planet implements Runnable {
 		this.setBorderPainted(false);
 		// 设置可见
 		this.setVisible(true);
-		//
-		//
+		//新建、开始折射线程
 		Thread t=new Thread(this);
 		t.start();
 		
 	}
-	//
+	/**
+	 * 开始检测、折射的线程
+	 */
 	public void run(){
-		while (check) {
+		while (true) {
 			try {
 				Thread.sleep(25);
 			} catch (Exception e) {
@@ -102,14 +113,14 @@ public class PlanetRefraction extends Planet implements Runnable {
 		return answer;
 	}
 	/**
-	 * 
-	 * @param touch
-	 * @param centerX
-	 * @param centerY
-	 * @param radius
-	 * @param directX
-	 * @param directY
-	 * @return
+	 * 获取新光线的所有数据
+	 * @param touch 原光线与圆的接触点
+	 * @param centerX 圆心x坐标
+	 * @param centerY 圆心y坐标
+	 * @param radius 半径
+	 * @param directX 原光线传播的x坐标
+	 * @param directY 原光线传播的y方向
+	 * @return 长度为二的Point数组，point[0]中为新光线的起始点，point[1]中为新光线的方向
 	 */
 	private Point[] getAll(Point touch,int centerX,int centerY,int radius,double directX,double directY){
 		Point[] answer=null;
@@ -133,10 +144,10 @@ public class PlanetRefraction extends Planet implements Runnable {
 		return answer;
 	}
 	/**
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
+	 * 一个辅助性的方法，获得光线与x正方向的夹角
+	 * @param x 光线传播的x坐标
+	 * @param y 光线传播的y坐标
+	 * @return double的夹角值
 	 */
 	private double getDegreeWithX(double x,double y){
 		double answer;
@@ -146,19 +157,18 @@ public class PlanetRefraction extends Planet implements Runnable {
 		return answer;
 	}
 	/**
-	 * 
-	 * @param touch
-	 * @param centerX
-	 * @param centerY
-	 * @param directX
-	 * @param directY
-	 * @return
+	 * 计算指定的两个向量的夹角
+	 * @param touch 向量A的起始点
+	 * @param centerX 向量A的终止点的x坐标
+	 * @param centerY 向量A的终止点的y坐标
+	 * @param directX 向量B的x方向
+	 * @param directY 向量B的y方向
+	 * @return double的角度，在0~π之间
 	 */
 	private double getDegreeSpecial(Point touch,int centerX,int centerY,double directX,double directY){
 		double answer;
 		touch.setLocation(centerX-touch.x, centerY-touch.y);
 		answer=Math.acos((touch.x*directX+touch.y*directY)/Math.pow(((directX*directX+directY*directY)*(touch.x*touch.x+touch.y*touch.y)), 0.5));
-		
 		return answer;
 	}
 	//
