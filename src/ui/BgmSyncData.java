@@ -14,8 +14,6 @@ public class BgmSyncData {
 	public BgmSyncData(){
 		control=0;
 	}
-
-
 	
 	//改变静音设置值
 	public void setControl(int control){
@@ -25,6 +23,5 @@ public class BgmSyncData {
 	//获取静音设置值
 	public int getControl(){
 		return control;
-	}
-	
+	}	
 }

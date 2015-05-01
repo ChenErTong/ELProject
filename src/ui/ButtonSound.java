@@ -64,9 +64,6 @@ public class ButtonSound extends JButton{
 		//设置不绘制边框
 		this.setBorderPainted(false);
 		//设置可见
-		this.setVisible(true);
-		
+		this.setVisible(true);	
 	}
-	
-	
 }

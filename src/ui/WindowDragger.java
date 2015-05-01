@@ -1,7 +1,5 @@
 package ui;
 
-
-
 import gamecomponent.Planet;
 
 import javax.swing.JButton;
@@ -44,7 +42,6 @@ public class WindowDragger {
         fComponent.addMouseMotionListener(createMouseMotionListener());
     }
     
-
 	private MouseListener createMouseListener() {
         return new MouseAdapter() {
             @Override
@@ -69,5 +66,4 @@ public class WindowDragger {
             }
         };
     }
-
 }

@@ -1,6 +1,5 @@
 package ui_game;
 
-
 import gamecomponent.Light;
 import gamecomponent.Planet;
 import gamecomponent.PlanetEarth;
@@ -29,7 +28,6 @@ import control.PlayerControl;
  * @author 恩哥哥
  * 2015.4.15.
  */
-
 public class PanelGame extends PanelTotal implements Runnable{
 	PlayerControl playerControl;
 	FrameWin winFrame;
@@ -68,12 +66,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameOver = false;
 		
 		this.setLayout(null);
-		
+		//初始化所有按钮
 		this.initButton();
 		
 		Thread t = new Thread(this);
 		t.start();
 	}
+	
 	/**
 	 * TODO 部分按钮图片未到位
 	 * TODO 按钮坐标根据比例来
@@ -110,13 +109,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
-//		//加入反射
-//		this.reflection=new PlanetReflection(500, 400, 75, gameData);
-//		this.add(reflection);
-//		//加入折射
-//		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
-//		this.add(refraction);
+		//加入反射
+		this.reflection=new PlanetReflection(500, 400, 75, gameData);
+		this.add(reflection);
+		//加入折射
+		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
+		this.add(refraction);
 	}
+	
 	/**
 	 * 加入玩家控制器，对面板操作进行监听
 	 * @param playerControl
@@ -130,6 +130,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.sun.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);
 	}
+	
 	/**
 	 * 游戏通关，结束游戏
 	 * 停止游戏界面线程，开启通关界面
@@ -140,7 +141,24 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.frameTotal.setEnabled(false);;
 		this.winFrame = new FrameWin(this.playerControl);
 	}
-
+	
+	/**
+	 * 刷新游戏数据
+	 * @param gameData
+	 */
+	public void initGameData(GameData gameData) {
+		this.gameData = gameData;
+	}
+	
+	/**
+	 * 关闭通关界面
+	 */
+	public void closeFrameWin() {
+		//主窗口得到控制权
+		this.frameTotal.setEnabled(true);
+		this.winFrame.dispose();	
+	}
+	
 	public void run() {
 		while(!this.isGameOver){
 			try {
@@ -190,13 +208,5 @@ public class PanelGame extends PanelTotal implements Runnable{
 			//若光线控制器不存在，说明游戏结束，显示通关界面
 			this.gameOver();
 		}
-	}
-	public void initGameData(GameData gameData) {
-		this.gameData = gameData;
-	}
-	public void closeFrameWin() {
-		//主窗口得到控制权
-		this.frameTotal.setEnabled(true);
-		this.winFrame.dispose();	
 	}
 }

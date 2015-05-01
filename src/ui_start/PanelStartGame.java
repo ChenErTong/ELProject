@@ -6,16 +6,9 @@ package ui_start;
 import gamedata.GameData;
 import gamedata.TotalData;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle.Control;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import control.PlayerControl;
 import audio.BackgroundMusic;
@@ -79,6 +72,10 @@ public class PanelStartGame extends PanelTotal{
 			
 	}
 	
+	/**
+	 * 加入玩家控制器，对按钮进行监听
+	 * @param playerControl
+	 */
 	public void addControl(PlayerControl playerControl) {
 		this.playerControl = playerControl;
 		/**
@@ -89,11 +86,17 @@ public class PanelStartGame extends PanelTotal{
 		jbtQuit.addActionListener(playerControl);
 	}
 
+	/**
+	 * 打开帮助界面
+	 */
 	public void openFrameHelp() {
 		this.frameTotal.setEnabled(false);
 		this.frameHelp = new FrameHelp(this.playerControl);
 	}
 	
+	/**
+	 * 关闭帮帮助界面
+	 */
 	public void closeFrameHelp(){
 		this.frameTotal.setEnabled(true);	
 		this.frameHelp.dispose();

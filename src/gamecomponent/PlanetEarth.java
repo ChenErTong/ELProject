@@ -19,8 +19,6 @@ import javax.swing.JOptionPane;
 
 import control.PlayerControl;
 
-
-
 public class PlanetEarth extends Planet{
 	/**
 	 * 构造方法：构造地球，并且添加内置的监听器
@@ -31,6 +29,7 @@ public class PlanetEarth extends Planet{
 	 */
 	public static int lightX;
 	public static int lightY;
+	
 	public PlanetEarth(int x,int y,int Radius){
 		//常规的参数设置
 		this.locationX=x;
@@ -58,8 +57,4 @@ public class PlanetEarth extends Planet{
 //	public int getLightY(){
 //		return this.locationY+this.radius;
 //	}
-
-	
-	
-	
 }

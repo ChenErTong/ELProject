@@ -11,7 +11,6 @@ public class ConvertSize {
 	private int locationX;
 	private int locationY;
 	
-	
 	public ConvertSize(int x,int y,int oldWidth,int oldHeight){
 		Toolkit kit=Toolkit.getDefaultToolkit();
 		Dimension screenSize=kit.getScreenSize();
@@ -19,8 +18,7 @@ public class ConvertSize {
 		this.width=(int)(oldWidth*percent);
 		this.height=(int)(oldHeight*percent);
 		this.locationX=(int)(x*percent);
-		this.locationY=(int)(y*percent);
-		
+		this.locationY=(int)(y*percent);		
 	}
 	
 	public int getWidth(){
@@ -37,5 +35,4 @@ public class ConvertSize {
 	public int getLocationY(){
 		return this.locationY;
 	}
-
 }

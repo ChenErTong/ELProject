@@ -107,5 +107,4 @@ public class LightControl implements Runnable{
 			}
 		}
 	}
-		
 }

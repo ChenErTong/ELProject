@@ -62,10 +62,6 @@ public class FrameTotal extends JFrame{
 	
 	public FrameTotal(){		
 		//====================Frame基本参数设定=======================
-//		//设置不可改变大小以及关闭后停止运行
-//		this.setResizable(false);
-//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		//仅仅是为了打印到屏幕中间
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
@@ -103,6 +99,7 @@ public class FrameTotal extends JFrame{
 		//玩家控制器
 		this.playerControl = new PlayerControl(gameControl);
 	}
+	
 	//======================生成三个panel的方法========================
 	/**
 	 * 初始化开始面板
@@ -117,6 +114,7 @@ public class FrameTotal extends JFrame{
 		this.gameControl.setPanelStartGame(this.panelStartGame);
 		this.repaint();
 	}
+	
 	/**
 	 * 初始化选关面板
 	 */
@@ -130,6 +128,7 @@ public class FrameTotal extends JFrame{
 		this.gameControl.setPanelSelectMission(this.panelSelectMission);
 		this.repaint();
 	}
+	
 	/**
 	 * 初始化游戏面板
 	 * @param gameData 

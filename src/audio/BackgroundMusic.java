@@ -13,7 +13,6 @@ import javax.sound.midi.Sequencer;
  *
  * 2015Äê4ÔÂ16ÈÕ22:36:01
  */
-
 public class BackgroundMusic{
 
 	private Sequence bgm;
@@ -44,6 +43,5 @@ public class BackgroundMusic{
 			player.setLoopCount(player.LOOP_CONTINUOUSLY);
 			player.start();
 		}
-
 	}
 }

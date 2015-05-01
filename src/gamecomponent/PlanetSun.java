@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
  * 还是不省接口了，万一以后有用呢？
  * 2015.4.14
  * @author CX
- *
  */
 public class PlanetSun extends Planet {
 	/**
@@ -35,7 +34,4 @@ public class PlanetSun extends Planet {
 		//设置可见
 		this.setVisible(true);
 	}
-
-	
-
 }

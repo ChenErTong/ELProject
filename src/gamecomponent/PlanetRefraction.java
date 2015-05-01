@@ -41,6 +41,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		t.start();
 		
 	}
+	
 	/**
 	 * 开始检测、折射的线程
 	 */
@@ -67,7 +68,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 			}
 		}
 	}
-	//
+	
 	/**
 	 * 用于检测光线顶点与星球的距离，判断是否接触
 	 * @param centerX 星球按钮中心的x坐标，就是locationX+radius
@@ -81,6 +82,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		int answer=(int) (radius-Point.distance(centerX, centerY, lightX, lightY));
 		return (answer>-1);
 	}
+	
 	/**
 	 * 用于计算光线与星球的交点
 	 * @param centerX 星球中心的x坐标
@@ -112,6 +114,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		//
 		return answer;
 	}
+	
 	/**
 	 * 获取新光线的所有数据
 	 * @param touch 原光线与圆的接触点
@@ -143,6 +146,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		}
 		return answer;
 	}
+	
 	/**
 	 * 一个辅助性的方法，获得光线与x正方向的夹角
 	 * @param x 光线传播的x坐标
@@ -156,6 +160,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 			answer+=Math.PI;
 		return answer;
 	}
+	
 	/**
 	 * 计算指定的两个向量的夹角
 	 * @param touch 向量A的起始点
@@ -171,6 +176,4 @@ public class PlanetRefraction extends Planet implements Runnable {
 		answer=Math.acos((touch.x*directX+touch.y*directY)/Math.pow(((directX*directX+directY*directY)*(touch.x*touch.x+touch.y*touch.y)), 0.5));
 		return answer;
 	}
-	//
-
 }

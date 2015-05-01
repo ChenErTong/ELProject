@@ -59,6 +59,4 @@ public enum SoundEffect {
 			volume=Volume.MEDIUM;
 		}
 	}
-	
-
 }

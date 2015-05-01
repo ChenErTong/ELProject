@@ -165,5 +165,4 @@ public class PlanetReflection extends Planet implements Runnable {
 			answer+=Math.PI;
 		return answer;
 	}
-
 }

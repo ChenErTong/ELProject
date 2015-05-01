@@ -44,5 +44,4 @@ public class PlanetThreeBody extends Planet {
 			lightControl.deleteLights();
 		}
 	}
-	
 }

@@ -16,7 +16,6 @@ import ui.FrameTotal;
 import ui.SoundSyncData;
 import control.PlayerControl;
 
-
 /**
  * @author DorA
  *
@@ -72,7 +71,11 @@ public class PanelSelectMission extends ui.PanelTotal{
 		background.setBounds(0,0,width,height);		
 		this.add(background);
 	}
-
+	
+	/**
+	 * 加入玩家控制器，对按钮进行监听
+	 * @param playerControl
+	 */
 	public void addControl(PlayerControl playerControl) {
 		this.playerControl = playerControl;
 		/**

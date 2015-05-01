@@ -49,6 +49,7 @@ public class GameControl {
 		//初始化游戏逻辑
 		this.gameService = new GameService(this.totalData);
 	}
+	
 	/**
 	 * 向游戏控制器中加入界面
 	 * @param frameTotal
@@ -79,6 +80,7 @@ public class GameControl {
 		this.frameTotal.remove(this.panelStartGame);
 		this.frameTotal.initPanelSelectMission();
 	}
+	
 	/**
 	 * 从选关界面跳转至第一关游戏界面
 	 */
@@ -88,6 +90,7 @@ public class GameControl {
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelGame(this.gameData);
 	}
+	
 	/**
 	 * 从通关界面返回至选关界面
 	 */
@@ -97,6 +100,7 @@ public class GameControl {
 		this.frameTotal.remove(this.panelGame);
 		this.frameTotal.initPanelSelectMission();
 	}
+	
 	/**
 	 * 从游戏界面返回选关界面
 	 */
@@ -104,6 +108,7 @@ public class GameControl {
 		this.frameTotal.remove(this.panelGame);
 		this.frameTotal.initPanelSelectMission();
 	}
+	
 	/**
 	 * 从选关界面返回至开始界面
 	 */
@@ -111,18 +116,21 @@ public class GameControl {
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelStartGame();
 	}
+	
 	/**
 	 * 打开帮助界面
 	 */
 	public void openFrameHelp(){
 		this.panelStartGame.openFrameHelp();
 	}
+	
 	/**
 	 * 关闭帮助界面
 	 */
 	public void closeFrameHelp() {
 		this.panelStartGame.closeFrameHelp();	
 	}
+	
 	/**
 	 * 进行下一关
 	 */
@@ -138,6 +146,7 @@ public class GameControl {
 		//下一关游戏界面
 		this.frameTotal.initPanelGame(this.gameData);
 	}
+	
 	/**
 	 * 退出游戏
 	 */
@@ -146,5 +155,4 @@ public class GameControl {
 		this.frameTotal.dispose();
 		System.exit(0);
 	}
-
 }

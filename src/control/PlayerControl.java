@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
  * @author ¶÷¸ç¸ç
  * 2015.4.13.
  */
-
 public class PlayerControl implements ActionListener{
 	private GameControl gameControl;
 	

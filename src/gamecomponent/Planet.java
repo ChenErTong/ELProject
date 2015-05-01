@@ -12,7 +12,6 @@ import javax.swing.JButton;
  * @author 恩哥哥
  * 2015.4.8.
  */
-
 public abstract class Planet extends JButton {
 	
 	private static final long serialVersionUID = 1L;
@@ -50,6 +49,7 @@ public abstract class Planet extends JButton {
 		this.directX=light.getDirectX();
 		this.directY=light.getDirectY();
 	}
+	
 	@Override
 	/**
 	 * 每次改变位置的时候也要同步星球的数据
@@ -60,4 +60,3 @@ public abstract class Planet extends JButton {
 		this.locationY=y;
 	}
 }
-	

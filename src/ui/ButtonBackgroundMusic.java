@@ -3,7 +3,6 @@
  */
 package ui;
 
-
 import java.awt.Graphics;
 import java.awt.event.*;
 
@@ -11,8 +10,6 @@ import audio.BackgroundMusic;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-
 
 /**
  * @author DorA
@@ -85,7 +82,4 @@ public class ButtonBackgroundMusic extends JButton{
 //			this.bgm.play();					
 		}
 	}
-	
 }
-
-
