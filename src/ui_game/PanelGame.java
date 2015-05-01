@@ -97,9 +97,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private void gameOver(){
 		this.isGameOver = true;
 		this.winFrame = new FrameWin(this.playerControl);
-		//将其设为可见
-		this.winFrame.setVisible(true);
-		System.out.println(this.winFrame.requestFocusInWindow());
 	}
 
 	/**

@@ -37,6 +37,8 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.returnToStart();
 		}else if(code.equalsIgnoreCase("OpenPanelHelp")){
 			this.gameControl.openPanelHelp();
+		}else if(code.equalsIgnoreCase("Quit")){
+			this.gameControl.Quit();
 		}
 	}
 }

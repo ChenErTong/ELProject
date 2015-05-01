@@ -105,5 +105,12 @@ public class GameControl {
 	public void openPanelHelp(){
 
 	}
-	
+	/**
+	 * ÍË³öÓÎÏ·
+	 */
+	public void Quit() {
+		this.frameTotal.removeAll();
+		this.frameTotal.dispose();
+		System.exit(0);
+	}
 }

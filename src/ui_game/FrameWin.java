@@ -28,5 +28,9 @@ public class FrameWin extends FrameTotal{
 		this.setLocation(x, y);
 		
 		this.setContentPane(panelWin);
+		
+		this.requestFocus();
+		//将其设为可见
+		this.setVisible(true);
 	}
 }

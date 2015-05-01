@@ -65,6 +65,7 @@ public class PanelStartGame extends PanelTotal{
 		this.jbtQuit.setToolTipText("Quit");
 		this.jbtQuit.setPressedIcon(rollIcon);
 		this.jbtQuit.setRolloverIcon(rollIcon);
+		this.jbtQuit.setActionCommand("Quit");
 		this.add(jbtQuit);
 		
 		//在分层面板加入背景图片面板	
