@@ -43,8 +43,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameOver;
 	
 //	private static final Image background=backgroundDemo.getImage();
-	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
-		super(bgm, bgmData, soundData, totalData);
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
+		super(bgm, bgmData, soundData, totalData, frameTotal);
 		
 		this.totalData = totalData;
 		//初始化是否结束游戏
@@ -96,16 +96,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	private void gameOver(){
 		this.isGameOver = true;
+		//主窗口失去控制权
+		this.frameTotal.setEnabled(false);;
 		this.winFrame = new FrameWin(this.playerControl);
 	}
 
-	/**
-	 * 得到通关界面
-	 */
-	public FrameWin getWinFrame() {
-		return winFrame;
-	}
-	
 	public void run() {
 		while(!this.isGameOver){
 			try {
@@ -158,5 +153,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 	}
 	public void initGameData(GameData gameData) {
 		this.gameData = gameData;
+	}
+	public void closeFrameWin() {
+		//主窗口得到控制权
+		this.frameTotal.setEnabled(true);
+		this.winFrame.dispose();	
 	}
 }

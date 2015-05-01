@@ -38,9 +38,12 @@ public abstract class PanelTotal extends JDesktopPane{
 	protected TotalData totalData;
 	//背景音乐
 	protected static BackgroundMusic bgm;
+	//主窗口
+	protected FrameTotal frameTotal;
 	
-	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, TotalData totalData){	
+	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, TotalData totalData, FrameTotal frameTotal){	
 		this.totalData = totalData;
+		this.frameTotal = frameTotal;
 		this.bgm = bgm;
 	 	//设置大小
 		this.setBounds(0, 0, width, height);

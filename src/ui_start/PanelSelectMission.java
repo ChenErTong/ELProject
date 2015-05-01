@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 
 import audio.BackgroundMusic;
 import ui.BgmSyncData;
+import ui.FrameTotal;
 import ui.SoundSyncData;
 import control.PlayerControl;
 
@@ -34,8 +35,8 @@ public class PanelSelectMission extends ui.PanelTotal{
 	//返回按钮
 	private JButton jbtBack;
 	
-	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
-		super(bgm, bgmData, soundData, totalData);
+	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
+		super(bgm, bgmData, soundData, totalData, frameTotal);
 		
 		if(this.isPassed){
 			//显示第一关图标

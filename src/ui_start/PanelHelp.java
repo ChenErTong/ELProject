@@ -3,15 +3,19 @@
  */
 package ui_start;
 
+import gamecomponent.Planet;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import control.PlayerControl;
 import ui.FrameTotal;
 
 /**
@@ -20,45 +24,42 @@ import ui.FrameTotal;
  * 2015年4月29日下午7:03:07
  */
 public class PanelHelp extends JPanel{
+	private PlayerControl playerControl;
+	/**
+	 * 得带面板的长宽
+	 */
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.6);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.6);
+	/**
+	 * 关闭按钮
+	 */
+	private JButton closeButton;
+	/**
+	 * TODO 关闭按钮的图片
+	 */
+	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/返回.jpg", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
 	
-	private int panelWidth=750;
-	private int panelHeight=450;
-	private int frameWidth=1024;
-	private int frameHeight=700;
-	
-	private final PanelHelp p=this;
-	
-	public PanelHelp(){
+	public PanelHelp(PlayerControl playerControl){
+		this.playerControl = playerControl;
+		
+		this.setLayout(null);
+		
+		this.initButton();
 		
 		
-		setLayout(null);
-		this.setBounds((int)(frameWidth/2-panelWidth/2),(int)(frameHeight/2-panelHeight/2),panelWidth,panelHeight);
-		
-		CloseButton jbtClose=new CloseButton();
-	//	jbtClose.addActionListener(PlayerControl);
-		add(new CloseButton());
-		
-
 	}
-	
-	//关闭按钮的内部类
-	class CloseButton extends JButton{
-		//按钮大小
-		private int w=30;
-		private int h=30;
-		//计算按钮的位置坐标
-		private int x=(int)(panelWidth/2+frameWidth/2-w/2);
-		private int y=(int)(frameHeight/2-panelHeight/2-h/2);
-			
-		public CloseButton(){
-			super();
-			this.setBounds(x,y,30,30);
-		}
-	}
-	
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		g.drawRect((int)(frameWidth/2-panelWidth/2),(int)(frameHeight/2-panelHeight/2),panelWidth,panelHeight);	
+	/**
+	 * 初始化各个按钮
+	 */
+	private void initButton(){
+		closeButton = new JButton();
+		closeButton.setIcon(BUTTON_CLOSE);
+		closeButton.setBounds((int)(WIDTH*0.2), (int)(HEIGHT*0.6), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		closeButton.addActionListener(playerControl);
+		closeButton.setContentAreaFilled(false);
+		closeButton.setBorderPainted(false);
+		closeButton.setActionCommand("CloseFrameHelp");
+		closeButton.setVisible(true);
+		this.add(closeButton);	
 	}
 }

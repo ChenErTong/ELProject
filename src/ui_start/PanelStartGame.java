@@ -31,6 +31,9 @@ public class PanelStartGame extends PanelTotal{
 	private ImageIcon defaultIcon=new ImageIcon("image/button/img1.jpg");
 	private ImageIcon rollIcon=new ImageIcon("image/button/img2.jpg");
 
+	//帮助界面
+	private FrameHelp frameHelp;
+	
 	//开始按钮
 	private JButton jbtStart;
 	//帮助按钮
@@ -38,8 +41,8 @@ public class PanelStartGame extends PanelTotal{
 	//退出按钮
 	private JButton jbtQuit;
 
-	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData){
-		super(bgm, bgmData, soundData, totalData);
+	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
+		super(bgm, bgmData, soundData, totalData, frameTotal);
 
 		//添加一个开始游戏按钮
 		this.jbtStart=new JButton(defaultIcon);
@@ -84,5 +87,15 @@ public class PanelStartGame extends PanelTotal{
 		jbtStart.addActionListener(playerControl);
 		jbtHelp.addActionListener(playerControl);
 		jbtQuit.addActionListener(playerControl);
+	}
+
+	public void openFrameHelp() {
+		this.frameTotal.setEnabled(false);
+		this.frameHelp = new FrameHelp(this.playerControl);
+	}
+	
+	public void closeFrameHelp(){
+		this.frameTotal.setEnabled(true);	
+		this.frameHelp.dispose();
 	}
 }

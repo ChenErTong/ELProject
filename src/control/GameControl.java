@@ -89,7 +89,8 @@ public class GameControl {
 	 * 从通关界面返回至选关界面
 	 */
 	public void returnFromWin() {
-		this.panelGame.getWinFrame().dispose();
+		this.panelGame.closeFrameWin();
+		
 		this.frameTotal.remove(this.panelGame);
 		this.frameTotal.initPanelSelectMission();
 	}
@@ -97,13 +98,20 @@ public class GameControl {
 	 * 从选关界面返回至开始界面
 	 */
 	public void returnToStart() {
-//		this.panelSelectMission.setVisible(false);
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelStartGame();
 	}
-	
-	public void openPanelHelp(){
-
+	/**
+	 * 打开帮助界面
+	 */
+	public void openFrameHelp(){
+		this.panelStartGame.openFrameHelp();
+	}
+	/**
+	 * 关闭帮助界面
+	 */
+	public void closeFrameHelp() {
+		this.panelStartGame.closeFrameHelp();	
 	}
 	/**
 	 * 退出游戏

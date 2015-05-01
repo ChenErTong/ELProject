@@ -108,7 +108,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化开始面板
 	 */
 	public void initPanelStartGame(){
-		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.totalData);
+		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
 		this.panelStartGame.addControl(playerControl);
 		this.add(panelStartGame);
 //		this.setContentPane(panelStartGame);
@@ -121,7 +121,7 @@ public class FrameTotal extends JFrame{
 	 * 初始化选关面板
 	 */
 	public void initPanelSelectMission(){
-		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.totalData);
+		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
 		this.panelSelectMission.addControl(playerControl);
 		this.add(panelSelectMission);
 //		this.setContentPane(panelSelectMission);
@@ -135,7 +135,7 @@ public class FrameTotal extends JFrame{
 	 * @param gameData 
 	 */
 	public void initPanelGame(GameData gameData){
-		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData);
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
 		this.panelGame.initGameData(gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);

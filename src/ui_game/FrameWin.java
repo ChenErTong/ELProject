@@ -15,9 +15,8 @@ public class FrameWin extends FrameTotal{
 	
 	public FrameWin(PlayerControl playerControl){
 		panelWin = new PanelWin(playerControl);
-		
-		this.setTitle("通关界面");
-		this.setResizable(true);
+
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//定义通关窗口的大小与位置
 		int w = PanelWin.WIDTH;
@@ -29,8 +28,7 @@ public class FrameWin extends FrameTotal{
 		
 		this.setContentPane(panelWin);
 		
-		this.requestFocus();
-		//将其设为可见
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 }

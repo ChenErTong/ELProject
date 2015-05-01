@@ -24,7 +24,7 @@ public class PanelWin extends JPanel{
 	/**
 	 * 返回按钮
 	 */
-	JButton returnButton;
+	private JButton returnButton;
 	/**
 	 * 返回按钮的图片
 	 */
