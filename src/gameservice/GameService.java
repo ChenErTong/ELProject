@@ -1,5 +1,6 @@
 package gameservice;
 
+import ui.FrameTotal;
 import gamecomponent.LightControl;
 import gamedata.GameData;
 /**

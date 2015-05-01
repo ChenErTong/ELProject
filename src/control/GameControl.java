@@ -91,12 +91,13 @@ public class GameControl {
 	 * 从选关界面返回至开始界面
 	 */
 	public void returnToStart() {
+//		this.panelSelectMission.setVisible(false);
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelStartGame();
 	}
 	
 	public void openPanelHelp(){
-		this.panelStartGame.addPanelHelp();
+
 	}
 	
 }

@@ -36,9 +36,7 @@ public class PanelStartGame extends PanelTotal{
 	private JButton jbtHelp;
 	//ÍË³ö°´Å¥
 	private JButton jbtQuit;
-	
-	FrameHelp frameHelp;
-	
+
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, GameData gameData){
 		super(bgm, bgmData, soundData, gameData);
 
@@ -74,12 +72,6 @@ public class PanelStartGame extends PanelTotal{
 		background.setBounds(0,0,width,height);		
 		this.add(background);
 			
-	}	
-	
-	public void addPanelHelp(){
-		System.out.println(111);
-		this.frameHelp = new FrameHelp();
-		this.add(this.frameHelp);
 	}
 	
 	public void addControl(PlayerControl playerControl) {

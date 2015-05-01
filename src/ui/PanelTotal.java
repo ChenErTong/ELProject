@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JPanel;
 
 import control.PlayerControl;
@@ -20,7 +21,7 @@ import audio.BackgroundMusic;
  *
  * 2015-4-28 15:24:40
  */
-public abstract class PanelTotal extends JPanel{
+public abstract class PanelTotal extends JDesktopPane{
 	//PanelµÄ³¤¿í
 	protected int width=FrameTotal.WINDOWW;
 	protected int height=FrameTotal.WINDOWH;

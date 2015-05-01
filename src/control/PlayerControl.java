@@ -39,5 +39,4 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.openPanelHelp();
 		}
 	}
-
 }
