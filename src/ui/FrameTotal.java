@@ -134,8 +134,8 @@ public class FrameTotal extends JFrame{
 	 * @param gameData 
 	 */
 	public void initPanelGame(GameData gameData){
-		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
-		this.panelGame.initGameData(gameData);
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData, this,gameData);
+//		this.panelGame.initGameData(gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
 //		this.setContentPane(panelGame);

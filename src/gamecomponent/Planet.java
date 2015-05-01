@@ -59,4 +59,13 @@ public abstract class Planet extends JButton {
 		this.locationX=x;
 		this.locationY=y;
 	}
+
+	public int getLocationX() {
+		return locationX;
+	}
+
+	public int getLocationY() {
+		return locationY;
+	}
+	
 }

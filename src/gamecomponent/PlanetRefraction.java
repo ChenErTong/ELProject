@@ -58,10 +58,18 @@ public class PlanetRefraction extends Planet implements Runnable {
 					//
 					this.getLight(lightList.get(lightList.size() - 1));
 					//
-					if(checkDistance(this.locationX,this.locationY,this.lightX,this.lightY,this.radius)){
+					if(checkDistance(this.locationX+radius,this.locationY+radius,this.lightX,this.lightY,this.radius)){
+						//
+						this.gameData.getLightControl().stopLight(
+								lightList.get(lightList.size() - i));
 						//
 						Point touch=getTouch(this.locationX+radius, locationY+radius, lightX, lightY, radius, directX, directY);
 						Point[] launchData=getAll(touch, locationX+radius, locationY+radius, radius, directX, directY);
+						
+						System.out.println(launchData[0]);
+						System.out.println(launchData[1]);
+						this.gameData.getLightControl().launchLight(launchData[0].x, launchData[0].y, launchData[1].x, launchData[1].y);
+						System.out.println("aaa");
 					}
 				}
 
@@ -126,23 +134,23 @@ public class PlanetRefraction extends Planet implements Runnable {
 	 * @return 长度为二的Point数组，point[0]中为新光线的起始点，point[1]中为新光线的方向
 	 */
 	private Point[] getAll(Point touch,int centerX,int centerY,int radius,double directX,double directY){
-		Point[] answer=null;
+		Point[] answer=new Point[2];
 		//获得中心线与x正向夹角
 		double beita=getDegreeWithX(centerX-touch.x, centerY-touch.y);
 		double seita=getDegreeSpecial(touch, centerX, centerY, directX, directY);
-		double aerfa=Math.sin((Math.sin(seita)*0.8));
+		double aerfa=Math.sin((Math.sin(seita)*0.6));
 		double gama=Math.PI+beita-2*aerfa;
 		double check=Math.PI-2*aerfa;
 		//
-		Point a=new Point((int)(centerX+radius*Math.cos(gama)),(int)(centerY+radius*Math.cos(gama)));
-		Point b=new Point((int)(centerX-radius*Math.cos(gama)),(int)(centerY-radius*Math.cos(gama)));
+		Point a=new Point((int)(centerX+radius*Math.cos(gama)),(int)(centerY+radius*Math.sin(gama)));
+		Point b=new Point((int)(centerX-radius*Math.cos(gama)),(int)(centerY-radius*Math.sin(gama)));
 		if((getDegreeSpecial(touch, centerX, centerY, centerX-a.x, directY-a.y)-check)<(getDegreeSpecial(touch, centerX, centerY, centerX-b.x, centerY-b.y))){
-			answer[0]=a;
-			answer[1]=new Point(a.x-centerX,a.y-centerY);
+			answer[0]=b;
+			answer[1]=new Point(1000,(int)(1000*Math.tan(gama+seita)));
 		}
 		else{
-			answer[0]=b;
-			answer[1]=new Point(b.x-centerX,b.y-centerY);
+			answer[0]=a;
+			answer[1]=new Point(a.x-centerX,a.y-centerY);
 		}
 		return answer;
 	}

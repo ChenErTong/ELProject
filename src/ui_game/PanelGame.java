@@ -2,6 +2,7 @@ package ui_game;
 
 import gamecomponent.Light;
 import gamecomponent.Planet;
+import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
@@ -58,9 +59,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//关闭按钮
 	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/关闭按钮.png", (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
 	
-	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
-		
+		this.gameData=gameData;
 		this.totalData = totalData;
 		//初始化是否结束游戏
 		this.isGameOver = false;
@@ -103,17 +104,19 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.earth.setActionCommand("earth");
 		this.add(earth);
 		//加入太阳
-		this.sun=new PlanetSun(320,250,100);
-		this.add(sun);
+//		this.sun=new PlanetSun(320,250,100);
+//		this.add(sun);
 		//加入三体
 		this.threeBody=new PlanetThreeBody(700, 550, 75);
 		this.threeBody.setActionCommand("threeBody");
 		this.add(threeBody);
 		//加入反射
 		this.reflection=new PlanetReflection(500, 400, 75, gameData);
+		new PlanetDragger(reflection,this);
 		this.add(reflection);
 		//加入折射
 		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
+		new PlanetDragger(refraction,this);
 		this.add(refraction);
 	}
 	
@@ -127,7 +130,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.closeButton.addActionListener(playerControl);
 		
 		this.earth.addActionListener(this.playerControl);
-		this.sun.addActionListener(this.playerControl);
+//		this.sun.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);
 	}
 	
