@@ -64,12 +64,12 @@ public class PlanetRefraction extends Planet implements Runnable {
 								lightList.get(lightList.size() - i));
 						//
 						Point touch=getTouch(this.locationX+radius, locationY+radius, lightX, lightY, radius, directX, directY);
-						Point[] launchData=getAll(touch, locationX+radius, locationY+radius, radius, directX, directY);
+						System.out.println((this.locationX+radius)+"   "+(locationY+radius));
+						Point[] launchData=getAll(touch, locationX+radius, locationY+radius, directX, directY, radius);
 						
-						System.out.println(launchData[0]);
-						System.out.println(launchData[1]);
+//						System.out.println(launchData[0]);
+//						System.out.println(launchData[1]);
 						this.gameData.getLightControl().launchLight(launchData[0].x, launchData[0].y, launchData[1].x, launchData[1].y);
-						System.out.println("aaa");
 					}
 				}
 
@@ -105,6 +105,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 	private Point getTouch(int centerX,int centerY,int lightX,int lightY,int radius,double directX,double directY){
 		Point answer = null;
 		double x,y;
+
 		//
 		double a=1+Math.pow(directY, 2)/Math.pow(directX, 2);
 		double b=2*directY*lightY/directX-2*Math.pow(directY, 2)*lightX/Math.pow(directX, 2)
@@ -125,63 +126,132 @@ public class PlanetRefraction extends Planet implements Runnable {
 	
 	/**
 	 * 获取新光线的所有数据
-	 * @param touch 原光线与圆的接触点
-	 * @param centerX 圆心x坐标
-	 * @param centerY 圆心y坐标
-	 * @param radius 半径
-	 * @param directX 原光线传播的x坐标
-	 * @param directY 原光线传播的y方向
-	 * @return 长度为二的Point数组，point[0]中为新光线的起始点，point[1]中为新光线的方向
+	 * @param touch 光线与星球交点
+	 * @param centerX 星球圆心x
+	 * @param centerY 星球圆心y
+	 * @param directX 光线传播方向x
+	 * @param directY 光线传播方向y
+	 * @param radius 星球半径
+	 * @return 长度为2的point数组，point[0]为新光线起始点，point[1]为新光线传播方向
 	 */
-	private Point[] getAll(Point touch,int centerX,int centerY,int radius,double directX,double directY){
+	private Point[] getAll(Point touch,int centerX,int centerY,double directX,double directY,int radius){
 		Point[] answer=new Point[2];
-		//获得中心线与x正向夹角
-		double beita=getDegreeWithX(centerX-touch.x, centerY-touch.y);
-		double seita=getDegreeSpecial(touch, centerX, centerY, directX, directY);
-		double aerfa=Math.sin((Math.sin(seita)*0.6));
-		double gama=Math.PI+beita-2*aerfa;
-		double check=Math.PI-2*aerfa;
+		boolean clock;
 		//
-		Point a=new Point((int)(centerX+radius*Math.cos(gama)),(int)(centerY+radius*Math.sin(gama)));
-		Point b=new Point((int)(centerX-radius*Math.cos(gama)),(int)(centerY-radius*Math.sin(gama)));
-		if((getDegreeSpecial(touch, centerX, centerY, centerX-a.x, directY-a.y)-check)<(getDegreeSpecial(touch, centerX, centerY, centerX-b.x, centerY-b.y))){
-			answer[0]=b;
-			answer[1]=new Point(1000,(int)(1000*Math.tan(gama+seita)));
+		double seita=Math.acos((directX*(centerX-touch.x)+directY*(centerY-touch.y))/
+				Math.pow(((directX*directX+directY*directY)*((centerX-touch.x)*(centerX-touch.x)+(centerY-touch.y)*(centerY-touch.y))), 0.5));
+		//
+		double aerfa=Math.asin(Math.sin(seita)*0.6);
+		//
+		int instruction=getInstruction(touch, centerX, centerY);
+		
+		//
+		double derta=getDerta(touch, centerX, centerY, radius, instruction);
+		System.out.println("     "+derta);
+		//
+		double centerDegree=Math.atan((touch.y-centerY)/(touch.x-centerX));
+		if(centerDegree<0)
+			centerDegree+=Math.PI;
+		//
+		double lightDegree=Math.atan(directY/directX);
+		if(lightDegree<0)
+			lightDegree+=Math.PI;
+		//
+		if(Math.abs((centerDegree+seita-lightDegree))>Math.abs((centerDegree-seita-lightDegree))){
+			derta+=Math.PI-2*aerfa;
+			clock=true;
 		}
 		else{
-			answer[0]=a;
-			answer[1]=new Point(a.x-centerX,a.y-centerY);
+			derta-=(Math.PI-2*aerfa);
+			clock=false;
+		}
+		//
+		answer[0]=new Point((int)(centerX+radius*Math.cos(derta)),(int)(centerY+radius*Math.sin(derta)));
+		double line=getDirection(answer[0], centerX, centerY, clock, seita);
+		//
+		answer[1]=finalCheck(answer[0], centerX, centerY, line);
+		
+		return answer;
+	}
+	/**
+	 * 获取交点在哪一个象限
+	 * @param touch 交点
+	 * @param centerX 星球圆心x
+	 * @param centerY 星球圆心y
+	 * @return 1、2、3、4分别代表一二三四象限
+	 */
+	private int getInstruction(Point touch,int centerX,int centerY){
+		int answer;
+		if(touch.x>=centerX){
+			if(touch.y>centerY)
+				answer=1;
+			else
+				answer=4;
+		}
+		else{
+			if(touch.y>=centerY)
+				answer=2;
+			else
+				answer=3;
 		}
 		return answer;
 	}
-	
+	//
 	/**
-	 * 一个辅助性的方法，获得光线与x正方向的夹角
-	 * @param x 光线传播的x坐标
-	 * @param y 光线传播的y坐标
-	 * @return double的夹角值
+	 * 获得交点的极坐标的θ值，在0~2π之间
+	 * @param touch 交点
+	 * @param centerX 星球圆心x
+	 * @param centerY 星球圆心y
+	 * @param radius 星球半径
+	 * @param instruction 象限
+	 * @return 角度
 	 */
-	private double getDegreeWithX(double x,double y){
+	private double getDerta(Point touch,int centerX,int centerY,int radius,int instruction){
+		double derta = Math.asin((touch.y - centerY) / (double) radius);
+		if (instruction == 2)
+			derta = Math.PI - derta;
+		else if (instruction == 3)
+			derta = Math.PI - derta;
+		else if (instruction == 4)
+			derta += Math.PI * 2;
+		return derta;
+	}
+	/**
+	 * 获得新光线的方向
+	 * @param point
+	 * @param centerX
+	 * @param centerY
+	 * @param clock 
+	 * @param seita
+	 * @return
+	 */
+	private double getDirection(Point point,int centerX,int centerY,boolean clock,double seita){
 		double answer;
-		answer=Math.atan(y/x);
+		answer=Math.atan((point.y-centerY)/(double)(point.x-centerX));
 		if(answer<0)
 			answer+=Math.PI;
+		if(clock)
+			answer+=seita;
+		else
+			answer-=seita;
 		return answer;
 	}
-	
 	/**
-	 * 计算指定的两个向量的夹角
-	 * @param touch 向量A的起始点
-	 * @param centerX 向量A的终止点的x坐标
-	 * @param centerY 向量A的终止点的y坐标
-	 * @param directX 向量B的x方向
-	 * @param directY 向量B的y方向
-	 * @return double的角度，在0~π之间
+	 * 决定最后取值
+	 * @param point
+	 * @param centerX
+	 * @param centerY
+	 * @param line
+	 * @return
 	 */
-	private double getDegreeSpecial(Point touch,int centerX,int centerY,double directX,double directY){
-		double answer;
-		touch.setLocation(centerX-touch.x, centerY-touch.y);
-		answer=Math.acos((touch.x*directX+touch.y*directY)/Math.pow(((directX*directX+directY*directY)*(touch.x*touch.x+touch.y*touch.y)), 0.5));
+	private Point finalCheck(Point point,int centerX,int centerY,double line){
+		Point answer;
+		Point a=new Point(point.x+50,(int)(point.y+50*Math.tan(line)));
+		Point b=new Point(point.x-50,(int)(point.y-50*Math.tan(line)));
+		if(a.distance(centerX, centerY)>b.distance(centerX, centerY))
+			answer=new Point(1000,(int)(1000*Math.tan(line)));
+		else 
+			answer=new Point(-1000,(int)(-1000*Math.tan(line)));
 		return answer;
 	}
 }
