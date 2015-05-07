@@ -77,6 +77,7 @@ public class GameControl {
 	 * 从开始界面跳转至选关界面
 	 */
 	public void toSelectMission() {
+		this.frameTotal.musicStart.stop();
 		this.frameTotal.remove(this.panelStartGame);
 		this.frameTotal.initPanelSelectMission();
 	}
@@ -86,6 +87,7 @@ public class GameControl {
 	 */
 	public void toFirstLevel() {
 		this.gameData =new GameData();
+		this.frameTotal.musicSelect.stop();
 		this.gameService.refreshGameData(this.gameData);	
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelGame(this.gameData);
@@ -114,6 +116,7 @@ public class GameControl {
 	 */
 	public void returnToStart() {
 		this.frameTotal.remove(this.panelSelectMission);
+		this.frameTotal.musicSelect.stop();
 		this.frameTotal.initPanelStartGame();
 	}
 	

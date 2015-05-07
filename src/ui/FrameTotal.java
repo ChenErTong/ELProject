@@ -5,8 +5,10 @@ import gamedata.TotalData;
 import gameservice.GameService;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import ui_game.PanelGame;
@@ -48,8 +50,8 @@ public class FrameTotal extends JFrame{
 	 * 音乐声明
 	 * TODO 未声明音乐素材
 	 */
-	private BackgroundMusic musicStart;
-	private BackgroundMusic musicSelect;
+	public BackgroundMusic musicStart=new BackgroundMusic("bgm01");
+	public BackgroundMusic musicSelect=new BackgroundMusic("bgm02");
 	private BackgroundMusic musicGame;
 	
 	//========================游戏逻辑构建===========================
@@ -86,6 +88,11 @@ public class FrameTotal extends JFrame{
 		this.setVisible(true);
 		//将界面加入游戏控制器中
 		this.gameControl.addFrame(this);
+		
+		//鼠标指针
+		this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+			    Toolkit.getDefaultToolkit().getImage("image/cursor/cur.png"), new Point(0, 0),
+			    "Slef"));
 	}
 	
 	/**
