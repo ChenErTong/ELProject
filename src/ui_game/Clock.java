@@ -3,11 +3,13 @@
  */
 package ui_game;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,15 +22,23 @@ import javax.swing.Timer;
  * 2015年5月7日上午12:01:40
  */
 public class Clock extends JPanel{
+	//开始时刻
 	private long startMillis;
+	//现在时刻
 	private long currentMillis;
 	private int sec;
+	//计时器
+	private Timer timer=new Timer(1000,new TimerListener());
 	
 	public Clock(){
 		//获取初始化时钟的时刻
 		startMillis=System.currentTimeMillis();
-		Timer timer=new Timer(1000,new TimerListener());
-		timer.start();
+		this.timer.start();
+	}
+	
+	//停止计时器
+	public void stop(){
+		timer.stop();
 	}
 	
 	//返回从初始化时钟到当前经过的秒数
@@ -63,6 +73,7 @@ public class Clock extends JPanel{
 	
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
+		g.setColor(Color.white);
 		//draw circle
 		int xCenter=getWidth()/2;
 		int yCenter=getHeight()/2;
@@ -85,7 +96,7 @@ public class Clock extends JPanel{
 
 	}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		JFrame frame=new JFrame();
 		frame.setLayout(null);
 		Clock clock=new Clock();
@@ -97,5 +108,5 @@ public class Clock extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
+*/
 }

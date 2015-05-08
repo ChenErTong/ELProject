@@ -10,19 +10,19 @@ import ui.FrameTotal;
  * @author 恩哥哥
  * 20.5.4.24.
  */
-public class FrameWin extends FrameTotal{
+public class FrameWin extends JFrame{
 	PanelWin panelWin;
 	
-	public FrameWin(PlayerControl playerControl){
-		panelWin = new PanelWin(playerControl);
+	public FrameWin(PlayerControl playerControl,int secPassed){
+		panelWin = new PanelWin(playerControl,secPassed);
 
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		//定义通关窗口的大小与位置
 		int w = PanelWin.WIDTH;
-		int h = PanelWin.HEIGHT;
-		int x = (WINDOWW-w)/2+WINDOWX;
-		int y = (WINDOWH-h)/2+WINDOWY;
+		int h = PanelWin.HEIGHT+16;
+		int x = (FrameTotal.WINDOWW-w)/2+FrameTotal.WINDOWX;
+		int y = (FrameTotal.WINDOWH-h)/2+FrameTotal.WINDOWY;
 		this.setSize(w, h);
 		this.setLocation(x, y);
 		
@@ -31,4 +31,6 @@ public class FrameWin extends FrameTotal{
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
+	
+
 }
