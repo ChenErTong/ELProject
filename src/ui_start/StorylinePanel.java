@@ -72,20 +72,21 @@ public class StorylinePanel extends JPanel{
 	
 		//设置字体
 		g.setFont(font);
-		g.setColor(Color.white);
+		g.setColor(Color.black);
 			
 		//获取字体的尺寸信息
 		FontMetrics fm=g.getFontMetrics();	
 		stringAscent=fm.getAscent();
 		stringDescent=fm.getDescent();
+		//一行字的宽度
+		stringWidth=fm.stringWidth(message);
 		
 		//第一次绘制时将字符串垂直居中
 		if(yCoordinate==0){
 			yCoordinate=frameHeight/2+stringAscent/2;
 		}
 			
-		//一行字的宽度
-		stringWidth=fm.stringWidth(message);
+		
 		//把这行字水平居中
 		xCoordinate=getWidth()/2-stringWidth/2;
 		yCoordinate=frameHeight/2+stringAscent/2;
@@ -95,7 +96,7 @@ public class StorylinePanel extends JPanel{
 			
 		}
 	
-/*	public static void main(String[]args){
+	public static void main(String[]args){
 		JFrame frame=new JFrame();
 		
 		frame.add(new StorylinePanel("1971年秋是叶文洁来到红岸的第二年，\n文革的高压使她感到无助与绝望，\n父亲死去的场景依旧历历在目。\n "));
@@ -107,5 +108,5 @@ public class StorylinePanel extends JPanel{
 		frame.setVisible(true);
 		
 		
-	}*/
+	}
 }

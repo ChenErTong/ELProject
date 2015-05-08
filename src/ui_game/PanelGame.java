@@ -49,6 +49,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	
 	private boolean isGameOver;
 	
+	//计时器
+	private Clock clock=new Clock();
+	private int secPassed;
 	//返回按钮
 	private JButton returnButton;
 	//关闭按钮
@@ -118,6 +121,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
 		new PlanetDragger(refraction,this);
 		this.add(refraction);
+		//加入计时器
+		this.add(clock);
+		clock.setOpaque(false);
+		clock.setBounds(850,200,150,200);
 	}
 	
 	/**
@@ -140,9 +147,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	private void gameOver(){
 		this.isGameOver = true;
+		//关闭bgm
+		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
-		this.frameTotal.setEnabled(false);;
-		this.winFrame = new FrameWin(this.playerControl);
+		this.frameTotal.setEnabled(false);
+		this.winFrame = new FrameWin(this.playerControl, this.clock.getSec());
+		//计时器停止计时
+		this.clock.stop();
 	}
 	
 	/**

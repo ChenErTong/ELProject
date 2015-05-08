@@ -98,7 +98,6 @@ public class GameControl {
 	 */
 	public void returnFromWin() {
 		this.panelGame.closeFrameWin();
-		
 		this.frameTotal.remove(this.panelGame);
 		this.frameTotal.initPanelSelectMission();
 	}
@@ -140,6 +139,7 @@ public class GameControl {
 	public void nextLevel() {
 		//关闭通关界面
 		this.panelGame.closeFrameWin();
+		
 		//重新建立单局游戏数据
 		this.gameData =new GameData();
 		//刷新游戏数据
