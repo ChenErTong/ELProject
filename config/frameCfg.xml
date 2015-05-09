@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<frame>
+    <frametotal width="1168" height="680" windowup="16" musicStart="bgm01" musicSelect="bgm02" musicGame="bgm03" mouseImage="image/cursor/cur.png">
+      	<panel className="ui_game.PanelGame" imgBackground="image/bg/银河.jpg" imgReturn="image/button/Return4.png" imgClose="image/button/关闭按钮.png"/>
+		<panel className="ui_start.PanelStartGame" imgBackground="image/bg/界面背景.png"/>
+		<panel className="ui_start.PanelSelectMission">
+    </frametotal>
+    
+    <framehelp width="700" height="408">
+       	<panel className="ui_start.PanelHelp"/>
+    </framehelp>
+    	
+    <framewin width="700" height="408">
+        <panel className="ui_game.PanelWin" imgReturn="image/button/Return4.png" imgNext="image/button/NEXT3.png"/>
+    </framewin>
+</frame>

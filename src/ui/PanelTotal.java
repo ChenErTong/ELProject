@@ -4,16 +4,9 @@
  */
 package ui;
 
-import gamedata.GameData;
 import gamedata.TotalData;
-
-import java.awt.Graphics;
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
-import javax.swing.JPanel;
-
 import control.PlayerControl;
 import audio.BackgroundMusic;
 

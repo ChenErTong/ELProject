@@ -3,13 +3,10 @@
  */
 package ui_start;
 
-import gamedata.GameData;
 import gamedata.TotalData;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 import control.PlayerControl;
 import audio.BackgroundMusic;
 import ui.*;

@@ -207,11 +207,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		/*
-		 * 下面的代码超级绕，有问题还是直接找我好了；by CX
-		 * 作用是无论在什么分辨率的情况下图片可以自动的放大缩小，来适应不同的系统
-		 * 而且还牵扯到上面的代码
-		 * */
+	
 		g.drawImage(background, 0, 0, null);
 
 		//绘画光线链表中所有的光线

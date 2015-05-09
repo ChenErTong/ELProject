@@ -28,8 +28,8 @@ public class PanelHelp extends JPanel{
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = (int)(FrameTotal.WINDOWW*0.6);
-	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.6);
+	static int WIDTH = 700;
+	static int HEIGHT = 408;
 	/**
 	 * 关闭按钮
 	 */
