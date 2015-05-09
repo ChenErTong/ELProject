@@ -2,13 +2,11 @@ package ui;
 
 import gamedata.GameData;
 import gamedata.TotalData;
-import gameservice.GameService;
 
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import ui_game.PanelGame;
@@ -53,7 +51,7 @@ public class FrameTotal extends JFrame{
 	public BackgroundMusic musicStart=new BackgroundMusic("bgm01");
 	public BackgroundMusic musicSelect=new BackgroundMusic("bgm02");
 	public BackgroundMusic musicGame=new BackgroundMusic("bgm03");
-	
+	//鼠标指针
 	//========================游戏逻辑构建===========================
 	//游戏数据类
 	private TotalData totalData;

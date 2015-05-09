@@ -61,6 +61,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
 	//关闭按钮
 	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/关闭按钮.png", (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
+	//背景图片
+	private ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
+	private Image background=backgroundDemo.getImage();
 	
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
@@ -70,6 +73,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameOver = false;
 		
 		this.setLayout(null);
+		//设置背景图片
+		background=background.getScaledInstance(FrameTotal.WINDOWW, FrameTotal.WINDOWH, Image.SCALE_SMOOTH);//缩放图片的核心方法
+		backgroundDemo.setImage(background);
+		background=backgroundDemo.getImage();
+		
 		//初始化所有按钮
 		this.initButton();
 		
@@ -204,11 +212,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 		 * 作用是无论在什么分辨率的情况下图片可以自动的放大缩小，来适应不同的系统
 		 * 而且还牵扯到上面的代码
 		 * */
-		ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
-		Image background=backgroundDemo.getImage();
-		background=background.getScaledInstance(FrameTotal.WINDOWW, FrameTotal.WINDOWH, Image.SCALE_SMOOTH);//缩放图片的核心方法
-		backgroundDemo.setImage(background);
-		background=backgroundDemo.getImage();
 		g.drawImage(background, 0, 0, null);
 
 		//绘画光线链表中所有的光线
