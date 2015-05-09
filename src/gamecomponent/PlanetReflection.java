@@ -18,14 +18,14 @@ public class PlanetReflection extends Planet implements Runnable {
 	 * @param x x坐标
 	 * @param y y坐标
 	 * @param Radius 星球半径
-	 * @param gameDAta 必须导入gameData来获取数据
+	 * @param gameData 必须导入gameData来获取数据
 	 */
-	public PlanetReflection(int x,int y,int Radius,GameData gameDAta){
+	public PlanetReflection(int x,int y,int Radius,GameData gameData){
 		// 常规的参数设置
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
-		this.gameData=gameDAta;
+		this.gameData=gameData;
 		// 构造按钮的图片，自动缩放
 		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
 		this.setIcon(planetImg);

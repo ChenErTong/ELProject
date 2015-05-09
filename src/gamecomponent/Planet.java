@@ -1,5 +1,7 @@
 package gamecomponent;
 
+import gamedata.GameData;
+
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -27,6 +29,9 @@ public abstract class Planet extends JButton {
 	protected int lightY;
 	protected double directX;
 	protected double directY;
+	//游戏数据
+	protected GameData gameData;
+	
 	/**
 	 * 将图片缩放到指定形式
 	 * @author CX

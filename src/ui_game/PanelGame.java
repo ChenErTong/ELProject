@@ -42,10 +42,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
-	private PlanetSun sun;
 	private PlanetThreeBody threeBody;
-	private PlanetReflection reflection;
-	private PlanetRefraction refraction;
 	
 	private boolean isGameOver;
 	
@@ -111,24 +108,27 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.add(closeButton);
 		
 		//加入地球
-		this.earth=new PlanetEarth(90,90,50);
+		this.earth = this.gameData.getPlanetEarth();
 		this.earth.setActionCommand("earth");
-		this.add(earth);
-		//加入太阳
-//		this.sun=new PlanetSun(320,250,100);
-//		this.add(sun);
+		this.add(this.earth);
+		
 		//加入三体
-		this.threeBody=new PlanetThreeBody(700, 550, 75);
-		this.threeBody.setActionCommand("threeBody");
-		this.add(threeBody);
+		this.threeBody = this.gameData.getPlanetThreeBody();
+		this.threeBody.setActionCommand("threeBody");;
+		this.add(this.threeBody);
+		
 		//加入反射
-		this.reflection=new PlanetReflection(500, 400, 75, gameData);
-		new PlanetDragger(reflection,this);
-		this.add(reflection);
+		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
+			new PlanetDragger(this.gameData.getPlanetReflections().get(i),this);
+			this.add(this.gameData.getPlanetReflections().get(i));
+		}
+		
 		//加入折射
-		this.refraction=new PlanetRefraction(500, 200, 75, gameData);
-		new PlanetDragger(refraction,this);
-		this.add(refraction);
+		for (int i = 0; i < this.gameData.getPlanetRefractions().size(); i++) {
+			new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
+			this.add(this.gameData.getPlanetRefractions().get(i));		
+		}
+		
 		//加入计时器
 		this.add(clock);
 		clock.setOpaque(false);
@@ -145,7 +145,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.closeButton.addActionListener(playerControl);
 		
 		this.earth.addActionListener(this.playerControl);
-//		this.sun.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);
 	}
 	

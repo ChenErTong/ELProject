@@ -86,7 +86,7 @@ public class GameControl {
 	 * 从选关界面跳转至第一关游戏界面
 	 */
 	public void toFirstLevel() {
-		this.gameData =new GameData();
+		this.gameData =new GameData(1);
 		this.frameTotal.musicSelect.stop();
 		this.gameService.refreshGameData(this.gameData);	
 		this.frameTotal.remove(this.panelSelectMission);
@@ -141,7 +141,7 @@ public class GameControl {
 		this.panelGame.closeFrameWin();
 		
 		//重新建立单局游戏数据
-		this.gameData =new GameData();
+		this.gameData =new GameData(1);
 		//刷新游戏数据
 		this.gameService.refreshGameData(this.gameData);
 		//移除原有的游戏界面

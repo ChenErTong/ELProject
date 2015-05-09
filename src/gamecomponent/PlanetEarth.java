@@ -9,6 +9,8 @@
 //=======
 package gamecomponent;
 
+import gamedata.GameData;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,7 +32,7 @@ public class PlanetEarth extends Planet{
 	public static int lightX;
 	public static int lightY;
 	
-	public PlanetEarth(int x,int y,int Radius){
+	public PlanetEarth(int x,int y,int Radius,GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;

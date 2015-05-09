@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level>
+    <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="1">
+        <planet className="gamecomponent.PlanetEarth" locationX="90" locationY="90" radius="50"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="550" radius="75"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="500" locationY="400" radius="75"/>
+		<planet className="gamecomponent.PlanetRefraction" locationX="500" locationY="200" radius="75"/>           
+    </gamedata>
+    
+    <gamedata className="gamedata.GameData" name="lv2" reflectionNum="1" refractionNum="1">
+        
+    </gamedata>
+    
+    <gamedata className="gamedata.GameData" name="lv3" reflectionNum="1" refractionNum="1">
+        
+    </gamedata>
+</level>

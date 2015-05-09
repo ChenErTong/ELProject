@@ -1,5 +1,7 @@
 package gamecomponent;
 
+import gamedata.GameData;
+
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +15,7 @@ public class PlanetThreeBody extends Planet {
 	 * @param y sun的竖直坐标
 	 * @param Radius sun的半径；
 	 */
-	public PlanetThreeBody(int x,int y,int Radius){
+	public PlanetThreeBody(int x,int y,int Radius,GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;
