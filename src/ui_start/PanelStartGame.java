@@ -3,6 +3,9 @@
  */
 package ui_start;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import gamecomponent.Planet;
 import gamedata.TotalData;
 
@@ -12,6 +15,7 @@ import javax.swing.JLabel;
 
 import control.PlayerControl;
 import audio.BackgroundMusic;
+import audio.SoundEffect;
 import ui.*;
 
 /**
@@ -92,9 +96,19 @@ public class PanelStartGame extends PanelTotal{
 		 */
 		jbtStart.addActionListener(playerControl);
 		jbtHelp.addActionListener(playerControl);
-		jbtQuit.addActionListener(playerControl);
+		jbtQuit.addActionListener(playerControl);		
+		jbtStart.addMouseMotionListener(new MouseMotion());
+		jbtHelp.addMouseMotionListener(new MouseMotion());
+		jbtQuit.addMouseMotionListener(new MouseMotion());
 	}
-
+	
+	//鼠标移过按钮时发出音效
+	class MouseMotion extends MouseMotionAdapter{
+		public void mouseMoved(MouseEvent e) {
+			SoundEffect.SELECT.play();
+		}
+	}
+	
 	/**
 	 * 打开帮助界面
 	 */
@@ -110,4 +124,7 @@ public class PanelStartGame extends PanelTotal{
 		this.frameTotal.setEnabled(true);	
 		this.frameHelp.dispose();
 	}
+	
+
 }
+

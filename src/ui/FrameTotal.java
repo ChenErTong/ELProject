@@ -48,9 +48,9 @@ public class FrameTotal extends JFrame{
 	 * 音乐声明
 	 * TODO 未声明音乐素材
 	 */
-	public BackgroundMusic musicStart=new BackgroundMusic("bgm01");
-	public BackgroundMusic musicSelect=new BackgroundMusic("bgm02");
-	public BackgroundMusic musicGame=new BackgroundMusic("bgm03");
+	public BackgroundMusic musicStart=new BackgroundMusic("audio/music/bgm01.mid");
+	public BackgroundMusic musicSelect=new BackgroundMusic("audio/music/bgm02.mid");
+	public BackgroundMusic musicGame=new BackgroundMusic("audio/music/bgm03.mid");
 	//鼠标指针
 	//========================游戏逻辑构建===========================
 	//游戏数据类

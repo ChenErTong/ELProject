@@ -1,6 +1,7 @@
 package ui_game;
 
 import gamecomponent.Light;
+import audio.SoundEffect;
 import gamecomponent.Planet;
 import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
@@ -157,6 +158,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	private void gameOver(){
 		this.isGameWin = true;
+		//播放过关音效
+		SoundEffect.WIN.play();
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权

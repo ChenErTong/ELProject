@@ -17,9 +17,9 @@ public class BackgroundMusic{
 	private Sequencer player;
 
 	//初始化播放器，打开音乐文件
-	public BackgroundMusic(String musicName){
+	public BackgroundMusic(String musicFile){
 		try{
-			bgm =MidiSystem.getSequence(new File("audio/music/"+musicName+".mid"));
+			bgm =MidiSystem.getSequence(new File(musicFile));
 			player=MidiSystem.getSequencer();
 			player.setSequence(bgm);
 			player.open();

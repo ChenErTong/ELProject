@@ -4,22 +4,13 @@
 package ui_start;
 
 import gamecomponent.Planet;
-
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import control.PlayerControl;
-import ui.FrameTotal;
 
 /**
  * @author DorA
@@ -40,6 +31,11 @@ public class PanelHelp extends JPanel{
 	private ImageIcon img2=new ImageIcon("image/help/help2.jpg");
 	private ImageIcon img3=new ImageIcon("image/help/help3.jpg");
 	private ImageIcon img4=new ImageIcon("image/help/help4.jpg");
+	/**
+	 * 面板分四张图显示
+	 */
+	private ImageIcon imgUp=new ImageIcon("image/help/up.png");
+	private ImageIcon imgDown=new ImageIcon("image/help/down.png");
 	/**
 	 * 关闭按钮
 	 */
@@ -92,10 +88,14 @@ public class PanelHelp extends JPanel{
 	 * 初始化图片和上一页下一页按钮，添加监听器
 	 */
 	void initLabel(){
-		JButton jbtUp=new JButton("<");
-		JButton jbtDown=new JButton(">");	
-		jbtUp.setBounds((int)(WIDTH*0.85), (int)(HEIGHT*0.5), 50,50);
-		jbtDown.setBounds((int)(WIDTH*0.85), (int)(HEIGHT*0.8), 50,50);
+		JButton jbtUp=new JButton(imgUp);
+		JButton jbtDown=new JButton(imgDown);	
+		jbtUp.setBounds((int)(WIDTH*0.9), (int)(HEIGHT*0.65), 40,40);
+		jbtDown.setBounds((int)(WIDTH*0.9), (int)(HEIGHT*0.8), 40,40);
+		jbtUp.setContentAreaFilled(false);
+		jbtUp.setBorderPainted(false);
+		jbtDown.setContentAreaFilled(false);
+		jbtDown.setBorderPainted(false);
 		this.add(jbtUp);
 		this.add(jbtDown);
 		

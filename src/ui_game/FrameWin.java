@@ -1,9 +1,9 @@
 package ui_game;
 
+import java.awt.Point;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
-
 import control.PlayerControl;
-import ui.FrameTotal;
 import ui.FrameTotal;
 /**
  * 通关界面的窗口
@@ -17,10 +17,13 @@ public class FrameWin extends JFrame{
 		panelWin = new PanelWin(playerControl,secPassed);
 
 		this.setResizable(false);
+		this.setUndecorated(true);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//鼠标指针
+		this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(Toolkit.getDefaultToolkit().getImage("image/cursor/cur.png"), new Point(0, 0), "Slef"));
 		//定义通关窗口的大小与位置
 		int w = PanelWin.WIDTH;
-		int h = PanelWin.HEIGHT+16;
+		int h = PanelWin.HEIGHT;
 		int x = (FrameTotal.WINDOWW-w)/2+FrameTotal.WINDOWX;
 		int y = (FrameTotal.WINDOWH-h)/2+FrameTotal.WINDOWY;
 		this.setSize(w, h);

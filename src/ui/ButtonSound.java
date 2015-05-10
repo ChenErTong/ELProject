@@ -23,7 +23,7 @@ public class ButtonSound extends JButton{
 	private int control;
 	//°´Å¥µÄÍ¼±ê
 	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/ÒôÐ§°´Å¥2.png", 50, 50);
-	private ImageIcon muteIcon=Planet.getImageIcon("image/button/ÒôÐ§¾²Òô°´Å¥2.png", 50, 50);
+	private ImageIcon muteIcon=Planet.getImageIcon("image/button/½ûÒô°´Å¥°æ±¾2.png", 50, 50);
 	
 	private ButtonSound b=this;
 	private SoundSyncData soundSyncData;
