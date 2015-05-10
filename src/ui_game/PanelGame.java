@@ -4,9 +4,6 @@ import gamecomponent.Light;
 import gamecomponent.Planet;
 import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
-import gamecomponent.PlanetReflection;
-import gamecomponent.PlanetRefraction;
-import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
 import gamedata.GameData;
 import gamedata.TotalData;
@@ -23,6 +20,7 @@ import ui.FrameTotal;
 import ui.PanelTotal;
 import ui.SoundSyncData;
 import audio.BackgroundMusic;
+import control.GameControl;
 import control.PlayerControl;
 /**
  * 游戏面板类，并且传入GameData的数据和引入PlayerControl对面板上的操作进行监听，引入线程
@@ -31,6 +29,7 @@ import control.PlayerControl;
  */
 public class PanelGame extends PanelTotal implements Runnable{
 	PlayerControl playerControl;
+	GameControl gameControl;
 	FrameWin winFrame;
 	
 	/**
@@ -65,7 +64,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
 	private Image background=backgroundDemo.getImage();
 	
-	private Thread thread;
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
 		this.gameData=gameData;
@@ -83,7 +81,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//初始化所有按钮
 		this.initButton();
 		
-		this.thread = new Thread(this);
+		Thread thread = new Thread(this);
 		thread.start();
 	}
 	
@@ -169,20 +167,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	}
 	
 	/**
-	 * 光线超出范围，刷新一局游戏
-	 */
-	public void gameAgain(){
-//		try {
-//			this.thread.interrupt();
-//			this.gameData.refreshLight();
-//			this.thread.start();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	}
-	
-	/**
 	 * 刷新游戏数据
 	 * @param gameData
 	 */
@@ -207,14 +191,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 	public boolean isContactBorder(Light light){
 		int endX = light.getEndX();
 		int endY = light.getEndY();
-		if((endX<=0)||(endX>=WIDTH)||(endY<=0)||(endY>=HEIGHT)){
+		if((endX<0)||(endX>WIDTH)||(endY<0)||(endY>HEIGHT)){
 			return true;
 		}
 		return false;		
 	}
 	
 	public void run() {
-		while(!this.isGameWin){
+		while((!this.isGameWin)&&(!this.isGameRefresh)){
 			try {
 				Thread.sleep(25);
 			} catch (Exception e) {
@@ -226,9 +210,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 			if(!lightList.isEmpty()){
 				for (int i = 0; i < lightList.size(); i++) {
 					if(this.isContactBorder(lightList.get(i))){
-						this.gameAgain();
-						break;
+						this.refreshGame();
 					}
+//					this.gameRefresh(lightList.get(i));
 					threeBody.getLight(lightList.get(i));
 					//如果光线抵达则停止光线前进，反之不进行操作
 					threeBody.stopLight(this.gameData.getLightControl());
@@ -238,6 +222,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 		}	
 	}
 	
+	/**
+	 * 重新刷新一盘游戏
+	 */
+	private void refreshGame() {
+		this.gameData.getLightControl().deleteLights();
+		this.gameData.refreshLight();
+	}
+
 	/**
 	 * 绘画游戏面板的各种组件
 	 */
@@ -258,10 +250,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.gameOver();
 		}
 	}
-	//
+	
 	public void stopDrag(){
 		for(PlanetDragger cell:dragger){
 			cell.stop();
 		}
+	}
+
+	public void addControl(GameControl gameControl) {
+		this.gameControl = gameControl;
 	}
 }

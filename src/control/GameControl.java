@@ -94,6 +94,8 @@ public class GameControl {
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelGame(this.gameData);
+		
+		this.panelGame.addControl(this);
 	}
 	
 	/**
