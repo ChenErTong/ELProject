@@ -56,7 +56,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 			if (!lightList.isEmpty()) {
 				for (int i = 1; i <= lightList.size(); i++) {
 					//
-					this.getLight(lightList.get(lightList.size() - 1));
+//					System.out.println("aaa");
+					this.getLight(lightList.get(lightList.size() - i));
 					//
 					if(checkDistance(this.locationX+radius,this.locationY+radius,this.lightX,this.lightY,this.radius)){
 						//

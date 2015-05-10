@@ -75,9 +75,10 @@ public class PlanetReflection extends Planet implements Runnable {
 								locationY + radius, directX, directY,
 								location.x, location.y);
 						// TODO finish it
-						System.out.println(location);
+//						System.out.println(location);
 						 this.gameData.getLightControl().launchLight(location.x,
 						 location.y, direct.x,direct.y);
+						 System.out.println( direct.x+" "+direct.y);
 //						 this.setVisible(false);
 					}
 				}

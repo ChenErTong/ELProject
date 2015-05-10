@@ -35,6 +35,6 @@ public class GameService {
 	 */
 	public void launchLight(int lightX,int lightY) {
 		//TODO 启动光线  初始X坐标，初始Y坐标，方向向量X坐标，方向向量Y坐标
-		this.gameData.getLightControl().launchLight(300, 300, -10, 4);
+		this.gameData.getLightControl().launchLight(140, 140, 10, 7);
 	}
 }
