@@ -54,26 +54,27 @@ public class PlanetRefraction extends Planet implements Runnable {
 			}
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if (!lightList.isEmpty()) {
-				for (int i = 1; i <= lightList.size(); i++) {
+				this.getLight(lightList.get(lightList.size() - 1));
+				//
+				if (checkDistance(this.locationX + radius, this.locationY
+						+ radius, this.lightX, this.lightY, this.radius)) {
 					//
-//					System.out.println("aaa");
-					this.getLight(lightList.get(lightList.size() - i));
+					this.gameData.getLightControl().stopLight(
+							lightList.get(lightList.size() - 1));
 					//
-					if(checkDistance(this.locationX+radius,this.locationY+radius,this.lightX,this.lightY,this.radius)){
-						//
-						this.gameData.getLightControl().stopLight(
-								lightList.get(lightList.size() - i));
-						//
-						Point touch=getTouch(this.locationX+radius, locationY+radius, lightX, lightY, radius, directX, directY);
-						System.out.println((this.locationX+radius)+"   "+(locationY+radius));
-						Point[] launchData=getAll(touch, locationX+radius, locationY+radius, directX, directY, radius);
-						
-//						System.out.println(launchData[0]);
-//						System.out.println(launchData[1]);
-						this.gameData.getLightControl().launchLight(launchData[0].x, launchData[0].y, launchData[1].x, launchData[1].y);
-					}
-				}
+					Point touch = getTouch(this.locationX + radius, locationY
+							+ radius, lightX, lightY, radius, directX, directY);
+					System.out.println((this.locationX + radius) + "   "
+							+ (locationY + radius));
+					Point[] launchData = getAll(touch, locationX + radius,
+							locationY + radius, directX, directY, radius);
 
+					// System.out.println(launchData[0]);
+					// System.out.println(launchData[1]);
+					this.gameData.getLightControl().launchLight(
+							launchData[0].x, launchData[0].y, launchData[1].x,
+							launchData[1].y);
+				}
 			}
 		}
 	}

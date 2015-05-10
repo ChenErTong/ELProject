@@ -57,31 +57,27 @@ public class PlanetReflection extends Planet implements Runnable {
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			
 			if (!lightList.isEmpty()) {
-				
-				for (int i = 1; i <= lightList.size(); i++) {
-					this.getLight(lightList.get(lightList.size() - 1));
-					// 检测是否发生接触
-					if (checkDistance(locationX, locationY, lightX, lightY,
-							radius)) {
-						// 将之前的光线停止
-						this.gameData.getLightControl().stopLight(
-								lightList.get(lightList.size() - i));
-						// 获得光线与圆的交点，同时也是新光线的起始点
-						Point location = getLocation(locationX + radius,
-								locationY + radius, lightX, lightY, radius-2,
-								directY, directX);
-						// 获得新光线的方向
-						Point direct = getDirection(locationX + radius,
-								locationY + radius, directX, directY,
-								location.x, location.y);
-						// TODO finish it
-//						System.out.println(location);
-						 this.gameData.getLightControl().launchLight(location.x,
-						 location.y, direct.x,direct.y);
-						 System.out.println( direct.x+" "+direct.y);
-//						 this.setVisible(false);
-					}
+				this.getLight(lightList.get(lightList.size() - 1));
+				// 检测是否发生接触
+				if (checkDistance(locationX, locationY, lightX, lightY, radius)) {
+					// 将之前的光线停止
+					this.gameData.getLightControl().stopLight(
+							lightList.get(lightList.size() - 1));
+					// 获得光线与圆的交点，同时也是新光线的起始点
+					Point location = getLocation(locationX + radius, locationY
+							+ radius, lightX, lightY, radius - 2, directY,
+							directX);
+					// 获得新光线的方向
+					Point direct = getDirection(locationX + radius, locationY
+							+ radius, directX, directY, location.x, location.y);
+					// TODO finish it
+					// System.out.println(location);
+					this.gameData.getLightControl().launchLight(location.x,
+							location.y, direct.x, direct.y);
+//					System.out.println(direct.x + " " + direct.y);
+					// this.setVisible(false);
 				}
+
 			}
 		}
 	}
