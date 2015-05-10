@@ -45,7 +45,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private PlanetThreeBody threeBody;
 	
 	private boolean isGameOver;
-	
+	//
+	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
 	private Clock clock=new Clock();
 	private int secPassed;
@@ -119,13 +120,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 		
 		//加入反射
 		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
-			new PlanetDragger(this.gameData.getPlanetReflections().get(i),this);
+			dragger[0]=new PlanetDragger(this.gameData.getPlanetReflections().get(i),this);
 			this.add(this.gameData.getPlanetReflections().get(i));
 		}
 		
 		//加入折射
 		for (int i = 0; i < this.gameData.getPlanetRefractions().size(); i++) {
-			new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
+			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
 			this.add(this.gameData.getPlanetRefractions().get(i));		
 		}
 		
@@ -219,6 +220,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 		}else if(!this.isGameOver){
 			//若光线控制器不存在，说明游戏结束，显示通关界面
 			this.gameOver();
+		}
+	}
+	//
+	public void stopDrag(){
+		for(PlanetDragger cell:dragger){
+			cell.stop();
 		}
 	}
 }

@@ -22,6 +22,7 @@ public class PlayerControl implements ActionListener{
 		String code = e.getActionCommand();
 		if(code.equalsIgnoreCase("earth")){
 			this.gameControl.launchLight();
+			this.gameControl.stopDrag();
 		}else if(code.equalsIgnoreCase("sun")){
 			
 		}else if(code.equalsIgnoreCase("threeBody")){

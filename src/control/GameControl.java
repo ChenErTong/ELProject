@@ -72,6 +72,10 @@ public class GameControl {
 		this.gameService.launchLight(PlanetEarth.lightX, PlanetEarth.lightY);
 		this.panelGame.repaint();
 	}
+	//
+	public void stopDrag(){
+		this.panelGame.stopDrag();
+	}
 	//==========================以下是各个界面间的跳转方法==============================
 	/**
 	 * 从开始界面跳转至选关界面
