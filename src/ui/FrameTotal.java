@@ -32,8 +32,8 @@ public class FrameTotal extends JFrame{
 	public static int WINDOWX;
 	public static int WINDOWY;
 	//窗口大小
-	public static final int WINDOWW = 1024;
-	public static final int WINDOWH = 700;
+	public static final int WINDOWW = 1168;
+	public static final int WINDOWH = 680;
 	//====================基本组件声明======================
 	//声明音效文件
 	final BgmSyncData bgmSyncData;

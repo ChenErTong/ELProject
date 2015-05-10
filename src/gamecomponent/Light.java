@@ -185,16 +185,16 @@ public class Light {
 			g.drawImage(LIGHT60, this.launchX+(int)this.directX, this.launchY+(int)this.directY, this.launchX, this.launchY, this.initImageX+(int)this.directX, this.initImageY+(int)(this.directX*this.imgRatio), this.initImageX, this.initImageY, null);
 		}//偏右上角且倾角与水平线大于等于45度
 		else if((this.directX>0)&&(this.directY<0)&&(this.directX+this.directY<=0)){
-			g.drawImage(LIGHT120, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY+(int)(this.directX*this.imgRatio), this.initImageX+(int)this.directX, this.initImageY, null);
+			g.drawImage(LIGHT120, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY-(int)(this.directX*this.imgRatio), this.initImageX+(int)this.directX, this.initImageY, null);
 		}//偏右上角且倾角与水平线小于45度
 		else if((this.directX>0)&&(this.directY<0)&&(this.directX+this.directY>0)){
-			g.drawImage(LIGHT150, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY+(int)(this.directX*this.imgRatio), this.initImageX+(int)this.directX, this.initImageY, null);
+			g.drawImage(LIGHT150, this.launchX, this.launchY+(int)this.directY, this.launchX+(int)this.directX, this.launchY, this.initImageX, this.initImageY-(int)(this.directX*this.imgRatio), this.initImageX+(int)this.directX, this.initImageY, null);
 		}//偏左下角且倾角与水平线大于等于45度
 		else if((this.directX<0)&&(this.directY>0)&&(this.directX+this.directY>=0)){
-			g.drawImage(LIGHT120, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY+(int)(this.directX*this.imgRatio), null);
+			g.drawImage(LIGHT120, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY-(int)(this.directX*this.imgRatio), null);
 		}//偏左下角且倾角与水平线小于45度
 		else if((this.directX<0)&&(this.directY>0)&&(this.directX+this.directY<0)){
-			g.drawImage(LIGHT150, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY+(int)(this.directX*this.imgRatio), null);
+			g.drawImage(LIGHT150, this.launchX+(int)this.directX, this.launchY, this.launchX, this.launchY+(int)this.directY, this.initImageX+(int)this.directX, this.initImageY, this.initImageX, this.initImageY-(int)(this.directX*this.imgRatio), null);
 		}
 	}
 }
