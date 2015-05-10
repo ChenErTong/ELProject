@@ -3,6 +3,7 @@
  */
 package ui_start;
 
+import gamecomponent.Planet;
 import gamedata.GameData;
 import gamedata.TotalData;
 
@@ -23,7 +24,13 @@ import control.PlayerControl;
  */
 public class PanelSelectMission extends ui.PanelTotal{
 	//按钮的图标
-	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");	
+	private ImageIcon icon1=Planet.getImageIcon("image/button/解锁界面星球1.png", 128, 128);
+	private ImageIcon icon2=Planet.getImageIcon("image/button/解锁界面星球2.png", 108, 118);
+	private ImageIcon icon3=Planet.getImageIcon("image/button/解锁界面星球3.png", 128, 113);
+	private ImageIcon icon4=Planet.getImageIcon("image/button/解锁界面星球4.png", 113, 113);
+	private ImageIcon icon5=Planet.getImageIcon("image/button/解锁界面星球5.png", 118, 108);
+	
+	private ImageIcon imgReturn=Planet.getImageIcon("image/button/Return4.png", 100, 70);
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
 	private BackgroundMusic bgm=new BackgroundMusic("bgm02");
@@ -31,6 +38,8 @@ public class PanelSelectMission extends ui.PanelTotal{
 	private JButton jbtMission1;
 	private JButton jbtMission2;
 	private JButton jbtMission3;
+	private JButton jbtMission4;
+	private JButton jbtMission5;
 	//返回按钮
 	private JButton jbtBack;
 	
@@ -40,33 +49,58 @@ public class PanelSelectMission extends ui.PanelTotal{
 		if(this.isPassed){
 			//显示第一关图标
 			this.jbtMission1=new JButton(icon1);
-			this.jbtMission1.setBounds((int)(width*0.2), (int)(height*0.4), 100, 100);
+			this.jbtMission1.setBounds(45, 128, 128, 128);
+			this.jbtMission1.setContentAreaFilled(false);
+			this.jbtMission1.setBorderPainted(false);
 			this.jbtMission1.setActionCommand("ToFirstLevel");
 			this.add(jbtMission1);
 		}
 		
 		if(this.isPassed){
 			//显示第二关图标
-			this.jbtMission2=new JButton(icon1);
-			this.jbtMission2.setBounds((int)(width*0.5), (int)(height*0.4), 100, 100);
+			this.jbtMission2=new JButton(icon2);
+			this.jbtMission2.setBounds(204, 222, 108, 118);
+			this.jbtMission2.setContentAreaFilled(false);
+			this.jbtMission2.setBorderPainted(false);
 			this.add(jbtMission2);
 		}
 		
 		if(this.isPassed){
 			//显示第三关图标
-			this.jbtMission3=new JButton(icon1);
-			this.jbtMission3.setBounds((int)(width*0.8), (int)(height*0.4), 100, 100);
+			this.jbtMission3=new JButton(icon3);
+			this.jbtMission3.setBounds(442, 256, 128, 113);
+			this.jbtMission3.setContentAreaFilled(false);
+			this.jbtMission3.setBorderPainted(false);
 			this.add(jbtMission3);
 		}
 		
+		if(this.isPassed){
+			//显示第四关图标
+			this.jbtMission4=new JButton(icon4);
+			this.jbtMission4.setBounds(702, 227, 113, 113);
+			this.jbtMission4.setContentAreaFilled(false);
+			this.jbtMission4.setBorderPainted(false);
+			this.add(jbtMission4);
+		}
+		
+		if(this.isPassed){
+			//显示第五关图标
+			this.jbtMission5=new JButton(icon5);
+			this.jbtMission5.setBounds(871, 152, 118, 108);
+			this.jbtMission5.setContentAreaFilled(false);
+			this.jbtMission5.setBorderPainted(false);
+			this.add(jbtMission5);
+		}
 		//返回按钮
-		this.jbtBack=new JButton(icon1);
-		this.jbtBack.setBounds((int)(width*0.5), (int)(height*0.7), 100, 100);
+		this.jbtBack=new JButton(imgReturn);
+		this.jbtBack.setBounds(900, 532, 100, 70);
+		this.jbtBack.setContentAreaFilled(false);
+		this.jbtBack.setBorderPainted(false);
 		this.jbtBack.setActionCommand("ReturnToStart");
 		this.add(jbtBack);
 
 		//在分层面板加入背景图片面板	
-		this.backgroundImg=new ImageIcon("image/bg/界面背景.png");
+		this.backgroundImg=Planet.getImageIcon("image/bg/解锁界面.png", width, height);
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,width,height);		
 		this.add(background);

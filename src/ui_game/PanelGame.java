@@ -212,7 +212,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 					if(this.isContactBorder(lightList.get(i))){
 						this.refreshGame();
 					}
-//					this.gameRefresh(lightList.get(i));
 					threeBody.getLight(lightList.get(i));
 					//如果光线抵达则停止光线前进，反之不进行操作
 					threeBody.stopLight(this.gameData.getLightControl());

@@ -77,8 +77,6 @@ public class PanelStartGame extends PanelTotal{
 		this.backgroundImg=new ImageIcon("image/bg/ΩÁ√Ê±≥æ∞.png");
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,width,height);		
-		System.out.println(width);
-		System.out.println(height);
 		this.add(background);
 			
 	}
