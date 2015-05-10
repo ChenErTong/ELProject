@@ -60,22 +60,27 @@ public class PlanetReflection extends Planet implements Runnable {
 				this.getLight(lightList.get(lightList.size() - 1));
 				// 检测是否发生接触
 				if (checkDistance(locationX, locationY, lightX, lightY, radius)) {
-					// 将之前的光线停止
-					this.gameData.getLightControl().stopLight(
-							lightList.get(lightList.size() - 1));
+					
 					// 获得光线与圆的交点，同时也是新光线的起始点
 					Point location = getLocation(locationX + radius, locationY
 							+ radius, lightX, lightY, radius - 2, directY,
 							directX);
+//					System.out.println("bbb"+location);
 					// 获得新光线的方向
 					Point direct = getDirection(locationX + radius, locationY
 							+ radius, directX, directY, location.x, location.y);
 					// TODO finish it
 					// System.out.println(location);
-					this.gameData.getLightControl().launchLight(location.x,
+					if(location.equals(new Point(0,0))){
+						
+					}
+					else{
+						// 将之前的光线停止
+						this.gameData.getLightControl().stopLight(
+								lightList.get(lightList.size() - 1));
+						this.gameData.getLightControl().launchLight(location.x,
 							location.y, direct.x, direct.y);
-//					System.out.println(direct.x + " " + direct.y);
-					// this.setVisible(false);
+					}
 				}
 
 			}
@@ -115,7 +120,9 @@ public class PlanetReflection extends Planet implements Runnable {
 				-2*centerY*directY/directX-2*centerX;
 		double c=centerX*centerX+lightY*lightY-2*directY*lightX*lightY/directX-2*centerY*lightY+2*centerY*lightX*directY/directX
 				+Math.pow(directY*lightX/directX, 2)+centerY*centerY-radius*radius;
-		
+//		System.out.println(lightX+" "+lightY);
+//		System.out.println(directX+" "+directY);
+//		System.out.println(centerX+" "+centerY);
 		if(directX>=0)
 			x=(-b-Math.pow(b*b-4*a*c, 0.5))/(2*a);
 		else
@@ -143,7 +150,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		double beita=2*sita-aerfa;
 		if(beita<0)
 			beita+=Math.PI;
-		System.out.println(aerfa+" "+beita);
+//		System.out.println(aerfa+" "+beita);
 		//
 		Point a=new Point(intersectionX+50,(int)(intersectionY+50*Math.tan(beita)));
 		Point b=new Point(intersectionX-50,(int)(intersectionY-50*Math.tan(beita)));

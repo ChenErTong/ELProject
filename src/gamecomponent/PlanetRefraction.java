@@ -64,8 +64,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 					//
 					Point touch = getTouch(this.locationX + radius, locationY
 							+ radius, lightX, lightY, radius, directX, directY);
-					System.out.println((this.locationX + radius) + "   "
-							+ (locationY + radius));
+//					System.out.println((this.locationX + radius) + "   "
+//							+ (locationY + radius));
 					Point[] launchData = getAll(touch, locationX + radius,
 							locationY + radius, directX, directY, radius);
 
@@ -146,20 +146,21 @@ public class PlanetRefraction extends Planet implements Runnable {
 		double aerfa=Math.asin(Math.sin(seita)*0.6);
 		//
 		int instruction=getInstruction(touch, centerX, centerY);
-		
+//		System.out.println(instruction);
 		//
 		double derta=getDerta(touch, centerX, centerY, radius, instruction);
-		System.out.println("     "+derta);
+//		System.out.println("     "+derta);
 		//
-		double centerDegree=Math.atan((touch.y-centerY)/(touch.x-centerX));
-		if(centerDegree<0)
-			centerDegree+=Math.PI;
+//		double centerDegree=Math.atan((touch.y-centerY)/(touch.x-centerX));
+//		if(centerDegree<0)
+//			centerDegree+=Math.PI;
+//		System.out.println(centerDegree);
 		//
-		double lightDegree=Math.atan(directY/directX);
-		if(lightDegree<0)
-			lightDegree+=Math.PI;
+//		double lightDegree=Math.atan(directY/directX);
+//		if(lightDegree<0)
+//			lightDegree+=Math.PI;
 		//
-		if(Math.abs((centerDegree+seita-lightDegree))>Math.abs((centerDegree-seita-lightDegree))){
+		if(((centerX-touch.x)*directY-(centerY-touch.y)*directX)<0){
 			derta+=Math.PI-2*aerfa;
 			clock=true;
 		}
@@ -167,6 +168,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 			derta-=(Math.PI-2*aerfa);
 			clock=false;
 		}
+		//
+//		System.out.println(clock);
 		//
 		answer[0]=new Point((int)(centerX+radius*Math.cos(derta)),(int)(centerY+radius*Math.sin(derta)));
 		double line=getDirection(answer[0], centerX, centerY, clock, seita);
