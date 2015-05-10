@@ -33,6 +33,9 @@ public class PanelHelp extends JPanel{
 	 */
 	static int WIDTH = 700;
 	static int HEIGHT = 408;
+	/**
+	 * 面板分四张图显示
+	 */
 	private ImageIcon img1=new ImageIcon("image/help/help1.jpg");
 	private ImageIcon img2=new ImageIcon("image/help/help2.jpg");
 	private ImageIcon img3=new ImageIcon("image/help/help3.jpg");
@@ -45,13 +48,17 @@ public class PanelHelp extends JPanel{
 	 * TODO 关闭按钮的图片
 	 */
 	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
-	
-	PanelHelp panelHelp=this;
-	JLabel jp1=new JLabel(img1);
-	JLabel jp2=new JLabel(img2);
-	JLabel jp3=new JLabel(img3);
-	JLabel jp4=new JLabel(img4);
-	
+	/**
+	 * 四张图
+	 */
+	private PanelHelp panelHelp=this;
+	private JLabel jp1=new JLabel(img1);
+	private JLabel jp2=new JLabel(img2);
+	private JLabel jp3=new JLabel(img3);
+	private JLabel jp4=new JLabel(img4);
+	/**
+	 * 用来计数按钮按下的次数
+	 */
 	int countUp=0;
 	int countDown=0;
 	int page;
@@ -63,7 +70,7 @@ public class PanelHelp extends JPanel{
 		
 		initButton();
 		initLabel();
-		
+		//初始时加载第一张图
 		jp1.setBounds(0, 0, WIDTH, HEIGHT);
 		this.add(jp1);
 	}
@@ -73,7 +80,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(WIDTH*0.2), (int)(HEIGHT*0.6), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		closeButton.setBounds((int)(WIDTH*0.78), (int)(HEIGHT*0.02), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
 		closeButton.addActionListener(playerControl);
 		closeButton.setContentAreaFilled(false);
 		closeButton.setBorderPainted(false);
@@ -81,7 +88,9 @@ public class PanelHelp extends JPanel{
 		closeButton.setVisible(true);
 		this.add(closeButton);	
 	}
-	
+	/**
+	 * 初始化图片和上一页下一页按钮，添加监听器
+	 */
 	void initLabel(){
 		JButton jbtUp=new JButton("<");
 		JButton jbtDown=new JButton(">");	
