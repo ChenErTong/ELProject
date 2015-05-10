@@ -1,11 +1,7 @@
 package control;
 
-import gamecomponent.PlanetEarth;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JOptionPane;
 /**
  * 玩家点击按钮信号输入玩家控制台，并引入GameControl。
  * @author 恩哥哥
