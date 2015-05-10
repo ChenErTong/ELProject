@@ -33,6 +33,9 @@ public class GameData {
 	
 	private LightControl lightControl;
 	
+	////第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
+	private int[][] planetPoints;
+	
 	public GameData(int level){		
 		lightControl = new LightControl();
 		
@@ -59,6 +62,13 @@ public class GameData {
 				
 				planets.add(planet);				
 			}
+			this.planetPoints = new int[planetsCfg.size()][3];
+			
+			for (int i = 0; i < planetPoints.length; i++) {
+				this.planetPoints[i][0] = planets.get(i).getLocationX();
+				this.planetPoints[i][1] = planets.get(i).getLocationY();
+				this.planetPoints[i][2] = planets.get(i).getRadius();
+			}
 			
 			this.planetEarth = (PlanetEarth)planets.get(0);
 			this.planetThreeBody = (PlanetThreeBody)planets.get(1);
@@ -68,9 +78,14 @@ public class GameData {
 			for (int i = 2+dataCfg.reflectionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum; i++) {
 				this.planetRefractions.add((PlanetRefraction) planets.get(i));
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void refreshLight() {
+		lightControl = new LightControl();
 	}
 
 	public LightControl getLightControl() {
@@ -84,7 +99,7 @@ public class GameData {
 	public PlanetThreeBody getPlanetThreeBody() {
 		return planetThreeBody;
 	}
-
+	
 	public List<PlanetReflection> getPlanetReflections() {
 		return planetReflections;
 	}
@@ -92,4 +107,6 @@ public class GameData {
 	public List<PlanetRefraction> getPlanetRefractions() {
 		return planetRefractions;
 	}
+	
+	
 }

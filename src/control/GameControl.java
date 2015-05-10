@@ -3,13 +3,12 @@ package control;
 import gamecomponent.PlanetEarth;
 import gamedata.GameData;
 import gamedata.TotalData;
-import gameservice.GameService;
 import ui.FrameTotal;
 import ui_game.PanelGame;
 import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
 /**
- * 游戏控制器，用于接收PlayerControl传入的信息，并将信息传入GameService，并刷新JPanelGame。
+ * 游戏控制器，用于接收PlayerControl传入的信息，并刷新JPanelGame。
  * @author 恩哥哥
  * 2015.4.13.
  */
@@ -35,10 +34,6 @@ public class GameControl {
 	 */
 	private PanelGame panelGame;
 	/**
-	 * 游戏逻辑层
-	 */
-	private GameService gameService;
-	/**
 	 * 单局游戏数据
 	 */
 	private GameData gameData;
@@ -46,8 +41,6 @@ public class GameControl {
 	public GameControl(TotalData totalData){
 		//加入游戏总数据
 		this.totalData = totalData;
-		//初始化游戏逻辑
-		this.gameService = new GameService(this.totalData);
 	}
 	
 	/**
@@ -68,13 +61,20 @@ public class GameControl {
 		this.panelGame = panelGame;
 	}
 	
-	public void launchLight() {
-		this.gameService.launchLight(PlanetEarth.lightX, PlanetEarth.lightY);
-		this.panelGame.repaint();
-	}
 	//
 	public void stopDrag(){
 		this.panelGame.stopDrag();
+	}
+	
+	/**
+	 * 发射光线
+	 * @param lightX
+	 * @param lightY
+	 */
+	public void launchLight() {
+		//TODO 启动光线  初始X坐标，初始Y坐标，方向向量X坐标，方向向量Y坐标
+		this.gameData.getLightControl().launchLight(PlanetEarth.lightX, PlanetEarth.lightY, 10, -7);
+		this.panelGame.repaint();
 	}
 	//==========================以下是各个界面间的跳转方法==============================
 	/**
@@ -92,7 +92,6 @@ public class GameControl {
 	public void toFirstLevel() {
 		this.gameData =new GameData(1);
 		this.frameTotal.musicSelect.stop();
-		this.gameService.refreshGameData(this.gameData);	
 		this.frameTotal.remove(this.panelSelectMission);
 		this.frameTotal.initPanelGame(this.gameData);
 	}
@@ -146,8 +145,6 @@ public class GameControl {
 		
 		//重新建立单局游戏数据
 		this.gameData =new GameData(1);
-		//刷新游戏数据
-		this.gameService.refreshGameData(this.gameData);
 		//移除原有的游戏界面
 		this.frameTotal.remove(this.panelGame);		
 		//下一关游戏界面

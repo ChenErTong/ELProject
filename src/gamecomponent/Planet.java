@@ -72,5 +72,8 @@ public abstract class Planet extends JButton {
 	public int getLocationY() {
 		return locationY;
 	}
-	
+
+	public int getRadius() {
+		return radius;
+	}
 }

@@ -43,8 +43,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
-	
-	private boolean isGameOver;
+	//游戏胜利
+	private boolean isGameWin;
+	//游戏重新刷新一局
+	private boolean isGameRefresh;
 	//
 	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
@@ -63,12 +65,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
 	private Image background=backgroundDemo.getImage();
 	
+	private Thread thread;
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
 		this.gameData=gameData;
 		this.totalData = totalData;
 		//初始化是否结束游戏
-		this.isGameOver = false;
+		this.isGameWin = false;
+		this.isGameRefresh = false;
 		
 		this.setLayout(null);
 		//设置背景图片
@@ -79,8 +83,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//初始化所有按钮
 		this.initButton();
 		
-		Thread t = new Thread(this);
-		t.start();
+		this.thread = new Thread(this);
+		thread.start();
 	}
 	
 	/**
@@ -154,7 +158,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	private void gameOver(){
-		this.isGameOver = true;
+		this.isGameWin = true;
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
@@ -162,6 +166,20 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.winFrame = new FrameWin(this.playerControl, this.clock.getSec());
 		//计时器停止计时
 		this.clock.stop();
+	}
+	
+	/**
+	 * 光线超出范围，刷新一局游戏
+	 */
+	public void gameAgain(){
+//		try {
+//			this.thread.interrupt();
+//			this.gameData.refreshLight();
+//			this.thread.start();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	/**
@@ -180,9 +198,23 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.frameTotal.setEnabled(true);
 		this.winFrame.dispose();	
 	}
+
+	/**
+	 * 判断某条光线是否射出边界
+	 * @param light
+	 * @return 若射出边界则返回true，反之返回false
+	 */
+	public boolean isContactBorder(Light light){
+		int endX = light.getEndX();
+		int endY = light.getEndY();
+		if((endX<=0)||(endX>=WIDTH)||(endY<=0)||(endY>=HEIGHT)){
+			return true;
+		}
+		return false;		
+	}
 	
 	public void run() {
-		while(!this.isGameOver){
+		while(!this.isGameWin){
 			try {
 				Thread.sleep(25);
 			} catch (Exception e) {
@@ -193,6 +225,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if(!lightList.isEmpty()){
 				for (int i = 0; i < lightList.size(); i++) {
+					if(this.isContactBorder(lightList.get(i))){
+						this.gameAgain();
+						break;
+					}
 					threeBody.getLight(lightList.get(i));
 					//如果光线抵达则停止光线前进，反之不进行操作
 					threeBody.stopLight(this.gameData.getLightControl());
@@ -217,7 +253,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 			for (int i = 0; i < lightList.size(); i++) {
 				lightList.get(i).paint(g);
 			}	
-		}else if(!this.isGameOver){
+		}else if(!this.isGameWin){
 			//若光线控制器不存在，说明游戏结束，显示通关界面
 			this.gameOver();
 		}
