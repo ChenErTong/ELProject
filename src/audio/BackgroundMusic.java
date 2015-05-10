@@ -5,9 +5,7 @@ package audio;
 
 import java.io.File;
 
-import javax.sound.midi.MidiSystem;
 import javax.sound.midi.*;
-import javax.sound.midi.Sequencer;
 /**
  * @author DorA
  *
@@ -27,19 +25,24 @@ public class BackgroundMusic{
 			player.open();
 			
 		}catch(Exception e){}
-		
 	 }
 	
 	//暂停播放
 	public void stop(){		
 		 if(player.isRunning()){
 			 player.stop();
+	//		 player.close();
 		 }		 
 	 }
+	
+	public void close(){
+		player.close();
+	}
 	
 	//开始播放（从暂停处开始）
 	public  void play() {
 		if (!player.isRunning()) {
+			
 			player.setLoopCount(player.LOOP_CONTINUOUSLY);
 			player.start();
 		}

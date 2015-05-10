@@ -26,7 +26,7 @@ public class PanelSelectMission extends ui.PanelTotal{
 	private ImageIcon icon1=new ImageIcon("image/button/img1.jpg");	
 	//虚拟，该值应当由各关卡传入
 	private boolean isPassed=true;
-	
+	private BackgroundMusic bgm=new BackgroundMusic("bgm02");
 	//各个关卡进入按钮
 	private JButton jbtMission1;
 	private JButton jbtMission2;
