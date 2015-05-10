@@ -4,7 +4,6 @@
 package ui_start;
 
 import gamecomponent.Planet;
-import gamedata.GameData;
 import gamedata.TotalData;
 
 import javax.swing.ImageIcon;
@@ -93,7 +92,7 @@ public class PanelSelectMission extends ui.PanelTotal{
 		}
 		//·µ»Ø°´Å¥
 		this.jbtBack=new JButton(imgReturn);
-		this.jbtBack.setBounds(900, 532, 100, 70);
+		this.jbtBack.setBounds(16, 532, 100, 70);
 		this.jbtBack.setContentAreaFilled(false);
 		this.jbtBack.setBorderPainted(false);
 		this.jbtBack.setActionCommand("ReturnToStart");

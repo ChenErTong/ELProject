@@ -3,6 +3,8 @@
  */
 package ui;
 
+import gamecomponent.Planet;
+
 import java.awt.Graphics;
 import java.awt.event.*;
 
@@ -22,8 +24,8 @@ public class ButtonBackgroundMusic extends JButton{
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标
-	private ImageIcon defaultIcon=new ImageIcon("image/button/音乐按钮.png");
-	private ImageIcon muteIcon=new ImageIcon("image/button/音乐静音按钮.png");
+	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/声音按钮版本2.png", 50, 50);
+	private ImageIcon muteIcon=Planet.getImageIcon("image/button/禁音按钮2改.png", 50, 50);
 
 	//背景音乐，由各界面传入
 	private BackgroundMusic bgm;
@@ -35,8 +37,7 @@ public class ButtonBackgroundMusic extends JButton{
 		super();
 
 		bgmSyncData=data;
-		this.setBounds((int)(w*0.82),(int)(h*0.1),50,49);
-
+		this.setBounds(900, 532, 50, 50);
 		
 		control=bgmSyncData.getControl();
 		final int open=1,off=0;	

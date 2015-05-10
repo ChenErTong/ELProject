@@ -3,9 +3,13 @@
  */
 package ui;
 
+import gamecomponent.Planet;
+
 import java.awt.event.*;
+
 import ui.SoundSyncData;
 import audio.SoundEffect;
+
 import javax.swing.*;
 
 /**
@@ -18,8 +22,8 @@ public class ButtonSound extends JButton{
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标
-	private ImageIcon defaultIcon=new ImageIcon("image/button/音效按钮.png");
-	private ImageIcon muteIcon=new ImageIcon("image/button/音效静音按钮.png");
+	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/音效按钮2.png", 50, 50);
+	private ImageIcon muteIcon=Planet.getImageIcon("image/button/音效静音按钮2.png", 50, 50);
 	
 	private ButtonSound b=this;
 	private SoundSyncData soundSyncData;
@@ -29,7 +33,7 @@ public class ButtonSound extends JButton{
 		
 		soundSyncData=data;
 		
-		this.setBounds((int)(w*0.9),(int)(h*0.1),50,49);
+		this.setBounds(960,532,50,50);
 		
 		//获得控制位数值
 		control=soundSyncData.getControl();
