@@ -157,9 +157,16 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	private void gameOver(){
+		int level = this.gameData.getLevel();
 		this.computeGrade(this.clock.getSec());
-		FrameTotal.TOTALDATA.setGrade(this.gameData.getLevel(), this.grade);
-		FrameTotal.TOTALDATA.levelUp();
+		//若是初始关卡分数为0，即先前未通关，则升一级
+		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
+			FrameTotal.TOTALDATA.levelUp();
+		}
+		//若是当前关卡分数高于历史分数，则将总数据中分数替换为当前分数
+		if(FrameTotal.TOTALDATA.getGrade(level) < this.grade){
+			FrameTotal.TOTALDATA.setGrade(level, this.grade);
+		}
 		this.isGameWin = true;
 		//播放过关音效
 		SoundEffect.WIN.play();

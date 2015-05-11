@@ -142,6 +142,7 @@ public class GameControl {
 	 * ÍË³öÓÎÏ·
 	 */
 	public void Quit() {
+		FrameTotal.TOTALDATA.saveData();
 		this.frameTotal.removeAll();
 		this.frameTotal.dispose();
 		System.exit(0);
