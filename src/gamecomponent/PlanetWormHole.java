@@ -40,10 +40,16 @@ public class PlanetWormHole implements Runnable{
 							lightList.get(lightList.size() - 1));
 					//
 					this.gameData.getLightControl().launchLight(wormHole[1].locationX+wormHole[1].radius, 
-							wormHole[1].locationY+wormHole[1].radius, (int)this.directX, (int)this.directY);
+							wormHole[1].locationY+wormHole[1].radius, (int)this.directX,(int)this.directY);
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
-					System.out.println((wormHole[1].locationX+wormHole[1].radius)+" "+
-							(wormHole[1].locationY+wormHole[1].radius)+" "+(int)this.directX+" "+(int)this.directY);
+//					System.out.println((wormHole[1].locationX+wormHole[1].radius)+" "+
+//							(wormHole[1].locationY+wormHole[1].radius)+" "+(int)this.directX+" "+(int)this.directY);
 					
 				}
 				//
@@ -54,7 +60,12 @@ public class PlanetWormHole implements Runnable{
 					//
 					this.gameData.getLightControl().launchLight(wormHole[0].locationX+wormHole[0].radius, 
 							wormHole[0].locationY+wormHole[0].radius, (int)this.directX, (int)this.directY);
-					
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -80,8 +91,11 @@ public class PlanetWormHole implements Runnable{
 		return (answer>-1);
 	}
 	//
-	public Planet[] getWormHole(){
-		return this.wormHole;
+	public WormHole getWormHole(){
+		return this.wormHole[0];
+	}
+	public WormHole getAnotherWormHole(){
+		return this.wormHole[1];
 	}
 
 }

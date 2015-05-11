@@ -1,7 +1,10 @@
 package gamecomponent;
 
+import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 
 import gamedata.GameData;
 
@@ -15,7 +18,8 @@ public class PlanetBlackHole extends Planet implements Runnable{
 		this.radius=Radius;
 		this.gameData=gameData;
 		//构造按钮的图片，自动缩放
-		this.planetImg=this.getImageIcon("image/星球/星球6.png", 2*radius,2*radius);
+//		Image temp=new Image().
+		this.planetImg=this.getImageIcon("image/星球/星球6.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);

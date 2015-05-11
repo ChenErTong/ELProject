@@ -3,9 +3,11 @@ package ui_game;
 import gamecomponent.Light;
 import audio.SoundEffect;
 import gamecomponent.Planet;
+import gamecomponent.PlanetBlackHole;
 import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetThreeBody;
+import gamecomponent.PlanetWormHole;
 import gamedata.GameData;
 import gamedata.TotalData;
 
@@ -39,10 +41,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private static final int WIDTH = FrameTotal.WINDOWW;
 	private static final int HEIGHT = FrameTotal.WINDOWH;
 	
+	private byte i=0;
 	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
+	private PlanetBlackHole blackHole;
+	private PlanetWormHole wormHole;
 	//游戏胜利
 	private boolean isGameWin;
 	//游戏重新刷新一局
@@ -62,8 +67,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//关闭按钮
 	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/关闭按钮.png", (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
 	//背景图片
-	private ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
-	private Image background=backgroundDemo.getImage();
+	private ImageIcon[] backgroundDemo=new ImageIcon[3];
+	private Image[] background=new Image[3];
 	
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
@@ -74,10 +79,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameRefresh = false;
 		
 		this.setLayout(null);
+		//
+		backgroundDemo[0]=new ImageIcon("image/bg/背景1.png");
+		backgroundDemo[1]=new ImageIcon("image/bg/背景2.png");
+		backgroundDemo[2]=new ImageIcon("image/bg/背景3.png");
 		//设置背景图片
-		background=background.getScaledInstance(FrameTotal.WINDOWW, FrameTotal.WINDOWH, Image.SCALE_SMOOTH);//缩放图片的核心方法
-		backgroundDemo.setImage(background);
-		background=backgroundDemo.getImage();
+		for(int i=0;i<3;i++){
+			background[i]=this.getImage(backgroundDemo[i], this.width, this.height);
+		}
 		
 		//初始化所有按钮
 		this.initButton();
@@ -132,7 +141,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
 			this.add(this.gameData.getPlanetRefractions().get(i));		
 		}
-		
+		//加入黑洞
+		this.blackHole=new PlanetBlackHole(300, 225, 40, gameData);
+		this.add(blackHole);
+		//加入虫洞
+		this.wormHole=new PlanetWormHole(200, 180, 700, 100, 20, gameData);
+		this.add(wormHole.getWormHole());
+		this.add(wormHole.getAnotherWormHole());
 		//加入计时器
 		this.add(clock);
 		clock.setOpaque(false);
@@ -228,6 +243,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 重新刷新一盘游戏
 	 */
 	private void refreshGame() {
+		this.reDrag();
 		this.gameData.getLightControl().deleteLights();
 		this.gameData.refreshLight();
 	}
@@ -237,8 +253,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-	
-		g.drawImage(background, 0, 0, null);
+		
+		g.drawImage(background[i++], 0, 0, null);
+		if(i>2)
+			i=0;
+		System.out.println(i);
 
 		//绘画光线链表中所有的光线
 		if(this.gameData.getLightControl().getisExist()){
@@ -252,14 +271,38 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.gameOver();
 		}
 	}
-	
+	/**
+	 * 控制所有功能星球不可移动
+	 */
 	public void stopDrag(){
 		for(PlanetDragger cell:dragger){
 			cell.stop();
 		}
 	}
+	/**
+	 * 控制所有功能星球恢复移动
+	 */
+	private void reDrag(){
+		for(PlanetDragger cell:dragger){
+			cell.start();
+		}
+	}
 
 	public void addControl(GameControl gameControl) {
+
 		this.gameControl = gameControl;
+	}
+	/**
+	 * 将图片缩放到指定形式
+	 * @author CX
+	 * @param filename路径名
+	 * @param width期望的宽度
+	 * @param height期望的高度
+	 * @return 缩放后的图像；为image格式
+	 */
+	public static Image getImage(ImageIcon temp,int width,int height){
+		Image alsoTemp=temp.getImage();
+		alsoTemp=alsoTemp.getScaledInstance(width, height, Image.SCALE_AREA_AVERAGING);
+		return alsoTemp;
 	}
 }
