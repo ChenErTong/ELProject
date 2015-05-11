@@ -148,6 +148,10 @@ public class GameControl {
 		System.exit(0);
 	}
 
+	/**
+	 * 从选关界面进入进入游戏界面
+	 * @param level
+	 */
 	public void toGameLevel(int level) {
 		this.gameData =new GameData(level);
 		this.frameTotal.musicSelect.stop();

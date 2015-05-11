@@ -98,7 +98,6 @@ public class TotalData {
 			}
 			
 			line = this.frontLevel + Integer.toString(level);
-			System.out.println(line);
 			bw.write(line);
 			
 			bw.close();
