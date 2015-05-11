@@ -13,8 +13,8 @@ import ui.FrameTotal;
 public class FrameWin extends JFrame{
 	PanelWin panelWin;
 	
-	public FrameWin(PlayerControl playerControl,int secPassed){
-		panelWin = new PanelWin(playerControl,secPassed);
+	public FrameWin(PlayerControl playerControl,int grade){
+		panelWin = new PanelWin(playerControl,grade);
 
 		this.setResizable(false);
 		this.setUndecorated(true);

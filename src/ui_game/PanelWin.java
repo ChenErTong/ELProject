@@ -23,9 +23,9 @@ public class PanelWin extends JPanel{
 	static int WIDTH = (int)(FrameTotal.WINDOWW*0.6);
 	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.6);
 	/**
-	 * 通关时间
+	 * 通关评级
 	 */
-	private int sec;
+	private int grade;
 	/**
 	 * 返回按钮
 	 */
@@ -48,8 +48,8 @@ public class PanelWin extends JPanel{
 	private ImageIcon img;
 	private JLabel bg;
 	
-	public PanelWin(PlayerControl playerControl,int secPassed){		
-		this.sec=secPassed;
+	public PanelWin(PlayerControl playerControl,int grade){		
+		this.grade=grade;
 		//声明然会按钮并进行相关的属性声明
 		this.setLayout(null);
 
@@ -75,7 +75,7 @@ public class PanelWin extends JPanel{
 		this.add(nextButton);
 		
 		//根据评分显示背景图片
-		getMark(sec);
+		getMark();
 		bg=new JLabel(img);
 		this.add(bg);
 		bg.setBounds(0, 0, WIDTH, HEIGHT);
@@ -83,16 +83,16 @@ public class PanelWin extends JPanel{
 	}
 	
 	//分析通关时间数据
-	public void getMark(int sec){
-		if (sec<=60){
+	public void getMark(){
+		if (this.grade == 5){
 			img=new ImageIcon("image/win/S.png");
-		}else if(sec<=120){
+		}else if(this.grade == 4){
 			img=new ImageIcon("image/win/A.png");
-		}else if(sec<=180){
+		}else if(this.grade == 3){
 			img=new ImageIcon("image/win/B.png");
-		}else if(sec<=240){
+		}else if(this.grade == 2){
 			img=new ImageIcon("image/win/C.png");
-		}else {
+		}else if(this.grade == 1){
 			img=new ImageIcon("image/win/D.png");
 		}
 	}	

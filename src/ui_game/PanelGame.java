@@ -39,7 +39,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private static final int WIDTH = FrameTotal.WINDOWW;
 	private static final int HEIGHT = FrameTotal.WINDOWH;
 	
-	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
@@ -47,11 +46,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameWin;
 	//游戏重新刷新一局
 	private boolean isGameRefresh;
-	//
+	//这是啥？
 	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
 	private Clock clock=new Clock();
 	private int secPassed;
+	//关卡游戏评级
+	private int grade;
 	//返回按钮
 	private JButton returnButton;
 	//关闭按钮
@@ -65,10 +66,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private ImageIcon backgroundDemo=new ImageIcon("image/bg/银河.jpg");
 	private Image background=backgroundDemo.getImage();
 	
-	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
-		super(bgm, bgmData, soundData, totalData, frameTotal);
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal, GameData gameData){
+		super(bgm, bgmData, soundData, frameTotal);
 		this.gameData=gameData;
-		this.totalData = totalData;
 		//初始化是否结束游戏
 		this.isGameWin = false;
 		this.isGameRefresh = false;
@@ -157,6 +157,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	private void gameOver(){
+		this.computeGrade(this.clock.getSec());
+		FrameTotal.TOTALDATA.setGrade(this.gameData.getLevel(), this.grade);
+		FrameTotal.TOTALDATA.levelUp();
 		this.isGameWin = true;
 		//播放过关音效
 		SoundEffect.WIN.play();
@@ -164,11 +167,31 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
 		this.frameTotal.setEnabled(false);
-		this.winFrame = new FrameWin(this.playerControl, this.clock.getSec());
+		this.winFrame = new FrameWin(this.playerControl, this.grade);
 		//计时器停止计时
 		this.clock.stop();
 	}
 	
+	/**
+	 * 根据时间计算出关卡评级
+	 * @param sec 通关时间
+	 */
+	private void computeGrade(int sec) {
+		if (sec<=60){
+			this.grade = 5;
+		}else if(sec<=120){
+			this.grade = 4;
+		}else if(sec<=180){
+			this.grade = 3;
+		}else if(sec<=240){
+			this.grade = 2;
+		}else if(sec>240){
+			this.grade = 1;
+		}
+
+		
+	}
+
 	/**
 	 * 刷新游戏数据
 	 * @param gameData

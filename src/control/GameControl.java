@@ -27,10 +27,6 @@ public class GameControl {
 	 */
 	private PanelSelectMission panelSelectMission;
 	/**
-	 * 游戏总数据
-	 */
-	private TotalData totalData;
-	/**
 	 * 游戏界面层
 	 */
 	private PanelGame panelGame;
@@ -39,9 +35,7 @@ public class GameControl {
 	 */
 	private GameData gameData;
 	
-	public GameControl(TotalData totalData){
-		//加入游戏总数据
-		this.totalData = totalData;
+	public GameControl(){
 	}
 	
 	/**
@@ -87,18 +81,6 @@ public class GameControl {
 		this.frameTotal.musicStart.stop();
 		this.frameTotal.remove(this.panelStartGame);
 		this.frameTotal.initPanelSelectMission();
-	}
-	
-	/**
-	 * 从选关界面跳转至第一关游戏界面
-	 */
-	public void toFirstLevel() {
-		this.gameData =new GameData(1);
-		this.frameTotal.musicSelect.stop();
-		this.frameTotal.remove(this.panelSelectMission);
-		this.frameTotal.initPanelGame(this.gameData);
-		
-		this.panelGame.addControl(this);
 	}
 	
 	/**
@@ -149,7 +131,7 @@ public class GameControl {
 		this.panelGame.closeFrameWin();
 		
 		//重新建立单局游戏数据
-		this.gameData =new GameData(1);
+		this.gameData = new GameData(this.gameData.getLevel() + 1);
 		//移除原有的游戏界面
 		this.frameTotal.remove(this.panelGame);		
 		//下一关游戏界面
@@ -163,5 +145,14 @@ public class GameControl {
 		this.frameTotal.removeAll();
 		this.frameTotal.dispose();
 		System.exit(0);
+	}
+
+	public void toGameLevel(int level) {
+		this.gameData =new GameData(level);
+		this.frameTotal.musicSelect.stop();
+		this.frameTotal.remove(this.panelSelectMission);
+		this.frameTotal.initPanelGame(this.gameData);
+		
+		this.panelGame.addControl(this);
 	}
 }

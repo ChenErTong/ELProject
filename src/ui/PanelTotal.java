@@ -36,15 +36,12 @@ public abstract class PanelTotal extends JDesktopPane{
 	public ImageIcon backgroundImg;
 	//玩家控制器
 	protected PlayerControl playerControl;
-	//加入游戏数据
-	protected TotalData totalData;
 	//背景音乐
 	protected static BackgroundMusic bgm;
 	//主窗口
-	protected static FrameTotal frameTotal;
+	protected FrameTotal frameTotal;
 	
-	public PanelTotal(BackgroundMusic bgmusic, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, TotalData totalData, FrameTotal frame){	
-		this.totalData = totalData;
+	public PanelTotal(BackgroundMusic bgmusic, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, FrameTotal frame){	
 		frameTotal = frame;
 		bgm = bgmusic;
 	 	//设置大小
