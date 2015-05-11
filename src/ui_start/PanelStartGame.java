@@ -3,6 +3,8 @@
  */
 package ui_start;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
@@ -12,6 +14,7 @@ import gamedata.TotalData;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.Timer;
 
 import control.PlayerControl;
 import audio.BackgroundMusic;
@@ -25,13 +28,13 @@ import ui.*;
  */
 public class PanelStartGame extends PanelTotal{
 	//按钮的图标
-	private ImageIcon imgNewGame1 = Planet.getImageIcon("image/button/按钮部分1.png", 200, 50);
-	private ImageIcon imgHelp1 = Planet.getImageIcon("image/button/按钮部分3.png", 80, 50);
-	private ImageIcon imgQuit1 = Planet.getImageIcon("image/button/按钮部分4.png", 80, 50);
+	private ImageIcon imgNewGame1 = new ImageIcon("image/button/按钮部分1.png");
+	private ImageIcon imgHelp1 = new ImageIcon("image/button/按钮部分3.png");
+	private ImageIcon imgQuit1 = new ImageIcon("image/button/按钮部分4.png");
 	//变化的图标
-	private ImageIcon imgNewGame2 = Planet.getImageIcon("image/button/按钮部分1.png", 250, 75);
-	private ImageIcon imgHelp2 = Planet.getImageIcon("image/button/按钮部分3.png", 250, 75);
-	private ImageIcon imgQuit2 = Planet.getImageIcon("image/button/按钮部分4.png", 250, 75);
+	private ImageIcon imgNewGame2 = new ImageIcon("image/button/按钮部分1-1.gif");
+	private ImageIcon imgHelp2 = new ImageIcon("image/button/按钮部分3-1.gif");
+	private ImageIcon imgQuit2 = new ImageIcon("image/button/按钮部分4-1.gif");
 
 	//帮助界面
 	private FrameHelp frameHelp;
@@ -46,9 +49,11 @@ public class PanelStartGame extends PanelTotal{
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData, totalData, frameTotal);
 
+	/*	Timer t=new Timer(40,new TimerListener());
+		t.start();*/
 		//添加一个开始游戏按钮
 		this.jbtStart=new JButton(imgNewGame1);
-		this.jbtStart.setBounds(412,354,200,50);
+		this.jbtStart.setBounds(406,350,237,50);
 		this.jbtStart.setContentAreaFilled(false);
 		this.jbtStart.setBorderPainted(false);
 		this.jbtStart.setPressedIcon(imgNewGame2);
@@ -59,7 +64,7 @@ public class PanelStartGame extends PanelTotal{
 		
 		//添加一个帮助&演示按钮
 		this.jbtHelp=new JButton(imgHelp1);
-		this.jbtHelp.setBounds(472,436,80,50);
+		this.jbtHelp.setBounds(463,425,118,50);
 		this.jbtHelp.setContentAreaFilled(false);
 		this.jbtHelp.setBorderPainted(false);
 		this.jbtHelp.setPressedIcon(imgHelp2);
@@ -69,7 +74,7 @@ public class PanelStartGame extends PanelTotal{
 
 		//添加一个退出游戏按钮
 		this.jbtQuit=new JButton(imgQuit1);
-		this.jbtQuit.setBounds(472,508,80,50);
+		this.jbtQuit.setBounds(463,500,118,50);
 		this.jbtQuit.setContentAreaFilled(false);
 		this.jbtQuit.setBorderPainted(false);
 		this.jbtQuit.setPressedIcon(imgQuit2);
@@ -83,6 +88,11 @@ public class PanelStartGame extends PanelTotal{
 		background.setBounds(0,0,width,height);		
 		this.add(background);
 			
+	}
+	private class TimerListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			repaint();
+		}
 	}
 	
 	/**
