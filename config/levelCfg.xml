@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
-    <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="1" lightDirectionX="0" lightDirectionY="1">
-        <planet className="gamecomponent.PlanetEarth" locationX="90" locationY="90" radius="55"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="490" radius="55"/>
-        <planet className="gamecomponent.PlanetReflection" locationX="500" locationY="400" radius="50"/>
-		<planet className="gamecomponent.PlanetRefraction" locationX="500" locationY="200" radius="50"/>           
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="300" locationY="225" radius="50"/>
+    <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="1">
+        <planet className="gamecomponent.PlanetEarth" locationX="90" locationY="90" radius="30"/>
+        <planet className="gamecomponent.PlanetSun" locationX="70" locationY="200" radius="50"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="490" radius="35"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="500" locationY="400" radius="30"/>
+		<planet className="gamecomponent.PlanetRefraction" locationX="500" locationY="200" radius="30"/>           
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="300" locationY="225" radius="30"/>
     	<wormhole className="gamecomponent.PlanetWormHole" location1X="200" location1Y="180" location2X="700" location2Y="100" radius="30"/>
     </gamedata>
     
-    <gamedata className="gamedata.GameData" name="lv2" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0" lightDirectionX="0" lightDirectionY="1">
+    <gamedata className="gamedata.GameData" name="lv2" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0">
         
     </gamedata>
     
-    <gamedata className="gamedata.GameData" name="lv3" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0" lightDirectionX="0" lightDirectionY="1">
+    <gamedata className="gamedata.GameData" name="lv3" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0">
         
     </gamedata>
     
-    <gamedata className="gamedata.GameData" name="lv4" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0" lightDirectionX="0" lightDirectionY="1">
+    <gamedata className="gamedata.GameData" name="lv4" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0">
         
     </gamedata>
     

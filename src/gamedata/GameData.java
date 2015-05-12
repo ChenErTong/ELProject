@@ -6,6 +6,7 @@ import gamecomponent.PlanetBlackHole;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
+import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
 import gamecomponent.PlanetWormHole;
 
@@ -27,6 +28,8 @@ import config.WormHoleConfig;
 public class GameData {
 	//µØÇò
 	private PlanetEarth planetEarth;
+	//Ì«Ñô
+	private PlanetSun planetSun;
 	//ÈýÌå
 	private PlanetThreeBody planetThreeBody;
 	//·´ÉäÐÇÇò×é
@@ -60,9 +63,6 @@ public class GameData {
 			LevelConfig levelCfg = ConfigFactory.getLEVEL_CFG();		
 			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level - 1);
 			
-			this.lightDirectionX = dataCfg.getLightDirectionX();
-			this.lightDirectionY = dataCfg.getLightDirectionY();
-			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
 			this.planetBlackHoles = new ArrayList<PlanetBlackHole>(dataCfg.blackholeNum);
@@ -92,18 +92,20 @@ public class GameData {
 			
 			//ÉùÃ÷µØÇò
 			this.planetEarth = (PlanetEarth)planets.get(0);
+			//ÉùÃ÷Ì«Ñô
+			this.planetSun = (PlanetSun)planets.get(1);
 			//ÉùÃ÷ÈýÌåÐÇÇò
-			this.planetThreeBody = (PlanetThreeBody)planets.get(1);
+			this.planetThreeBody = (PlanetThreeBody)planets.get(2);
 			//ÉùÃ÷·´ÉäÐÇÇò
-			for (int i = 2; i < 2+dataCfg.reflectionNum; i++) {
+			for (int i = 3; i < 3+dataCfg.reflectionNum; i++) {
 				this.planetReflections.add((PlanetReflection) planets.get(i));
 			}
 			//ÉùÃ÷ÕÛÉäÐÇÇò
-			for (int i = 2+dataCfg.reflectionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum; i++) {
+			for (int i = 3+dataCfg.reflectionNum; i < 3+dataCfg.reflectionNum+dataCfg.refractionNum; i++) {
 				this.planetRefractions.add((PlanetRefraction) planets.get(i));
 			}
 			//ÉùÃ÷ºÚ¶´
-			for (int i = 2+dataCfg.reflectionNum+dataCfg.refractionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i++) {
+			for (int i = 3+dataCfg.reflectionNum+dataCfg.refractionNum; i < 3+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i++) {
 				this.planetBlackHoles.add((PlanetBlackHole) planets.get(i));
 			}
 			//ÉùÃ÷³æ¶´
@@ -116,7 +118,10 @@ public class GameData {
 				Constructor<?> ctr = cla.getConstructor(int.class, int.class, int.class, int.class, int.class, GameData.class);
 				planetWormHole = (PlanetWormHole) ctr.newInstance(wormholeCfg.getLocation1X(), wormholeCfg.getLocation1Y(), wormholeCfg.getLocation2X(), wormholeCfg.getLocation2Y(), wormholeCfg.getRadius(), this); 
 			
-			}			
+			}	
+			
+			this.lightDirectionX = this.planetSun.getLocationX()+this.planetSun.getRadius()-this.planetEarth.getLocationX()-this.planetEarth.getRadius();
+			this.lightDirectionY = this.planetSun.getLocationY()+this.planetSun.getRadius()-this.planetEarth.getLocationY()-this.planetEarth.getRadius();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -132,6 +137,10 @@ public class GameData {
 
 	public PlanetEarth getPlanetEarth() {
 		return planetEarth;
+	}
+
+	public PlanetSun getPlanetSun() {
+		return planetSun;
 	}
 
 	public PlanetThreeBody getPlanetThreeBody() {

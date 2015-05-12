@@ -42,7 +42,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private static final int HEIGHT = FrameTotal.WINDOWH;
 	
 	private int count=0;
-	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
@@ -86,7 +85,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		backgroundDemo[2]=new ImageIcon("image/bg/背景3.png");
 		//设置背景图片
 		for(int i=0;i<3;i++){
-			background[i]=this.getImage(backgroundDemo[i], this.width, this.height);
+			background[i]=getImage(backgroundDemo[i], this.width, this.height);
 		}
 		
 		//初始化所有按钮
@@ -125,6 +124,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.earth = this.gameData.getPlanetEarth();
 		this.earth.setActionCommand("earth");
 		this.add(this.earth);
+		
+		this.add(this.gameData.getPlanetSun());
 		
 		//加入三体
 		this.threeBody = this.gameData.getPlanetThreeBody();

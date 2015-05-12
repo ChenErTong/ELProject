@@ -1,9 +1,16 @@
 package gamecomponent;
 
+import gamedata.GameData;
+
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import gamedata.GameData;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * 反射星球   2015.5.1
@@ -27,7 +34,13 @@ public class PlanetReflection extends Planet implements Runnable {
 		this.radius = Radius;
 		this.gameData=gameData;
 		// 构造按钮的图片，自动缩放
-		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
+//		this.planetImg = getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
+	
+		this.planetImg = new ImageIcon("image/星球/MARS.gif");
+		Image previousImage = this.planetImg.getImage();
+		Image nowImage =previousImage.getScaledInstance(2 * radius, 2 * radius, Image.SCALE_FAST);
+		this.planetImg = new ImageIcon(nowImage);
+		
 		this.setIcon(planetImg);
 		// 按钮的位置
 		this.setBounds(locationX, locationY, 2 * radius, 2 * radius);

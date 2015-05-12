@@ -135,4 +135,3 @@ public class PanelStartGame extends PanelTotal{
 		this.frameHelp.dispose();
 	}
 }
-

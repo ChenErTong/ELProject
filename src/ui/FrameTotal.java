@@ -26,14 +26,12 @@ import control.PlayerControl;
 
 public class FrameTotal extends JFrame{
 	//=================基本参数设定==================
-	//目测的地址栏高度
-	private static final int WINDOW_UP = 16;
 	//Frame的位置坐标
 	public static int WINDOWX;
 	public static int WINDOWY;
 	//窗口大小
-	public static final int WINDOWW = 1024;
-	public static final int WINDOWH = 600;
+	public static int WINDOWW;
+	public static int WINDOWH;
 	//====================基本组件声明======================
 	//声明音效文件
 	final BgmSyncData bgmSyncData;
@@ -48,9 +46,9 @@ public class FrameTotal extends JFrame{
 	 * 音乐声明
 	 * TODO 未声明音乐素材
 	 */
-	public BackgroundMusic musicStart=new BackgroundMusic("audio/music/bgm01.mid");
-	public BackgroundMusic musicSelect=new BackgroundMusic("audio/music/bgm02.mid");
-	public BackgroundMusic musicGame=new BackgroundMusic("audio/music/bgm03.mid");
+	public BackgroundMusic musicStart;
+	public BackgroundMusic musicSelect;
+	public BackgroundMusic musicGame;
 	//鼠标指针
 	//========================游戏逻辑构建===========================
 	//游戏数据类
@@ -63,17 +61,29 @@ public class FrameTotal extends JFrame{
 	static{
 		TOTALDATA = new TotalData();
 	}
-	public FrameTotal(){		
+	public FrameTotal(){
+		try {
+			musicStart=new BackgroundMusic("audio/music/Cornfield Chase.wav");
+			musicSelect=new BackgroundMusic("audio/music/Cornfield Chase.wav");
+			musicGame=new BackgroundMusic("audio/music/Cornfield Chase.wav");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		//====================Frame基本参数设定=======================
 		//仅仅是为了打印到屏幕中间
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
-
+		
+		WINDOWW = (int) (screen.width * 0.8);
+		WINDOWH = (int) (screen.height * 0.8);
+		
 		this.setSize(WINDOWW, WINDOWH);   
 		
 		//将界面置于显示屏正中央
 		WINDOWX = screen.width-this.getWidth()>>1;
-		WINDOWY = (screen.height-this.getHeight()>>1)-WINDOW_UP;
+		WINDOWY = (screen.height-this.getHeight()>>1);
 		this.setLocation(WINDOWX, WINDOWY);
 		//允许鼠标拖动
 		new WindowDragger(this,this.getContentPane());
