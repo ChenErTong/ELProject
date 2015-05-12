@@ -40,7 +40,7 @@ public class PanelSelectMission extends PanelTotal{
 	//返回按钮
 	private JButton jbtBack;
 	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
-		super(bgm, bgmData, soundData, frameTotal);
+		super(bgm, bgmData, soundData,null, frameTotal);
 		
 		//显示第一关图标
 		this.jbtMission1=new JButton(icon1);
