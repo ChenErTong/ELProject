@@ -124,6 +124,12 @@ public class GameControl {
 	}
 	
 	/**
+	 * 打开配置界面
+	 */
+	public void openFrameConfig() {
+		this.panelStartGame.openFrameConfig();
+	}
+	/**
 	 * 进行下一关
 	 */
 	public void nextLevel() {

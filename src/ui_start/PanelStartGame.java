@@ -39,7 +39,8 @@ public class PanelStartGame extends PanelTotal{
 
 	//帮助界面
 	private FrameHelp frameHelp;
-	
+	//配置界面
+	private FrameConfig frameConfig;
 	//开始按钮
 	private JButton jbtStart;
 	//帮助按钮
@@ -142,10 +143,23 @@ public class PanelStartGame extends PanelTotal{
 	}
 	
 	/**
-	 * 关闭帮帮助界面
+	 * 关闭帮助界面
 	 */
 	public void closeFrameHelp(){
 		this.frameTotal.setEnabled(true);	
 		this.frameHelp.dispose();
+	}
+
+	public void openFrameConfig() {
+		this.frameTotal.setEnabled(false);
+		this.frameConfig = new FrameConfig(this.playerControl);
+	}
+	
+	/**
+	 * 关闭配置界面
+	 */
+	public void closeFrameConfig(){
+		this.frameTotal.setEnabled(true);	
+		this.frameConfig.dispose();
 	}
 }

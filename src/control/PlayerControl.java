@@ -35,6 +35,8 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.openFrameHelp();
 		} else if(code.equalsIgnoreCase("CloseFrameHelp")){
 			this.gameControl.closeFrameHelp();
+		} else if(code.equalsIgnoreCase("OpenPanelConfig")){
+			this.gameControl.openFrameConfig();
 		} else if(code.equalsIgnoreCase("NextLevel")){
 			this.gameControl.nextLevel();
 		} else if(code.equalsIgnoreCase("Quit")){
