@@ -53,7 +53,7 @@ public class PanelStartGame extends PanelTotal{
 		t.start();*/
 		//添加一个开始游戏按钮
 		this.jbtStart=new JButton(imgNewGame1);
-		this.jbtStart.setBounds(406,350,237,50);
+		this.jbtStart.setBounds((int)(FrameTotal.WINDOWW*0.396),(int)(FrameTotal.WINDOWH*0.583),(int)(FrameTotal.WINDOWW*0.231),(int)(FrameTotal.WINDOWH*0.083));
 		this.jbtStart.setContentAreaFilled(false);
 		this.jbtStart.setBorderPainted(false);
 		this.jbtStart.setPressedIcon(imgNewGame2);
@@ -64,7 +64,7 @@ public class PanelStartGame extends PanelTotal{
 		
 		//添加一个帮助&演示按钮
 		this.jbtHelp=new JButton(imgHelp1);
-		this.jbtHelp.setBounds(463,425,118,50);
+		this.jbtHelp.setBounds((int)(FrameTotal.WINDOWW*0.452),(int)(FrameTotal.WINDOWH*0.708),(int)(FrameTotal.WINDOWW*0.115),(int)(FrameTotal.WINDOWH*0.083));
 		this.jbtHelp.setContentAreaFilled(false);
 		this.jbtHelp.setBorderPainted(false);
 		this.jbtHelp.setPressedIcon(imgHelp2);
@@ -74,7 +74,7 @@ public class PanelStartGame extends PanelTotal{
 
 		//添加一个退出游戏按钮
 		this.jbtQuit=new JButton(imgQuit1);
-		this.jbtQuit.setBounds(463,500,118,50);
+		this.jbtQuit.setBounds((int)(FrameTotal.WINDOWW*0.452),(int)(FrameTotal.WINDOWH*0.833),(int)(FrameTotal.WINDOWW*0.115),(int)(FrameTotal.WINDOWH*0.083));
 		this.jbtQuit.setContentAreaFilled(false);
 		this.jbtQuit.setBorderPainted(false);
 		this.jbtQuit.setPressedIcon(imgQuit2);
@@ -83,11 +83,10 @@ public class PanelStartGame extends PanelTotal{
 		this.add(jbtQuit);
 		
 		//在分层面板加入背景图片面板	
-		this.backgroundImg=new ImageIcon("image/bg/界面背景.png");
+		this.backgroundImg=Planet.getImageIcon("image/bg/开始界面.png", FrameTotal.WINDOWW,FrameTotal.WINDOWH);
 		JLabel background = new JLabel(this.backgroundImg);
-		background.setBounds(0,0,width,height);		
-		this.add(background);
-			
+		background.setBounds(0,0,FrameTotal.WINDOWW,FrameTotal.WINDOWH);		
+		this.add(background);			
 	}
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){

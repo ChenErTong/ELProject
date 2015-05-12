@@ -76,11 +76,11 @@ public class FrameTotal extends JFrame{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
 		
-		WINDOWW = (int) (screen.width * 0.8);
-		WINDOWH = (int) (screen.height * 0.8);
+		WINDOWW = (int) (screen.width * 1);
+		WINDOWH = (int) (WINDOWW * 0.586);
 		
 		this.setSize(WINDOWW, WINDOWH);   
-		
+
 		//将界面置于显示屏正中央
 		WINDOWX = screen.width-this.getWidth()>>1;
 		WINDOWY = (screen.height-this.getHeight()>>1);
