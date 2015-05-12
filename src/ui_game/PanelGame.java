@@ -41,7 +41,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private static final int WIDTH = FrameTotal.WINDOWW;
 	private static final int HEIGHT = FrameTotal.WINDOWH;
 	
-	private byte i=0;
+	private int count=0;
 	private TotalData totalData;
 	private GameData gameData;
 	private PlanetEarth earth;
@@ -70,10 +70,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private ImageIcon[] backgroundDemo=new ImageIcon[3];
 	private Image[] background=new Image[3];
 	
-	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, TotalData totalData, FrameTotal frameTotal, GameData gameData){
-		super(bgm, bgmData, soundData, totalData, frameTotal);
+	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal, GameData gameData){
+		super(bgm, bgmData, soundData, frameTotal);
 		this.gameData=gameData;
-		this.totalData = totalData;
 		//初始化是否结束游戏
 		this.isGameWin = false;
 		this.isGameRefresh = false;
@@ -254,11 +253,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		
-		g.drawImage(background[i++], 0, 0, null);
-		if(i>2)
-			i=0;
-		System.out.println(i);
-
+		//背景图品刷新
+		g.drawImage(background[count/8], 0, 0, null);
+		count ++;
+		if(count>23){
+			count=0;
+		}
+		
 		//绘画光线链表中所有的光线
 		if(this.gameData.getLightControl().getisExist()){
 			//若光线控制器存在，说明光线并未到达三体星，游戏继续

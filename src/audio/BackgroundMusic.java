@@ -31,7 +31,6 @@ public class BackgroundMusic{
 	public void stop(){		
 		 if(player.isRunning()){
 			 player.stop();
-	//		 player.close();
 		 }		 
 	 }
 	

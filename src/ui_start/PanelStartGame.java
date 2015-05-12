@@ -47,7 +47,7 @@ public class PanelStartGame extends PanelTotal{
 	private JButton jbtQuit;
 
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
-		super(bgm, bgmData, soundData, null,frameTotal);
+		super(bgm, bgmData, soundData, frameTotal);
 
 	/*	Timer t=new Timer(40,new TimerListener());
 		t.start();*/
