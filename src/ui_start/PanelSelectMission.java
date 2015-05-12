@@ -84,7 +84,7 @@ public class PanelSelectMission extends PanelTotal{
 
 		//·µ»Ø°´Å¥
 		this.jbtBack=new JButton(imgReturn);
-		this.jbtBack.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.887), 100, 70);
+		this.jbtBack.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
 		this.jbtBack.setContentAreaFilled(false);
 		this.jbtBack.setBorderPainted(false);
 		this.jbtBack.setActionCommand("ReturnToStart");

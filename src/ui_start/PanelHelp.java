@@ -4,12 +4,16 @@
 package ui_start;
 
 import gamecomponent.Planet;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import ui.FrameTotal;
 import control.PlayerControl;
 
 /**
@@ -22,8 +26,8 @@ public class PanelHelp extends JPanel{
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = 700;
-	static int HEIGHT = 408;
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.684);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.680);
 	/**
 	 * 面板分四张图显示
 	 */
