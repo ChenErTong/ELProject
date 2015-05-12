@@ -14,7 +14,7 @@ public class FrameWin extends JFrame{
 	PanelWin panelWin;
 	
 	public FrameWin(PlayerControl playerControl,int grade){
-		panelWin = new PanelWin(playerControl,grade);
+		panelWin = new PanelWin(playerControl, grade);
 
 		this.setResizable(false);
 		this.setUndecorated(true);

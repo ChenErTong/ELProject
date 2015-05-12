@@ -57,6 +57,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//计时器
 	private Clock clock=new Clock();
 	private int secPassed;
+	//关卡游戏评级
+	private int grade;
 	//返回按钮
 	private JButton returnButton;
 	//关闭按钮
@@ -174,6 +176,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	private void gameOver(){
+		int level = this.gameData.getLevel();
+		this.computeGrade(this.clock.getSec());
+		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
+			FrameTotal.TOTALDATA.levelUp();
+		}
+		if(FrameTotal.TOTALDATA.getGrade(level) < this.grade){
+			FrameTotal.TOTALDATA.setGrade(level, this.grade);
+		}
 		this.isGameWin = true;
 		//播放过关音效
 		SoundEffect.WIN.play();
@@ -181,9 +191,27 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
 		this.frameTotal.setEnabled(false);
-		this.winFrame = new FrameWin(this.playerControl, this.clock.getSec());
+		this.winFrame = new FrameWin(this.playerControl, this.grade);
 		//计时器停止计时
 		this.clock.stop();
+	}
+	
+	/**
+	 * 根据时间计算出关卡评级
+	 * @param sec 通关时间
+	 */
+	private void computeGrade(int sec) {
+		if (sec<=60){
+			this.grade = 5;
+		}else if(sec<=120){
+			this.grade = 4;
+		}else if(sec<=180){
+			this.grade = 3;
+		}else if(sec<=240){
+			this.grade = 2;
+		}else if(sec>240){
+			this.grade = 1;
+		}
 	}
 	
 	/**

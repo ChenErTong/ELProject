@@ -26,7 +26,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		this.radius = Radius;
 		this.gameData=gameDAta;
 		// 构造按钮的图片，自动缩放
-		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
+		this.planetImg = this.getImageIcon("image/星球/星球3.png", 2 * radius,2 * radius);
 		this.setIcon(planetImg);
 		// 按钮的位置
 		this.setBounds(locationX, locationY, 2 * radius, 2 * radius);
