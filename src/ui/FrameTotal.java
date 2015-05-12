@@ -76,7 +76,7 @@ public class FrameTotal extends JFrame{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
 		
-		WINDOWW = (int) (screen.width * 1);
+		WINDOWW = 1024;
 		WINDOWH = (int) (WINDOWW * 0.586);
 		
 		this.setSize(WINDOWW, WINDOWH);   
