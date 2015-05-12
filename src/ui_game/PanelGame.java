@@ -145,9 +145,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.add(this.gameData.getPlanetBlackHoles().get(i));		
 		}
 		//加入虫洞
-		this.wormHole=new PlanetWormHole(200, 180, 700, 100, 20, gameData);
-		this.add(wormHole.getWormHole());
-		this.add(wormHole.getAnotherWormHole());
+		if(this.gameData.haveWornhole){
+			this.add(this.gameData.getPlanetWormHole().getWormHole());
+			this.add(this.gameData.getPlanetWormHole().getAnotherWormHole());
+		}
+		
 		//加入计时器
 		this.add(clock);
 		clock.setOpaque(false);

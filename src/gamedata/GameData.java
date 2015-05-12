@@ -7,6 +7,7 @@ import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetThreeBody;
+import gamecomponent.PlanetWormHole;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import config.ConfigFactory;
 import config.DataConfig;
 import config.LevelConfig;
 import config.PlanetConfig;
+import config.WormHoleConfig;
 
 /**
  * 单场游戏数据，仅有游戏界面和游戏控制器调用
@@ -33,6 +35,10 @@ public class GameData {
 	private List<PlanetRefraction> planetRefractions;
 	//黑洞组
 	private List<PlanetBlackHole> planetBlackHoles;
+	//虫洞
+	private PlanetWormHole planetWormHole;
+	//虫洞是否存在
+	public boolean haveWornhole = false;
 	
 	//管线控制器
 	private LightControl lightControl;
@@ -94,7 +100,17 @@ public class GameData {
 			for (int i = 2+dataCfg.reflectionNum+dataCfg.refractionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i++) {
 				this.planetBlackHoles.add((PlanetBlackHole) planets.get(i));
 			}
-
+			//声明虫洞
+			if(dataCfg.wormholeNum == 1){
+				this.haveWornhole = true;
+				
+				WormHoleConfig wormholeCfg = dataCfg.getWormholeConfig();
+				
+				Class<?> cla = Class.forName(wormholeCfg.getClassName());
+				Constructor<?> ctr = cla.getConstructor(int.class, int.class, int.class, int.class, int.class, GameData.class);
+				planetWormHole = (PlanetWormHole) ctr.newInstance(wormholeCfg.getLocation1X(), wormholeCfg.getLocation1Y(), wormholeCfg.getLocation2X(), wormholeCfg.getLocation2Y(), wormholeCfg.getRadius(), this); 
+			
+			}			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -130,5 +146,9 @@ public class GameData {
 
 	public int getLevel() {
 		return level;
+	}
+
+	public PlanetWormHole getPlanetWormHole() {
+		return planetWormHole;
 	}
 }
