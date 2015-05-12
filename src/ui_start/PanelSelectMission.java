@@ -55,7 +55,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission2.setBounds(204, 222, 108, 118);
 		this.jbtMission2.setContentAreaFilled(false);
 		this.jbtMission2.setBorderPainted(false);
-		this.jbtMission1.setActionCommand("2");
+		this.jbtMission2.setActionCommand("2");
 		this.add(jbtMission2);
 	
 		//显示第三关图标
@@ -63,7 +63,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission3.setBounds(442, 256, 128, 113);
 		this.jbtMission3.setContentAreaFilled(false);
 		this.jbtMission3.setBorderPainted(false);
-		this.jbtMission1.setActionCommand("3");
+		this.jbtMission3.setActionCommand("3");
 		this.add(jbtMission3);
 	
 		//显示第四关图标
@@ -71,7 +71,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission4.setBounds(702, 227, 113, 113);
 		this.jbtMission4.setContentAreaFilled(false);
 		this.jbtMission4.setBorderPainted(false);
-		this.jbtMission1.setActionCommand("4");
+		this.jbtMission4.setActionCommand("4");
 		this.add(jbtMission4);
 	
 		//显示第五关图标
@@ -79,7 +79,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission5.setBounds(871, 152, 118, 108);
 		this.jbtMission5.setContentAreaFilled(false);
 		this.jbtMission5.setBorderPainted(false);
-		this.jbtMission1.setActionCommand("5");
+		this.jbtMission5.setActionCommand("5");
 		this.add(jbtMission5);
 
 		//返回按钮
@@ -107,11 +107,11 @@ public class PanelSelectMission extends PanelTotal{
 		 * 给所有关卡按钮加入玩家控制器进行监听
 		 */
 		switch(FrameTotal.TOTALDATA.getLevel()){
-		case 5: jbtMission1.addActionListener(playerControl);
-		case 4: jbtMission2.addActionListener(playerControl);
+		case 5: jbtMission5.addActionListener(playerControl);
+		case 4: jbtMission4.addActionListener(playerControl);
 		case 3: jbtMission3.addActionListener(playerControl);
-		case 2: jbtMission4.addActionListener(playerControl);
-		case 1: jbtMission5.addActionListener(playerControl);
+		case 2: jbtMission2.addActionListener(playerControl);
+		case 1: jbtMission1.addActionListener(playerControl);
 		}
 		
 		jbtBack.addActionListener(playerControl);
