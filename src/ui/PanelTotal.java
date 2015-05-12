@@ -4,9 +4,16 @@
  */
 package ui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import gamecomponent.Planet;
 import gamedata.TotalData;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+
 import control.PlayerControl;
 import audio.BackgroundMusic;
 
@@ -23,21 +30,20 @@ public abstract class PanelTotal extends JDesktopPane{
 	protected ButtonBackgroundMusic jbtSilence;
 	//音效开关按钮
 	protected ButtonSound jbtSound;
+	//最小化按钮图片
+	protected ImageIcon mininum=Planet.getImageIcon("image/button/最小化按钮.png",55,55);
 	//背景图片
 	public ImageIcon backgroundImg;
 	//玩家控制器
 	protected PlayerControl playerControl;
-	//加入游戏数据
-	protected TotalData totalData;
 	//背景音乐
 	protected static BackgroundMusic bgm;
 	//主窗口
 	protected FrameTotal frameTotal;
 	
-	public PanelTotal(BackgroundMusic bgm, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, TotalData totalData, FrameTotal frameTotal){	
-		this.totalData = totalData;
-		this.frameTotal = frameTotal;
-		this.bgm = bgm;
+	public PanelTotal(BackgroundMusic bgmusic, BgmSyncData bgmSyncData,SoundSyncData soundSyncData, FrameTotal frame){	
+		frameTotal = frame;
+		bgm = bgmusic;
 	 	//设置大小
 		this.setBounds(0, 0, width, height);
 		
@@ -51,6 +57,18 @@ public abstract class PanelTotal extends JDesktopPane{
 		
 		//音效开关按钮
 		this.jbtSound=new ButtonSound(soundSyncData);
-		this.add(jbtSound);			
+		this.add(jbtSound);	
+		
+		//最小化按钮
+		JButton jbtMin=new JButton(mininum);
+		jbtMin.addActionListener(new ActionListener(){
+	        @Override public void actionPerformed(ActionEvent e){
+	            frameTotal.setExtendedState(JFrame.ICONIFIED);
+	        }
+	    });
+		jbtMin.setContentAreaFilled(false);
+		jbtMin.setBorderPainted(false);
+		jbtMin.setBounds((int)(width*0.85),(int)(height*0.02),55,55);
+		this.add(jbtMin);
 	 }
 }

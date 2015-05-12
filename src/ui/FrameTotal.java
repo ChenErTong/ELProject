@@ -54,12 +54,15 @@ public class FrameTotal extends JFrame{
 	//鼠标指针
 	//========================游戏逻辑构建===========================
 	//游戏数据类
-	private TotalData totalData;
+	public static TotalData TOTALDATA;
 	//游戏控制器
 	private GameControl gameControl;
 	//玩家控制器
 	private PlayerControl playerControl;
 	
+	static{
+		TOTALDATA = new TotalData();
+	}
 	public FrameTotal(){		
 		//====================Frame基本参数设定=======================
 		//仅仅是为了打印到屏幕中间
@@ -97,10 +100,8 @@ public class FrameTotal extends JFrame{
 	 * 初始化游戏逻辑
 	 */
 	private void initGameLogic(){
-		//游戏总数据
-		this.totalData = new TotalData();
 		//游戏控制器
-		this.gameControl = new GameControl(totalData);
+		this.gameControl = new GameControl();
 		//玩家控制器
 		this.playerControl = new PlayerControl(gameControl);
 	}
@@ -110,10 +111,9 @@ public class FrameTotal extends JFrame{
 	 * 初始化开始面板
 	 */
 	public void initPanelStartGame(){
-		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
+		this.panelStartGame = new PanelStartGame(this.musicStart, this.bgmSyncData, this.SoundSyncData, this);
 		this.panelStartGame.addControl(playerControl);
 		this.add(panelStartGame);
-//		this.setContentPane(panelStartGame);
 		this.panelStartGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelStartGame(this.panelStartGame);
@@ -124,10 +124,9 @@ public class FrameTotal extends JFrame{
 	 * 初始化选关面板
 	 */
 	public void initPanelSelectMission(){
-		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this.totalData, this);
+		this.panelSelectMission = new PanelSelectMission(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this);
 		this.panelSelectMission.addControl(playerControl);
 		this.add(panelSelectMission);
-//		this.setContentPane(panelSelectMission);
 		this.panelSelectMission.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelSelectMission(this.panelSelectMission);
@@ -139,10 +138,9 @@ public class FrameTotal extends JFrame{
 	 * @param gameData 
 	 */
 	public void initPanelGame(GameData gameData){
-		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this.totalData, this,gameData);
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this,gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
-//		this.setContentPane(panelGame);
 		this.panelGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);

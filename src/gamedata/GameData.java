@@ -33,16 +33,19 @@ public class GameData {
 	
 	private LightControl lightControl;
 	
-	////第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
+	//第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
 	private int[][] planetPoints;
 	
+	//当前关卡游戏等级
+	private int level;
 	public GameData(int level){		
 		lightControl = new LightControl();
 		
+		this.level = level;
 		try {
 			//读出配置文件中的所有星球数据
 			LevelConfig levelCfg = ConfigFactory.getLEVEL_CFG();		
-			DataConfig dataCfg = levelCfg.getDataConfig().get(level - 1);
+			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level - 1);
 			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
@@ -107,6 +110,8 @@ public class GameData {
 	public List<PlanetRefraction> getPlanetRefractions() {
 		return planetRefractions;
 	}
-	
-	
+
+	public int getLevel() {
+		return level;
+	}
 }

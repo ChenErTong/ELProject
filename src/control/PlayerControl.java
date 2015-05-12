@@ -19,28 +19,33 @@ public class PlayerControl implements ActionListener{
 		if(code.equalsIgnoreCase("earth")){
 			this.gameControl.launchLight();
 			this.gameControl.stopDrag();
-		}else if(code.equalsIgnoreCase("sun")){
+		} else if(code.equalsIgnoreCase("sun")){
 			
-		}else if(code.equalsIgnoreCase("threeBody")){
+		} else if(code.equalsIgnoreCase("threeBody")){
 			
-		}else if(code.equalsIgnoreCase("ReturnFromWin")){
+		} else if(code.equalsIgnoreCase("ReturnFromWin")){
 			this.gameControl.returnFromWin();
-		}else if(code.equalsIgnoreCase("ReturnFromGame")){
+		} else if(code.equalsIgnoreCase("ReturnFromGame")){
 			this.gameControl.returnFromGame();
-		}else if(code.equalsIgnoreCase("ReturnToStart")){
+		} else if(code.equalsIgnoreCase("ReturnToStart")){
 			this.gameControl.returnToStart();
-		}else if(code.equalsIgnoreCase("ToSelectMission")){
+		} else if(code.equalsIgnoreCase("ToSelectMission")){
 			this.gameControl.toSelectMission();
-		}else if(code.equalsIgnoreCase("ToFirstLevel")){		
-			this.gameControl.toFirstLevel();
-		}else if(code.equalsIgnoreCase("OpenPanelHelp")){
+		} else if(code.equalsIgnoreCase("OpenPanelHelp")){
 			this.gameControl.openFrameHelp();
-		}else if(code.equalsIgnoreCase("CloseFrameHelp")){
+		} else if(code.equalsIgnoreCase("CloseFrameHelp")){
 			this.gameControl.closeFrameHelp();
-		}else if(code.equalsIgnoreCase("NextLevel")){
+		} else if(code.equalsIgnoreCase("NextLevel")){
 			this.gameControl.nextLevel();
-		}else if(code.equalsIgnoreCase("Quit")){
+		} else if(code.equalsIgnoreCase("Quit")){
 			this.gameControl.Quit();
+		} else if(code.equalsIgnoreCase("1")
+				||code.equalsIgnoreCase("2")
+				||code.equalsIgnoreCase("3")
+				||code.equalsIgnoreCase("4")
+				||code.equalsIgnoreCase("5")){
+			int level = Integer.parseInt(code);
+			this.gameControl.toGameLevel(level);
 		}
 	}
 }
