@@ -2,6 +2,7 @@ package gamedata;
 
 import gamecomponent.LightControl;
 import gamecomponent.Planet;
+import gamecomponent.PlanetBlackHole;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
@@ -30,7 +31,10 @@ public class GameData {
 	private List<PlanetReflection> planetReflections;
 	//折射星球组
 	private List<PlanetRefraction> planetRefractions;
+	//黑洞组
+	private List<PlanetBlackHole> planetBlackHoles;
 	
+	//管线控制器
 	private LightControl lightControl;
 	
 	//第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
@@ -49,6 +53,7 @@ public class GameData {
 			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
+			this.planetBlackHoles = new ArrayList<PlanetBlackHole>(dataCfg.blackholeNum);
 			
 			List<PlanetConfig> planetsCfg = dataCfg.getPlanetsConfig();
 			List<Planet> planets = new ArrayList<Planet>(planetsCfg.size());
@@ -73,13 +78,21 @@ public class GameData {
 				this.planetPoints[i][2] = planets.get(i).getRadius();
 			}
 			
+			//声明地球
 			this.planetEarth = (PlanetEarth)planets.get(0);
+			//声明三体星球
 			this.planetThreeBody = (PlanetThreeBody)planets.get(1);
+			//声明反射星球
 			for (int i = 2; i < 2+dataCfg.reflectionNum; i++) {
 				this.planetReflections.add((PlanetReflection) planets.get(i));
 			}
+			//声明折射星球
 			for (int i = 2+dataCfg.reflectionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum; i++) {
 				this.planetRefractions.add((PlanetRefraction) planets.get(i));
+			}
+			//声明黑洞
+			for (int i = 2+dataCfg.reflectionNum+dataCfg.refractionNum; i < 2+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i++) {
+				this.planetBlackHoles.add((PlanetBlackHole) planets.get(i));
 			}
 
 		} catch (Exception e) {
@@ -109,6 +122,10 @@ public class GameData {
 
 	public List<PlanetRefraction> getPlanetRefractions() {
 		return planetRefractions;
+	}
+
+	public List<PlanetBlackHole> getPlanetBlackHoles() {
+		return planetBlackHoles;
 	}
 
 	public int getLevel() {

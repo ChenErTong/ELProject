@@ -15,6 +15,8 @@ public class DataConfig {
 	public int reflectionNum = 0;
 	//折射星球数量
 	public int refractionNum = 0;
+	//黑洞数量
+	public int blackholeNum = 0;
 
 	//构造器
 	public DataConfig(Element data) {
@@ -24,7 +26,7 @@ public class DataConfig {
 		this.name = data.attributeValue("name");
 		this.reflectionNum = Integer.parseInt(data.attributeValue("reflectionNum"));
 		this.refractionNum = Integer.parseInt(data.attributeValue("refractionNum"));
-		
+		this.blackholeNum = Integer.parseInt(data.attributeValue("blackholeNum"));
 		@SuppressWarnings("unchecked")
 		List<Element> planets = data.elements("planet");
 		for (Element planet : planets) {
