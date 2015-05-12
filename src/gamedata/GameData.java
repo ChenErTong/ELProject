@@ -46,6 +46,9 @@ public class GameData {
 	//第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
 	private int[][] planetPoints;
 	
+	//初始光线方向
+	private int lightDirectionX;
+	private int lightDirectionY;
 	//当前关卡游戏等级
 	private int level;
 	public GameData(int level){		
@@ -56,6 +59,9 @@ public class GameData {
 			//读出配置文件中的所有星球数据
 			LevelConfig levelCfg = ConfigFactory.getLEVEL_CFG();		
 			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level - 1);
+			
+			this.lightDirectionX = dataCfg.getLightDirectionX();
+			this.lightDirectionY = dataCfg.getLightDirectionY();
 			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
@@ -150,5 +156,13 @@ public class GameData {
 
 	public PlanetWormHole getPlanetWormHole() {
 		return planetWormHole;
+	}
+
+	public int getLightDirectionX() {
+		return lightDirectionX;
+	}
+
+	public int getLightDirectionY() {
+		return lightDirectionY;
 	}
 }

@@ -13,6 +13,10 @@ public class DataConfig {
 	private ArrayList<PlanetConfig> planetsConfig;
 	//虫洞
 	private WormHoleConfig wormholeConfig;
+	//初始光线方向
+	private int lightDirectionX;
+	private int lightDirectionY;
+	
 	//反射星球数量
 	public int reflectionNum = 0;
 	//折射星球数量
@@ -32,6 +36,8 @@ public class DataConfig {
 		this.refractionNum = Integer.parseInt(data.attributeValue("refractionNum"));
 		this.blackholeNum = Integer.parseInt(data.attributeValue("blackholeNum"));
 		this.wormholeNum = Integer.parseInt(data.attributeValue("wormholeNum"));
+		this.lightDirectionX = Integer.parseInt(data.attributeValue("lightDirectionX"));
+		this.lightDirectionY = Integer.parseInt(data.attributeValue("lightDirectionY"));
 		
 		@SuppressWarnings("unchecked")
 		List<Element> planets = data.elements("planet");
@@ -60,5 +66,13 @@ public class DataConfig {
 
 	public WormHoleConfig getWormholeConfig() {
 		return wormholeConfig;
+	}
+
+	public int getLightDirectionX() {
+		return lightDirectionX;
+	}
+
+	public int getLightDirectionY() {
+		return lightDirectionY;
 	}
 }
