@@ -47,7 +47,7 @@ public class GameData {
 	private LightControl lightControl;
 	
 	//第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
-	private int[][] planetPoints;
+	public int[][] planetPoints;
 	
 	//初始光线方向
 	private int lightDirectionX;

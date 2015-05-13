@@ -1,5 +1,7 @@
 package gamecomponent;
 
+import gamedata.GameData;
+
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,10 +20,12 @@ public class PlanetDragger {
 	private int x,y;
 	private boolean base=true;
 	private boolean contact=false;
+	private GameData gameData;
 	
-	public PlanetDragger(Planet Button,PanelGame panelGame){
+	public PlanetDragger(Planet Button,PanelGame panelGame,GameData gameData){
 		this.button=Button;
 		this.panel=panelGame;
+		this.gameData=gameData;
 		
 		button.addMouseListener(this.createMouseListener());
 		button.addMouseMotionListener(this.createMouseMotionListener());
@@ -48,8 +52,14 @@ public class PlanetDragger {
                 dragPoint=SwingUtilities.convertPoint(button, dragPoint, panel);
                 dragPoint.setLocation(dragPoint.x - x, dragPoint.y - y);
                 //
+                
                 checkBorder(dragPoint, panel.getWidth()-button.getWidth(), panel.getHeight()-button.getHeight());
-                checkPlanet(140,140,50+button.radius,dragPoint,button.radius);
+                for(int i=0;i<gameData.planetPoints.length;i++){
+                	checkPlanet(gameData.planetPoints[i][0]+gameData.planetPoints[i][2],
+                			gameData.planetPoints[i][1]+gameData.planetPoints[i][2],
+                			gameData.planetPoints[i][2]+button.radius,
+                			dragPoint,button.radius);
+                }
 //                checkBorder(dragPoint, panel.getWidth()-button.getWidth(), panel.getHeight()-button.getHeight());
                 if(base){
                 	button.setLocation(dragPoint);

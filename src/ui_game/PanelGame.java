@@ -126,13 +126,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 		
 		//加入反射
 		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
-			dragger[0]=new PlanetDragger(this.gameData.getPlanetReflections().get(i),this);
+			dragger[0]=new PlanetDragger(this.gameData.getPlanetReflections().get(i),this,this.gameData);
 			this.add(this.gameData.getPlanetReflections().get(i));
 		}
 		
 		//加入折射
 		for (int i = 0; i < this.gameData.getPlanetRefractions().size(); i++) {
-			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
+			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this,this.gameData);
 			this.add(this.gameData.getPlanetRefractions().get(i));		
 		}
 		

@@ -11,6 +11,7 @@ import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.sun.awt.AWTUtilities;
@@ -70,6 +71,7 @@ public class FrameTotal extends JFrame{
 		TOTALDATA = new TotalData();
 	}
 	public FrameTotal(GameControl gameControl){
+		this.setIconImage(new ImageIcon("image/bg/界面背景.png").getImage());
 		//游戏控制器
 		this.gameControl = gameControl;
 		//玩家控制器
