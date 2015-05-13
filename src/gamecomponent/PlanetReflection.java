@@ -83,13 +83,13 @@ public class PlanetReflection extends Planet implements Runnable {
 					Point location = getLocation(lastLightX,lastLightY, lightX, lightY,locationX+radius,locationY+radius);
 					
 //					System.out.println("bbb"+location);
-					System.out.println(locationX+radius);
-					System.out.println(locationY+radius);
+//					System.out.println(locationX+radius);
+//					System.out.println(locationY+radius);
 					// 获得新光线的方向
 					Point direct=getDirection(locationX+radius, locationY+radius, directX, directY, location);
 					
-					System.out.println("aaa"+location);
-					System.out.println(direct);
+//					System.out.println("aaa"+location);
+//					System.out.println(direct);
 					// TODO finish it
 					// System.out.println(location);
 					
@@ -135,7 +135,7 @@ public class PlanetReflection extends Planet implements Runnable {
 	 */
 	private Point getLocation(int lastLightX,int lastLightY,int lightX,int lightY,int centerX,int centerY){
 		Point answer = null;
-		System.out.println("lx"+lightX);
+//		System.out.println("lx"+lightX);
 		if(directX==0){
 			double y=Math.pow((radius*radius-Math.pow(centerX-lightX, 2)), 0.5);
 			if(lastLightY>centerY)

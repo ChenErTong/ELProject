@@ -12,6 +12,8 @@ import gamedata.GameData;
 public class PlanetRefraction extends Planet implements Runnable {
 	//也要从gameData获取数据
 	private GameData gameData; 
+	private int lastLightX,lastLightY;
+	private boolean lock=true;
 	/**
 	 * 构造折射的星球
 	 * @param x x坐标
@@ -54,6 +56,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 			}
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if (!lightList.isEmpty()) {
+				lastLightX = lightX;
+				lastLightY = lightY;
 				this.getLight(lightList.get(lightList.size() - 1));
 				//
 				if (checkDistance(this.locationX + radius, this.locationY
@@ -106,15 +110,31 @@ public class PlanetRefraction extends Planet implements Runnable {
 	 */
 	private Point getTouch(int centerX,int centerY,int lightX,int lightY,int radius,double directX,double directY){
 		Point answer = null;
+		if(directX==0){
+			double y=Math.pow((radius*radius-Math.pow(centerX-lightX, 2)), 0.5);
+			if(lastLightY>centerY)
+				return new Point(lightX,centerY+(int)y);
+			else
+				return new Point(lightX,centerY-(int)y);
+		}
+		//
+		if(directY==0){
+			double x=Math.pow((radius*radius-Math.pow(centerY-lightY, 2)), 0.5);
+			if(lastLightX>centerX)
+				return new Point(centerX+(int)x,lightY);
+			else
+				return new Point(centerX-(int)x,lightY);
+		}
 		double x,y;
-
 		//
 		double a=1+Math.pow(directY, 2)/Math.pow(directX, 2);
 		double b=2*directY*lightY/directX-2*Math.pow(directY, 2)*lightX/Math.pow(directX, 2)
 				-2*centerY*directY/directX-2*centerX;
 		double c=centerX*centerX+lightY*lightY-2*directY*lightX*lightY/directX-2*centerY*lightY+2*centerY*lightX*directY/directX
 				+Math.pow(directY*lightX/directX, 2)+centerY*centerY-radius*radius;
-		
+//		System.out.println(lightX+" "+lightY);
+//		System.out.println(directX+" "+directY);
+//		System.out.println(centerX+" "+centerY);
 		if(directX>=0)
 			x=(-b-Math.pow(b*b-4*a*c, 0.5))/(2*a);
 		else
@@ -122,6 +142,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 		y=directY*x/directX+lightY-directY*lightX/directX;
 
 		answer=new Point((int)x,(int)y);
+		if(answer.equals(new Point (0,0))||radius-answer.distance(centerX, centerY)>4)
+			answer=this.binarySearch(new Point(lastLightX,lastLightY),new Point(lightX,lightY), 0);
 		//
 		return answer;
 	}
@@ -172,6 +194,10 @@ public class PlanetRefraction extends Planet implements Runnable {
 //		System.out.println(clock);
 		//
 		answer[0]=new Point((int)(centerX+radius*Math.cos(derta)),(int)(centerY+radius*Math.sin(derta)));
+		if(Math.abs(touch.x-centerX)<3||Math.abs(touch.y-centerY)<3){
+			answer[1]=new Point((int)directX,(int)directY);
+			return answer;
+		}
 		double line=getDirection(answer[0], centerX, centerY, clock, seita);
 		//
 		answer[1]=finalCheck(answer[0], centerX, centerY, line);
@@ -232,7 +258,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 	 */
 	private double getDirection(Point point,int centerX,int centerY,boolean clock,double seita){
 		double answer;
-		answer=Math.atan((point.y-centerY)/(double)(point.x-centerX));
+		answer=Math.asin((point.y-centerY)/(double)radius);
 		if(answer<0)
 			answer+=Math.PI;
 		if(clock)
@@ -258,5 +284,24 @@ public class PlanetRefraction extends Planet implements Runnable {
 		else 
 			answer=new Point(-1000,(int)(-1000*Math.tan(line)));
 		return answer;
+	}
+	//
+	private Point binarySearch(Point first,Point second,int times) {
+		if(times>1000){
+			System.out.println("times");
+			return first;
+		}
+		else{
+			Point half = new Point();
+			half.setLocation(((first.x+second.x)/2),((first.y+second.y)/2));
+			int distance=(int) half.distance(locationX + radius, locationY + radius);
+			if (distance - radius > 1)
+				return binarySearch(half, second,++times);
+			else if (distance - radius < -1)
+				return binarySearch(first, half,++times);
+			else
+				return half;
+		}
+		
 	}
 }
