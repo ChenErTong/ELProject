@@ -4,12 +4,18 @@
 package ui_game;
 
 import java.awt.Color;
-import java.awt.Dimension;
+import ui.FrameTotal;
+import gamecomponent.Planet;
+
+import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -22,15 +28,30 @@ import javax.swing.Timer;
  * 2015年5月7日上午12:01:40
  */
 public class Clock extends JPanel{
+	PanelGame panelGame;
+	private int WINDOWW = FrameTotal.WINDOWW;
+	private int WINDOWH = FrameTotal.WINDOWH;
+	//计时器的大小和位置
+	private final int WIDTH=210,HEIGHT=72;
+	private final int x=(int)(WINDOWW*0.775),y=(int)(WINDOWH*0.25);
 	//开始时刻
 	private long startMillis;
 	//现在时刻
 	private long currentMillis;
-	private int sec;
+	//限时
+	private long totalMillis=180000;
 	//计时器
-	private Timer timer=new Timer(1000,new TimerListener());
+	private Timer timer=new Timer(100,new TimerListener());
+	//表盘图片
+	ImageIcon img=Planet.getImageIcon("image/componnet/表盘.png", WIDTH,HEIGHT);
+	//时间字体
+	private Font font=new Font("swfit_slm_fw",Font.PLAIN,23);
 	
-	public Clock(){
+	public Clock(long totalMillis, PanelGame panelGame){
+		this.panelGame=panelGame;
+		this.totalMillis=totalMillis;
+		this.setBounds(x, y, WIDTH, HEIGHT);
+		this.setOpaque(false);
 		//获取初始化时钟的时刻
 		startMillis=System.currentTimeMillis();
 		this.timer.start();
@@ -41,72 +62,65 @@ public class Clock extends JPanel{
 		timer.stop();
 	}
 	
-	//返回从初始化时钟到当前经过的秒数
-	public int getSec(){
+	//返回从剩余的毫秒数
+	public long getMillis(){
 		currentMillis=System.currentTimeMillis();
-		sec = (int)((currentMillis-startMillis)/1000);
-		return sec;
+		long millis = currentMillis-startMillis;
+		return totalMillis-millis;
 	}
+
 	
-	//返回经过时间的字符串
+	//返回剩余时间的字符串
 	public String getTimeString(){
-		int minute=(sec/60)%60;
+		long millis=getMillis();
+		int sec=(int)(millis/1000);
+		
+		int hundredMillis=(int)((millis)%100);
+		int minute=(int)(sec/60)%60;
 		int second=sec%60;
-		int hour=sec/60/60;
 		String time;
 		
-		if((hour==0)&&(minute==0)){		
-			time="您已经探险了"+second+"秒";
-		}else if(hour==0){
-			time="您已经探险了"+minute+"分钟"+second+"秒";
-		}else time="您已经探险了"+hour+"小时"+minute+"分钟"+second+"秒";
+		time=String.format("%02d", minute)+":"+String.format("%02d", 
+
+second)+":"+String.format("%02d", hundredMillis);
 		
 		return time;
 	}
 
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			sec=getSec();
+			if(getMillis()/100==0){
+				panelGame.gameLose();
+				
+			}
+			
 			repaint();
 		}
 	}
 	
 	protected void paintComponent(Graphics g){
+		
 		super.paintComponent(g);
+		
+		g.setFont(font);
 		g.setColor(Color.white);
-		//draw circle
-		int xCenter=getWidth()/2;
-		int yCenter=getHeight()/2;
-		int radius=(int)(Math.min(getWidth(), getHeight())*0.7*0.5);
-		g.drawOval(xCenter-radius, yCenter-radius, 2*radius, 2*radius);
-		//draw the second hand
-		int sLength=(int)(radius*0.8);
-		int xSec=(int)(xCenter+sLength*Math.sin(Math.PI*sec/30));
-		int ySec=(int)(yCenter-sLength*Math.cos(Math.PI*sec/30));
-		g.drawLine(xCenter, yCenter, xSec, ySec);
+		int xCenter=WIDTH/2;
+		int yCenter=HEIGHT/2;
+		
+		g.drawImage(img.getImage(), 0,0, null);
 		//获取字体的尺寸信息
 		FontMetrics fm=g.getFontMetrics();	
 		int stringAscent=fm.getAscent();
 		int stringDescent=fm.getDescent();
 		int stringWidth=fm.stringWidth(getTimeString());
-		//把这行字水平居中
-		int xCoordinate=getWidth()/2-stringWidth/2;
+		//把这行字居中
+		int xCoordinate=xCenter-stringWidth/2;
+		int yCoordinate=(int)(yCenter+stringAscent/2-HEIGHT*0.055);
 		//显示当前经过时间
-		g.drawString(getTimeString(), xCoordinate, getHeight()-(stringAscent+stringDescent)*2);
+		g.drawString(getTimeString(), xCoordinate, yCoordinate);
 
 	}
 
-/*	public static void main(String[] args) {
-		JFrame frame=new JFrame();
-		frame.setLayout(null);
-		Clock clock=new Clock();
-		clock.setBounds(800,100,150,200);
-	//	clock.setLocation(800, 100);
-		frame.add(clock);
-		frame.setSize(1024, 700);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
-	}
-*/
+
+
 }

@@ -54,8 +54,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//
 	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
-	private Clock clock=new Clock();
-	private int secPassed;
+	private long totalMillis=180000;
+	private Clock clock=new Clock(totalMillis,this);
 	//关卡游戏评级
 	private int grade;
 	//返回按钮
@@ -150,8 +150,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		
 		//加入计时器
 		this.add(clock);
-		clock.setOpaque(false);
-		clock.setBounds(850,200,150,200);
+
 	}
 	
 	/**
@@ -170,9 +169,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 游戏通关，结束游戏
 	 * 停止游戏界面线程，开启通关界面
 	 */
-	private void gameOver(){
+	public void gameOver(){
 		int level = this.gameData.getLevel();
-		this.computeGrade(this.clock.getSec());
+		this.computeGrade(this.clock.getMillis());
 		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
 			FrameTotal.TOTALDATA.levelUp();
 		}
@@ -191,11 +190,24 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.clock.stop();
 	}
 	
+	//time is over, game stops
+	public void gameLose(){
+		this.grade=0;
+		//关闭bgm
+		this.frameTotal.musicGame.stop();
+		//主窗口失去控制权
+		this.frameTotal.setEnabled(false);
+		this.winFrame = new FrameWin(this.playerControl, grade);
+		//计时器停止计时
+		this.clock.stop();
+	}
+	
 	/**
 	 * 根据时间计算出关卡评级
 	 * @param sec 通关时间
 	 */
-	private void computeGrade(int sec) {
+	private void computeGrade(long millis) {
+		int sec=(int)(totalMillis-millis);
 		if (sec<=60){
 			this.grade = 5;
 		}else if(sec<=120){

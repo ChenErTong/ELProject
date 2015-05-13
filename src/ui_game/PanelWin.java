@@ -37,11 +37,15 @@ public class PanelWin extends JPanel{
 	/**
 	 * 返回按钮的图片
 	 */
-	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon
+
+("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
 	/**
 	 * 下一关按钮图片
 	 */
-	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon("image/button/NEXT3.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon
+
+("image/button/NEXT3.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
 	/**
 	 * 背景图片
 	 */
@@ -56,7 +60,9 @@ public class PanelWin extends JPanel{
 		//返回按钮声明
 		returnButton = new JButton();
 		returnButton.setIcon(BUTTON_RETURN);
-		returnButton.setBounds((int)(WIDTH*0.1), (int)(HEIGHT*0.8), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		returnButton.setBounds((int)(WIDTH*0.1), (int)(HEIGHT*0.8), (int)
+
+(WIDTH*0.2), (int)(HEIGHT*0.2));
 		returnButton.addActionListener(playerControl);
 		returnButton.setContentAreaFilled(false);
 		returnButton.setBorderPainted(false);
@@ -66,7 +72,9 @@ public class PanelWin extends JPanel{
 		//下一关按钮声明
 		nextButton = new JButton();
 		nextButton.setIcon(BUTTON_NEXT);
-		nextButton.setBounds((int)(WIDTH*0.75), (int)(HEIGHT*0.8), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		nextButton.setBounds((int)(WIDTH*0.75), (int)(HEIGHT*0.8), (int)
+
+(WIDTH*0.2), (int)(HEIGHT*0.2));
 		nextButton.addActionListener(playerControl);
 		nextButton.setContentAreaFilled(false);
 		nextButton.setBorderPainted(false);
@@ -94,6 +102,8 @@ public class PanelWin extends JPanel{
 			img=new ImageIcon("image/win/C.png");
 		}else if(this.grade == 1){
 			img=new ImageIcon("image/win/D.png");
+		}else if(this.grade==0){
+			img=new ImageIcon("image/lose/lose.png");
 		}
 	}	
 }
