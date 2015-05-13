@@ -6,6 +6,7 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 import control.GameControl;
 import control.PlayerControl;

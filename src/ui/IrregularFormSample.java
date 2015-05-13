@@ -1,43 +1,36 @@
 package ui;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Area;
-import java.awt.image.BufferedImage;
 import java.awt.image.PixelGrabber;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-
-import com.sun.awt.*;
-
+import com.sun.awt.AWTUtilities;
+import javax.swing.SwingUtilities;
 
 public class IrregularFormSample extends JFrame {
     private static final long serialVersionUID = 1L;
     private Point origin; // 用于移动窗体
-    private BufferedImage img; // 用来设定窗体不规则样式的图片
-    int[] pix=new int[3];
+    private Image img; // 用来设定窗体不规则样式的图片
 
-    public IrregularFormSample() throws Exception {
+    public IrregularFormSample() {
         super();
         /*
          * 首先初始化一张图片，我们可以选择一张有透明部分的不规则图片 (当然我们要选择支持Alpha(透明)层的图片格式，如PNG)，这张
          * 图片将被用来生成与其形状相同的不规则窗体
          */
         MediaTracker mt = new MediaTracker(this);
-//      img = new ImageIcon("image/星球1.png").getImage();
-        File file=new File("image/星球/星球4.png");
-        img=ImageIO.read(file);
-
+        img = Toolkit.getDefaultToolkit().createImage("image/星球/xingqiu.png");
         mt.addImage(img, 0);
         try {
             mt.waitForAll();
@@ -49,8 +42,6 @@ public class IrregularFormSample extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        Thread t=new Thread();
-//        t.start();
     }
 
     /**
@@ -67,9 +58,9 @@ public class IrregularFormSample extends JFrame {
         this.origin = new Point();
 
         // 调用AWTUtilities的setWindowShape方法设定本窗体为制定的Shape形状
-        extracted();
+        AWTUtilities.setWindowShape(this, getImageShape(img));
         // 设定窗体可见度
-        extracted1();
+        AWTUtilities.setWindowOpacity(this, 1.0f);
 
         this.setLocationRelativeTo(null);
 
@@ -105,18 +96,10 @@ public class IrregularFormSample extends JFrame {
         });
     }
 
-	private void extracted() {
-		AWTUtilities.setWindowOpacity(this, 1.0f);
-	}
-
-	private void extracted1() {
-		AWTUtilities.setWindowShape(this, getImageShape(img));
-	}
-
     /**
      * 将Image图像转换为Shape图形
      */
-    public Shape getImageShape(BufferedImage img) {
+    public Shape getImageShape(Image img) {
         ArrayList<Integer> x = new ArrayList<Integer>();
         ArrayList<Integer> y = new ArrayList<Integer>();
         int width = img.getWidth(null);// 图像宽度
@@ -136,14 +119,7 @@ public class IrregularFormSample extends JFrame {
         for (int i = 0; i < pixels.length; i++) {
             // 筛选，将不透明的像素的坐标加入到坐标ArrayList x和y中
             int alpha = getAlpha(pixels[i]);
-            int rgb=img.getRGB(i%width,i/width);
-//            pix[0]=(rgb&0xff0000)>>16;
-//        	pix[1]=(rgb&0xff00)>>8;
-//        	pix[2]=(rgb&0xff);
-            
-//            int rgb=
-//            System.out.println(rgb);
-            if ((alpha != 0)/*&&(pix[0]>200)&&(pix[1]>200)&&(pix[2]>200)*/) {
+            if (alpha != 0) {
                 x.add(i % width > 0 ? i % width - 1 : 0);
                 y.add(i % width == 0 ? (i == 0 ? 0 : i / width - 1) : i / width);
             }
@@ -205,21 +181,9 @@ public class IrregularFormSample extends JFrame {
         g.drawImage(img, 0, 0, null);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         IrregularFormSample sample = new IrregularFormSample();
         sample.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         sample.setVisible(true);
     }
-
-//	@Override
-//	public void run() {
-//		// TODO Auto-generated method stub
-//		while(true){
-//			try{
-//				Thread.sleep(50);
-//			}
-//			catch(Exception e){}
-//			this.repaint();
-//		}
-//	}
 }

@@ -65,11 +65,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	
 	//·µ»Ø°´Å¥Í¼Æ¬
 	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
-	//¹Ø±Õ°´Å¥
-	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/¹Ø±Õ°´Å¥.png", (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
 	//±³¾°Í¼Æ¬
-	private ImageIcon[] backgroundDemo=new ImageIcon[3];
-	private Image[] background=new Image[3];
+	private ImageIcon[] backgroundDemo=new ImageIcon[16];
+	private Image[] background=new Image[16];
 	
 	public PanelGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal, GameData gameData){
 		super(bgm, bgmData, soundData, frameTotal);
@@ -79,12 +77,15 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameRefresh = false;
 		
 		this.setLayout(null);
-		//
-		backgroundDemo[0]=new ImageIcon("image/bg/±³¾°1.png");
-		backgroundDemo[1]=new ImageIcon("image/bg/±³¾°2.png");
-		backgroundDemo[2]=new ImageIcon("image/bg/±³¾°3.png");
+		
+		String address = new String();
+		for (int i = 0; i < 16; i++) {
+			address = "image/bg/" + (i+1) + ".jpg";
+			backgroundDemo[i] = new ImageIcon(address);
+		}
+
 		//ÉèÖÃ±³¾°Í¼Æ¬
-		for(int i=0;i<3;i++){
+		for(int i=0;i<16;i++){
 			background[i]=getImage(backgroundDemo[i], this.width, this.height);
 		}
 		
@@ -104,21 +105,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//¼ÓÈë·µ»Ø°´Å¥
 		this.returnButton = new JButton();
 		this.returnButton.setIcon(BUTTON_RETURN);
-		this.returnButton.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.9), (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
+		this.returnButton.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
 		this.returnButton.setContentAreaFilled(false);
 		this.returnButton.setBorderPainted(false);
 		this.returnButton.setActionCommand("ReturnFromGame");
 		this.returnButton.setVisible(true);
 		this.add(returnButton);
-		//¼ÓÈë·µ»Ø°´Å¥
-		this.closeButton = new JButton();
-		this.closeButton.setIcon(BUTTON_CLOSE);
-		this.closeButton.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.2), (int)(HEIGHT*0.1), (int)(HEIGHT*0.1));
-		this.closeButton.setContentAreaFilled(false);
-		this.closeButton.setBorderPainted(false);
-		this.closeButton.setActionCommand("Quit");
-		this.closeButton.setVisible(true);
-		this.add(closeButton);
 		
 		//¼ÓÈëµØÇò
 		this.earth = this.gameData.getPlanetEarth();
@@ -169,7 +161,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	public void addControl(PlayerControl playerControl){
 		this.playerControl = playerControl;		
 		this.returnButton.addActionListener(this.playerControl);
-		this.closeButton.addActionListener(this.playerControl);
 		
 		this.earth.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);
@@ -295,9 +286,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 		super.paintComponent(g);
 		
 		//±³¾°Í¼Æ·Ë¢ÐÂ
-		g.drawImage(background[count/8], 0, 0, null);
+		g.drawImage(background[count/3], 0, 0, null);
 		count ++;
-		if(count>23){
+		if(count>44){
 			count=0;
 		}
 		
