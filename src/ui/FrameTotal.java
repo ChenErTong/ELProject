@@ -102,7 +102,7 @@ public class FrameTotal extends JFrame{
 		
 		// Û±Í÷∏’Î
 		this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
-			    Toolkit.getDefaultToolkit().getImage("image/cursor/cur.png"), new Point(0, 0),
+			    Toolkit.getDefaultToolkit().getImage("image/cursor/Arrow.png"), new Point(0, 0),
 			    "Slef"));
 	}
 	
