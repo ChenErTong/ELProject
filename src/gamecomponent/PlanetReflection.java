@@ -1,9 +1,16 @@
 package gamecomponent;
 
+import gamedata.GameData;
+
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import gamedata.GameData;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * 反射星球   2015.5.1
@@ -13,6 +20,8 @@ import gamedata.GameData;
 public class PlanetReflection extends Planet implements Runnable {
 	//要从gameData获取数据
 	private GameData gameData;
+	private int lastLightX,lastLightY;
+	private boolean lock=true;
 	/**
 	 * 构造反射的星球
 	 * @param x x坐标
@@ -27,7 +36,13 @@ public class PlanetReflection extends Planet implements Runnable {
 		this.radius = Radius;
 		this.gameData=gameData;
 		// 构造按钮的图片，自动缩放
-		this.planetImg = this.getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
+		this.planetImg = getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
+	
+//		this.planetImg = new ImageIcon("image/星球/MARS.gif");
+//		Image previousImage = this.planetImg.getImage();
+//		Image nowImage =previousImage.getScaledInstance(2 * radius, 2 * radius, Image.SCALE_FAST);
+//		this.planetImg = new ImageIcon(nowImage);
+		
 		this.setIcon(planetImg);
 		// 按钮的位置
 		this.setBounds(locationX, locationY, 2 * radius, 2 * radius);
@@ -48,7 +63,7 @@ public class PlanetReflection extends Planet implements Runnable {
 	public void run(){
 		while (true) {
 			try {
-				Thread.sleep(25);
+				Thread.sleep(20);
 			} catch (Exception e) {
 				// TODO
 			}
@@ -57,30 +72,37 @@ public class PlanetReflection extends Planet implements Runnable {
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			
 			if (!lightList.isEmpty()) {
+				lastLightX = lightX;
+				lastLightY = lightY;
 				this.getLight(lightList.get(lightList.size() - 1));
 				// 检测是否发生接触
 				if (checkDistance(locationX, locationY, lightX, lightY, radius)) {
-					
+//					System.out.println(lastLightX+" "+lastLightY);
+//					System.out.println(lightX+" "+lightY);
 					// 获得光线与圆的交点，同时也是新光线的起始点
-					Point location = getLocation(locationX + radius, locationY
-							+ radius, lightX, lightY, radius - 2, directY,
-							directX);
+					Point location = getLocation(lastLightX,lastLightY, lightX, lightY,locationX+radius,locationY+radius);
+					
 //					System.out.println("bbb"+location);
+					System.out.println(locationX+radius);
+					System.out.println(locationY+radius);
 					// 获得新光线的方向
-					Point direct = getDirection(locationX + radius, locationY
-							+ radius, directX, directY, location.x, location.y);
+					Point direct=getDirection(locationX+radius, locationY+radius, directX, directY, location);
+					
+					System.out.println("aaa"+location);
+					System.out.println(direct);
 					// TODO finish it
 					// System.out.println(location);
-					if(location.equals(new Point(0,0))){
-						
-					}
-					else{
+					
+					if(lock){
 						// 将之前的光线停止
 						this.gameData.getLightControl().stopLight(
 								lightList.get(lightList.size() - 1));
 						this.gameData.getLightControl().launchLight(location.x,
-							location.y, direct.x, direct.y);
+								location.y, direct.x, direct.y);
+						lock=false;
 					}
+					else
+						lock=true;
 				}
 
 			}
@@ -111,8 +133,24 @@ public class PlanetReflection extends Planet implements Runnable {
 	 * @param directY 光线y方向的向量
 	 * @return Point类型的交点
 	 */
-	private Point getLocation(int centerX,int centerY,int lightX,int lightY,int radius,double directX,double directY){
+	private Point getLocation(int lastLightX,int lastLightY,int lightX,int lightY,int centerX,int centerY){
 		Point answer = null;
+		System.out.println("lx"+lightX);
+		if(directX==0){
+			double y=Math.pow((radius*radius-Math.pow(centerX-lightX, 2)), 0.5);
+			if(lastLightY>centerY)
+				return new Point(lightX,centerY+(int)y);
+			else
+				return new Point(lightX,centerY-(int)y);
+		}
+		//
+		if(directY==0){
+			double x=Math.pow((radius*radius-Math.pow(centerY-lightY, 2)), 0.5);
+			if(lastLightX>centerX)
+				return new Point(centerX+(int)x,lightY);
+			else
+				return new Point(centerX-(int)x,lightY);
+		}
 		double x,y;
 		//
 		double a=1+Math.pow(directY, 2)/Math.pow(directX, 2);
@@ -130,6 +168,8 @@ public class PlanetReflection extends Planet implements Runnable {
 		y=directY*x/directX+lightY-directY*lightX/directX;
 
 		answer=new Point((int)x,(int)y);
+		if(answer.equals(new Point (0,0))||radius-answer.distance(centerX, centerY)>4)
+			answer=this.binarySearch(new Point(lastLightX,lastLightY),new Point(lightX,lightY), 0);
 		//
 		return answer;
 	}
@@ -143,34 +183,103 @@ public class PlanetReflection extends Planet implements Runnable {
 	 * @param intersectionY 光线与圆的交点y坐标
 	 * @return Point类型，为新光线的方向
 	 */
-	private Point getDirection(int centerX,int centerY,double directX,double directY,int intersectionX,int intersectionY){
-		Point answer=null;
-		double sita=getDegreeWithX(centerX-intersectionX, centerY-intersectionY);
-		double aerfa=getDegreeWithX(directX, directY);
-		double beita=2*sita-aerfa;
-		if(beita<0)
-			beita+=Math.PI;
-//		System.out.println(aerfa+" "+beita);
+	private Point getDirection(int centerX,int centerY,double directX,double directY,Point touch){
+
 		//
-		Point a=new Point(intersectionX+50,(int)(intersectionY+50*Math.tan(beita)));
-		Point b=new Point(intersectionX-50,(int)(intersectionY-50*Math.tan(beita)));
-		if(a.distance(centerX, centerY)>b.distance(centerX, centerY))
-			answer=new Point(1000,(int)(1000*Math.tan(beita)));
-		else 
-			answer=new Point(-1000,(int)(-1000*Math.tan(beita)));
-		return answer;
+		if(Math.abs(touch.x-centerX)<5)
+			return new Point((int)directX,-(int)directY);
+		if(Math.abs(touch.y-centerY)<5)
+			return new Point(-(int)directX,(int)directY);
+		//
+		
+		int instruction=this.getInstruction(touch, centerX, centerY);
+		//
+		double derta=this.getDerta(touch, centerX, centerY, radius, instruction);
+		touch = new Point(touch.x - centerX, touch.y - centerY);
+		//
+		
+		double seita=Math.acos((-directX*touch.x-directY*touch.y)/(touch.distance(0, 0)*Point.distance(directX, directY, 0, 0)));
+		double check=directX*touch.y-directY*touch.x;
+
+			if (check < 0) {
+				int x = (int) (radius * Math.cos(derta + seita));
+				int y = (int) (radius * Math.sin(derta + seita));
+				return new Point(x, y);
+			} else if (check > 0) {
+				int x = (int) (radius * Math.cos(derta - seita));
+				int y = (int) (radius * Math.sin(derta - seita));
+				return new Point(x, y);
+			} else {
+				return new Point(-(int) directX, -(int) directY);
+			}
+
+		
+
 	}
 	/**
-	 * 一个辅助性的方法，获得光线与x正方向的夹角
-	 * @param x 光线传播的x坐标
-	 * @param y 光线传播的y坐标
-	 * @return double的夹角值
+	 * 获取交点在哪一个象限
+	 * @param touch 交点
+	 * @param centerX 星球圆心x
+	 * @param centerY 星球圆心y
+	 * @return 1、2、3、4分别代表一二三四象限
 	 */
-	private double getDegreeWithX(double x,double y){
-		double answer;
-		answer=Math.atan(y/x);
-		if(answer<0)
-			answer+=Math.PI;
+	private int getInstruction(Point touch,int centerX,int centerY){
+		int answer;
+//		System.out.println(touch);
+//		System.out.println(centerX+" "+centerY);
+		if(touch.x>centerX){
+			if(touch.y>centerY)
+				answer=1;
+			else
+				answer=4;
+		}
+		else{
+			if(touch.y>centerY)
+				answer=2;
+			else
+				answer=3;
+		}
 		return answer;
+	}
+	//
+	/**
+	 * 获得交点的极坐标的θ值，在0~2π之间
+	 * @param touch 交点
+	 * @param centerX 星球圆心x
+	 * @param centerY 星球圆心y
+	 * @param radius 星球半径
+	 * @param instruction 象限
+	 * @return 角度
+	 */
+	private double getDerta(Point touch,int centerX,int centerY,int radius,int instruction){
+		double derta = Math.asin((touch.y - centerY) /(double)radius);
+//		System.out.println(arg0);
+//		System.out.println(derta);
+		if (instruction == 2)
+			derta = Math.PI - derta;
+		else if (instruction == 3)
+			derta = Math.PI - derta;
+		else if (instruction == 4)
+			derta += Math.PI * 2;
+		return derta;
+	}
+	//
+	private Point binarySearch(Point first,Point second,int times) {
+		if(times>1000){
+			System.out.println("times");
+			return first;
+		}
+		else{
+			Point half = new Point();
+			half.setLocation(((first.x+second.x)/2),((first.y+second.y)/2));
+			int distance=(int) half.distance(locationX + radius, locationY + radius);
+			if (distance - radius > 1)
+				return binarySearch(half, second,++times);
+			else if (distance - radius < -1)
+				return binarySearch(first, half,++times);
+			else
+				return half;
+		}
+		
 	}
 }
