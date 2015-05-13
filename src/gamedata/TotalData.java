@@ -22,12 +22,16 @@ public class TotalData {
 	private int[] grade;
 	//解锁最高关卡等级
 	private int level;
+	//屏幕分辨率
+	private int resolution;
 	//当地数据文件
 	private File baseData;
 	//文件中关卡评级前缀
 	private String frontGrade;
 	//文件中最高解锁关卡前缀
 	private String frontLevel;
+	//文件中屏幕分辨率前缀
+	private String frontResolution;
 	
 	public TotalData(){
 		this.loadData();
@@ -54,6 +58,13 @@ public class TotalData {
 	public int getLevel() {
 		return level;
 	}
+		
+	public int getResolution() {
+		return resolution;
+	}
+	public void setResolution(int resolution) {
+		this.resolution = resolution;
+	}
 	
 	/**
 	 * 读取文件中数据并赋值
@@ -78,6 +89,11 @@ public class TotalData {
 			this.frontLevel = line.split(":")[0]+":";
 			this.level = Integer.parseInt(line.split(":")[1]);
 			
+			//为解锁关卡最高等级赋值
+			line = br.readLine();
+			this.frontResolution = line.split(":")[0]+":";
+			this.resolution = Integer.parseInt(line.split(":")[1]);
+			
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -97,7 +113,10 @@ public class TotalData {
 				bw.write(line);
 			}
 			
-			line = this.frontLevel + Integer.toString(level);
+			line = this.frontLevel + Integer.toString(level) + "\n";
+			bw.write(line);
+			
+			line = this.frontResolution + Integer.toString(resolution) + "\n";
 			bw.write(line);
 			
 			bw.close();

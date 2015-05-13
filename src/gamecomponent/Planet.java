@@ -2,8 +2,10 @@ package gamecomponent;
 
 import gamedata.GameData;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

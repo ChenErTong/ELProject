@@ -22,8 +22,8 @@ public class ButtonSound extends JButton{
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标
-	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/音效按钮2.png", 50, 50);
-	private ImageIcon muteIcon=Planet.getImageIcon("image/button/禁音按钮版本2.png", 50, 50);
+	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/音效按钮2.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+	private ImageIcon muteIcon=Planet.getImageIcon("image/button/禁音按钮版本2.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 	
 	private ButtonSound b=this;
 	private SoundSyncData soundSyncData;
@@ -33,7 +33,7 @@ public class ButtonSound extends JButton{
 		
 		soundSyncData=data;
 		
-		this.setBounds(960,532,50,50);
+		this.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 		
 		//获得控制位数值
 		control=soundSyncData.getControl();

@@ -4,18 +4,18 @@
  */
 package ui;
 
+import gamecomponent.Planet;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import gamecomponent.Planet;
-import gamedata.TotalData;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
-import control.PlayerControl;
 import audio.BackgroundMusic;
+import control.PlayerControl;
 
 /**
  * @author DorA
@@ -52,7 +52,7 @@ public abstract class PanelTotal extends JDesktopPane{
 	 
 		//背景音乐开关按钮
 		this.jbtSilence=new ButtonBackgroundMusic(bgmSyncData);
-		this.jbtSilence.setMusic(this.bgm);
+		this.jbtSilence.setMusic(bgm);
 		this.add(jbtSilence);
 		
 		//音效开关按钮
@@ -68,7 +68,7 @@ public abstract class PanelTotal extends JDesktopPane{
 	    });
 		jbtMin.setContentAreaFilled(false);
 		jbtMin.setBorderPainted(false);
-		jbtMin.setBounds((int)(width*0.85),(int)(height*0.02),55,55);
+		jbtMin.setBounds((int)(width*0.85),(int)(height*0.02),(int)(width*0.054),(int)(height*0.092));
 		this.add(jbtMin);
 	 }
 }

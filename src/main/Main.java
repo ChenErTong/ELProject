@@ -7,6 +7,8 @@ import java.awt.TrayIcon;
 
 import javax.swing.ImageIcon;
 
+import control.GameControl;
+import control.PlayerControl;
 import ui.FrameTotal;
 import ui_game.PanelGame;
 /**
@@ -16,7 +18,11 @@ import ui_game.PanelGame;
  */
 public class Main {
 	public static void main(String[] args) {
-		new FrameTotal();
+		//游戏控制器
+		GameControl gameControl = new GameControl();
+		
+		FrameTotal frameTotal = new FrameTotal(gameControl);
+		
 		if(SystemTray.isSupported()){
 			SystemTray tray=SystemTray.getSystemTray();
 			Image image=PanelGame.getImage(new ImageIcon("image/bg/界面背景.png"), 20, 20);
@@ -24,7 +30,6 @@ public class Main {
 			try {
 				tray.add(trayIcon);
 			} catch (AWTException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
