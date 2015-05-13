@@ -167,6 +167,10 @@ public class GameControl {
 		this.panelGame.addControl(this);
 	}
 	
+	/**
+	 * 改变界面分辨率
+	 * @param resolution 新分辨率
+	 */
 	public void changeResolution(int resolution){
 		if((FrameTotal.TOTALDATA.getResolution() != resolution)&&(this.panelStartGame != null)){
 			FrameTotal.TOTALDATA.setResolution(resolution);

@@ -23,6 +23,8 @@ public class WindowDragger {
     private Window fWindow;
 
     private Component fComponent;
+    
+    public static boolean CANDRAGGER=true;
 
     private int dX;
 
@@ -59,7 +61,7 @@ public class WindowDragger {
         return new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-            	if(FrameTotal.TOTALDATA.getResolution()!=9999){
+            	if((FrameTotal.TOTALDATA.getResolution()!=9999)&&CANDRAGGER){
             		Point dragPoint = new Point(e.getPoint());
                     SwingUtilities.convertPointToScreen(dragPoint, fComponent);
 

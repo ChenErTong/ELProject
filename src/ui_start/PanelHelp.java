@@ -26,8 +26,8 @@ public class PanelHelp extends JPanel{
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = (int)(FrameTotal.WINDOWW*0.684);
-	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.680);
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.784);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.784);
 	/**
 	 * 面板分四张图显示
 	 */

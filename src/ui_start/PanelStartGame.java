@@ -122,15 +122,18 @@ public class PanelStartGame extends PanelTotal{
 	 * 打开帮助界面
 	 */
 	public void openFrameHelp() {
-		this.frameTotal.setEnabled(false);
+//		this.frameTotal.setEnabled(false);
 		this.frameHelp = new FrameHelp(this.playerControl);
+		this.frameHelp.setAlwaysOnTop(true);
+		WindowDragger.CANDRAGGER = false;
 	}
 	
 	/**
 	 * 关闭帮帮助界面
 	 */
 	public void closeFrameHelp(){
-		this.frameTotal.setEnabled(true);	
+//		this.frameTotal.setEnabled(true);
+		WindowDragger.CANDRAGGER = true;
 		this.frameHelp.dispose();
 	}
 }

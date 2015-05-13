@@ -32,8 +32,8 @@ public class Clock extends JPanel{
 	private int WINDOWW = FrameTotal.WINDOWW;
 	private int WINDOWH = FrameTotal.WINDOWH;
 	//计时器的大小和位置
-	private final int WIDTH=210,HEIGHT=72;
-	private final int x=(int)(WINDOWW*0.775),y=(int)(WINDOWH*0.25);
+	private final int WIDTH=(int)(WINDOWW*0.165),HEIGHT=(int)(WINDOWH*0.080);
+	private final int x=(int)(WINDOWW*0.435),y=(int)(WINDOWH*0.008);
 	//开始时刻
 	private long startMillis;
 	//现在时刻

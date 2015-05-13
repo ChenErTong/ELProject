@@ -31,7 +31,7 @@ public abstract class PanelTotal extends JDesktopPane{
 	//音效开关按钮
 	protected ButtonSound jbtSound;
 	//最小化按钮图片
-	protected ImageIcon mininum=Planet.getImageIcon("image/button/最小化按钮.png",(int)20, (int)20);
+	protected ImageIcon mininum=Planet.getImageIcon("image/button/最小化按钮.png",(int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 	//背景图片
 	public ImageIcon backgroundImg;
 	//玩家控制器
@@ -68,7 +68,7 @@ public abstract class PanelTotal extends JDesktopPane{
 	    });
 		jbtMin.setContentAreaFilled(false);
 		jbtMin.setBorderPainted(false);
-		jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWW*0.031),(int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+		jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.031), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 		this.add(jbtMin);
 	 }
 }

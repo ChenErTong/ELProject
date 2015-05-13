@@ -20,8 +20,8 @@ public class PanelWin extends JPanel{
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = (int)(FrameTotal.WINDOWW*0.6);
-	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.6);
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.784);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.784);
 	/**
 	 * 通关评级
 	 */

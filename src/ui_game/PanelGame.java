@@ -22,6 +22,7 @@ import ui.BgmSyncData;
 import ui.FrameTotal;
 import ui.PanelTotal;
 import ui.SoundSyncData;
+import ui.WindowDragger;
 import audio.BackgroundMusic;
 import control.GameControl;
 import control.PlayerControl;
@@ -184,8 +185,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
-		this.frameTotal.setEnabled(false);
+		WindowDragger.CANDRAGGER = false;
 		this.winFrame = new FrameWin(this.playerControl, this.grade);
+		this.winFrame.setAlwaysOnTop(true);
 		//计时器停止计时
 		this.clock.stop();
 	}
@@ -196,8 +198,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
-		this.frameTotal.setEnabled(false);
-		this.winFrame = new FrameWin(this.playerControl, grade);
+		WindowDragger.CANDRAGGER = false;
+		this.winFrame = new FrameWin(this.playerControl, this.grade);
+		this.winFrame.setAlwaysOnTop(true);
 		//计时器停止计时
 		this.clock.stop();
 	}
@@ -234,7 +237,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	public void closeFrameWin() {
 		//主窗口得到控制权
-		this.frameTotal.setEnabled(true);
+		WindowDragger.CANDRAGGER = true;
 		this.winFrame.dispose();	
 	}
 
