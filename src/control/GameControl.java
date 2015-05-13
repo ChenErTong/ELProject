@@ -80,6 +80,7 @@ public class GameControl {
 	public void toSelectMission() {
 		this.frameTotal.musicStart.stop();
 		this.frameTotal.remove(this.panelStartGame);
+		this.panelStartGame = null;
 		this.frameTotal.initPanelSelectMission();
 	}
 	
@@ -89,6 +90,7 @@ public class GameControl {
 	public void returnFromWin() {
 		this.panelGame.closeFrameWin();
 		this.frameTotal.remove(this.panelGame);
+		this.panelGame = null;
 		this.frameTotal.initPanelSelectMission();
 	}
 	
@@ -97,6 +99,7 @@ public class GameControl {
 	 */
 	public void returnFromGame() {
 		this.frameTotal.remove(this.panelGame);
+		this.panelGame = null;
 		this.frameTotal.initPanelSelectMission();
 	}
 	
@@ -105,6 +108,7 @@ public class GameControl {
 	 */
 	public void returnToStart() {
 		this.frameTotal.remove(this.panelSelectMission);
+		this.panelSelectMission = null;
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.initPanelStartGame();
 	}
@@ -122,13 +126,7 @@ public class GameControl {
 	public void closeFrameHelp() {
 		this.panelStartGame.closeFrameHelp();	
 	}
-	
-	/**
-	 * 打开配置界面
-	 */
-	public void openFrameConfig() {
-		this.panelStartGame.openFrameConfig();
-	}
+
 	/**
 	 * 进行下一关
 	 */
@@ -139,7 +137,8 @@ public class GameControl {
 		//重新建立单局游戏数据
 		this.gameData = new GameData(this.gameData.getLevel() + 1);
 		//移除原有的游戏界面
-		this.frameTotal.remove(this.panelGame);		
+		this.frameTotal.remove(this.panelGame);
+		this.panelGame = null;
 		//下一关游戏界面
 		this.frameTotal.initPanelGame(this.gameData);
 	}
@@ -162,8 +161,18 @@ public class GameControl {
 		this.gameData =new GameData(level);
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.remove(this.panelSelectMission);
+		this.panelSelectMission = null;
 		this.frameTotal.initPanelGame(this.gameData);
 		
 		this.panelGame.addControl(this);
+	}
+	
+	public void changeResolution(int resolution){
+		if((FrameTotal.TOTALDATA.getResolution() != resolution)&&(this.panelStartGame != null)){
+			FrameTotal.TOTALDATA.setResolution(resolution);
+			FrameTotal.TOTALDATA.saveData();
+			this.frameTotal.dispose();
+			this.frameTotal = new FrameTotal(this);
+		}
 	}
 }

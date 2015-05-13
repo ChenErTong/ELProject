@@ -29,8 +29,7 @@ public class BackgroundMusic{
 		URI uri=file.toURI();
 		URL url=uri.toURL();
 			
-		this.clip=Applet.newAudioClip(url);
-		this.clip.loop();			
+		this.clip=Applet.newAudioClip(url);			
 	}
 //		try{
 //			bgm =MidiSystem.getSequence(new File(musicFile));
@@ -50,7 +49,6 @@ public class BackgroundMusic{
 	
 	//开始播放（从暂停处开始）
 	public  void play() {
-		System.out.println("play");
 		this.clip.play();
 //		if (!player.isRunning()) {
 //			

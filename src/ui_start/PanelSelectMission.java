@@ -113,15 +113,16 @@ public class PanelSelectMission extends PanelTotal{
 	 */
 	public void addControl(PlayerControl playerControl) {
 		this.playerControl = playerControl;
+		
 		/**
 		 * 给所有关卡按钮加入玩家控制器进行监听
 		 */
 		switch(FrameTotal.TOTALDATA.getLevel()){
-		case 5: jbtMission5.addActionListener(playerControl);
-		case 4: jbtMission4.addActionListener(playerControl);
-		case 3: jbtMission3.addActionListener(playerControl);
-		case 2: jbtMission2.addActionListener(playerControl);
-		case 1: jbtMission1.addActionListener(playerControl);
+		case 5: jbtMission5.addActionListener(this.playerControl);
+		case 4: jbtMission4.addActionListener(this.playerControl);
+		case 3: jbtMission3.addActionListener(this.playerControl);
+		case 2: jbtMission2.addActionListener(this.playerControl);
+		case 1: jbtMission1.addActionListener(this.playerControl);
 		}
 		
 		jbtBack.addActionListener(playerControl);

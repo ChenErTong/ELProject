@@ -164,9 +164,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * @param playerControl
 	 */
 	public void addControl(PlayerControl playerControl){
-		this.playerControl = playerControl;
-		this.returnButton.addActionListener(playerControl);
-		this.closeButton.addActionListener(playerControl);
+		this.playerControl = playerControl;		
+		this.returnButton.addActionListener(this.playerControl);
+		this.closeButton.addActionListener(this.playerControl);
 		
 		this.earth.addActionListener(this.playerControl);
 		this.threeBody.addActionListener(this.playerControl);

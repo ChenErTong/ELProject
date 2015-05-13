@@ -2,6 +2,8 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 /**
  * 玩家点击按钮信号输入玩家控制台，并引入GameControl。
  * @author 恩哥哥
@@ -35,8 +37,6 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.openFrameHelp();
 		} else if(code.equalsIgnoreCase("CloseFrameHelp")){
 			this.gameControl.closeFrameHelp();
-		} else if(code.equalsIgnoreCase("OpenPanelConfig")){
-			this.gameControl.openFrameConfig();
 		} else if(code.equalsIgnoreCase("NextLevel")){
 			this.gameControl.nextLevel();
 		} else if(code.equalsIgnoreCase("Quit")){

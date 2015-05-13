@@ -3,9 +3,12 @@ package ui;
 import gamedata.GameData;
 import gamedata.TotalData;
 
+import java.awt.AWTEvent;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
@@ -14,6 +17,7 @@ import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
 import audio.BackgroundMusic;
 import control.GameControl;
+import control.KeyControl;
 import control.PlayerControl;
 /**
  * 抽象类：所有界面的模板，包括界面标题栏标题，大小，位置等信息
@@ -57,17 +61,22 @@ public class FrameTotal extends JFrame{
 	private GameControl gameControl;
 	//玩家控制器
 	private PlayerControl playerControl;
-	
+	//键盘控制器
+	private KeyControl keyControl;
 	static{
 		TOTALDATA = new TotalData();
 	}
-	public FrameTotal(){
+	public FrameTotal(GameControl gameControl){
+		//游戏控制器
+		this.gameControl = gameControl;
+		//玩家控制器
+		this.playerControl = new PlayerControl(gameControl);
+				
 		try {
 			musicStart=new BackgroundMusic("audio/music/Cornfield Chase.wav");
 			musicSelect=new BackgroundMusic("audio/music/Cornfield Chase.wav");
 			musicGame=new BackgroundMusic("audio/music/Cornfield Chase.wav");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -76,9 +85,13 @@ public class FrameTotal extends JFrame{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screen = toolkit.getScreenSize();  
 		
-		WINDOWW = 1024;
+		WINDOWW = TOTALDATA.getResolution();
 		WINDOWH = (int) (WINDOWW * 0.586);
-		
+		if(WINDOWW == 9999){
+			WINDOWW = screen.width;
+			WINDOWH = screen.height;
+		}
+	
 		this.setSize(WINDOWW, WINDOWH);   
 
 		//将界面置于显示屏正中央
@@ -104,6 +117,9 @@ public class FrameTotal extends JFrame{
 		this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 			    Toolkit.getDefaultToolkit().getImage("image/cursor/Arrow.png"), new Point(0, 0),
 			    "Slef"));
+		
+		this.keyControl = new KeyControl(this.gameControl);
+		Toolkit.getDefaultToolkit().addAWTEventListener(this.keyControl, AWTEvent.KEY_EVENT_MASK);
 	}
 	
 	/**
@@ -128,6 +144,7 @@ public class FrameTotal extends JFrame{
 		this.validate();
 		this.gameControl.setPanelStartGame(this.panelStartGame);
 		this.repaint();
+		this.requestFocus();
 	}
 	
 	/**
@@ -141,6 +158,7 @@ public class FrameTotal extends JFrame{
 		this.validate();
 		this.gameControl.setPanelSelectMission(this.panelSelectMission);
 		this.repaint();
+		this.requestFocus();
 	}
 	
 	/**
@@ -155,5 +173,6 @@ public class FrameTotal extends JFrame{
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);
 		this.repaint();
+		this.requestFocus();
 	}
 }
