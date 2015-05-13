@@ -10,16 +10,16 @@ import gamedata.GameData;
 
 public class PlanetBlackHole extends Planet implements Runnable{
 	private GameData gameData;
-	private boolean gameContinue=true;
 	public PlanetBlackHole(int x,int y,int Radius,GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;
 		this.radius=Radius;
 		this.gameData=gameData;
+
 		//构造按钮的图片，自动缩放
 //		Image temp=new Image().
-		this.planetImg=this.getImageIcon("image/星球/星球6.png", 2*radius, 2*radius);
+		this.planetImg=getImageIcon("image/星球/星球6.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);
@@ -29,14 +29,12 @@ public class PlanetBlackHole extends Planet implements Runnable{
 		this.setBorderPainted(false);
 		//设置可见
 		this.setVisible(true);
-		//
+		
 		Thread t=new Thread(this);
 		t.start();
 	}
 
-	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		while(true){
 			try{
 				Thread.sleep(25);
@@ -44,25 +42,18 @@ public class PlanetBlackHole extends Planet implements Runnable{
 			catch(Exception e){
 				System.out.println("CXWorks   在PlanetBlackHole线程抛出");
 			}
-			//
+
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
-//			System.out.println("aaa");
+
 			if(!lightList.isEmpty()){
 				this.getLight(lightList.get(lightList.size() - 1));
 				if(checkDistance(locationX, locationY, lightX, lightY, radius)){
-					// 将之前的光线停止
-					this.gameData.getLightControl().stopLight(
-							lightList.get(lightList.size() - 1));
-					//
-					
-					gameContinue=false;
+					GAMECONTINUE=false;
 				}
 			}
-		}
-		
-		
+		}	
 	}
-	//
+	
 	/**
 	 * 用于检测光线顶点与星球的距离，判断是否接触
 	 * @param centerX 星球按钮中心的x坐标，就是locationX+radius
@@ -76,11 +67,4 @@ public class PlanetBlackHole extends Planet implements Runnable{
 		int answer=(int) (radius-Point.distance(centerX+radius, centerY+radius, lightX, lightY));
 		return (answer>-1);
 	}
-	//
-
-	public boolean isGameContinue() {
-		return gameContinue;
-	}
-	
-
 }

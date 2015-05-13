@@ -6,7 +6,7 @@
         <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="490" radius="35"/>
         <planet className="gamecomponent.PlanetReflection" locationX="500" locationY="400" radius="30"/>
 		<planet className="gamecomponent.PlanetRefraction" locationX="500" locationY="200" radius="30"/>           
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="300" locationY="225" radius="30"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="90" locationY="400" radius="30"/>
     	<wormhole className="gamecomponent.PlanetWormHole" location1X="200" location1Y="180" location2X="700" location2Y="100" radius="30"/>
     </gamedata>
     

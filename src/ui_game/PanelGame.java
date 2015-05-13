@@ -45,7 +45,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private GameData gameData;
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
-	private PlanetBlackHole blackHole;
+	private PlanetBlackHole[] blackHoles;
 	private PlanetWormHole wormHole;
 	//游戏胜利
 	private boolean isGameWin;
@@ -143,9 +143,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this);
 			this.add(this.gameData.getPlanetRefractions().get(i));		
 		}
+		
 		//加入黑洞
-		for (int i = 0; i < this.gameData.getPlanetBlackHoles().size(); i++) {
-			this.add(this.gameData.getPlanetBlackHoles().get(i));		
+		this.blackHoles = new PlanetBlackHole[this.gameData.getPlanetBlackHoles().size()];
+		for (int i = 0; i < this.blackHoles.length; i++) {
+			this.blackHoles[i] = this.gameData.getPlanetBlackHoles().get(i);
+			this.add(this.blackHoles[i]);		
 		}
 		//加入虫洞
 		if(this.gameData.haveWornhole){
@@ -243,6 +246,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 		if((endX<0)||(endX>WIDTH)||(endY<0)||(endY>HEIGHT)){
 			return true;
 		}
+		
+		if(!Planet.isGAMECONTINUE()){
+			return true;
+		}
+		
 		return false;		
 	}
 	
@@ -254,7 +262,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 				// TODO: handle exception
 			}
 			
-			// TODO 判断光线是否进入星球范围内(三体星与工具星不同，三体是删除所有光线而工具星则是静止一条光线并处理后发射另一条光线)
+			//判断光线是否进入星球范围内(三体星与工具星不同，三体是删除所有光线而工具星则是静止一条光线并处理后发射另一条光线)
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
 			if(!lightList.isEmpty()){
 				for (int i = 0; i < lightList.size(); i++) {
@@ -277,6 +285,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.reDrag();
 		this.gameData.getLightControl().deleteLights();
 		this.gameData.refreshLight();
+		Planet.setGAMECONTINUE();
 	}
 
 	/**

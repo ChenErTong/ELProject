@@ -12,8 +12,10 @@ package gamecomponent;
 import gamedata.GameData;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,7 +23,7 @@ import javax.swing.JOptionPane;
 
 import control.PlayerControl;
 
-public class PlanetEarth extends Planet{
+public class PlanetEarth extends Planet implements Runnable{
 	/**
 	 * 构造方法：构造地球，并且添加内置的监听器
 	 * @param x 地球的水平坐标
@@ -29,8 +31,8 @@ public class PlanetEarth extends Planet{
 	 * @param Radius 地球的半径
 	 * @author CX
 	 */
-	public static int lightX;
-	public static int lightY;
+	public static int launchX;
+	public static int launchY;
 	
 	public PlanetEarth(int x,int y,int Radius,GameData gameData){
 		//常规的参数设置
@@ -48,15 +50,41 @@ public class PlanetEarth extends Planet{
 		this.setBorderPainted(false);
 		//设置可见
 		this.setVisible(true);
-		//
-		lightX=this.locationX+this.radius;
-		lightY=this.locationY+this.radius;
+		//光线初始坐标
+		launchX=this.locationX+this.radius;
+		launchY=this.locationY+this.radius;
 	}
-//	public static int getLightX(){
-//		
-//		return ;
-//	}
-//	public int getLightY(){
-//		return this.locationY+this.radius;
-//	}
+
+	public void run() {
+		while(true){
+			try{
+				Thread.sleep(25);
+			}
+			catch(Exception e){
+			}
+
+			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
+
+			if(!lightList.isEmpty()){
+				this.getLight(lightList.get(lightList.size() - 1));
+				if(checkDistance(locationX, locationY, lightX, lightY, radius)){
+					GAMECONTINUE=false;
+				}
+			}
+		}		
+	}
+
+	/**
+	 * 用于检测光线顶点与星球的距离，判断是否接触
+	 * @param centerX 星球按钮中心的x坐标，就是locationX+radius
+	 * @param centerY 星球按钮中心的y坐标，就是locationY+radius
+	 * @param lightX 光线顶点x坐标
+	 * @param lightY 光线顶点y坐标
+	 * @param radius 星球半径
+	 * @return boolean值，true代表发生接触；false代表未发生接触
+	 */
+	private boolean checkDistance(int centerX,int centerY,int lightX,int lightY,int radius){
+		int answer=(int) (radius-Point.distance(centerX+radius, centerY+radius, lightX, lightY));
+		return (answer>-1);
+	}
 }

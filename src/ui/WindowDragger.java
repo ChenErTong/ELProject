@@ -59,10 +59,12 @@ public class WindowDragger {
         return new MouseMotionAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                Point dragPoint = new Point(e.getPoint());
-                SwingUtilities.convertPointToScreen(dragPoint, fComponent);
+            	if(FrameTotal.TOTALDATA.getResolution()!=9999){
+            		Point dragPoint = new Point(e.getPoint());
+                    SwingUtilities.convertPointToScreen(dragPoint, fComponent);
 
-                fWindow.setLocation(dragPoint.x - dX, dragPoint.y - dY);
+                    fWindow.setLocation(dragPoint.x - dX, dragPoint.y - dY);
+            	}       
             }
         };
     }

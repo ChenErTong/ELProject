@@ -63,12 +63,12 @@ public class GameControl {
 	
 	/**
 	 * 发射光线
-	 * @param lightX
+	 * @param launchX
 	 * @param lightY
 	 */
 	public void launchLight() {
 		//TODO 启动光线  初始X坐标，初始Y坐标，方向向量X坐标，方向向量Y坐标
-		this.gameData.getLightControl().launchLight(PlanetEarth.lightX, PlanetEarth.lightY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
+		this.gameData.getLightControl().launchLight(PlanetEarth.launchX, PlanetEarth.launchY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
 		this.panelGame.repaint();
 		//音效
 		SoundEffect.LIGHT.play();

@@ -34,6 +34,7 @@ public abstract class Planet extends JButton {
 	//游戏数据
 	protected GameData gameData;
 	
+	protected static boolean GAMECONTINUE = true;
 	/**
 	 * 将图片缩放到指定形式
 	 * @author CX
@@ -77,5 +78,13 @@ public abstract class Planet extends JButton {
 
 	public int getRadius() {
 		return radius;
+	}
+
+	public static boolean isGAMECONTINUE() {
+		return GAMECONTINUE;
+	}
+
+	public static void setGAMECONTINUE() {
+		GAMECONTINUE = true;
 	}
 }
