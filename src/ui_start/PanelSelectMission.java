@@ -24,11 +24,7 @@ import control.PlayerControl;
  */
 public class PanelSelectMission extends PanelTotal{
 	//按钮的图标
-	private ImageIcon icon1=Planet.getImageIcon("image/button/解锁界面星球1.png", (int)(FrameTotal.WINDOWW*0.125), (int)(FrameTotal.WINDOWH*0.213));
-	private ImageIcon icon2=Planet.getImageIcon("image/button/解锁界面星球2.png", (int)(FrameTotal.WINDOWW*0.105), (int)(FrameTotal.WINDOWH*0.197));
-	private ImageIcon icon3=Planet.getImageIcon("image/button/解锁界面星球3.png", (int)(FrameTotal.WINDOWW*0.125), (int)(FrameTotal.WINDOWH*0.188));
-	private ImageIcon icon4=Planet.getImageIcon("image/button/解锁界面星球4.png", (int)(FrameTotal.WINDOWW*0.110), (int)(FrameTotal.WINDOWH*0.188));
-	private ImageIcon icon5=Planet.getImageIcon("image/button/解锁界面星球5.png", (int)(FrameTotal.WINDOWW*0.115), (int)(FrameTotal.WINDOWH*0.180));
+	private ImageIcon[] selectIcon;
 	
 	private ImageIcon imgReturn=Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
 	//各个关卡进入按钮
@@ -42,41 +38,55 @@ public class PanelSelectMission extends PanelTotal{
 	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData,frameTotal);
 		
+		//根据关卡解锁数量及关卡等级声明按钮的图标
+		int imageW = (int)(FrameTotal.WINDOWW*0.112);
+		int imageH = (int)(FrameTotal.WINDOWH*0.184);
+		this.selectIcon = new ImageIcon[5];
+		String address = new String();
+		for (int i = 0; i < selectIcon.length; i++) {
+			if(i<FrameTotal.TOTALDATA.getLevel()){
+				address = "image/button/" + (i+1) + FrameTotal.TOTALDATA.getGrade(i+1)+".png";				
+			}else{
+				address = "image/button/" + (i+1) +"-1.png";
+			}
+			this.selectIcon[i] = Planet.getImageIcon(address, imageW, imageH);
+		}
+	
 		//显示第一关图标
-		this.jbtMission1=new JButton(icon1);
-		this.jbtMission1.setBounds((int)(FrameTotal.WINDOWW*0.044), (int)(FrameTotal.WINDOWH*0.213), (int)(FrameTotal.WINDOWW*0.125), (int)(FrameTotal.WINDOWH*0.213));
+		this.jbtMission1=new JButton(this.selectIcon[0]);
+		this.jbtMission1.setBounds((int)(FrameTotal.WINDOWW*0.044), (int)(FrameTotal.WINDOWH*0.213), imageW, imageH);
 		this.jbtMission1.setContentAreaFilled(false);
 		this.jbtMission1.setBorderPainted(false);
 		this.jbtMission1.setActionCommand("1");
 		this.add(jbtMission1);
 	
 		//显示第二关图标
-		this.jbtMission2=new JButton(icon2);
-		this.jbtMission2.setBounds((int)(FrameTotal.WINDOWW*0.199), (int)(FrameTotal.WINDOWH*0.370), (int)(FrameTotal.WINDOWW*0.105), (int)(FrameTotal.WINDOWH*0.197));
+		this.jbtMission2=new JButton(this.selectIcon[1]);
+		this.jbtMission2.setBounds((int)(FrameTotal.WINDOWW*0.199), (int)(FrameTotal.WINDOWH*0.370), imageW, imageH);
 		this.jbtMission2.setContentAreaFilled(false);
 		this.jbtMission2.setBorderPainted(false);
 		this.jbtMission2.setActionCommand("2");
 		this.add(jbtMission2);
 	
 		//显示第三关图标
-		this.jbtMission3=new JButton(icon3);
-		this.jbtMission3.setBounds((int)(FrameTotal.WINDOWW*0.432), (int)(FrameTotal.WINDOWH*0.427), (int)(FrameTotal.WINDOWW*0.125), (int)(FrameTotal.WINDOWH*0.188));
+		this.jbtMission3=new JButton(this.selectIcon[2]);
+		this.jbtMission3.setBounds((int)(FrameTotal.WINDOWW*0.432), (int)(FrameTotal.WINDOWH*0.427), imageW, imageH);
 		this.jbtMission3.setContentAreaFilled(false);
 		this.jbtMission3.setBorderPainted(false);
 		this.jbtMission3.setActionCommand("3");
 		this.add(jbtMission3);
 	
 		//显示第四关图标
-		this.jbtMission4=new JButton(icon4);
-		this.jbtMission4.setBounds((int)(FrameTotal.WINDOWW*0.686), (int)(FrameTotal.WINDOWH*0.378), (int)(FrameTotal.WINDOWW*0.110), (int)(FrameTotal.WINDOWH*0.188));
+		this.jbtMission4=new JButton(this.selectIcon[3]);
+		this.jbtMission4.setBounds((int)(FrameTotal.WINDOWW*0.686), (int)(FrameTotal.WINDOWH*0.378), imageW, imageH);
 		this.jbtMission4.setContentAreaFilled(false);
 		this.jbtMission4.setBorderPainted(false);
 		this.jbtMission4.setActionCommand("4");
 		this.add(jbtMission4);
 	
 		//显示第五关图标
-		this.jbtMission5=new JButton(icon5);
-		this.jbtMission5.setBounds((int)(FrameTotal.WINDOWW*0.851), (int)(FrameTotal.WINDOWH*0.253), (int)(FrameTotal.WINDOWW*0.115), (int)(FrameTotal.WINDOWH*0.180));
+		this.jbtMission5=new JButton(this.selectIcon[4]);
+		this.jbtMission5.setBounds((int)(FrameTotal.WINDOWW*0.851), (int)(FrameTotal.WINDOWH*0.253), imageW, imageH);
 		this.jbtMission5.setContentAreaFilled(false);
 		this.jbtMission5.setBorderPainted(false);
 		this.jbtMission5.setActionCommand("5");
