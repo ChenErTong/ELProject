@@ -10,6 +10,7 @@ import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
 import gamecomponent.PlanetWormHole;
 
+import java.awt.Point;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
@@ -174,5 +175,10 @@ public class GameData {
 
 	public int getLightDirectionY() {
 		return lightDirectionY;
+	}
+	//
+	public void refreshPlanet(int tag,Point location){
+		this.planetPoints[tag][0]=location.x;
+		this.planetPoints[tag][1]=location.y;
 	}
 }

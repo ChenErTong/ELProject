@@ -44,7 +44,16 @@ public class PlanetRefraction extends Planet implements Runnable {
 		t.start();
 		
 	}
-	
+	/**
+	 * 每次改变位置的时候也要同步星球的数据
+	 */
+	public void setLocation(Point location){
+		super.setLocation(location);
+		this.locationX=location.x;
+		this.locationY=location.y;
+//		System.out.println(location);
+		this.gameData.refreshPlanet(this.tag, location);
+	}
 	/**
 	 * 开始检测、折射的线程
 	 */

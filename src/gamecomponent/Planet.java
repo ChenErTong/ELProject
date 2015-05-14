@@ -5,6 +5,7 @@ import gamedata.GameData;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -60,15 +61,7 @@ public abstract class Planet extends JButton {
 		this.directY=light.getDirectY();
 	}
 	
-	@Override
-	/**
-	 * 每次改变位置的时候也要同步星球的数据
-	 */
-	public void setLocation(int x,int y){
-		super.setLocation(x, y);
-		this.locationX=x;
-		this.locationY=y;
-	}
+	
 
 	public int getLocationX() {
 		return locationX;

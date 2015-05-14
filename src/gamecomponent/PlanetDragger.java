@@ -55,6 +55,8 @@ public class PlanetDragger {
                 
                 checkBorder(dragPoint, panel.getWidth()-button.getWidth(), panel.getHeight()-button.getHeight());
                 for(int i=0;i<gameData.planetPoints.length;i++){
+                	if(i==button.tag)
+                		continue;
                 	checkPlanet(gameData.planetPoints[i][0]+gameData.planetPoints[i][2],
                 			gameData.planetPoints[i][1]+gameData.planetPoints[i][2],
                 			gameData.planetPoints[i][2]+button.radius,
@@ -62,7 +64,9 @@ public class PlanetDragger {
                 }
 //                checkBorder(dragPoint, panel.getWidth()-button.getWidth(), panel.getHeight()-button.getHeight());
                 if(base){
+                	
                 	button.setLocation(dragPoint);
+//                	gameData.refreshPlanet(button.tag,dragPoint);
                 }
             }
 
