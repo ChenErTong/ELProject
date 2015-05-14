@@ -195,7 +195,5 @@ public class GameControl {
 		for (int i = 0; i < this.gameData.getPlanetBlackHoles().size(); i++) {
 			System.out.println("黑洞"+i+":x="+this.gameData.getPlanetBlackHoles().get(i).getLocationX()+"||y="+this.gameData.getPlanetBlackHoles().get(i).getLocationY());
 		}
-		System.out.println("第一虫洞 :x="+this.gameData.getPlanetWormHole().getWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getWormHole().getLocationY());
-		System.out.println("第二虫洞 :x="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationY());
 	}
 }

@@ -213,15 +213,15 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private void computeGrade(long millis) {
 		int sec=(int)(totalMillis-millis);
 		if (sec<=60){
-			this.grade = 5;
+			this.grade = 1;
 		}else if(sec<=120){
-			this.grade = 4;
+			this.grade = 2;
 		}else if(sec<=180){
 			this.grade = 3;
 		}else if(sec<=240){
-			this.grade = 2;
+			this.grade = 4;
 		}else if(sec>240){
-			this.grade = 1;
+			this.grade = 5;
 		}
 	}
 	

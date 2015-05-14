@@ -33,12 +33,12 @@ public class FrameHelp extends JFrame{
 		this.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(Toolkit.getDefaultToolkit().getImage("image/cursor/Arrow.png"), new Point(0, 0),"Slef"));
 		//设置为不可移动
 		this.setLocationRelativeTo(null);
-		//将窗体设为圆形
-		this.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent e) {
-                setShape(new Ellipse2D.Double((w-h)/2,0,h,h));
-            }
-        });
+//		//将窗体设为圆形
+//		this.addComponentListener(new ComponentAdapter() {
+//            public void componentResized(ComponentEvent e) {
+//                setShape(new Ellipse2D.Double((w-h)/2,0,h,h));
+//            }
+//        });
 		
 		this.setVisible(true);
 	}

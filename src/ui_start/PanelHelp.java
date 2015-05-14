@@ -31,7 +31,7 @@ public class PanelHelp extends JPanel{
 	/**
 	 * 面板分四张图显示
 	 */
-	private ImageIcon img1=new ImageIcon("image/help/help1.jpg");
+	private ImageIcon img1=Planet.getImageIcon("image/help/通关界面A.png", WIDTH, HEIGHT);
 	private ImageIcon img2=new ImageIcon("image/help/help2.jpg");
 	private ImageIcon img3=new ImageIcon("image/help/help3.jpg");
 	private ImageIcon img4=new ImageIcon("image/help/help4.jpg");
