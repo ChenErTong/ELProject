@@ -183,7 +183,6 @@ public class GameControl {
 	}
 
 	public void printPlanetLocation() {
-		System.out.println(111);
 		System.out.println("µØÇò :x="+this.gameData.getPlanetEarth().getLocationX()+"||y="+this.gameData.getPlanetEarth().getLocationY());
 		System.out.println("ÈýÌå :x="+this.gameData.getPlanetThreeBody().getLocationX()+"||y="+this.gameData.getPlanetThreeBody().getLocationY());
 		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {

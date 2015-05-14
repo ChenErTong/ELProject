@@ -6,6 +6,8 @@ import gamecomponent.Planet;
 import gamecomponent.PlanetBlackHole;
 import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
+import gamecomponent.PlanetReflection;
+import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetThreeBody;
 import gamecomponent.PlanetWormHole;
 import gamedata.GameData;
@@ -28,6 +30,7 @@ import ui.WindowDragger;
 import audio.BackgroundMusic;
 import control.GameControl;
 import control.KeyControl;
+import control.PlanetControl;
 import control.PlayerControl;
 /**
  * 游戏面板类，并且传入GameData的数据和引入PlayerControl对面板上的操作进行监听，引入线程
@@ -50,6 +53,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
 	private PlanetBlackHole[] blackHoles;
+	private PlanetReflection[] reflections;
+	private PlanetRefraction[] refractions;
 	private PlanetWormHole wormHole;
 	//游戏胜利
 	private boolean isGameWin;
@@ -127,15 +132,23 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.add(this.threeBody);
 		
 		//加入反射
-		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
-			dragger[0]=new PlanetDragger(this.gameData.getPlanetReflections().get(i),this,this.gameData);
-			this.add(this.gameData.getPlanetReflections().get(i));
+		this.reflections = new PlanetReflection[this.gameData.getPlanetReflections().size()];
+		for (int i = 0; i < this.reflections.length; i++) {
+			this.reflections[i] = this.gameData.getPlanetReflections().get(i);
+			PlanetControl pc = new PlanetControl(this.reflections[i]);
+			this.reflections[i].addKeyListener(pc);
+			dragger[0]=new PlanetDragger(this.reflections[i],this,this.gameData);
+			this.add(this.reflections[i]);
 		}
 		
 		//加入折射
-		for (int i = 0; i < this.gameData.getPlanetRefractions().size(); i++) {
-			dragger[1]=new PlanetDragger(this.gameData.getPlanetRefractions().get(i),this,this.gameData);
-			this.add(this.gameData.getPlanetRefractions().get(i));		
+		this.refractions = new PlanetRefraction[this.gameData.getPlanetRefractions().size()];
+		for (int i = 0; i < this.refractions.length; i++) {
+			this.refractions[i] = this.gameData.getPlanetRefractions().get(i);
+			PlanetControl pc = new PlanetControl(this.refractions[i]);
+			this.refractions[i].addKeyListener(pc);
+			dragger[1]=new PlanetDragger(this.refractions[i],this,this.gameData);
+			this.add(this.refractions[i]);		
 		}
 		
 		//加入黑洞
