@@ -10,8 +10,8 @@
 		<planet className="gamecomponent.PlanetRefraction" locationX="300" locationY="380" radius="45" tag="6"/>           
   		<planet className="gamecomponent.PlanetBlackHole" locationX="830" locationY="350" radius="45" tag="7"/>
   		<planet className="gamecomponent.PlanetBlackHole" locationX="455" locationY="480" radius="45" tag="8"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="700" locationY="420" radius="45" tag="9"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="240" radius="45" tag="10"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="700" locationY="450" radius="45" tag="9"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="320" radius="45" tag="10"/>
   		<planet className="gamecomponent.PlanetBlackHole" locationX="660" locationY="45" radius="45" tag="11"/>
     	<wormhole className="gamecomponent.PlanetWormHole" location1X="320" location1Y="170" location2X="900" location2Y="50" radius="40"/>
     </gamedata>
