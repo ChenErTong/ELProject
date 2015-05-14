@@ -31,6 +31,8 @@ public abstract class Planet extends JButton {
 	protected int lightY;
 	protected double directX;
 	protected double directY;
+	//星球在配置文件中的编号
+	protected int tag;
 	//游戏数据
 	protected GameData gameData;
 	
@@ -78,6 +80,10 @@ public abstract class Planet extends JButton {
 
 	public int getRadius() {
 		return radius;
+	}
+	
+	public int getTag() {
+		return tag;
 	}
 
 	public static boolean isGAMECONTINUE() {

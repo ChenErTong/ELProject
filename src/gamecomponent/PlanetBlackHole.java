@@ -10,11 +10,12 @@ import gamedata.GameData;
 
 public class PlanetBlackHole extends Planet implements Runnable{
 	private GameData gameData;
-	public PlanetBlackHole(int x,int y,int Radius,GameData gameData){
+	public PlanetBlackHole(int x,int y,int Radius,int tag,GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;
 		this.radius=Radius;
+		this.tag=tag;
 		this.gameData=gameData;
 
 		//构造按钮的图片，自动缩放

@@ -78,6 +78,7 @@ public class GameData {
 						planetConfig.getLocationX(), 
 						planetConfig.getLocationY(), 
 						planetConfig.getRadius(), 
+						planetConfig.getTag(),
 						this);
 				
 				planets.add(planet);				
