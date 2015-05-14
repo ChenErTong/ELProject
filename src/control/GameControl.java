@@ -67,11 +67,12 @@ public class GameControl {
 	 * @param lightY
 	 */
 	public void launchLight() {
-		if(this.panelGame!=null){
+		if(this.panelGame != null){
+			this.printPlanetLocation();
 			this.gameData.getLightControl().launchLight(PlanetEarth.launchX, PlanetEarth.launchY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
 			this.panelGame.repaint();
 			//音效
-			SoundEffect.LIGHT.play();
+			SoundEffect.LIGHT.play();		
 		}	
 	}
 	//==========================以下是各个界面间的跳转方法==============================
@@ -179,5 +180,22 @@ public class GameControl {
 			this.frameTotal.dispose();
 			this.frameTotal = new FrameTotal(this);
 		}
+	}
+
+	public void printPlanetLocation() {
+		System.out.println(111);
+		System.out.println("地球 :x="+this.gameData.getPlanetEarth().getLocationX()+"||y="+this.gameData.getPlanetEarth().getLocationY());
+		System.out.println("三体 :x="+this.gameData.getPlanetThreeBody().getLocationX()+"||y="+this.gameData.getPlanetThreeBody().getLocationY());
+		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
+			System.out.println("反射"+i+":x="+this.gameData.getPlanetReflections().get(i).getLocationX()+"||y="+this.gameData.getPlanetReflections().get(i).getLocationY());
+		}
+		for (int i = 0; i < this.gameData.getPlanetRefractions().size(); i++) {
+			System.out.println("折射"+i+":x="+this.gameData.getPlanetRefractions().get(i).getLocationX()+"||y="+this.gameData.getPlanetRefractions().get(i).getLocationY());
+		}
+		for (int i = 0; i < this.gameData.getPlanetBlackHoles().size(); i++) {
+			System.out.println("黑洞"+i+":x="+this.gameData.getPlanetBlackHoles().get(i).getLocationX()+"||y="+this.gameData.getPlanetBlackHoles().get(i).getLocationY());
+		}
+		System.out.println("第一虫洞 :x="+this.gameData.getPlanetWormHole().getWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getWormHole().getLocationY());
+		System.out.println("第二虫洞 :x="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationY());
 	}
 }
