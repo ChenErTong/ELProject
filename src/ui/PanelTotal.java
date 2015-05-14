@@ -59,16 +59,18 @@ public abstract class PanelTotal extends JDesktopPane{
 		this.jbtSound=new ButtonSound(soundSyncData);
 		this.add(jbtSound);	
 		
-		//最小化按钮
-		JButton jbtMin=new JButton(mininum);
-		jbtMin.addActionListener(new ActionListener(){
-	        @Override public void actionPerformed(ActionEvent e){
-	            frameTotal.setExtendedState(JFrame.ICONIFIED);
-	        }
-	    });
-		jbtMin.setContentAreaFilled(false);
-		jbtMin.setBorderPainted(false);
-		jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.031), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
-		this.add(jbtMin);
+		if(FrameTotal.TOTALDATA.getResolution()!=9999){
+			//最小化按钮
+			JButton jbtMin=new JButton(mininum);
+			jbtMin.addActionListener(new ActionListener(){
+		        @Override public void actionPerformed(ActionEvent e){
+		            frameTotal.setExtendedState(JFrame.ICONIFIED);
+		        }
+		    });
+			jbtMin.setContentAreaFilled(false);
+			jbtMin.setBorderPainted(false);
+			jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.031), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+			this.add(jbtMin);
+		}	
 	 }
 }

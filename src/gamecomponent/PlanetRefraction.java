@@ -21,11 +21,12 @@ public class PlanetRefraction extends Planet implements Runnable {
 	 * @param Radius 星球半径
 	 * @param gameDAta 必须导入gameData来获取数据
 	 */
-	public PlanetRefraction(int x,int y,int Radius,GameData gameDAta){
+	public PlanetRefraction(int x,int y,int Radius,int tag,GameData gameDAta){
 		// 常规的参数设置
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
+		this.tag=tag;
 		this.gameData=gameDAta;
 		// 构造按钮的图片，自动缩放
 		this.planetImg = this.getImageIcon("image/星球/星球3.png", 2 * radius,2 * radius);

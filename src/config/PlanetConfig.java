@@ -11,11 +11,14 @@ public class PlanetConfig {
 	
 	private int radius;
 
+	private int tag;
+	
 	public PlanetConfig(Element planet){
 		this.className = planet.attributeValue("className");
 		this.locationX = Integer.parseInt(planet.attributeValue("locationX"));
 		this.locationY = Integer.parseInt(planet.attributeValue("locationY"));
 		this.radius = Integer.parseInt(planet.attributeValue("radius"));
+		this.tag = Integer.parseInt(planet.attributeValue("tag"));
 	}
 	
 	public String getClassName() {
@@ -32,5 +35,9 @@ public class PlanetConfig {
 
 	public int getRadius() {
 		return radius;
+	}
+
+	public int getTag() {
+		return tag;
 	}
 }

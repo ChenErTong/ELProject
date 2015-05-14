@@ -19,11 +19,12 @@ public class PlanetSun extends Planet {
 	 * @param y sun的竖直坐标
 	 * @param Radius sun的半径；要比earth大一点哦~
 	 */
-	public PlanetSun(int x,int y,int Radius,GameData gameData){
+	public PlanetSun(int x,int y,int Radius,int tag,GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;
 		this.radius=Radius;
+		this.tag=tag;
 		//构造按钮的图片，自动缩放
 		this.planetImg=getImageIcon("image/星球/星球6.png", 2*radius,2*radius);
 		this.setIcon(planetImg);

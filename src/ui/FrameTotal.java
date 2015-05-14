@@ -115,7 +115,7 @@ public class FrameTotal extends JFrame{
 		this.setUndecorated(true);
 		
 		if(FrameTotal.TOTALDATA.getResolution()!=9999){
-			AWTUtilities.setWindowShape(this,  new RoundRectangle2D.Double(0.0, 0.0, this.getWidth(), this.getHeight(), FrameTotal.WINDOWW*0.02, FrameTotal.WINDOWH*0.04));	
+		AWTUtilities.setWindowShape(this,  new RoundRectangle2D.Double(0.0, 0.0, this.getWidth(), this.getHeight(), FrameTotal.WINDOWW*0.02, FrameTotal.WINDOWH*0.04));	
 		}
 		
 		//œ‘ æΩÁ√Ê
@@ -129,6 +129,7 @@ public class FrameTotal extends JFrame{
 			    "Slef"));
 		
 		this.keyControl = new KeyControl(this.gameControl);
+		
 		Toolkit.getDefaultToolkit().addAWTEventListener(this.keyControl, AWTEvent.KEY_EVENT_MASK);
 	}
 	

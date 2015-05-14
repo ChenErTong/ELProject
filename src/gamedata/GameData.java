@@ -73,11 +73,12 @@ public class GameData {
 			//创建所有星球对象
 			for (PlanetConfig planetConfig : planetsCfg) {
 				Class<?> cla = Class.forName(planetConfig.getClassName());
-				Constructor<?> ctr = cla.getConstructor(int.class, int.class, int.class, GameData.class);
+				Constructor<?> ctr = cla.getConstructor(int.class, int.class, int.class, int.class, GameData.class);
 				Planet planet = (Planet)ctr.newInstance(
 						planetConfig.getLocationX(), 
 						planetConfig.getLocationY(), 
 						planetConfig.getRadius(), 
+						planetConfig.getTag(),
 						this);
 				
 				planets.add(planet);				

@@ -4,6 +4,8 @@ import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
 
+import ui.FrameTotal;
+
 public class KeyControl implements AWTEventListener{
 	private GameControl gameControl;
 	
@@ -14,7 +16,7 @@ public class KeyControl implements AWTEventListener{
 	public void eventDispatched(AWTEvent event) {
 		 if (((KeyEvent) event).getID() == KeyEvent.KEY_PRESSED) {
 	        	int code = ((KeyEvent) event).getKeyCode();
-	        	int resolution = 0;
+	        	int resolution = FrameTotal.TOTALDATA.getResolution();
 	        	switch(code){
 	        	case KeyEvent.VK_F1:
 	        		resolution = 1024;
@@ -24,6 +26,9 @@ public class KeyControl implements AWTEventListener{
 	        		break;
 	        	case KeyEvent.VK_F3:
 	        		resolution = 9999;
+	        		break;
+	        	case KeyEvent.VK_SPACE:
+	        		this.gameControl.launchLight();
 	        		break;
 	        	case KeyEvent.VK_ESCAPE:
 	        		this.gameControl.Quit();
