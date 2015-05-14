@@ -129,6 +129,7 @@ public class FrameTotal extends JFrame{
 			    "Slef"));
 		
 		this.keyControl = new KeyControl(this.gameControl);
+		
 		Toolkit.getDefaultToolkit().addAWTEventListener(this.keyControl, AWTEvent.KEY_EVENT_MASK);
 	}
 	

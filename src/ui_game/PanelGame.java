@@ -13,6 +13,8 @@ import gamedata.TotalData;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -25,6 +27,7 @@ import ui.SoundSyncData;
 import ui.WindowDragger;
 import audio.BackgroundMusic;
 import control.GameControl;
+import control.KeyControl;
 import control.PlayerControl;
 /**
  * 游戏面板类，并且传入GameData的数据和引入PlayerControl对面板上的操作进行监听，引入线程
@@ -61,8 +64,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private int grade;
 	//返回按钮
 	private JButton returnButton;
-	//关闭按钮
-	private JButton closeButton;
 	
 	//返回按钮图片
 	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
@@ -115,7 +116,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		
 		//加入地球
 		this.earth = this.gameData.getPlanetEarth();
-		this.earth.setActionCommand("earth");
+		this.earth.setActionCommand("earth");;
 		this.add(this.earth);
 		
 		this.add(this.gameData.getPlanetSun());
@@ -337,7 +338,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	}
 
 	public void addControl(GameControl gameControl) {
-
 		this.gameControl = gameControl;
 	}
 	/**

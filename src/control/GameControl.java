@@ -67,11 +67,12 @@ public class GameControl {
 	 * @param lightY
 	 */
 	public void launchLight() {
-		//TODO 启动光线  初始X坐标，初始Y坐标，方向向量X坐标，方向向量Y坐标
-		this.gameData.getLightControl().launchLight(PlanetEarth.launchX, PlanetEarth.launchY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
-		this.panelGame.repaint();
-		//音效
-		SoundEffect.LIGHT.play();
+		if(this.panelGame!=null){
+			this.gameData.getLightControl().launchLight(PlanetEarth.launchX, PlanetEarth.launchY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
+			this.panelGame.repaint();
+			//音效
+			SoundEffect.LIGHT.play();
+		}	
 	}
 	//==========================以下是各个界面间的跳转方法==============================
 	/**
