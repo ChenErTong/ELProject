@@ -23,18 +23,19 @@ import control.PlayerControl;
  */
 public class PanelHelp extends JPanel{
 	private PlayerControl playerControl;
-	/**
-	 * 得带面板的长宽
-	 */
-	static int WIDTH = (int)(FrameTotal.WINDOWW*0.784);
-	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.784);
+	
 	/**
 	 * 面板分四张图显示
 	 */
-	private ImageIcon img1=new ImageIcon("image/help/help1.jpg");
-	private ImageIcon img2=new ImageIcon("image/help/help2.jpg");
-	private ImageIcon img3=new ImageIcon("image/help/help3.jpg");
-	private ImageIcon img4=new ImageIcon("image/help/help4.jpg");
+	private static ImageIcon img1=new ImageIcon("image/help/help1.png");
+	private static ImageIcon img2=new ImageIcon("image/help/help2.png");
+	private static ImageIcon img3=new ImageIcon("image/help/help3.png");
+	private static ImageIcon img4=new ImageIcon("image/help/help4.png");
+	/**
+	 * 得带面板的长宽
+	 */
+	static int WIDTH = img1.getIconWidth();
+	static int HEIGHT = img1.getIconHeight();
 	/**
 	 * 面板分四张图显示
 	 */
@@ -47,7 +48,7 @@ public class PanelHelp extends JPanel{
 	/**
 	 * TODO 关闭按钮的图片
 	 */
-	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.18), (int)(HEIGHT*0.18));
 	/**
 	 * 四张图
 	 */
@@ -72,6 +73,7 @@ public class PanelHelp extends JPanel{
 		initLabel();
 		//初始时加载第一张图
 		jp1.setBounds(0, 0, WIDTH, HEIGHT);
+		this.setOpaque(false);
 		this.add(jp1);
 	}
 	/**
@@ -80,7 +82,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(WIDTH*0.78), (int)(HEIGHT*0.02), (int)(WIDTH*0.2), (int)(HEIGHT*0.2));
+		closeButton.setBounds((int)(WIDTH/2-BUTTON_CLOSE.getIconWidth()/2), (int)(HEIGHT*0.892), (int)(WIDTH*0.18), (int)(HEIGHT*0.18));
 		closeButton.addActionListener(playerControl);
 		closeButton.setContentAreaFilled(false);
 		closeButton.setBorderPainted(false);
@@ -94,8 +96,8 @@ public class PanelHelp extends JPanel{
 	void initLabel(){
 		JButton jbtUp=new JButton(imgUp);
 		JButton jbtDown=new JButton(imgDown);	
-		jbtUp.setBounds((int)(WIDTH*0.9), (int)(HEIGHT*0.65), 40,40);
-		jbtDown.setBounds((int)(WIDTH*0.9), (int)(HEIGHT*0.8), 40,40);
+		jbtUp.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.65), 40,40);
+		jbtDown.setBounds((int)(WIDTH*0.88), (int)(HEIGHT*0.77), 40,40);
 		jbtUp.setContentAreaFilled(false);
 		jbtUp.setBorderPainted(false);
 		jbtDown.setContentAreaFilled(false);

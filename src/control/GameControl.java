@@ -5,6 +5,8 @@ import gamecomponent.PlanetEarth;
 import gamedata.GameData;
 import gamedata.TotalData;
 import ui.FrameTotal;
+import ui.WindowDragger;
+import ui_game.FrameWin;
 import ui_game.PanelGame;
 import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
@@ -119,14 +121,19 @@ public class GameControl {
 	 * 打开帮助界面
 	 */
 	public void openFrameHelp(){
+		this.panelStartGame.jbtHelp.setVisible(false);
+		this.panelStartGame.jbtQuit.setVisible(false);
 		this.panelStartGame.openFrameHelp();
+		
 	}
 	
 	/**
 	 * 关闭帮助界面
 	 */
 	public void closeFrameHelp() {
-		this.panelStartGame.closeFrameHelp();	
+		this.panelStartGame.closeFrameHelp();
+		this.panelStartGame.jbtHelp.setVisible(true);
+		this.panelStartGame.jbtQuit.setVisible(true);
 	}
 
 	/**

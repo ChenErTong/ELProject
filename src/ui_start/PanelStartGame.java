@@ -42,9 +42,9 @@ public class PanelStartGame extends PanelTotal{
 	//开始按钮
 	private JButton jbtStart;
 	//帮助按钮
-	private JButton jbtHelp;
+	public JButton jbtHelp;
 	//退出按钮
-	private JButton jbtQuit;
+	public JButton jbtQuit;
 
 	public PanelStartGame(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData, frameTotal);
