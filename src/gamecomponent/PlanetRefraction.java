@@ -26,6 +26,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
+		this.virtualRadius=radius-3;
 		this.tag=tag;
 		this.gameData=gameDAta;
 		// 构造按钮的图片，自动缩放
@@ -77,11 +78,11 @@ public class PlanetRefraction extends Planet implements Runnable {
 							lightList.get(lightList.size() - 1));
 					//
 					Point touch = getTouch(this.locationX + radius, locationY
-							+ radius, lightX, lightY, radius, directX, directY);
+							+ radius, lightX, lightY, virtualRadius, directX, directY);
 //					System.out.println((this.locationX + radius) + "   "
 //							+ (locationY + radius));
 					Point[] launchData = getAll(touch, locationX + radius,
-							locationY + radius, directX, directY, radius);
+							locationY + radius, directX, directY, virtualRadius);
 
 					// System.out.println(launchData[0]);
 					// System.out.println(launchData[1]);

@@ -34,6 +34,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		this.locationX = x;
 		this.locationY = y;
 		this.radius = Radius;
+		this.virtualRadius=radius-1;
 		this.tag=tag;
 		this.gameData=gameData;
 		// 构造按钮的图片，自动缩放
@@ -150,7 +151,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		Point answer = null;
 //		System.out.println("lx"+lightX);
 		if(directX==0){
-			double y=Math.pow((radius*radius-Math.pow(centerX-lightX, 2)), 0.5);
+			double y=Math.pow((virtualRadius*virtualRadius-Math.pow(centerX-lightX, 2)), 0.5);
 			if(lastLightY>centerY)
 				return new Point(lightX,centerY+(int)y);
 			else
@@ -158,7 +159,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		}
 		//
 		if(directY==0){
-			double x=Math.pow((radius*radius-Math.pow(centerY-lightY, 2)), 0.5);
+			double x=Math.pow((virtualRadius*virtualRadius-Math.pow(centerY-lightY, 2)), 0.5);
 			if(lastLightX>centerX)
 				return new Point(centerX+(int)x,lightY);
 			else
@@ -170,7 +171,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		double b=2*directY*lightY/directX-2*Math.pow(directY, 2)*lightX/Math.pow(directX, 2)
 				-2*centerY*directY/directX-2*centerX;
 		double c=centerX*centerX+lightY*lightY-2*directY*lightX*lightY/directX-2*centerY*lightY+2*centerY*lightX*directY/directX
-				+Math.pow(directY*lightX/directX, 2)+centerY*centerY-radius*radius;
+				+Math.pow(directY*lightX/directX, 2)+centerY*centerY-virtualRadius*virtualRadius;
 //		System.out.println(lightX+" "+lightY);
 //		System.out.println(directX+" "+directY);
 //		System.out.println(centerX+" "+centerY);
@@ -181,7 +182,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		y=directY*x/directX+lightY-directY*lightX/directX;
 
 		answer=new Point((int)x,(int)y);
-		if(answer.equals(new Point (0,0))||radius-answer.distance(centerX, centerY)>4)
+		if(answer.equals(new Point (0,0))||virtualRadius-answer.distance(centerX, centerY)>4)
 			answer=this.binarySearch(new Point(lastLightX,lastLightY),new Point(lightX,lightY), 0);
 		//
 		return answer;
@@ -207,7 +208,7 @@ public class PlanetReflection extends Planet implements Runnable {
 		
 		int instruction=this.getInstruction(touch, centerX, centerY);
 		//
-		double derta=this.getDerta(touch, centerX, centerY, radius, instruction);
+		double derta=this.getDerta(touch, centerX, centerY, virtualRadius, instruction);
 		touch = new Point(touch.x - centerX, touch.y - centerY);
 		//
 		
@@ -215,12 +216,12 @@ public class PlanetReflection extends Planet implements Runnable {
 		double check=directX*touch.y-directY*touch.x;
 
 			if (check < 0) {
-				int x = (int) (radius * Math.cos(derta + seita));
-				int y = (int) (radius * Math.sin(derta + seita));
+				int x = (int) (virtualRadius * Math.cos(derta + seita));
+				int y = (int) (virtualRadius * Math.sin(derta + seita));
 				return new Point(x, y);
 			} else if (check > 0) {
-				int x = (int) (radius * Math.cos(derta - seita));
-				int y = (int) (radius * Math.sin(derta - seita));
+				int x = (int) (virtualRadius * Math.cos(derta - seita));
+				int y = (int) (virtualRadius * Math.sin(derta - seita));
 				return new Point(x, y);
 			} else {
 				return new Point(-(int) directX, -(int) directY);
@@ -286,9 +287,9 @@ public class PlanetReflection extends Planet implements Runnable {
 			Point half = new Point();
 			half.setLocation(((first.x+second.x)/2),((first.y+second.y)/2));
 			int distance=(int) half.distance(locationX + radius, locationY + radius);
-			if (distance - radius > 1)
+			if (distance - virtualRadius > 1)
 				return binarySearch(half, second,++times);
-			else if (distance - radius < -1)
+			else if (distance - virtualRadius < -1)
 				return binarySearch(first, half,++times);
 			else
 				return half;

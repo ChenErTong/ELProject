@@ -25,6 +25,7 @@ public abstract class Planet extends JButton {
 	protected int locationY;
 	//°ë¾¶
 	protected int radius;
+	protected int virtualRadius;
 	//Í¼Æ¬
 	protected ImageIcon planetImg;
 	//¹âÏß×ø±ê
