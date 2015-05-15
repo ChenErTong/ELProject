@@ -33,7 +33,7 @@ public class ButtonSound extends JButton{
 		
 		soundSyncData=data;
 		
-		this.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+		this.setBounds((int)(FrameTotal.WINDOWW*0.893), (int)(FrameTotal.WINDOWH*0.02), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 		
 		//获得控制位数值
 		control=soundSyncData.getControl();

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import ui.FrameTotal;
 import ui_game.PanelGame;
 
 public class PlanetDragger {
@@ -99,8 +100,8 @@ public class PlanetDragger {
     		point.x=0;
     	else if(point.x>width)
     		point.x=width;
-    	if(point.y<0)
-    		point.y=0;
+    	if(point.y<FrameTotal.WINDOWH*0.082)
+    		point.y=(int) (FrameTotal.WINDOWH*0.082);
     	else if(point.y>height)
     		point.y=height;
     	

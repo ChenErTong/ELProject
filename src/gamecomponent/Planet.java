@@ -60,8 +60,14 @@ public abstract class Planet extends JButton {
 		this.directX=light.getDirectX();
 		this.directY=light.getDirectY();
 	}
-	
-	
+
+	public void setLocationX(int locationX) {
+		this.locationX = locationX;
+	}
+
+	public void setLocationY(int locationY) {
+		this.locationY = locationY;
+	}
 
 	public int getLocationX() {
 		return locationX;

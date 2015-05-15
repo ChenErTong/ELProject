@@ -190,7 +190,6 @@ public class GameControl {
 	}
 
 	public void printPlanetLocation() {
-		System.out.println(111);
 		System.out.println("地球 :x="+this.gameData.getPlanetEarth().getLocationX()+"||y="+this.gameData.getPlanetEarth().getLocationY());
 		System.out.println("三体 :x="+this.gameData.getPlanetThreeBody().getLocationX()+"||y="+this.gameData.getPlanetThreeBody().getLocationY());
 		for (int i = 0; i < this.gameData.getPlanetReflections().size(); i++) {
@@ -202,7 +201,5 @@ public class GameControl {
 		for (int i = 0; i < this.gameData.getPlanetBlackHoles().size(); i++) {
 			System.out.println("黑洞"+i+":x="+this.gameData.getPlanetBlackHoles().get(i).getLocationX()+"||y="+this.gameData.getPlanetBlackHoles().get(i).getLocationY());
 		}
-		System.out.println("第一虫洞 :x="+this.gameData.getPlanetWormHole().getWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getWormHole().getLocationY());
-		System.out.println("第二虫洞 :x="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationX()+"||y="+this.gameData.getPlanetWormHole().getAnotherWormHole().getLocationY());
 	}
 }
