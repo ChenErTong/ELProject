@@ -69,7 +69,7 @@ public abstract class PanelTotal extends JDesktopPane{
 		    });
 			jbtMin.setContentAreaFilled(false);
 			jbtMin.setBorderPainted(false);
-			jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.031), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+			jbtMin.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.02), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 			this.add(jbtMin);
 		}	
 	 }

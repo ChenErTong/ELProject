@@ -2,7 +2,10 @@ package gamecomponent;
 
 import java.awt.Graphics;
 import java.awt.Image;
+
 import javax.swing.ImageIcon;
+
+import ui.FrameTotal;
 /**
  * TODO 当方向向量其一为0时的情况还未解决，在于ratio太小，int转换后为0，以及像素单位太大的问题，希望可以通过double参数绘画。
  * @author 恩哥哥
@@ -41,8 +44,8 @@ public class Light {
 	/**
 	 * 光线尽头坐标
 	 */
-	private int endX;
-	private int endY;
+	private int endX = 0;
+	private int endY = (int) (FrameTotal.WINDOWH*0.084);
 	/**
 	 * 图片上初始绘画的坐标顶点
 	 */

@@ -25,8 +25,8 @@ import control.PlayerControl;
 public class PanelSelectMission extends PanelTotal{
 	//按钮的图标
 	private ImageIcon[] selectIcon;
-	
-	private ImageIcon imgReturn=Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
+	//返回按钮
+	private ImageIcon imgReturn=Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
 	//各个关卡进入按钮
 	private JButton jbtMission1;
 	private JButton jbtMission2;
@@ -94,7 +94,7 @@ public class PanelSelectMission extends PanelTotal{
 
 		//返回按钮
 		this.jbtBack=new JButton(imgReturn);
-		this.jbtBack.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
+		this.jbtBack.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.015), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.036));
 		this.jbtBack.setContentAreaFilled(false);
 		this.jbtBack.setBorderPainted(false);
 		this.jbtBack.setActionCommand("ReturnToStart");

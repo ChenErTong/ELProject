@@ -42,12 +42,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 	GameControl gameControl;
 	FrameWin winFrame;
 	
-	/**
-	 * 声明长宽
-	 */
-	private static final int WIDTH = FrameTotal.WINDOWW;
-	private static final int HEIGHT = FrameTotal.WINDOWH;
-	
 	private int count=0;
 	private GameData gameData;
 	private PlanetEarth earth;
@@ -71,7 +65,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private JButton returnButton;
 	
 	//返回按钮图片
-	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.1), (int)(HEIGHT*0.1));
+	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
 	//背景图片
 	private ImageIcon[] backgroundDemo=new ImageIcon[16];
 	private Image[] background=new Image[16];
@@ -112,7 +106,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		//加入返回按钮
 		this.returnButton = new JButton();
 		this.returnButton.setIcon(BUTTON_RETURN);
-		this.returnButton.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWH*0.117));
+		this.returnButton.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.015), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.036));
 		this.returnButton.setContentAreaFilled(false);
 		this.returnButton.setBorderPainted(false);
 		this.returnButton.setActionCommand("ReturnFromGame");
@@ -263,7 +257,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	public boolean isContactBorder(Light light){
 		int endX = light.getEndX();
 		int endY = light.getEndY();
-		if((endX<0)||(endX>WIDTH)||(endY<0)||(endY>HEIGHT)){
+		if((endX<0)||(endX>FrameTotal.WINDOWW)||(endY<FrameTotal.WINDOWH*0.082)||(endY>FrameTotal.WINDOWH)){
 			return true;
 		}
 		

@@ -36,7 +36,7 @@ public class ButtonBackgroundMusic extends JButton{
 		super();
 
 		bgmSyncData=data;
-		this.setBounds((int)(FrameTotal.WINDOWW*0.879), (int)(FrameTotal.WINDOWH*0.887), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+		this.setBounds((int)(FrameTotal.WINDOWW*0.852), (int)(FrameTotal.WINDOWH*0.02), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 		
 		control=bgmSyncData.getControl();
 		final int open=1,off=0;	
