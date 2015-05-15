@@ -71,7 +71,7 @@ public class FrameTotal extends JFrame{
 		TOTALDATA = new TotalData();
 	}
 	public FrameTotal(GameControl gameControl){
-		this.setIconImage(new ImageIcon("image/bg/界面背景.png").getImage());
+		this.setIconImage(new ImageIcon("image/button/LOGO.png").getImage());
 		//游戏控制器
 		this.gameControl = gameControl;
 		//玩家控制器
