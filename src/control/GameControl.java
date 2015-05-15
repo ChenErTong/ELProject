@@ -83,6 +83,7 @@ public class GameControl {
 	 */
 	public void toSelectMission() {
 		this.frameTotal.musicStart.stop();
+		SoundEffect.ENTER.play();
 		this.frameTotal.remove(this.panelStartGame);
 		this.panelStartGame = null;
 		this.frameTotal.initPanelSelectMission();
@@ -93,6 +94,7 @@ public class GameControl {
 	 */
 	public void returnFromWin() {
 		this.panelGame.closeFrameWin();
+		SoundEffect.ENTER.play();
 		this.frameTotal.remove(this.panelGame);
 		this.panelGame = null;
 		this.frameTotal.initPanelSelectMission();
@@ -102,7 +104,9 @@ public class GameControl {
 	 * 从游戏界面返回选关界面
 	 */
 	public void returnFromGame() {
+		this.panelGame.closeFrameWin();
 		this.frameTotal.remove(this.panelGame);
+		SoundEffect.ENTER.play();
 		this.panelGame = null;
 		this.frameTotal.initPanelSelectMission();
 	}
@@ -112,6 +116,7 @@ public class GameControl {
 	 */
 	public void returnToStart() {
 		this.frameTotal.remove(this.panelSelectMission);
+		SoundEffect.ENTER.play();
 		this.panelSelectMission = null;
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.initPanelStartGame();
@@ -121,6 +126,7 @@ public class GameControl {
 	 * 打开帮助界面
 	 */
 	public void openFrameHelp(){
+		SoundEffect.ENTER.play();
 		this.panelStartGame.jbtHelp.setVisible(false);
 		this.panelStartGame.jbtQuit.setVisible(false);
 		this.panelStartGame.openFrameHelp();
@@ -131,6 +137,7 @@ public class GameControl {
 	 * 关闭帮助界面
 	 */
 	public void closeFrameHelp() {
+		SoundEffect.ENTER.play();
 		this.panelStartGame.closeFrameHelp();
 		this.panelStartGame.jbtHelp.setVisible(true);
 		this.panelStartGame.jbtQuit.setVisible(true);
@@ -142,7 +149,7 @@ public class GameControl {
 	public void nextLevel() {
 		//关闭通关界面
 		this.panelGame.closeFrameWin();
-		
+		SoundEffect.ENTER.play();
 		//重新建立单局游戏数据
 		this.gameData = new GameData(this.gameData.getLevel() + 1);
 		//移除原有的游戏界面
@@ -156,6 +163,7 @@ public class GameControl {
 	 * 退出游戏
 	 */
 	public void Quit() {
+		SoundEffect.ENTER.play();
 		FrameTotal.TOTALDATA.saveData();
 		this.frameTotal.removeAll();
 		this.frameTotal.dispose();
@@ -167,6 +175,7 @@ public class GameControl {
 	 * @param level
 	 */
 	public void toGameLevel(int level) {
+		SoundEffect.ENTER.play();
 		this.gameData =new GameData(level);
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.remove(this.panelSelectMission);

@@ -17,6 +17,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -58,7 +60,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//
 	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
-	private long totalMillis=9000;
+	private long totalMillis=180000;
 	private Clock clock=new Clock(totalMillis,this);
 	//关卡游戏评级
 	private int grade;
@@ -113,6 +115,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.returnButton.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.015), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.036));
 		this.returnButton.setContentAreaFilled(false);
 		this.returnButton.setBorderPainted(false);
+		this.returnButton.addMouseMotionListener(new MouseMotion());
 		this.returnButton.setActionCommand("ReturnFromGame");
 		this.returnButton.setVisible(true);
 		this.add(returnButton);
@@ -191,6 +194,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.nextButton.setBorderPainted(false);
 		this.nextButton.setActionCommand("NextLevel");
 		this.nextButton.addActionListener(playerControl);
+		this.nextButton.addMouseMotionListener(new MouseMotion());
 		this.nextButton.setVisible(true);
 		this.add(nextButton);
 				
@@ -221,12 +225,20 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameLose=true;
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
+		SoundEffect.LOSE.play();
 		//主窗口失去控制权
 		WindowDragger.CANDRAGGER = false;
 		this.winFrame = new FrameWin(this.playerControl, this.grade);
 		this.winFrame.setAlwaysOnTop(true);
 		//计时器停止计时
 		this.clock.stop();
+	}
+	
+	//鼠标移过按钮时发出音效
+	class MouseMotion extends MouseMotionAdapter{
+		public void mouseMoved(MouseEvent e) {
+			SoundEffect.SELECT.play();
+		}
 	}
 	
 	/**
@@ -264,6 +276,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 		WindowDragger.CANDRAGGER = true;
 		this.winFrame.dispose();	
 	}
+	
+	
 
 	/**
 	 * 判断某条光线是否射出边界

@@ -3,6 +3,9 @@
  */
 package ui_start;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
 import gamecomponent.Planet;
 import gamedata.TotalData;
 
@@ -11,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import audio.BackgroundMusic;
+import audio.SoundEffect;
 import ui.BgmSyncData;
 import ui.FrameTotal;
 import ui.PanelTotal;
@@ -97,6 +101,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtBack.setBounds((int)(FrameTotal.WINDOWW*0.0156), (int)(FrameTotal.WINDOWH*0.015), (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.036));
 		this.jbtBack.setContentAreaFilled(false);
 		this.jbtBack.setBorderPainted(false);
+		this.jbtBack.addMouseMotionListener(new MouseMotion());
 		this.jbtBack.setActionCommand("ReturnToStart");
 		this.add(jbtBack);
 
@@ -105,6 +110,12 @@ public class PanelSelectMission extends PanelTotal{
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,FrameTotal.WINDOWW,FrameTotal.WINDOWH);		
 		this.add(background);
+	}
+	//鼠标移过按钮时发出音效
+	class MouseMotion extends MouseMotionAdapter{
+		public void mouseMoved(MouseEvent e) {
+			SoundEffect.SELECT.play();
+		}
 	}
 	
 	/**

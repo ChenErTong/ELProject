@@ -12,7 +12,8 @@ import javax.sound.sampled.*;
  */
 public enum SoundEffect {
 	//枚举游戏音效和存储位置
-	LIGHT("audio/sounds/light.wav"),WIN("audio/sounds/victory.mid"),SELECT("audio/sounds/select.wav");
+	LIGHT("audio/sounds/light.wav"),WIN("audio/sounds/victory.mid"),SELECT("audio/sounds/motion.wav"),
+	LOSE("audio/sounds/lose.wav"),ENTER("audio/sounds/enter.wav");
 	
 	//可以设置为关闭音效模式
 	public static enum Volume{

@@ -7,8 +7,8 @@ import gamecomponent.Planet;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import audio.SoundEffect;
 import ui.FrameTotal;
+import ui_start.PanelStartGame.MouseMotion;
 import control.PlayerControl;
 
 /**
@@ -108,11 +110,18 @@ public class PanelHelp extends JPanel{
 		closeButton.setIcon(BUTTON_CLOSE);
 		closeButton.setBounds((int)(WIDTH/2-BUTTON_CLOSE.getIconWidth()/2), (int)(HEIGHT*0.95), (int)(closeImg.getIconWidth()*0.22), (int)(closeImg.getIconHeight()*0.22));
 		closeButton.addActionListener(playerControl);
+		closeButton.addMouseMotionListener(new MouseMotion());
 		closeButton.setContentAreaFilled(false);
 		closeButton.setBorderPainted(false);
 		closeButton.setActionCommand("CloseFrameHelp");
 		closeButton.setVisible(true);
 		this.add(closeButton);	
+	}
+	//鼠标移过按钮时发出音效
+	class MouseMotion extends MouseMotionAdapter{
+		public void mouseMoved(MouseEvent e) {
+			SoundEffect.SELECT.play();
+		}
 	}
 	/**
 	 * 初始化图片和上一页下一页按钮，添加监听器
@@ -249,17 +258,7 @@ public class PanelHelp extends JPanel{
 				}
 				
 			}
-			repaint();
-
-			
-			/*switch(labelNumber){
-			case 1:jl1.setBounds(0, 0, WIDTH, HEIGHT);
-				add(jl1);
-			}*/
-			
-			
+			repaint();	
 		}
-	}
-	
-	
+	}	
 }
