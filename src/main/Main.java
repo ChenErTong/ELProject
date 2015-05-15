@@ -26,7 +26,7 @@ public class Main {
 		
 		if(SystemTray.isSupported()){
 			SystemTray tray=SystemTray.getSystemTray();
-			Image image=PanelGame.getImage(new ImageIcon("image/bg/界面背景.png"), 20, 20);
+			Image image=PanelGame.getImage(new ImageIcon("image/button/LOGO.png"), 20, 20);
 			TrayIcon trayIcon=new TrayIcon(image,"系统信息");
 			try {
 				tray.add(trayIcon);
