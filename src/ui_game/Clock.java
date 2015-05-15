@@ -29,10 +29,11 @@ import javax.swing.Timer;
  */
 public class Clock extends JPanel{
 	PanelGame panelGame;
+	Clock clock=this;
 	private int WINDOWW = FrameTotal.WINDOWW;
 	private int WINDOWH = FrameTotal.WINDOWH;
 	//计时器的大小和位置
-	private final int WIDTH=(int)(WINDOWW*0.165),HEIGHT=(int)(WINDOWH*0.080);
+	private final int WIDTH=(int)(WINDOWW*0.18),HEIGHT=(int)(WINDOWH*0.090);
 	private final int x=(int)(WINDOWW*0.435),y=(int)(WINDOWH*0.008);
 	//开始时刻
 	private long startMillis;
@@ -89,19 +90,16 @@ second)+":"+String.format("%02d", hundredMillis);
 
 	private class TimerListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			if(getMillis()/100==0){
-				panelGame.gameLose();
-				
-			}
-			
 			repaint();
+			if(getMillis()/100==0){				
+				panelGame.gameLose();
+			}			
 		}
 	}
 	
 	protected void paintComponent(Graphics g){
 		
 		super.paintComponent(g);
-		
 		g.setFont(font);
 		g.setColor(Color.white);
 		int xCenter=WIDTH/2;
@@ -115,9 +113,14 @@ second)+":"+String.format("%02d", hundredMillis);
 		int stringWidth=fm.stringWidth(getTimeString());
 		//把这行字居中
 		int xCoordinate=xCenter-stringWidth/2;
-		int yCoordinate=(int)(yCenter+stringAscent/2-HEIGHT*0.055);
+		int yCoordinate=(int)(yCenter+(stringAscent-stringDescent)/2);
 		//显示当前经过时间
-		g.drawString(getTimeString(), xCoordinate, yCoordinate);
+		if(getMillis()/100<=0){
+			g.drawString(" 00:00:00", xCoordinate, yCoordinate);
+		}else{
+			g.drawString(getTimeString(), xCoordinate, yCoordinate);
+		}
+		
 
 	}
 

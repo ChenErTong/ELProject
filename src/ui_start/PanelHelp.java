@@ -59,7 +59,8 @@ public class PanelHelp extends JPanel{
 	/**
 	 * TODO 关闭按钮的图片
 	 */
-	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(WIDTH*0.18), (int)(HEIGHT*0.18));
+	private static ImageIcon closeImg=new ImageIcon("image/button/Return4.png");
+	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(closeImg.getIconWidth()*0.22), (int)(closeImg.getIconHeight()*0.22));
 
 	/**
 	 * 用来计数按钮按下的次数
@@ -105,7 +106,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(WIDTH/2-BUTTON_CLOSE.getIconWidth()/2), (int)(HEIGHT*0.894), (int)(WIDTH*0.18), (int)(HEIGHT*0.18));
+		closeButton.setBounds((int)(WIDTH/2-BUTTON_CLOSE.getIconWidth()/2), (int)(HEIGHT*0.95), (int)(closeImg.getIconWidth()*0.22), (int)(closeImg.getIconHeight()*0.22));
 		closeButton.addActionListener(playerControl);
 		closeButton.setContentAreaFilled(false);
 		closeButton.setBorderPainted(false);

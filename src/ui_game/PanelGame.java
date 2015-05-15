@@ -54,10 +54,11 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameWin;
 	//游戏重新刷新一局
 	private boolean isGameRefresh;
+	private boolean isGameLose;
 	//
 	private PlanetDragger[] dragger=new PlanetDragger[2];
 	//计时器
-	private long totalMillis=180000;
+	private long totalMillis=9000;
 	private Clock clock=new Clock(totalMillis,this);
 	//关卡游戏评级
 	private int grade;
@@ -217,6 +218,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//time is over, game stops
 	public void gameLose(){
 		this.grade=0;
+		this.isGameLose=true;
 		//关闭bgm
 		this.frameTotal.musicGame.stop();
 		//主窗口失去控制权
@@ -283,7 +285,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	}
 	
 	public void run() {
-		while((!this.isGameWin)&&(!this.isGameRefresh)){
+		while((!this.isGameWin)&&(!this.isGameRefresh)&&(!this.isGameLose)){
 			try {
 				Thread.sleep(25);
 			} catch (Exception e) {

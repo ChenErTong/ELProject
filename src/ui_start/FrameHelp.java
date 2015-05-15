@@ -47,4 +47,7 @@ public class FrameHelp extends JFrame{
 		
 		this.setVisible(true);
 	}
+	public void stopTimer(){
+		this.panelHelp.stop();
+	}
 }

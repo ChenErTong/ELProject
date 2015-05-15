@@ -134,6 +134,7 @@ public class PanelStartGame extends PanelTotal{
 	public void closeFrameHelp(){
 //		this.frameTotal.setEnabled(true);
 		WindowDragger.CANDRAGGER = true;
+		this.frameHelp.stopTimer();
 		this.frameHelp.dispose();
 	}
 }
