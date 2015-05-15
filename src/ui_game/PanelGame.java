@@ -63,9 +63,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private int grade;
 	//返回按钮
 	private JButton returnButton;
-	
+	//下一关按钮(当通关后显示)
+	private JButton nextButton;
 	//返回按钮图片
 	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
+	//下一关按钮图片
+	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon("image/button/NEXT3.png", (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.020));
 	//背景图片
 	private ImageIcon[] backgroundDemo=new ImageIcon[16];
 	private Image[] background=new Image[16];
@@ -179,6 +182,17 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	public void gameOver(){
+		//加入下一关按钮
+		this.nextButton = new JButton();
+		this.nextButton.setIcon(BUTTON_NEXT);
+		this.nextButton.setBounds((int)(FrameTotal.WINDOWW*0.15), (int)(FrameTotal.WINDOWH*0.018), (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.036));
+		this.nextButton.setContentAreaFilled(false);
+		this.nextButton.setBorderPainted(false);
+		this.nextButton.setActionCommand("NextLevel");
+		this.nextButton.addActionListener(playerControl);
+		this.nextButton.setVisible(true);
+		this.add(nextButton);
+				
 		int level = this.gameData.getLevel();
 		this.computeGrade(this.clock.getMillis());
 		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
@@ -219,15 +233,15 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	private void computeGrade(long millis) {
 		int sec=(int)(totalMillis-millis);
-		if (sec<=60){
-			this.grade = 1;
-		}else if(sec<=120){
-			this.grade = 2;
-		}else if(sec<=180){
-			this.grade = 3;
-		}else if(sec<=240){
+		if (sec<=60000){
+			this.grade = 5;
+		}else if(sec<=90000){
 			this.grade = 4;
-		}else if(sec>240){
+		}else if(sec<=120000){
+			this.grade = 3;
+		}else if(sec<=150000){
+			this.grade = 4;
+		}else if(sec>150000){
 			this.grade = 5;
 		}
 	}
