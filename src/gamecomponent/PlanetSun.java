@@ -3,6 +3,7 @@ package gamecomponent;
 import gamedata.GameData;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,8 @@ public class PlanetSun extends Planet implements Runnable{
 	private boolean NOW = true;
 	private boolean BEFORE = true;
 	public int count = 0;
-
+	private Image[] image=new Image[47];
+	private byte a=13,b=0;
 	/**
 	 * 同planetearth类
 	 * @param x sun的水平坐标
@@ -34,8 +36,11 @@ public class PlanetSun extends Planet implements Runnable{
 		this.gameData = gameData;
 		
 		//构造按钮的图片，自动缩放
-		this.planetImg=getImageIcon("image/星球/星球6.png", 2*radius,2*radius);
-		this.setIcon(planetImg);
+		for(;a<60;a++,b++){
+			image[b]=getImageIcon("image/星球运动/太阳/太阳000"+Byte.toString(a)+".png", 2*radius,2*radius).getImage();
+		}
+		this.a=0;
+		this.b=0;
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);
 		//设置不打印矩形的内容
@@ -47,6 +52,18 @@ public class PlanetSun extends Planet implements Runnable{
 		
 		Thread t = new Thread(this);
 		t.start();
+	}
+	//
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(image[a], 0, 0, null);
+		b++;
+		if(b>5){
+			a++;
+			if(a>46)
+				a=0;
+			b=0;
+		}
 	}
 	
 	public void run() {
