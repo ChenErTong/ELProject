@@ -57,7 +57,7 @@ public class PlanetRefraction extends Planet implements Runnable {
 	public void paintComponent(Graphics g){
 		g.drawImage(image[a], 0, 0, null);
 		b++;
-		if(b>3){
+		if(b>6){
 			a++;
 			if(a>47)
 				a=0;

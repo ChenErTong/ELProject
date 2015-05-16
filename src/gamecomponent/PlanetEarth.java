@@ -34,12 +34,18 @@ public class PlanetEarth extends Planet implements Runnable{
 	public static int launchX;
 	public static int launchY;
 	
+	private boolean NOW = true;
+	private boolean BEFORE = true;
+	public int count = 0;
+	
 	public PlanetEarth(int x,int y,int Radius, int tag, GameData gameData){
 		//常规的参数设置
 		this.locationX=x;
 		this.locationY=y;
 		this.radius=Radius;
 		this.tag = tag;
+		this.gameData=gameData;
+		
 		//构造按钮的图片，自动缩放
 		this.planetImg=Planet.getImageIcon("image/星球/星球2.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
@@ -54,6 +60,9 @@ public class PlanetEarth extends Planet implements Runnable{
 		//光线初始坐标
 		launchX=this.locationX+this.radius;
 		launchY=this.locationY+this.radius;
+		
+		Thread t=new Thread(this);
+		t.start();
 	}
 
 	public void run() {
@@ -65,11 +74,23 @@ public class PlanetEarth extends Planet implements Runnable{
 			}
 
 			ArrayList<Light> lightList = this.gameData.getLightControl().getLightList();
-
 			if(!lightList.isEmpty()){
 				this.getLight(lightList.get(lightList.size() - 1));
 				if(checkDistance(locationX, locationY, lightX, lightY, radius)){
-					GAMECONTINUE=false;
+					NOW = false;
+					if(NOW != BEFORE){
+						count++;
+						BEFORE = NOW;
+					}
+				}else{
+					NOW = true;
+					if(NOW != BEFORE){
+						count++;
+						BEFORE = NOW;
+					}
+				}
+				if(count == 3){
+					GAMECONTINUE = false;
 				}
 			}
 		}		
@@ -87,5 +108,15 @@ public class PlanetEarth extends Planet implements Runnable{
 	private boolean checkDistance(int centerX,int centerY,int lightX,int lightY,int radius){
 		int answer=(int) (radius-Point.distance(centerX+radius, centerY+radius, lightX, lightY));
 		return (answer>-1);
+	}
+
+	public void setCount() {
+		
+	}
+
+	public void initeCondition() {
+		this.count = 0;
+		NOW = true;
+		BEFORE = true;
 	}
 }

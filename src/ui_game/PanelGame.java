@@ -8,7 +8,9 @@ import gamecomponent.PlanetDragger;
 import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
+import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
+import gamecomponent.PlanetWhiteDwarf;
 import gamecomponent.PlanetWormHole;
 import gamedata.GameData;
 import gamedata.TotalData;
@@ -47,8 +49,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private int count=0;
 	private GameData gameData;
 	private PlanetEarth earth;
+	private PlanetSun sun;
 	private PlanetThreeBody threeBody;
 	private PlanetBlackHole[] blackHoles;
+	private PlanetWhiteDwarf[] whiteDwarfs;
 	private PlanetReflection[] reflections;
 	private PlanetRefraction[] refractions;
 	private PlanetWormHole wormHole;
@@ -125,7 +129,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.earth.setActionCommand("earth");;
 		this.add(this.earth);
 		
-		this.add(this.gameData.getPlanetSun());
+		this.sun = this.gameData.getPlanetSun();
+		this.add(this.sun);
 		
 		//加入三体
 		this.threeBody = this.gameData.getPlanetThreeBody();
@@ -166,7 +171,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.blackHoles[i] = this.gameData.getPlanetBlackHoles().get(i);
 			this.add(this.blackHoles[i]);		
 		}
-
+		
+		//加入白矮星
+		this.whiteDwarfs = new PlanetWhiteDwarf[this.gameData.getPlanetWhiteDwarfs().size()];
+		for (int i = 0; i < this.whiteDwarfs.length; i++) {
+			this.whiteDwarfs[i] = this.gameData.getPlanetWhiteDwarfs().get(i);
+			this.add(this.whiteDwarfs[i]);
+		}
+		
 		//加入虫洞
 		if(this.gameData.haveWornhole){
 			this.add(this.gameData.getPlanetWormHole().getWormHole());
@@ -337,6 +349,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 重新刷新一盘游戏
 	 */
 	private void refreshGame() {
+		this.earth.initeCondition();
+		this.sun.initeCondition();
 		this.reDrag();
 		this.gameData.getLightControl().deleteLights();
 		this.gameData.refreshLight();

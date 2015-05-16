@@ -69,7 +69,7 @@ public class PlanetReflection extends Planet implements Runnable {
 	public void paintComponent(Graphics g){
 		g.drawImage(image[a], 0, 0, null);
 		b++;
-		if(b>3){
+		if(b>5){
 			a++;
 			if(a>42)
 				a=0;

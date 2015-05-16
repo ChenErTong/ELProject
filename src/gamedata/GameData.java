@@ -8,8 +8,10 @@ import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetSun;
 import gamecomponent.PlanetThreeBody;
+import gamecomponent.PlanetWhiteDwarf;
 import gamecomponent.PlanetWormHole;
 
+import java.awt.Component;
 import java.awt.Point;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -39,6 +41,8 @@ public class GameData {
 	private List<PlanetRefraction> planetRefractions;
 	//ºÚ¶´×é
 	private List<PlanetBlackHole> planetBlackHoles;
+	//°×°«ÐÇ×é
+	private List<PlanetWhiteDwarf> planetWhiteDwarfs;
 	//³æ¶´
 	private PlanetWormHole planetWormHole;
 	//³æ¶´ÊÇ·ñ´æÔÚ
@@ -67,6 +71,7 @@ public class GameData {
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
 			this.planetBlackHoles = new ArrayList<PlanetBlackHole>(dataCfg.blackholeNum);
+			this.planetWhiteDwarfs = new ArrayList<PlanetWhiteDwarf>(dataCfg.whiteDwarfNum);
 			
 			List<PlanetConfig> planetsCfg = dataCfg.getPlanetsConfig();
 			List<Planet> planets = new ArrayList<Planet>(planetsCfg.size());
@@ -109,6 +114,10 @@ public class GameData {
 			//ÉùÃ÷ºÚ¶´
 			for (int i = 3+dataCfg.reflectionNum+dataCfg.refractionNum; i < 3+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i++) {
 				this.planetBlackHoles.add((PlanetBlackHole) planets.get(i));
+			}
+			
+			for (int i = 3+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum; i < 3+dataCfg.reflectionNum+dataCfg.refractionNum+dataCfg.blackholeNum+dataCfg.whiteDwarfNum; i++) {
+				this.planetWhiteDwarfs.add((PlanetWhiteDwarf) planets.get(i));
 			}
 			//ÉùÃ÷³æ¶´
 			if(dataCfg.wormholeNum == 1){
@@ -159,6 +168,10 @@ public class GameData {
 
 	public List<PlanetBlackHole> getPlanetBlackHoles() {
 		return planetBlackHoles;
+	}
+
+	public List<PlanetWhiteDwarf> getPlanetWhiteDwarfs() {
+		return planetWhiteDwarfs;
 	}
 
 	public int getLevel() {
