@@ -2,6 +2,7 @@ package gamecomponent;
 
 import gamedata.GameData;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -22,6 +23,8 @@ public class PlanetReflection extends Planet implements Runnable {
 	private GameData gameData;
 	private int lastLightX,lastLightY;
 	private boolean lock=true;
+	private Image[] image=new Image[43];
+	private byte a=16,b=0;
 	/**
 	 * 构造反射的星球
 	 * @param x x坐标
@@ -38,14 +41,17 @@ public class PlanetReflection extends Planet implements Runnable {
 		this.tag=tag;
 		this.gameData=gameData;
 		// 构造按钮的图片，自动缩放
-		this.planetImg = getImageIcon("image/星球/星球1.png", 2 * radius,2 * radius);
-	
+		for(;a<59;a++,b++){
+			this.image[b] = getImageIcon("image/星球运动/火星/火星000"+Byte.toString(a)+".png", 2 * radius,2 * radius).getImage();
+		}
+		this.a=0;
+		this.b=0;
 //		this.planetImg = new ImageIcon("image/星球/MARS.gif");
 //		Image previousImage = this.planetImg.getImage();
 //		Image nowImage =previousImage.getScaledInstance(2 * radius, 2 * radius, Image.SCALE_FAST);
 //		this.planetImg = new ImageIcon(nowImage);
 		
-		this.setIcon(planetImg);
+//		this.setIcon(planetImg);
 		// 按钮的位置
 		this.setBounds(locationX, locationY, 2 * radius, 2 * radius);
 		// 设置不绘制矩形的内容
@@ -58,6 +64,17 @@ public class PlanetReflection extends Planet implements Runnable {
 		Thread t=new Thread(this);
 		t.start();
 		
+	}
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(image[a], 0, 0, null);
+		b++;
+		if(b>3){
+			a++;
+			if(a>42)
+				a=0;
+			b=0;
+		}
 	}
 	//
 	@Override

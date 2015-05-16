@@ -1,5 +1,7 @@
 package gamecomponent;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -14,6 +16,8 @@ public class PlanetRefraction extends Planet implements Runnable {
 	private GameData gameData; 
 	private int lastLightX,lastLightY;
 	private boolean lock=true;
+	private Image[] image=new Image[48];
+	private byte a=12,b=0;
 	/**
 	 * 构造折射的星球
 	 * @param x x坐标
@@ -30,8 +34,12 @@ public class PlanetRefraction extends Planet implements Runnable {
 		this.tag=tag;
 		this.gameData=gameDAta;
 		// 构造按钮的图片，自动缩放
-		this.planetImg = this.getImageIcon("image/星球/星球3.png", 2 * radius,2 * radius);
-		this.setIcon(planetImg);
+		for(;a<60;a++,b++){
+			image[b]=this.getImageIcon("image/星球运动/木星/木星000"+Byte.toString(a)+".png", 2 * radius,2 * radius).getImage();
+		}
+		this.a=0;
+		this.b=0;
+//		this.setIcon(planetImg);
 		// 按钮的位置
 		this.setBounds(locationX, locationY, 2 * radius, 2 * radius);
 		// 设置不绘制矩形的内容
@@ -45,9 +53,21 @@ public class PlanetRefraction extends Planet implements Runnable {
 		t.start();
 		
 	}
+	@Override
+	public void paintComponent(Graphics g){
+		g.drawImage(image[a], 0, 0, null);
+		b++;
+		if(b>3){
+			a++;
+			if(a>47)
+				a=0;
+			b=0;
+		}
+	}
 	/**
 	 * 每次改变位置的时候也要同步星球的数据
 	 */
+	@Override
 	public void setLocation(Point location){
 		super.setLocation(location);
 		this.locationX=location.x;
