@@ -1,11 +1,7 @@
 package gamecomponent;
 
-import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import gamedata.GameData;
 
 public class PlanetBlackHole extends Planet implements Runnable{
