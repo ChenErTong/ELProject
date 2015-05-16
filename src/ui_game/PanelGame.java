@@ -58,7 +58,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameRefresh;
 	private boolean isGameLose;
 	//
-	private PlanetDragger[] dragger=new PlanetDragger[2];
+	private PlanetDragger[] dragger;
 	//计时器
 	private long totalMillis=180000;
 	private Clock clock=new Clock(totalMillis,this);
@@ -132,6 +132,12 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody.setActionCommand("threeBody");;
 		this.add(this.threeBody);
 		
+		if((this.gameData.getPlanetReflections().size() > 0)&&(this.gameData.getPlanetRefractions().size() > 0)){
+			this.dragger = new PlanetDragger[2];
+		}else if((this.gameData.getPlanetReflections().size() > 0)||(this.gameData.getPlanetRefractions().size() > 0)){
+			this.dragger = new PlanetDragger[1];
+		}
+		
 		//加入反射
 		this.reflections = new PlanetReflection[this.gameData.getPlanetReflections().size()];
 		for (int i = 0; i < this.reflections.length; i++) {
@@ -141,7 +147,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 			dragger[0]=new PlanetDragger(this.reflections[i],this,this.gameData);
 			this.add(this.reflections[i]);
 		}
-		
+				
 		//加入折射
 		this.refractions = new PlanetRefraction[this.gameData.getPlanetRefractions().size()];
 		for (int i = 0; i < this.refractions.length; i++) {
@@ -151,13 +157,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 			dragger[1]=new PlanetDragger(this.refractions[i],this,this.gameData);
 			this.add(this.refractions[i]);		
 		}
-		
+				
 		//加入黑洞
 		this.blackHoles = new PlanetBlackHole[this.gameData.getPlanetBlackHoles().size()];
 		for (int i = 0; i < this.blackHoles.length; i++) {
 			this.blackHoles[i] = this.gameData.getPlanetBlackHoles().get(i);
 			this.add(this.blackHoles[i]);		
 		}
+
 		//加入虫洞
 		if(this.gameData.haveWornhole){
 			this.add(this.gameData.getPlanetWormHole().getWormHole());
@@ -273,8 +280,10 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 */
 	public void closeFrameWin() {
 		//主窗口得到控制权
-		WindowDragger.CANDRAGGER = true;
-		this.winFrame.dispose();	
+		if(this.winFrame != null){
+			WindowDragger.CANDRAGGER = true;
+			this.winFrame.dispose();	
+		}
 	}
 	
 	

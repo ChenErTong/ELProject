@@ -53,7 +53,7 @@ public class PanelWin extends JPanel{
 		}else if(this.grade == 1){
 			address = "image/win/D.png";
 		}else if(this.grade==0){
-			address = "image/lose/lose.png";
+			address = "image/win/loss.png";
 		}
 		img = Planet.getImageIcon(address, (int)(FrameWin.WIDTH*1.02), (int)(FrameWin.HEIGHT*1.02));
 	}	
