@@ -20,7 +20,7 @@ public class PlanetBlackHole extends Planet implements Runnable{
 
 		//构造按钮的图片，自动缩放
 //		Image temp=new Image().
-		this.planetImg=getImageIcon("image/星球/星球6.png", 2*radius, 2*radius);
+		this.planetImg=getImageIcon("image/星球/heidong.png", 2*radius, 2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);
