@@ -8,7 +8,7 @@ public class WormHole extends Planet{
 		this.locationY=y;
 		this.radius=Radius;
 		//构造按钮的图片，自动缩放
-		this.planetImg=getImageIcon("image/星球/星球4.png", 2*radius,2*radius);
+		this.planetImg=getImageIcon("image/星球/chongdong.png", 2*radius,2*radius);
 		this.setIcon(planetImg);
 		//按钮的位置
 		this.setBounds(locationX, locationY, 2*radius, 2*radius);

@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<level>
-    
-    
-    <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0">
-        <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
-        <planet className="gamecomponent.PlanetSun" locationX="26" locationY="150" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="36" locationY="490" radius="40" tag="2"/>
-        <planet className="gamecomponent.PlanetReflection" locationX="60" locationY="380" radius="45" tag="3"/>
-        <planet className="gamecomponent.PlanetRefraction" locationX="300" locationY="380" radius="45" tag="4"/> 
-        <planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="320" radius="45" tag="5"/>          
-    </gamedata>
-    
-     <gamedata className="gamedata.GameData" name="lv2" reflectionNum="1" refractionNum="0" blackholeNum="2" wormholeNum="1">
+<level> 
+     <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="0" blackholeNum="2" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="500" locationY="240" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="400" locationY="200" radius="50" tag="1"/>
         <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="50" radius="40" tag="2"/>
@@ -21,7 +10,7 @@
         <wormhole className="gamecomponent.PlanetWormHole" location1X="290" location1Y="170" location2X="460" location2Y="500" radius="40"/>    
     </gamedata>
     
-    <gamedata className="gamedata.GameData" name="lv3" reflectionNum="0" refractionNum="2" blackholeNum="3" wormholeNum="1">
+    <gamedata className="gamedata.GameData" name="lv2" reflectionNum="0" refractionNum="2" blackholeNum="3" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="10" locationY="50" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="100" locationY="40" radius="50" tag="1"/>
         <planet className="gamecomponent.PlanetThreeBody" locationX="900" locationY="500" radius="40" tag="2"/>
@@ -33,6 +22,17 @@
         <wormhole className="gamecomponent.PlanetWormHole" location1X="490" location1Y="130" location2X="280" location2Y="270" radius="40"/>    
     </gamedata>
     
+    <gamedata className="gamedata.GameData" name="lv3" reflectionNum="2" refractionNum="1" blackholeNum="1" wormholeNum="1">
+        <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
+        <planet className="gamecomponent.PlanetSun" locationX="170" locationY="50" radius="50" tag="1"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="36" locationY="150" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="510" locationY="420" radius="45" tag="3"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="554" locationY="137" radius="45" tag="4"/>
+        <planet className="gamecomponent.PlanetRefraction" locationX="850" locationY="245" radius="45" tag="5"/> 
+        <planet className="gamecomponent.PlanetBlackHole" locationX="150" locationY="230" radius="140" tag="6"/>
+        <wormhole className="gamecomponent.PlanetWormHole" location1X="140" location1Y="160" location2X="920" location2Y="498" radius="40"/>    
+    </gamedata>
+    
     <gamedata className="gamedata.GameData" name="lv4" reflectionNum="3" refractionNum="0" blackholeNum="5" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="26" locationY="150" radius="50" tag="1"/>
@@ -40,17 +40,28 @@
         <planet className="gamecomponent.PlanetReflection" locationX="60" locationY="380" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetReflection" locationX="465" locationY="235" radius="45" tag="4"/>
         <planet className="gamecomponent.PlanetReflection" locationX="200" locationY="51" radius="45" tag="5"/>           
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="830" locationY="350" radius="45" tag="6"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="455" locationY="480" radius="45" tag="7"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="700" locationY="450" radius="45" tag="8"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="320" radius="45" tag="9"/>
-  		<planet className="gamecomponent.PlanetBlackHole" locationX="520" locationY="45" radius="45" tag="10"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="830" locationY="350" radius="55" tag="6"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="455" locationY="480" radius="55" tag="7"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="700" locationY="450" radius="55" tag="8"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="320" radius="55" tag="9"/>
+  		<planet className="gamecomponent.PlanetBlackHole" locationX="520" locationY="45" radius="55" tag="10"/>
     	<wormhole className="gamecomponent.PlanetWormHole" location1X="320" location1Y="170" location2X="930" location2Y="230" radius="40"/>
     </gamedata>
     
-    
-    
-    <gamedata className="gamedata.GameData" name="lv5" reflectionNum="1" refractionNum="1" blackholeNum="1" wormholeNum="0" lightDirectionX="0" lightDirectionY="1">
-        
+     <gamedata className="gamedata.GameData" name="lv5" reflectionNum="2" refractionNum="1" blackholeNum="7" wormholeNum="1">
+        <planet className="gamecomponent.PlanetEarth" locationX="110" locationY="60" radius="40" tag="0"/>
+        <planet className="gamecomponent.PlanetSun" locationX="100" locationY="150" radius="50" tag="1"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="630" locationY="80" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="74" locationY="378" radius="45" tag="3"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="779" locationY="507" radius="45" tag="4"/>
+        <planet className="gamecomponent.PlanetRefraction" locationX="686" locationY="311" radius="45" tag="5"/> 
+        <planet className="gamecomponent.PlanetBlackHole" locationX="250" locationY="50" radius="170" tag="6"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="630" locationY="180" radius="55" tag="7"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="745" locationY="140" radius="55" tag="8"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="350" locationY="410" radius="55" tag="9"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="685" locationY="410" radius="55" tag="10"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="900" locationY="440" radius="55" tag="11"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="145" locationY="454" radius="45" tag="12"/>
+		<wormhole className="gamecomponent.PlanetWormHole" location1X="0" location1Y="520" location2X="865" location2Y="80" radius="40"/>          
     </gamedata>
 </level>
