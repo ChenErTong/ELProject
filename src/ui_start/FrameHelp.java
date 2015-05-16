@@ -23,9 +23,9 @@ public class FrameHelp extends JFrame{
 		
 		//定义通关窗口的大小与位置
 		int w = PanelHelp.WIDTH;
-		int h = (int)(PanelHelp.HEIGHT*1.05);
+		int h = PanelHelp.HEIGHT;
 		int x = (FrameTotal.WINDOWW-w)/2+FrameTotal.WINDOWX;
-		int y = (FrameTotal.WINDOWH-PanelHelp.HEIGHT)/2+(int)(FrameTotal.WINDOWY*1.4);
+		int y = (FrameTotal.WINDOWH-h)/2+(int)(FrameTotal.WINDOWY*1.4);
 		this.setSize(w, h);
 		this.setLocation(x, y);
 		this.setUndecorated(true);

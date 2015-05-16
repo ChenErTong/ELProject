@@ -32,28 +32,28 @@ public class PanelHelp extends JPanel{
 	/**
 	 * 面板分5张图显示
 	 */
-	private static ImageIcon img0=new ImageIcon("image/help/help0.png");
-	private static ImageIcon img1=new ImageIcon("image/help/help1.png");
-	private static ImageIcon img2=new ImageIcon("image/help/help2.png");
-	private static ImageIcon img3=new ImageIcon("image/help/help3.png");
-	private static ImageIcon img4=new ImageIcon("image/help/help4.png");
-	private static ImageIcon img5=new ImageIcon("image/help/help5.png");
-	private static ImageIcon img6=new ImageIcon("image/help/help1.png");
-	private static ImageIcon img7=new ImageIcon("image/help/help2.png");
-	private static ImageIcon img8=new ImageIcon("image/help/help2.png");
-	private static ImageIcon img9=new ImageIcon("image/help/help4.png");
+	private static ImageIcon img0=Planet.getImageIcon("image/help/help0.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img1=Planet.getImageIcon("image/help/help1.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img2=Planet.getImageIcon("image/help/help2.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img3=Planet.getImageIcon("image/help/help3.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img4=Planet.getImageIcon("image/help/help4.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img5=Planet.getImageIcon("image/help/help5.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img6=Planet.getImageIcon("image/help/help1.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img7=Planet.getImageIcon("image/help/help2.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img8=Planet.getImageIcon("image/help/help3.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img9=Planet.getImageIcon("image/help/help4.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
 	private PanelHelp panelHelp=this;
 	private JLabel jl0,jl1,jl2,jl3,jl4;
 	/**
 	 * 得带面板的长宽
 	 */
-	static int WIDTH = img1.getIconWidth();
-	static int HEIGHT =img1.getIconHeight();
+	static int WIDTH = (int)(FrameTotal.WINDOWW*0.683);
+	static int HEIGHT = (int)(FrameTotal.WINDOWH*0.733);
 	/**
 	 * 面板分四张图显示
 	 */
-	private ImageIcon imgUp=new ImageIcon("image/help/up.png");
-	private ImageIcon imgDown=new ImageIcon("image/help/down.png");
+	private ImageIcon imgUp=Planet.getImageIcon("image/help/up.png",(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
+	private ImageIcon imgDown=Planet.getImageIcon("image/help/down.png",(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
 	/**
 	 * 关闭按钮
 	 */
@@ -61,8 +61,7 @@ public class PanelHelp extends JPanel{
 	/**
 	 * TODO 关闭按钮的图片
 	 */
-	private static ImageIcon closeImg=new ImageIcon("image/button/Return4.png");
-	private static final ImageIcon BUTTON_CLOSE = Planet.getImageIcon("image/button/Return4.png", (int)(closeImg.getIconWidth()*0.22), (int)(closeImg.getIconHeight()*0.22));
+	private static final ImageIcon BUTTON_CLOSE=Planet.getImageIcon("image/button/关闭按钮.png",(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
 
 	/**
 	 * 用来计数按钮按下的次数
@@ -79,7 +78,6 @@ public class PanelHelp extends JPanel{
 	
 	public PanelHelp(PlayerControl playerControl){
 		this.playerControl = playerControl;
-
 		this.jl0=new JLabel(img0);
 		this.jl1=new JLabel(img1);
 		this.jl2=new JLabel(img2);
@@ -108,7 +106,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(WIDTH/2-BUTTON_CLOSE.getIconWidth()/2), (int)(HEIGHT*0.95), (int)(closeImg.getIconWidth()*0.22), (int)(closeImg.getIconHeight()*0.22));
+		closeButton.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.35),(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
 		closeButton.addActionListener(playerControl);
 		closeButton.addMouseMotionListener(new MouseMotion());
 		closeButton.setContentAreaFilled(false);
@@ -129,8 +127,8 @@ public class PanelHelp extends JPanel{
 	void initExchange(){
 		JButton jbtUp=new JButton(imgUp);
 		JButton jbtDown=new JButton(imgDown);	
-		jbtUp.setBounds((int)(WIDTH*0.92), (int)(HEIGHT*0.65), 40,40);
-		jbtDown.setBounds((int)(WIDTH*0.92), (int)(HEIGHT*0.77), 40,40);
+		jbtUp.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.61),(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
+		jbtDown.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.75), (int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
 		jbtUp.setContentAreaFilled(false);
 		jbtUp.setBorderPainted(false);
 		jbtDown.setContentAreaFilled(false);
