@@ -9,6 +9,7 @@ import gamecomponent.PlanetEarth;
 import gamecomponent.PlanetReflection;
 import gamecomponent.PlanetRefraction;
 import gamecomponent.PlanetThreeBody;
+import gamecomponent.PlanetWhiteDwarf;
 import gamecomponent.PlanetWormHole;
 import gamedata.GameData;
 import gamedata.TotalData;
@@ -49,6 +50,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private PlanetEarth earth;
 	private PlanetThreeBody threeBody;
 	private PlanetBlackHole[] blackHoles;
+	private PlanetWhiteDwarf[] whiteDwarfs;
 	private PlanetReflection[] reflections;
 	private PlanetRefraction[] refractions;
 	private PlanetWormHole wormHole;
@@ -166,7 +168,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.blackHoles[i] = this.gameData.getPlanetBlackHoles().get(i);
 			this.add(this.blackHoles[i]);		
 		}
-
+		
+		//加入白矮星
+		this.whiteDwarfs = new PlanetWhiteDwarf[this.gameData.getPlanetWhiteDwarfs().size()];
+		for (int i = 0; i < this.whiteDwarfs.length; i++) {
+			this.whiteDwarfs[i] = this.gameData.getPlanetWhiteDwarfs().get(i);
+			this.add(this.whiteDwarfs[i]);
+		}
+		
 		//加入虫洞
 		if(this.gameData.haveWornhole){
 			this.add(this.gameData.getPlanetWormHole().getWormHole());

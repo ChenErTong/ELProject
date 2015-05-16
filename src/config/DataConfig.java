@@ -20,6 +20,8 @@ public class DataConfig {
 	public int refractionNum = 0;
 	//黑洞数量
 	public int blackholeNum = 0;
+	//白矮星数量
+	public int whiteDwarfNum = 0;
 	//虫洞数量
 	public int wormholeNum = 0;
 
@@ -32,6 +34,7 @@ public class DataConfig {
 		this.reflectionNum = Integer.parseInt(data.attributeValue("reflectionNum"));
 		this.refractionNum = Integer.parseInt(data.attributeValue("refractionNum"));
 		this.blackholeNum = Integer.parseInt(data.attributeValue("blackholeNum"));
+		this.whiteDwarfNum = Integer.parseInt(data.attributeValue("whiteDwarfNum"));
 		this.wormholeNum = Integer.parseInt(data.attributeValue("wormholeNum"));
 		
 		@SuppressWarnings("unchecked")
