@@ -106,7 +106,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.35),(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
+		closeButton.setBounds((int)(FrameTotal.WINDOWW*(0.627)), (int)(HEIGHT*0.15),(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
 		closeButton.addActionListener(playerControl);
 		closeButton.addMouseMotionListener(new MouseMotion());
 		closeButton.setContentAreaFilled(false);
