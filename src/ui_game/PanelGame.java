@@ -59,8 +59,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameLose;
 	//
 	private PlanetDragger[] dragger;
-	//计时器
-	private long totalMillis=180000;
+	//计时器 TODO
+	private long totalMillis=1800000;
 	private Clock clock=new Clock(totalMillis,this);
 	//关卡游戏评级
 	private int grade;
@@ -131,19 +131,21 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody = this.gameData.getPlanetThreeBody();
 		this.threeBody.setActionCommand("threeBody");;
 		this.add(this.threeBody);
-		
+	
+		int count = 1;
 		if((this.gameData.getPlanetReflections().size() > 0)&&(this.gameData.getPlanetRefractions().size() > 0)){
 			this.dragger = new PlanetDragger[2];
 		}else if((this.gameData.getPlanetReflections().size() > 0)||(this.gameData.getPlanetRefractions().size() > 0)){
 			this.dragger = new PlanetDragger[1];
+			count = 0;
 		}
 		
 		//加入反射
 		this.reflections = new PlanetReflection[this.gameData.getPlanetReflections().size()];
 		for (int i = 0; i < this.reflections.length; i++) {
-			this.reflections[i] = this.gameData.getPlanetReflections().get(i);
+			this.reflections[0] = this.gameData.getPlanetReflections().get(i);
 			PlanetControl pc = new PlanetControl(this.reflections[i]);
-			this.reflections[i].addKeyListener(pc);
+			this.reflections[0].addKeyListener(pc);
 			dragger[0]=new PlanetDragger(this.reflections[i],this,this.gameData);
 			this.add(this.reflections[i]);
 		}
@@ -154,7 +156,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.refractions[i] = this.gameData.getPlanetRefractions().get(i);
 			PlanetControl pc = new PlanetControl(this.refractions[i]);
 			this.refractions[i].addKeyListener(pc);
-			dragger[1]=new PlanetDragger(this.refractions[i],this,this.gameData);
+			dragger[count]=new PlanetDragger(this.refractions[i],this,this.gameData);
 			this.add(this.refractions[i]);		
 		}
 				
