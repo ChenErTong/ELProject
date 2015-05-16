@@ -87,6 +87,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.isGameWin = false;
 		this.isGameRefresh = false;
 		
+		this.setVisible(false);
 		this.setLayout(null);
 		
 		String address = new String();

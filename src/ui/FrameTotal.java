@@ -49,7 +49,8 @@ public class FrameTotal extends JFrame{
 	 */
 	private PanelStartGame panelStartGame;
 	private PanelSelectMission panelSelectMission;
-	private PanelGame panelGame;
+	public PanelGame panelGame;
+	private PanelLoading panelLoading;
 	/**
 	 * 音乐声明
 	 * TODO 未声明音乐素材
@@ -173,14 +174,31 @@ public class FrameTotal extends JFrame{
 	}
 	
 	/**
+	 * 初始化loading面板
+	 */
+	public void initPanelLoading(){
+		this.panelLoading=new PanelLoading(this);
+		this.add(panelLoading);
+		this.panelLoading.setVisible(true);
+		this.validate();
+		this.gameControl.setPanelSelectMission(this.panelSelectMission);
+		this.repaint();
+		this.requestFocus();
+	}
+	public void removePanelLoading(){
+		this.remove(panelLoading);
+	}
+	
+	/**
 	 * 初始化游戏面板
 	 * @param gameData 
 	 */
 	public void initPanelGame(GameData gameData){
+		initPanelLoading();
 		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this,gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
-		this.panelGame.setVisible(true);
+	//	this.panelGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);
 		this.repaint();

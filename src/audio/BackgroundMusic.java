@@ -50,6 +50,7 @@ public class BackgroundMusic{
 	//开始播放（从暂停处开始）
 	public  void play() {
 		this.clip.play();
+		this.clip.loop();
 //		if (!player.isRunning()) {
 //			
 //			player.setLoopCount(player.LOOP_CONTINUOUSLY);
