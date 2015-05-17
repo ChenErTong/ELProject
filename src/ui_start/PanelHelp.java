@@ -39,9 +39,9 @@ public class PanelHelp extends JPanel{
 	private static ImageIcon img4=Planet.getImageIcon("image/help/help4.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
 	private static ImageIcon img5=Planet.getImageIcon("image/help/help5.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
 	private static ImageIcon img6=Planet.getImageIcon("image/help/help1.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
-	private static ImageIcon img7=Planet.getImageIcon("image/help/help2.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
-	private static ImageIcon img8=Planet.getImageIcon("image/help/help3.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
-	private static ImageIcon img9=Planet.getImageIcon("image/help/help4.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img7=Planet.getImageIcon("image/help/help6.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img8=Planet.getImageIcon("image/help/help7.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
+	private static ImageIcon img9=Planet.getImageIcon("image/help/help8.png",(int)(FrameTotal.WINDOWW*0.683),(int)(FrameTotal.WINDOWH*0.733));
 	private PanelHelp panelHelp=this;
 	private JLabel jl0,jl1,jl2,jl3,jl4;
 	/**
