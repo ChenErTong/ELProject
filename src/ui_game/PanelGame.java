@@ -61,8 +61,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//游戏重新刷新一局
 	private boolean isGameRefresh;
 	private boolean isGameLose;
-	//
-	private PlanetDragger[] dragger;
+	
+	private PlanetDragger dragger;
 	//计时器 TODO
 	public long totalMillis=180000;
 	public Clock clock;
@@ -138,22 +138,14 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.threeBody = this.gameData.getPlanetThreeBody();
 		this.threeBody.setActionCommand("threeBody");;
 		this.add(this.threeBody);
-	
-		int count = 1;
-		if((this.gameData.getPlanetReflections().size() > 0)&&(this.gameData.getPlanetRefractions().size() > 0)){
-			this.dragger = new PlanetDragger[2];
-		}else if((this.gameData.getPlanetReflections().size() > 0)||(this.gameData.getPlanetRefractions().size() > 0)){
-			this.dragger = new PlanetDragger[1];
-			count = 0;
-		}
-		
+
 		//加入反射
 		this.reflections = new PlanetReflection[this.gameData.getPlanetReflections().size()];
 		for (int i = 0; i < this.reflections.length; i++) {
 			this.reflections[i] = this.gameData.getPlanetReflections().get(i);
 			PlanetControl pc = new PlanetControl(this.reflections[i]);
 			this.reflections[i].addKeyListener(pc);
-			this.dragger[0]=new PlanetDragger(this.reflections[i],this,this.gameData);
+			this.dragger=new PlanetDragger(this.reflections[i],this,this.gameData);
 			this.add(this.reflections[i]);
 		}
 				
@@ -163,7 +155,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.refractions[i] = this.gameData.getPlanetRefractions().get(i);
 			PlanetControl pc = new PlanetControl(this.refractions[i]);
 			this.refractions[i].addKeyListener(pc);
-			this.dragger[count]=new PlanetDragger(this.refractions[i],this,this.gameData);
+			this.dragger=new PlanetDragger(this.refractions[i],this,this.gameData);
 			this.add(this.refractions[i]);		
 		}
 				
@@ -186,10 +178,6 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.add(this.gameData.getPlanetWormHole().getWormHole());
 			this.add(this.gameData.getPlanetWormHole().getAnotherWormHole());
 		}
-		
-		//加入计时器
-	//	this.add(clock);
-
 	}
 	
 	/**
@@ -261,7 +249,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	}
 	
 	//鼠标移过按钮时发出音效
-	class MouseMotion extends MouseMotionAdapter{
+	public class MouseMotion extends MouseMotionAdapter{
 		public void mouseMoved(MouseEvent e) {
 			SoundEffect.SELECT.play();
 		}
@@ -391,17 +379,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 控制所有功能星球不可移动
 	 */
 	public void stopDrag(){
-		for(PlanetDragger cell:dragger){
-			cell.stop();
-		}
+		dragger.stop();
 	}
 	/**
 	 * 控制所有功能星球恢复移动
 	 */
 	private void reDrag(){
-		for(PlanetDragger cell:dragger){
-			cell.start();
-		}
+		dragger.start();
 	}
 
 	public void addControl(GameControl gameControl) {

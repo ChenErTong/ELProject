@@ -21,10 +21,6 @@ public class PlayerControl implements ActionListener{
 		if(code.equalsIgnoreCase("earth")){
 			this.gameControl.launchLight();
 			this.gameControl.stopDrag();
-		} else if(code.equalsIgnoreCase("sun")){
-			
-		} else if(code.equalsIgnoreCase("threeBody")){
-			
 		} else if(code.equalsIgnoreCase("ReturnFromWin")){
 			this.gameControl.returnFromWin();
 		} else if(code.equalsIgnoreCase("ReturnFromGame")){
@@ -48,6 +44,13 @@ public class PlayerControl implements ActionListener{
 				||code.equalsIgnoreCase("5")){
 			int level = Integer.parseInt(code);
 			this.gameControl.toGameLevel(level);
+		} else if(code.equalsIgnoreCase("ToSelectDIY")){
+			this.gameControl.toSelectDIY();
+		} else if(code.equalsIgnoreCase("DIY")){
+			this.gameControl.toPanelEdit();
+		} else if(code.equalsIgnoreCase("Save")){
+			this.gameControl.saveData();
+			this.gameControl.toSelectDIY();
 		}
 	}
 }

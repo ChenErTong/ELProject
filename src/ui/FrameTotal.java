@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import com.sun.awt.AWTUtilities;
 
 import ui_game.PanelGame;
+import ui_start.PanelEdit;
+import ui_start.PanelSelectDIY;
 import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
 import audio.BackgroundMusic;
@@ -50,6 +52,8 @@ public class FrameTotal extends JFrame{
 	private PanelStartGame panelStartGame;
 	private PanelSelectMission panelSelectMission;
 	public PanelGame panelGame;
+	private PanelSelectDIY panelSelectDIY;
+	private PanelEdit panelEdit;
 	private PanelLoading panelLoading;
 	/**
 	 * 音乐声明
@@ -194,13 +198,41 @@ public class FrameTotal extends JFrame{
 	 * @param gameData 
 	 */
 	public void initPanelGame(GameData gameData){
-		initPanelLoading();
-		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this,gameData);
+		this.initPanelLoading();
+		this.panelGame = new PanelGame(this.musicGame, this.bgmSyncData, this.SoundSyncData, this, gameData);
 		this.panelGame.addControl(playerControl);
 		this.add(panelGame);
-	//	this.panelGame.setVisible(true);
 		this.validate();
 		this.gameControl.setPanelGame(this.panelGame);
+		this.repaint();
+		this.requestFocus();
+	}
+	
+	/**
+	 * 初始化游戏DIY面板 
+	 */
+	public void initPanelGameSelectDIY() {
+		this.panelSelectDIY = new PanelSelectDIY(this.musicSelect, this.bgmSyncData, this.SoundSyncData, this);
+		this.panelSelectDIY.addControl(playerControl);
+		this.add(panelSelectDIY);
+		this.panelSelectDIY.setVisible(true);
+		this.validate();
+		this.gameControl.setPanelSelectDIY(this.panelSelectDIY);
+		this.repaint();
+		this.requestFocus();
+	}
+
+	/**
+	 * 初始化编辑面板 
+	 * @param gameData 
+	 */
+	public void initPanelEdit(GameData gameData) {
+		this.panelEdit = new PanelEdit(this.musicStart, this.bgmSyncData, this.SoundSyncData, this, gameData);
+		this.panelEdit.addControl(playerControl);
+		this.add(panelEdit);
+		this.panelEdit.setVisible(true);
+		this.validate();
+		this.gameControl.setPanelEdit(this.panelEdit);
 		this.repaint();
 		this.requestFocus();
 	}

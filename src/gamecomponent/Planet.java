@@ -93,4 +93,10 @@ public abstract class Planet extends JButton {
 	public static void setGAMECONTINUE() {
 		GAMECONTINUE = true;
 	}
+	@Override
+	public void setLocation(Point location){
+		super.setLocation(location);
+		this.locationX=location.x;
+		this.locationY=location.y;
+	}
 }

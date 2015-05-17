@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level> 
+	<gamedata className="gamedata.GameData" name="lv0" reflectionNum="0" refractionNum="0" blackholeNum="0" whiteDwarfNum="0" wormholeNum="0">
+        <planet className="gamecomponent.PlanetEarth" locationX="500" locationY="240" radius="40" tag="0"/>
+        <planet className="gamecomponent.PlanetSun" locationX="400" locationY="200" radius="50" tag="1"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="50" radius="50" tag="2"/>
+    </gamedata>
+
      <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="0" blackholeNum="0" whiteDwarfNum="2" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="500" locationY="240" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="400" locationY="200" radius="50" tag="1"/>

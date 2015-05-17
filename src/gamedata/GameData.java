@@ -48,7 +48,7 @@ public class GameData {
 	//虫洞是否存在
 	public boolean haveWornhole = false;
 	
-	//管线控制器
+	//光线控制器
 	private LightControl lightControl;
 	
 	//第0个是地球，第1个是三体星球，纵坐标分别是X坐标，Y坐标，半径
@@ -66,7 +66,7 @@ public class GameData {
 		try {
 			//读出配置文件中的所有星球数据
 			LevelConfig levelCfg = ConfigFactory.getLEVEL_CFG();		
-			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level - 1);
+			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level);
 			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
@@ -96,7 +96,6 @@ public class GameData {
 				this.planetPoints[i][1] = planets.get(i).getLocationY();
 				this.planetPoints[i][2] = planets.get(i).getRadius();
 			}
-			
 			//声明地球
 			this.planetEarth = (PlanetEarth)planets.get(0);
 			//声明太阳
@@ -131,8 +130,7 @@ public class GameData {
 			
 			}	
 			
-			this.lightDirectionX = this.planetSun.getLocationX()+this.planetSun.getRadius()-this.planetEarth.getLocationX()-this.planetEarth.getRadius();
-			this.lightDirectionY = this.planetSun.getLocationY()+this.planetSun.getRadius()-this.planetEarth.getLocationY()-this.planetEarth.getRadius();
+			this.setLaunchDirections();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -193,5 +191,10 @@ public class GameData {
 	public void refreshPlanet(int tag,Point location){
 		this.planetPoints[tag][0]=location.x;
 		this.planetPoints[tag][1]=location.y;
+	}
+	
+	public void setLaunchDirections(){
+		this.lightDirectionX = this.planetSun.getLocationX()+this.planetSun.getRadius()-this.planetEarth.getLocationX()-this.planetEarth.getRadius();
+		this.lightDirectionY = this.planetSun.getLocationY()+this.planetSun.getRadius()-this.planetEarth.getLocationY()-this.planetEarth.getRadius();
 	}
 }

@@ -64,8 +64,7 @@ public class PlanetEarth extends Planet implements Runnable{
 		//设置可见
 		this.setVisible(true);
 		//光线初始坐标
-		launchX=this.locationX+this.radius;
-		launchY=this.locationY+this.radius;
+		this.setLocations();
 		
 		Thread t=new Thread(this);
 		t.start();
@@ -135,5 +134,10 @@ public class PlanetEarth extends Planet implements Runnable{
 		this.count = 0;
 		NOW = true;
 		BEFORE = true;
+	}
+	
+	public void setLocations(){
+		launchX=this.locationX+this.radius;
+		launchY=this.locationY+this.radius;
 	}
 }

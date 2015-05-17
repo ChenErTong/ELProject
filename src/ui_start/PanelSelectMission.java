@@ -42,7 +42,7 @@ public class PanelSelectMission extends PanelTotal{
 	//返回按钮
 	private JButton jbtBack;
 	//翻页按钮
-	private JButton jbtRight;
+	private JButton jbtRight = null;
 	
 	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData,frameTotal);
@@ -112,10 +112,10 @@ public class PanelSelectMission extends PanelTotal{
 		
 		if(FrameTotal.TOTALDATA.getGrade(5) > 0){
 			this.jbtRight=new JButton(imgRight);
-			this.jbtRight.setBounds((int)(FrameTotal.WINDOWW*0.96), (int)(FrameTotal.WINDOWH*0.8), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+			this.jbtRight.setBounds((int)(FrameTotal.WINDOWW*0.934), (int)(FrameTotal.WINDOWH*0.92), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 			this.jbtRight.setContentAreaFilled(false);
 			this.jbtRight.setBorderPainted(false);
-			this.jbtRight.setActionCommand("5");
+			this.jbtRight.setActionCommand("ToSelectDIY");
 			this.add(jbtRight);
 		}
 		
@@ -142,7 +142,11 @@ public class PanelSelectMission extends PanelTotal{
 		/**
 		 * 给所有关卡按钮加入玩家控制器进行监听
 		 */
-		switch(FrameTotal.TOTALDATA.getLevel()){
+		int lv = FrameTotal.TOTALDATA.getLevel();
+		if(lv > 5){
+			lv = 5;
+		}
+		switch(lv){
 		case 5: jbtMission5.addActionListener(this.playerControl);
 		case 4: jbtMission4.addActionListener(this.playerControl);
 		case 3: jbtMission3.addActionListener(this.playerControl);
@@ -150,6 +154,9 @@ public class PanelSelectMission extends PanelTotal{
 		case 1: jbtMission1.addActionListener(this.playerControl);
 		}
 		
+		if(jbtRight != null){
+			jbtRight.addActionListener(playerControl);
+		}
 		jbtBack.addActionListener(playerControl);
 	}
 }

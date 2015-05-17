@@ -27,7 +27,7 @@ public class TotalData {
 	//当地数据文件
 	private File baseData;
 	//文件中关卡评级前缀
-	private String frontGrade;
+	private String[] frontGrade;
 	//文件中最高解锁关卡前缀
 	private String frontLevel;
 	//文件中屏幕分辨率前缀
@@ -77,10 +77,11 @@ public class TotalData {
 			BufferedReader br = new BufferedReader(new FileReader(baseData));
 			
 			//为所有关卡赋予已有分数
-			this.grade = new int[5];
+			this.grade = new int[10];
+			this.frontGrade = new String[this.grade.length];
 			for (int i = 0; i < grade.length; i++) {
 				line = br.readLine();
-				this.frontGrade = line.split(":")[0]+":";
+				this.frontGrade[i] = line.split(":")[0]+":";
 				grade[i] = Integer.parseInt(line.split(":")[1]);
 			}
 			
@@ -109,7 +110,7 @@ public class TotalData {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(baseData));
 			
 			for (int i = 0; i < grade.length; i++) {
-				line = this.frontGrade + Integer.toString(grade[i]) + "\n";
+				line = this.frontGrade[i] + Integer.toString(grade[i]) + "\n";
 				bw.write(line);
 			}
 			
