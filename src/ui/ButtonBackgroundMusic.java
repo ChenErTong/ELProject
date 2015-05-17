@@ -18,13 +18,11 @@ import javax.swing.JButton;
  * 2015年4月19日下午10:07:42
  */
 public class ButtonBackgroundMusic extends JButton{
-	private int w=FrameTotal.WINDOWW;
-	private int h=FrameTotal.WINDOWH;
 	//静音按钮的设置值
 	private int control;
 	//按钮的图标
-	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/声音按钮版本2.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
-	private ImageIcon muteIcon=Planet.getImageIcon("image/button/禁音按钮2改.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+	private ImageIcon defaultIcon=Planet.getImageIcon("image/button/声音按钮.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+	private ImageIcon muteIcon=Planet.getImageIcon("image/button/禁声音按钮.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 
 	//背景音乐，由各界面传入
 	private BackgroundMusic bgm;

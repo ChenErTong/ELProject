@@ -93,7 +93,6 @@ public class PlanetSun extends Planet implements Runnable{
 				if(count == 3){
 					GAMECONTINUE = false;
 				}
-				System.out.println(count);
 			}
 		}		
 	}

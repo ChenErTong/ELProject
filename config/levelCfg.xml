@@ -3,7 +3,7 @@
      <gamedata className="gamedata.GameData" name="lv1" reflectionNum="1" refractionNum="0" blackholeNum="0" whiteDwarfNum="2" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="500" locationY="240" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="400" locationY="200" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="50" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="700" locationY="50" radius="50" tag="2"/>
         <planet className="gamecomponent.PlanetReflection" locationX="850" locationY="180" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetWhiteDwarf" locationX="30" locationY="300" radius="45" tag="4"/>
         <planet className="gamecomponent.PlanetWhiteDwarf" locationX="636" locationY="162" radius="45" tag="5"/>
@@ -13,7 +13,7 @@
     <gamedata className="gamedata.GameData" name="lv2" reflectionNum="0" refractionNum="2" blackholeNum="1" whiteDwarfNum="2" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="10" locationY="50" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="100" locationY="40" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="900" locationY="500" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="900" locationY="500" radius="50" tag="2"/>
         <planet className="gamecomponent.PlanetRefraction" locationX="800" locationY="60" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetRefraction" locationX="110" locationY="450" radius="45" tag="4"/>  
         <planet className="gamecomponent.PlanetBlackHole" locationX="620" locationY="200" radius="150" tag="5"/>
@@ -25,7 +25,7 @@
     <gamedata className="gamedata.GameData" name="lv3" reflectionNum="2" refractionNum="1" blackholeNum="1" whiteDwarfNum="0" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="170" locationY="50" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="36" locationY="150" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="36" locationY="150" radius="50" tag="2"/>
         <planet className="gamecomponent.PlanetReflection" locationX="510" locationY="420" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetReflection" locationX="554" locationY="137" radius="45" tag="4"/>
         <planet className="gamecomponent.PlanetRefraction" locationX="850" locationY="245" radius="45" tag="5"/> 
@@ -36,7 +36,7 @@
     <gamedata className="gamedata.GameData" name="lv4" reflectionNum="3" refractionNum="0" blackholeNum="1" whiteDwarfNum="4" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="26" locationY="150" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="920" locationY="490" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="920" locationY="490" radius="50" tag="2"/>
         <planet className="gamecomponent.PlanetReflection" locationX="60" locationY="380" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetReflection" locationX="465" locationY="235" radius="45" tag="4"/>
         <planet className="gamecomponent.PlanetReflection" locationX="200" locationY="51" radius="45" tag="5"/>
@@ -51,7 +51,7 @@
      <gamedata className="gamedata.GameData" name="lv5" reflectionNum="2" refractionNum="1" blackholeNum="1" whiteDwarfNum="6" wormholeNum="1">
         <planet className="gamecomponent.PlanetEarth" locationX="110" locationY="60" radius="40" tag="0"/>
         <planet className="gamecomponent.PlanetSun" locationX="100" locationY="150" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="630" locationY="80" radius="40" tag="2"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="630" locationY="80" radius="50" tag="2"/>
         <planet className="gamecomponent.PlanetReflection" locationX="80" locationY="350" radius="45" tag="3"/>
         <planet className="gamecomponent.PlanetReflection" locationX="865" locationY="240" radius="45" tag="4"/>
         <planet className="gamecomponent.PlanetRefraction" locationX="535" locationY="500" radius="45" tag="5"/> 

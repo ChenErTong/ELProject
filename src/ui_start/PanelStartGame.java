@@ -28,13 +28,13 @@ import ui.*;
  */
 public class PanelStartGame extends PanelTotal{
 	//按钮的图标
-	private ImageIcon imgNewGame1 = new ImageIcon("image/button/按钮部分1.png");
-	private ImageIcon imgHelp1 = new ImageIcon("image/button/按钮部分3.png");
-	private ImageIcon imgQuit1 = new ImageIcon("image/button/按钮部分4.png");
+	private ImageIcon imgNewGame1 = new ImageIcon("image/button/NewGame.png");
+	private ImageIcon imgHelp1 = new ImageIcon("image/button/Help.png");
+	private ImageIcon imgQuit1 = new ImageIcon("image/button/Quit.png");
 	//变化的图标
-	private ImageIcon imgNewGame2 = new ImageIcon("image/button/按钮部分1-1.gif");
-	private ImageIcon imgHelp2 = new ImageIcon("image/button/按钮部分3-1.gif");
-	private ImageIcon imgQuit2 = new ImageIcon("image/button/按钮部分4-1.gif");
+	private ImageIcon imgNewGame2 = new ImageIcon("image/button/NewGame1.gif");
+	private ImageIcon imgHelp2 = new ImageIcon("image/button/Help1.gif");
+	private ImageIcon imgQuit2 = new ImageIcon("image/button/Quit1.gif");
 
 	//帮助界面
 	private FrameHelp frameHelp;
@@ -83,7 +83,7 @@ public class PanelStartGame extends PanelTotal{
 		this.add(jbtQuit);
 		
 		//在分层面板加入背景图片面板	
-		this.backgroundImg=Planet.getImageIcon("image/bg/开始界面2.png", FrameTotal.WINDOWW,FrameTotal.WINDOWH);
+		this.backgroundImg=Planet.getImageIcon("image/background/Start.png", FrameTotal.WINDOWW,FrameTotal.WINDOWH);
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,FrameTotal.WINDOWW,FrameTotal.WINDOWH);		
 		this.add(background);			

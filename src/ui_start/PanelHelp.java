@@ -61,7 +61,7 @@ public class PanelHelp extends JPanel{
 	/**
 	 * TODO 关闭按钮的图片
 	 */
-	private static final ImageIcon BUTTON_CLOSE=Planet.getImageIcon("image/button/关闭按钮.png",(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
+	private static final ImageIcon BUTTON_CLOSE=Planet.getImageIcon("image/help/close.png",(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
 
 	/**
 	 * 用来计数按钮按下的次数
@@ -106,7 +106,7 @@ public class PanelHelp extends JPanel{
 	private void initButton(){
 		closeButton = new JButton();
 		closeButton.setIcon(BUTTON_CLOSE);
-		closeButton.setBounds((int)(FrameTotal.WINDOWW*(0.627)), (int)(HEIGHT*0.15),(int)(FrameTotal.WINDOWW*0.040),(int)(FrameTotal.WINDOWH*0.068));
+		closeButton.setBounds((int)(FrameTotal.WINDOWW*(0.627)), (int)(HEIGHT*0.15),(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
 		closeButton.addActionListener(playerControl);
 		closeButton.addMouseMotionListener(new MouseMotion());
 		closeButton.setContentAreaFilled(false);
@@ -127,8 +127,8 @@ public class PanelHelp extends JPanel{
 	void initExchange(){
 		JButton jbtUp=new JButton(imgUp);
 		JButton jbtDown=new JButton(imgDown);	
-		jbtUp.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.61),(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
-		jbtDown.setBounds((int)(FrameTotal.WINDOWW*(0.683-0.056)), (int)(HEIGHT*0.75), (int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
+		jbtUp.setBounds((int)(FrameTotal.WINDOWW*(0.627)), (int)(HEIGHT*0.61),(int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
+		jbtDown.setBounds((int)(FrameTotal.WINDOWW*(0.627)), (int)(HEIGHT*0.75), (int)(FrameTotal.WINDOWW*0.039),(int)(FrameTotal.WINDOWH*0.067));
 		jbtUp.setContentAreaFilled(false);
 		jbtUp.setBorderPainted(false);
 		jbtDown.setContentAreaFilled(false);

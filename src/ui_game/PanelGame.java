@@ -73,9 +73,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//下一关按钮(当通关后显示)
 	private JButton nextButton;
 	//返回按钮图片
-	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
+	private static final ImageIcon BUTTON_RETURN = Planet.getImageIcon("image/button/RETURN.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
 	//下一关按钮图片
-	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon("image/button/NEXT3.png", (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.020));
+	private static final ImageIcon BUTTON_NEXT = Planet.getImageIcon("image/button/NEXT.png", (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.020));
 	//背景图片
 	private ImageIcon[] backgroundDemo=new ImageIcon[16];
 	private Image[] background=new Image[16];
@@ -93,7 +93,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		
 		String address = new String();
 		for (int i = 0; i < 16; i++) {
-			address = "image/bg/" + (i+1) + ".jpg";
+			address = "image/background/" + (i+1) + ".jpg";
 			backgroundDemo[i] = new ImageIcon(address);
 		}
 

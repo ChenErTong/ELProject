@@ -30,7 +30,9 @@ public class PanelSelectMission extends PanelTotal{
 	//按钮的图标
 	private ImageIcon[] selectIcon;
 	//返回按钮
-	private ImageIcon imgReturn=Planet.getImageIcon("image/button/Return4.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
+	private ImageIcon imgReturn=Planet.getImageIcon("image/button/RETURN.png", (int)(FrameTotal.WINDOWW*0.098), (int)(FrameTotal.WINDOWW*0.020));
+	//右翻页按钮
+	private ImageIcon imgRight=Planet.getImageIcon("image/button/Right.png", (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
 	//各个关卡进入按钮
 	private JButton jbtMission1;
 	private JButton jbtMission2;
@@ -39,6 +41,9 @@ public class PanelSelectMission extends PanelTotal{
 	private JButton jbtMission5;
 	//返回按钮
 	private JButton jbtBack;
+	//翻页按钮
+	private JButton jbtRight;
+	
 	public PanelSelectMission(BackgroundMusic bgm, BgmSyncData bgmData,SoundSyncData soundData, FrameTotal frameTotal){
 		super(bgm, bgmData, soundData,frameTotal);
 		
@@ -104,9 +109,18 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtBack.addMouseMotionListener(new MouseMotion());
 		this.jbtBack.setActionCommand("ReturnToStart");
 		this.add(jbtBack);
-
+		
+		if(FrameTotal.TOTALDATA.getGrade(5) > 0){
+			this.jbtRight=new JButton(imgRight);
+			this.jbtRight.setBounds((int)(FrameTotal.WINDOWW*0.96), (int)(FrameTotal.WINDOWH*0.8), (int)(FrameTotal.WINDOWW*0.036), (int)(FrameTotal.WINDOWW*0.036));
+			this.jbtRight.setContentAreaFilled(false);
+			this.jbtRight.setBorderPainted(false);
+			this.jbtRight.setActionCommand("5");
+			this.add(jbtRight);
+		}
+		
 		//在分层面板加入背景图片面板	
-		this.backgroundImg=Planet.getImageIcon("image/bg/解锁界面.png", FrameTotal.WINDOWW, FrameTotal.WINDOWH);
+		this.backgroundImg=Planet.getImageIcon("image/background/Select.png", FrameTotal.WINDOWW, FrameTotal.WINDOWH);
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,FrameTotal.WINDOWW,FrameTotal.WINDOWH);		
 		this.add(background);
