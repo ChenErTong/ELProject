@@ -62,7 +62,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 	private boolean isGameRefresh;
 	private boolean isGameLose;
 	
-	private PlanetDragger dragger;
+	private PlanetDragger dragger = null;
 	//计时器 TODO
 	public long totalMillis=180000;
 	public Clock clock;
@@ -197,26 +197,39 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 停止游戏界面线程，开启通关界面
 	 */
 	public void gameOver(){
-		//加入下一关按钮
-		this.nextButton = new JButton();
-		this.nextButton.setIcon(BUTTON_NEXT);
-		this.nextButton.setBounds((int)(FrameTotal.WINDOWW*0.15), (int)(FrameTotal.WINDOWH*0.018), (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.036));
-		this.nextButton.setContentAreaFilled(false);
-		this.nextButton.setBorderPainted(false);
-		this.nextButton.setActionCommand("NextLevel");
-		this.nextButton.addActionListener(playerControl);
-		this.nextButton.addMouseMotionListener(new MouseMotion());
-		this.nextButton.setVisible(true);
-		this.add(nextButton);
-				
-		int level = this.gameData.getFileName().charAt(5) - '0';
-		this.computeGrade(this.clock.getMillis());
-		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
-			FrameTotal.TOTALDATA.levelUp();
+		String fileName = this.gameData.getFileName();
+		boolean hasNext = false;
+		int level = -1;
+		if(fileName.substring(0, 5).equals("level")){
+			level = fileName.charAt(5) - '0';
+			hasNext = true;
+		}else{
+			level = fileName.charAt(12) - '0' + 5;
 		}
+		
+		this.computeGrade(this.clock.getMillis());
 		if(FrameTotal.TOTALDATA.getGrade(level) < this.grade){
 			FrameTotal.TOTALDATA.setGrade(level, this.grade);
 		}
+		
+		if(hasNext){
+			//加入下一关按钮
+			this.nextButton = new JButton();
+			this.nextButton.setIcon(BUTTON_NEXT);
+			this.nextButton.setBounds((int)(FrameTotal.WINDOWW*0.15), (int)(FrameTotal.WINDOWH*0.018), (int)(FrameTotal.WINDOWW*0.065), (int)(FrameTotal.WINDOWW*0.036));
+			this.nextButton.setContentAreaFilled(false);
+			this.nextButton.setBorderPainted(false);
+			this.nextButton.setActionCommand("NextLevel");
+			this.nextButton.addActionListener(playerControl);
+			this.nextButton.addMouseMotionListener(new MouseMotion());
+			this.nextButton.setVisible(true);
+			this.add(nextButton);
+			
+			if(FrameTotal.TOTALDATA.getGrade(level) == 0){
+				FrameTotal.TOTALDATA.levelUp();
+			}
+		}
+							
 		this.isGameWin = true;
 		//播放过关音效
 		SoundEffect.WIN.play();
@@ -379,13 +392,17 @@ public class PanelGame extends PanelTotal implements Runnable{
 	 * 控制所有功能星球不可移动
 	 */
 	public void stopDrag(){
-		dragger.stop();
+		if(dragger != null){
+			dragger.stop();
+		}
 	}
 	/**
 	 * 控制所有功能星球恢复移动
 	 */
 	private void reDrag(){
-		dragger.start();
+		if(dragger != null){
+			dragger.start();
+		}
 	}
 
 	public void addControl(GameControl gameControl) {

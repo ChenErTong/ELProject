@@ -23,7 +23,7 @@ public class LevelConfig {
 		}else{
 			doc = reader.read("config/edit.xml");
 			this.fileName = "edit";
-		}	
+		}
 		Element level = doc.getRootElement();
 		Element data = level.element("gamedata");
 		this.dataConfig = new DataConfig(data);

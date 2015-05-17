@@ -253,7 +253,6 @@ public class GameControl {
 			this.frameTotal.remove(this.panelSelectDIY);
 			this.panelSelectDIY = null;
 		}
-		
 		if(this.gameData.getFileName() == "edit"){
 			this.frameTotal.initPanelEdit(this.gameData);		
 		}else{
@@ -288,8 +287,19 @@ public class GameControl {
 			System.out.println("黑洞"+i+":x="+this.gameData.getPlanetBlackHoles().get(i).getLocationX()+"||y="+this.gameData.getPlanetBlackHoles().get(i).getLocationY());
 		}
 	}
-
+	
+	//存储编辑界面的游戏设计，输出成xml文件
 	public void saveData() {
 		this.panelEdit.saveData();
+	}
+
+	//向编辑界面中加入星球
+	public void addPlanet(char planetTag) {
+		this.panelEdit.addPlanet(planetTag);
+	}
+	
+	//删除编辑界面中的星球
+	public void deletePlanet(char planetTag) {
+		this.panelEdit.deletePlanet(planetTag);
 	}
 }

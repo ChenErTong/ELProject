@@ -55,6 +55,18 @@ public class PlayerControl implements ActionListener{
 		} else if(code.equalsIgnoreCase("Save")){
 			this.gameControl.saveData();
 			this.gameControl.toSelectDIY();
+		} else if(code.equalsIgnoreCase("addPlanet0")
+				||code.equalsIgnoreCase("addPlanet1")
+				||code.equalsIgnoreCase("addPlanet2")
+				||code.equalsIgnoreCase("addPlanet3")
+				||code.equalsIgnoreCase("addPlanet4")){
+			this.gameControl.addPlanet(code.charAt(9));
+		} else if(code.equalsIgnoreCase("deletePlanet0")
+				||code.equalsIgnoreCase("deletePlanet1")
+				||code.equalsIgnoreCase("deletePlanet2")
+				||code.equalsIgnoreCase("deletePlanet3")
+				||code.equalsIgnoreCase("deletePlanet4")){
+			this.gameControl.deletePlanet(code.charAt(12));
 		}
 	}
 }

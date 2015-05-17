@@ -57,11 +57,14 @@ public class GameData {
 	private int lightDirectionY;
 	
 	private String[] levels = {"level1", "level2", "level3", "level4", "level5"};
+	//将要打开的文件名称
 	private String fileName;
+	//将要写入的文件名称
+	private String newFile;
 	
 	public GameData(String fileName){		
 		lightControl = new LightControl();
-	
+		newFile = fileName;
 		try {
 			//读出配置文件中的所有星球数据
 			LevelConfig levelCfg = new LevelConfig(fileName);		
@@ -126,8 +129,7 @@ public class GameData {
 				
 				Class<?> cla = Class.forName(wormholeCfg.getClassName());
 				Constructor<?> ctr = cla.getConstructor(int.class, int.class, int.class, int.class, int.class, GameData.class);
-				planetWormHole = (PlanetWormHole) ctr.newInstance(wormholeCfg.getLocation1X(), wormholeCfg.getLocation1Y(), wormholeCfg.getLocation2X(), wormholeCfg.getLocation2Y(), wormholeCfg.getRadius(), this); 
-			
+				planetWormHole = (PlanetWormHole) ctr.newInstance(wormholeCfg.getLocation1X(), wormholeCfg.getLocation1Y(), wormholeCfg.getLocation2X(), wormholeCfg.getLocation2Y(), wormholeCfg.getRadius(), this); 	
 			}	
 			
 			this.setLaunchDirections();
@@ -176,6 +178,10 @@ public class GameData {
 		return fileName;
 	}
 
+	public String getNewFile() {
+		return newFile;
+	}
+
 	public PlanetWormHole getPlanetWormHole() {
 		return planetWormHole;
 	}
@@ -189,8 +195,10 @@ public class GameData {
 	}
 	//
 	public void refreshPlanet(int tag,Point location){
-		this.planetPoints[tag][0]=location.x;
-		this.planetPoints[tag][1]=location.y;
+		if(!this.fileName.equals("edit")){
+			this.planetPoints[tag][0]=location.x;
+			this.planetPoints[tag][1]=location.y;
+		}
 	}
 	
 	public void setLaunchDirections(){

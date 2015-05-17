@@ -82,6 +82,10 @@ public abstract class Planet extends JButton {
 		return radius;
 	}
 	
+	public void setTag(int tag){
+		this.tag = tag;
+	}
+	
 	public int getTag() {
 		return tag;
 	}

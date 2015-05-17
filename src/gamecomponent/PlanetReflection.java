@@ -85,7 +85,6 @@ public class PlanetReflection extends Planet implements Runnable {
 		super.setLocation(location);
 		this.locationX=location.x;
 		this.locationY=location.y;
-//		System.out.println(location);
 		this.gameData.refreshPlanet(this.tag, location);
 	}
 	/**
