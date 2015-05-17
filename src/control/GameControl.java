@@ -8,6 +8,8 @@ import ui.FrameTotal;
 import ui.WindowDragger;
 import ui_game.FrameWin;
 import ui_game.PanelGame;
+import ui_start.PanelEdit;
+import ui_start.PanelSelectDIY;
 import ui_start.PanelSelectMission;
 import ui_start.PanelStartGame;
 /**
@@ -28,6 +30,14 @@ public class GameControl {
 	 * 选关界面层
 	 */
 	private PanelSelectMission panelSelectMission;
+	/**
+	 * 自定义层
+	 */
+	private PanelSelectDIY panelSelectDIY;
+	/**
+	 * 游戏设计界面
+	 */
+	private PanelEdit panelEdit;
 	/**
 	 * 游戏界面层
 	 */
@@ -54,13 +64,24 @@ public class GameControl {
 	public void setPanelSelectMission(PanelSelectMission panelSelectMission) {
 		this.panelSelectMission = panelSelectMission;
 	}
+	public void setPanelSelectDIY(PanelSelectDIY panelSelectDIY) {
+		this.panelSelectDIY = panelSelectDIY;
+	}
 	public void setPanelGame(PanelGame panelGame) {
 		this.panelGame = panelGame;
+	}
+	public void setPanelEdit(PanelEdit panelEdit) {
+		this.panelEdit = panelEdit;
 	}
 	
 	//
 	public void stopDrag(){
-		this.panelGame.stopDrag();
+		if(this.panelGame != null){
+			this.panelGame.stopDrag();
+		}else if (this.panelEdit != null){
+			this.panelEdit.stopDrag();
+		}
+		
 	}
 	
 	/**
@@ -75,17 +96,30 @@ public class GameControl {
 			this.panelGame.repaint();
 			//音效
 			SoundEffect.LIGHT.play();		
-		}	
+		}else if(this.panelEdit != null){
+			this.gameData.getPlanetEarth().setLocations();
+			this.gameData.setLaunchDirections();
+			this.gameData.getLightControl().launchLight(PlanetEarth.launchX, PlanetEarth.launchY, this.gameData.getLightDirectionX(), this.gameData.getLightDirectionY());
+			this.panelEdit.repaint();
+			//音效
+			SoundEffect.LIGHT.play();
+		}
 	}
 	//==========================以下是各个界面间的跳转方法==============================
 	/**
-	 * 从开始界面跳转至选关界面
+	 * 从开始界面或者DIY界面跳转至选关界面
 	 */
 	public void toSelectMission() {
 		this.frameTotal.musicStart.stop();
 		SoundEffect.ENTER.play();
-		this.frameTotal.remove(this.panelStartGame);
-		this.panelStartGame = null;
+		if(this.panelStartGame != null){
+			this.frameTotal.remove(this.panelStartGame);
+			this.panelStartGame = null;
+		}else if(this.panelSelectDIY != null){
+			this.frameTotal.remove(this.panelSelectDIY);
+			this.panelSelectDIY = null;
+		}
+		
 		this.frameTotal.initPanelSelectMission();
 	}
 	
@@ -116,11 +150,44 @@ public class GameControl {
 	 * 从选关界面返回至开始界面
 	 */
 	public void returnToStart() {
-		this.frameTotal.remove(this.panelSelectMission);
-		SoundEffect.ENTER.play();
-		this.panelSelectMission = null;
+		SoundEffect.ENTER.play();	
 		this.frameTotal.musicSelect.stop();
+		if(this.panelSelectMission != null){
+			this.frameTotal.remove(this.panelSelectMission);
+			this.panelSelectMission = null;
+		}else if(this.panelSelectDIY != null){
+			this.frameTotal.remove(this.panelSelectDIY);
+			this.panelSelectDIY = null;
+		}
 		this.frameTotal.initPanelStartGame();
+	}
+	
+	/**
+	 * 进入自定义界面
+	 */
+	public void toSelectDIY() {
+		this.frameTotal.musicStart.stop();
+		SoundEffect.ENTER.play();
+		if(this.panelSelectMission != null){
+			this.frameTotal.remove(this.panelSelectMission);
+			this.panelSelectMission = null;
+		}else if(this.panelEdit != null){
+			this.frameTotal.remove(this.panelEdit);
+			this.panelEdit = null;
+		}		
+		this.frameTotal.initPanelGameSelectDIY();
+	}
+	
+	/**
+	 * 进入关卡设计界面
+	 */
+	public void toPanelEdit() {
+		this.gameData =new GameData(0);
+		SoundEffect.ENTER.play();
+		this.frameTotal.musicSelect.stop();
+		this.frameTotal.remove(this.panelSelectDIY);
+		this.panelSelectDIY = null;
+		this.frameTotal.initPanelEdit(this.gameData);		
 	}
 	
 	/**
@@ -175,14 +242,18 @@ public class GameControl {
 	 * 从选关界面进入进入游戏界面
 	 * @param level
 	 */
-	public void toGameLevel(int level) {
+	public void toGameLevel(int level) {		
 		SoundEffect.ENTER.play();
 		this.gameData =new GameData(level);
 		this.frameTotal.musicSelect.stop();
-		this.frameTotal.remove(this.panelSelectMission);
-		this.panelSelectMission = null;
-		this.frameTotal.initPanelGame(this.gameData);
-		
+		if(this.panelSelectMission != null){
+			this.frameTotal.remove(this.panelSelectMission);
+			this.panelSelectMission = null;
+		}else if(this.panelSelectDIY != null){
+			this.frameTotal.remove(this.panelSelectDIY);
+			this.panelSelectDIY = null;
+		}
+		this.frameTotal.initPanelGame(this.gameData);	
 		this.panelGame.addControl(this);
 	}
 	
@@ -211,5 +282,9 @@ public class GameControl {
 		for (int i = 0; i < this.gameData.getPlanetBlackHoles().size(); i++) {
 			System.out.println("黑洞"+i+":x="+this.gameData.getPlanetBlackHoles().get(i).getLocationX()+"||y="+this.gameData.getPlanetBlackHoles().get(i).getLocationY());
 		}
+	}
+
+	public void saveData() {
+		this.panelEdit.saveData();
 	}
 }
