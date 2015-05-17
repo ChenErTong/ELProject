@@ -64,8 +64,8 @@ public class PanelGame extends PanelTotal implements Runnable{
 	//
 	private PlanetDragger[] dragger;
 	//计时器 TODO
-	private long totalMillis=1800000;
-	private Clock clock=new Clock(totalMillis,this);
+	public long totalMillis=180000;
+	public Clock clock;
 	//关卡游戏评级
 	private int grade;
 	//返回按钮
@@ -85,6 +85,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.gameData=gameData;
 		//初始化是否结束游戏
 		this.isGameWin = false;
+		this.isGameLose = false;
 		this.isGameRefresh = false;
 		
 		this.setVisible(false);
@@ -187,7 +188,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		}
 		
 		//加入计时器
-		this.add(clock);
+	//	this.add(clock);
 
 	}
 	
@@ -254,6 +255,9 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.winFrame.setAlwaysOnTop(true);
 		//计时器停止计时
 		this.clock.stop();
+		try {
+			Thread.sleep(25);
+		} catch (Exception e) {}
 	}
 	
 	//鼠标移过按钮时发出音效

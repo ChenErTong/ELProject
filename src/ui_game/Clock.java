@@ -55,7 +55,7 @@ public class Clock extends JPanel{
 	
 	//停止计时器
 	public void stop(){
-		this.timer.stop();
+		this.timer.stop();		
 	}
 	
 	//返回从剩余的毫秒数

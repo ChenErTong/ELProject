@@ -106,6 +106,7 @@ public class GameControl {
 	public void returnFromGame() {
 		this.panelGame.closeFrameWin();
 		this.frameTotal.remove(this.panelGame);
+		this.panelGame.clock.stop();
 		SoundEffect.ENTER.play();
 		this.panelGame = null;
 		this.frameTotal.initPanelSelectMission();
