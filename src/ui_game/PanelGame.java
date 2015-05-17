@@ -209,7 +209,7 @@ public class PanelGame extends PanelTotal implements Runnable{
 		this.nextButton.setVisible(true);
 		this.add(nextButton);
 				
-		int level = this.gameData.getLevel();
+		int level = this.gameData.getFileName().charAt(5) - '0';
 		this.computeGrade(this.clock.getMillis());
 		if(FrameTotal.TOTALDATA.getGrade(level) == 0){
 			FrameTotal.TOTALDATA.levelUp();

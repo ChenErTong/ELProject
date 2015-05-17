@@ -32,7 +32,7 @@ public class TotalData {
 	private String frontLevel;
 	//文件中屏幕分辨率前缀
 	private String frontResolution;
-	
+
 	public TotalData(){
 		this.loadData();
 	}
@@ -40,7 +40,11 @@ public class TotalData {
 	 * 游戏通关一关后升级一级
 	 */
 	public void levelUp(){
-		this.level ++;
+		if(this.level == 5){
+			this.level = 10;
+		}else{
+			this.level ++;
+		}	
 	}
 	
 	/**

@@ -182,7 +182,7 @@ public class GameControl {
 	 * 进入关卡设计界面
 	 */
 	public void toPanelEdit() {
-		this.gameData =new GameData(0);
+		this.gameData =new GameData("edit");
 		SoundEffect.ENTER.play();
 		this.frameTotal.musicSelect.stop();
 		this.frameTotal.remove(this.panelSelectDIY);
@@ -219,7 +219,7 @@ public class GameControl {
 		this.panelGame.closeFrameWin();
 		SoundEffect.ENTER.play();
 		//重新建立单局游戏数据
-		this.gameData = new GameData(this.gameData.getLevel() + 1);
+		this.gameData = new GameData(this.gameData.nextLevel(this.gameData.getFileName()));
 		//移除原有的游戏界面
 		this.frameTotal.remove(this.panelGame);
 		this.panelGame = null;
@@ -242,9 +242,9 @@ public class GameControl {
 	 * 从选关界面进入进入游戏界面
 	 * @param level
 	 */
-	public void toGameLevel(int level) {		
+	public void toGameLevel(String fileName) {		
 		SoundEffect.ENTER.play();
-		this.gameData =new GameData(level);
+		this.gameData =new GameData(fileName);
 		this.frameTotal.musicSelect.stop();
 		if(this.panelSelectMission != null){
 			this.frameTotal.remove(this.panelSelectMission);
@@ -253,8 +253,13 @@ public class GameControl {
 			this.frameTotal.remove(this.panelSelectDIY);
 			this.panelSelectDIY = null;
 		}
-		this.frameTotal.initPanelGame(this.gameData);	
-		this.panelGame.addControl(this);
+		
+		if(this.gameData.getFileName() == "edit"){
+			this.frameTotal.initPanelEdit(this.gameData);		
+		}else{
+			this.frameTotal.initPanelGame(this.gameData);	
+			this.panelGame.addControl(this);
+		}	
 	}
 	
 	/**

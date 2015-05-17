@@ -1,5 +1,6 @@
 package config;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,25 +9,31 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 public class LevelConfig {
-	private ArrayList<DataConfig> dataConfig;
+	private DataConfig dataConfig;
+	private String fileName;
 	
-	public LevelConfig() throws Exception{
+	public LevelConfig(String fileName) throws Exception{
 		SAXReader reader = new SAXReader();
-		Document doc = reader.read("config/levelCfg.xml");
+		String file = "config/" + fileName + ".xml";
+		Document doc;
+		
+		if(new File(file).exists()){
+			doc = reader.read(file);
+			this.fileName = fileName;
+		}else{
+			doc = reader.read("config/edit.xml");
+			this.fileName = "edit";
+		}	
 		Element level = doc.getRootElement();
-
-		this.dataConfig = new ArrayList<DataConfig>();
-		
-		@SuppressWarnings("unchecked")
-		List<Element> datas = level.elements("gamedata");
-		for (Element data : datas) {
-			DataConfig dc = new DataConfig(data);
-		
-			this.dataConfig.add(dc);
-		}
+		Element data = level.element("gamedata");
+		this.dataConfig = new DataConfig(data);
 	}
 
-	public ArrayList<DataConfig> getDataConfig() {
+	public DataConfig getDataConfig() {
 		return dataConfig;
+	}
+	
+	public String getFileName(){
+		return fileName;
 	}
 }

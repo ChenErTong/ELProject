@@ -11,13 +11,11 @@ import gamecomponent.PlanetThreeBody;
 import gamecomponent.PlanetWhiteDwarf;
 import gamecomponent.PlanetWormHole;
 
-import java.awt.Component;
 import java.awt.Point;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import config.ConfigFactory;
 import config.DataConfig;
 import config.LevelConfig;
 import config.PlanetConfig;
@@ -57,16 +55,18 @@ public class GameData {
 	//初始光线方向
 	private int lightDirectionX;
 	private int lightDirectionY;
-	//当前关卡游戏等级
-	private int level;
-	public GameData(int level){		
+	
+	private String[] levels = {"level1", "level2", "level3", "level4", "level5"};
+	private String fileName;
+	
+	public GameData(String fileName){		
 		lightControl = new LightControl();
-		
-		this.level = level;
+	
 		try {
 			//读出配置文件中的所有星球数据
-			LevelConfig levelCfg = ConfigFactory.getLEVEL_CFG();		
-			DataConfig dataCfg = levelCfg.getDataConfig().get(this.level);
+			LevelConfig levelCfg = new LevelConfig(fileName);		
+			DataConfig dataCfg = levelCfg.getDataConfig();
+			this.fileName = levelCfg.getFileName();
 			
 			this.planetReflections = new ArrayList<PlanetReflection>(dataCfg.reflectionNum);
 			this.planetRefractions = new ArrayList<PlanetRefraction>(dataCfg.refractionNum);
@@ -172,8 +172,8 @@ public class GameData {
 		return planetWhiteDwarfs;
 	}
 
-	public int getLevel() {
-		return level;
+	public String getFileName() {
+		return fileName;
 	}
 
 	public PlanetWormHole getPlanetWormHole() {
@@ -196,5 +196,16 @@ public class GameData {
 	public void setLaunchDirections(){
 		this.lightDirectionX = this.planetSun.getLocationX()+this.planetSun.getRadius()-this.planetEarth.getLocationX()-this.planetEarth.getRadius();
 		this.lightDirectionY = this.planetSun.getLocationY()+this.planetSun.getRadius()-this.planetEarth.getLocationY()-this.planetEarth.getRadius();
+	}
+	
+	public String nextLevel(String thisLevel){
+		String result = new String();
+		
+		for (int i = 0; i < levels.length; i++) {
+			if(thisLevel.equals(levels[i])){
+				result = levels[i+1];
+			}
+		}
+		return result;
 	}
 }

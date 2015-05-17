@@ -66,7 +66,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission1.setBounds((int)(FrameTotal.WINDOWW*0.044), (int)(FrameTotal.WINDOWH*0.213), imageW, imageH);
 		this.jbtMission1.setContentAreaFilled(false);
 		this.jbtMission1.setBorderPainted(false);
-		this.jbtMission1.setActionCommand("1");
+		this.jbtMission1.setActionCommand("level1");
 		this.add(jbtMission1);
 	
 		//显示第二关图标
@@ -74,7 +74,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission2.setBounds((int)(FrameTotal.WINDOWW*0.199), (int)(FrameTotal.WINDOWH*0.370), imageW, imageH);
 		this.jbtMission2.setContentAreaFilled(false);
 		this.jbtMission2.setBorderPainted(false);
-		this.jbtMission2.setActionCommand("2");
+		this.jbtMission2.setActionCommand("level2");
 		this.add(jbtMission2);
 	
 		//显示第三关图标
@@ -82,7 +82,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission3.setBounds((int)(FrameTotal.WINDOWW*0.432), (int)(FrameTotal.WINDOWH*0.427), imageW, imageH);
 		this.jbtMission3.setContentAreaFilled(false);
 		this.jbtMission3.setBorderPainted(false);
-		this.jbtMission3.setActionCommand("3");
+		this.jbtMission3.setActionCommand("level3");
 		this.add(jbtMission3);
 	
 		//显示第四关图标
@@ -90,7 +90,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission4.setBounds((int)(FrameTotal.WINDOWW*0.686), (int)(FrameTotal.WINDOWH*0.378), imageW, imageH);
 		this.jbtMission4.setContentAreaFilled(false);
 		this.jbtMission4.setBorderPainted(false);
-		this.jbtMission4.setActionCommand("4");
+		this.jbtMission4.setActionCommand("level4");
 		this.add(jbtMission4);
 	
 		//显示第五关图标
@@ -98,7 +98,7 @@ public class PanelSelectMission extends PanelTotal{
 		this.jbtMission5.setBounds((int)(FrameTotal.WINDOWW*0.851), (int)(FrameTotal.WINDOWH*0.253), imageW, imageH);
 		this.jbtMission5.setContentAreaFilled(false);
 		this.jbtMission5.setBorderPainted(false);
-		this.jbtMission5.setActionCommand("5");
+		this.jbtMission5.setActionCommand("level5");
 		this.add(jbtMission5);
 
 		//返回按钮
@@ -142,11 +142,8 @@ public class PanelSelectMission extends PanelTotal{
 		/**
 		 * 给所有关卡按钮加入玩家控制器进行监听
 		 */
-		int lv = FrameTotal.TOTALDATA.getLevel();
-		if(lv > 5){
-			lv = 5;
-		}
-		switch(lv){
+		switch(FrameTotal.TOTALDATA.getLevel()){
+		case 10:
 		case 5: jbtMission5.addActionListener(this.playerControl);
 		case 4: jbtMission4.addActionListener(this.playerControl);
 		case 3: jbtMission3.addActionListener(this.playerControl);

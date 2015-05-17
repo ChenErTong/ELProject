@@ -37,13 +37,17 @@ public class PlayerControl implements ActionListener{
 			this.gameControl.nextLevel();
 		} else if(code.equalsIgnoreCase("Quit")){
 			this.gameControl.Quit();
-		} else if(code.equalsIgnoreCase("1")
-				||code.equalsIgnoreCase("2")
-				||code.equalsIgnoreCase("3")
-				||code.equalsIgnoreCase("4")
-				||code.equalsIgnoreCase("5")){
-			int level = Integer.parseInt(code);
-			this.gameControl.toGameLevel(level);
+		} else if(code.equalsIgnoreCase("level1")
+				||code.equalsIgnoreCase("level2")
+				||code.equalsIgnoreCase("level3")
+				||code.equalsIgnoreCase("level4")
+				||code.equalsIgnoreCase("level5")
+				||code.equalsIgnoreCase("user-defined1")
+				||code.equalsIgnoreCase("user-defined2")
+				||code.equalsIgnoreCase("user-defined3")
+				||code.equalsIgnoreCase("user-defined4")
+				||code.equalsIgnoreCase("user-defined5")){
+			this.gameControl.toGameLevel(code);
 		} else if(code.equalsIgnoreCase("ToSelectDIY")){
 			this.gameControl.toSelectDIY();
 		} else if(code.equalsIgnoreCase("DIY")){
