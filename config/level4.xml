@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <level>
     <gamedata className="gamedata.GameData" name="lv4" reflectionNum="3" refractionNum="0" blackholeNum="1" whiteDwarfNum="4" wormholeNum="1">
-        <planet className="gamecomponent.PlanetEarth" locationX="36" locationY="60" radius="40" tag="0"/>
-        <planet className="gamecomponent.PlanetSun" locationX="26" locationY="150" radius="50" tag="1"/>
-        <planet className="gamecomponent.PlanetThreeBody" locationX="920" locationY="490" radius="50" tag="2"/>
-        <planet className="gamecomponent.PlanetReflection" locationX="60" locationY="380" radius="45" tag="3"/>
-        <planet className="gamecomponent.PlanetReflection" locationX="465" locationY="235" radius="45" tag="4"/>
-        <planet className="gamecomponent.PlanetReflection" locationX="200" locationY="51" radius="45" tag="5"/>
-        <planet className="gamecomponent.PlanetBlackHole" locationX="520" locationY="45" radius="45" tag="6"/>           
-  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="830" locationY="350" radius="45" tag="7"/>
-  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="455" locationY="480" radius="45" tag="8"/>
-  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="700" locationY="450" radius="45" tag="9"/>
-  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="630" locationY="320" radius="45" tag="10"/>
-    	<wormhole className="gamecomponent.PlanetWormHole" location1X="320" location1Y="170" location2X="930" location2Y="230" radius="40"/>
+        <planet className="gamecomponent.PlanetEarth" locationX="0.0352" locationY="0.1000" radius="0.0391" tag="0"/>
+        <planet className="gamecomponent.PlanetSun" locationX="0.0254" locationY="0.2500" radius="0.0489" tag="1"/>
+        <planet className="gamecomponent.PlanetThreeBody" locationX="0.8984" locationY="0.8167" radius="0.0488" tag="2"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="0.0586" locationY="0.6333" radius="0.0439" tag="3"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="0.4541" locationY="0.3917" radius="0.0439" tag="4"/>
+        <planet className="gamecomponent.PlanetReflection" locationX="0.1953" locationY="0.0850" radius="0.0439" tag="5"/>
+        <planet className="gamecomponent.PlanetBlackHole" locationX="0.5078" locationY="0.0750" radius="0.0439" tag="6"/>           
+  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="0.8105" locationY="0.5833" radius="0.0439" tag="7"/>
+  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="0.4443" locationY="0.8000" radius="0.0439" tag="8"/>
+  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="0.6836" locationY="0.7500" radius="0.0439" tag="9"/>
+  		<planet className="gamecomponent.PlanetWhiteDwarf" locationX="0.6152" locationY="0.5333" radius="0.0439" tag="10"/>
+    	<wormhole className="gamecomponent.PlanetWormHole" location1X="0.3125" location1Y="0.2833" location2X="0.9082" location2Y="0.3833" radius="0.0391"/>
     </gamedata>
 </level>

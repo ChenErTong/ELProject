@@ -178,6 +178,13 @@ public class PanelGame extends PanelTotal implements Runnable{
 			this.add(this.gameData.getPlanetWormHole().getWormHole());
 			this.add(this.gameData.getPlanetWormHole().getAnotherWormHole());
 		}
+		
+		System.out.println(this.earth.getLocationX());
+		System.out.println(this.earth.getLocationY());
+		System.out.println(this.earth.getRadius());
+		System.out.println(this.sun.getLocationX());
+		System.out.println(this.sun.getLocationY());
+		System.out.println(this.sun.getRadius());	
 	}
 	
 	/**

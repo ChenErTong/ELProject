@@ -2,8 +2,8 @@
 
 <level>
   <gamedata className="gamedata.GameData" reflectionNum="0" refractionNum="0" blackholeNum="0" whiteDwarfNum="0" wormholeNum="0">
-    <planet className="gamecomponent.PlanetEarth" locationX="372" locationY="260" radius="40" tag="0"/>
-    <planet className="gamecomponent.PlanetSun" locationX="462" locationY="250" radius="50" tag="1"/>
-    <planet className="gamecomponent.PlanetThreeBody" locationX="572" locationY="250" radius="50" tag="2"/>
+    <planet className="gamecomponent.PlanetEarth" locationX="0.3633" locationY="0.4333" radius="0.0391" tag="0"/>
+    <planet className="gamecomponent.PlanetSun" locationX="0.4512" locationY="0.4167" radius="0.0488" tag="1"/>
+    <planet className="gamecomponent.PlanetThreeBody" locationX="0.5586" locationY="0.4167" radius="0.0488" tag="2"/>
   </gamedata>
 </level>

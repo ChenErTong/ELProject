@@ -16,10 +16,10 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
-import config.DataConfig;
-import config.LevelConfig;
-import config.PlanetConfig;
-import config.WormHoleConfig;
+import configs.DataConfig;
+import configs.LevelConfig;
+import configs.PlanetConfig;
+import configs.WormHoleConfig;
 
 /**
  * 单场游戏数据，仅有游戏界面和游戏控制器调用
