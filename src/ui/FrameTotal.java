@@ -236,4 +236,29 @@ public class FrameTotal extends JFrame{
 		this.repaint();
 		this.requestFocus();
 	}
+	
+	/**
+	 * 根据比例转换出宽度
+	 */
+	public static int TRANSFERW(double ratioW){
+		return (int)(ratioW * WINDOWW);
+	}
+	
+	/**
+	 * 根据比例转换出高度
+	 */
+	public static int TRANSFERH(double ratioH){
+		return (int)(ratioH * WINDOWH);
+	}
+	
+	/**
+	 * 得到比例
+	 */
+	public static double getRatioW(int w){
+		return ((double)w / (double)WINDOWW);
+	}
+	
+	public static double getRatioH(int h){
+		return ((double)h / (double)WINDOWH);
+	}
 }
