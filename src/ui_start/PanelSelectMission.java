@@ -120,7 +120,7 @@ public class PanelSelectMission extends PanelTotal{
 		}
 		
 		//在分层面板加入背景图片面板	
-		this.backgroundImg=Planet.getImageIcon("image/background/Select.png", FrameTotal.WINDOWW, FrameTotal.WINDOWH);
+		this.backgroundImg=Planet.getImageIcon("image/background/Select.jpg", FrameTotal.WINDOWW, FrameTotal.WINDOWH);
 		JLabel background = new JLabel(this.backgroundImg);
 		background.setBounds(0,0,FrameTotal.WINDOWW,FrameTotal.WINDOWH);		
 		this.add(background);
