@@ -1,5 +1,4 @@
 # ELProject
-EL Project
 A Java Game Project for Nanjing University Software Engineer Insititute Easy Life Easy Learn Contest
 # Project Introduction
 
