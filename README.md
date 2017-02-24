@@ -1,20 +1,20 @@
 # ELProject
-EL项目
-这是南京大学软件学院2014级 easy life easy learn 比赛的参赛作品
-# 项目简介
+EL Project
+A Java Game Project for Nanjing University Software Engineer Insititute Easy Life Easy Learn Contest
+# Project Introduction
 
-是以《三体》为背景而开发的益智小游戏，要求玩家随意移动地图中的指定星球来控制光线的折射与反射，使得光线到达指定位置的游戏。如下图所示
+Taking Three Body as background, the player can move various planets, which have distinctive functions such as reflection and refraction, to help light reach appointed position. As shown in the figure:
 
 ![](1487865188684.png)
 ![](1487865194481.png)
 
-快捷键绑定如下
+Here is how shortkeys bind:
 ![](1487865197206.png)
-# 项目亮点
-## 地图编辑器
+# Project Features
+## The Custom Level
 
-参考 war craft 的辉煌，我们提供了地图编辑器，玩家可以随意编辑自己的地图
+Enlightened by War Craft, we provide a map editor to allow players to customize their own maze.
 ![](1487865191462.png)
 
-## 网络交流
-提供了网络交流的平台，玩家可以通过互联网分享、获取他人的游戏地图
+## Network Share
+We provide a platform where players can share their customized map with each other to improve this game's playability.
